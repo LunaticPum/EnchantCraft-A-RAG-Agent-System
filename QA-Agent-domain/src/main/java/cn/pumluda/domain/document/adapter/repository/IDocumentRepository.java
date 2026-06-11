@@ -26,4 +26,12 @@ public interface IDocumentRepository {
      */
     List<SourceDocumentEntity> findAll();
 
+    /**
+     * 根据内容 MD5 查重——用于上传幂等校验
+     *
+     * @param contentMd5 文件内容的 MD5 摘要
+     * @return 已存在的文档（如有）
+     */
+    Optional<SourceDocumentEntity> findByContentMd5(String contentMd5);
+
 }

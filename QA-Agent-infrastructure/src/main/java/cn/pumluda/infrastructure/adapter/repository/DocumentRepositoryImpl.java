@@ -47,11 +47,21 @@ public class DocumentRepositoryImpl implements IDocumentRepository {
     }
 
     @Override
+    public Optional<SourceDocumentEntity> findByContentMd5(String contentMd5) {
+        SourceDocumentPO po = sourceDocumentDao.selectOne(new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<SourceDocumentPO>().eq(
+                SourceDocumentPO::getContentMd5,
+                contentMd5
+        ));
+        if (po == null) {
+            return Optional.empty();
+        }
+        return Optional.of(toDocumentEntity(po));
+    }
+
+    @Override
     public List<SourceDocumentEntity> findAll() {
         List<SourceDocumentPO> poList = sourceDocumentDao.selectList(null);
-        return poList.stream()
-                .map(this::toDocumentEntity)
-                .collect(Collectors.toList());
+        return poList.stream().map(this::toDocumentEntity).collect(Collectors.toList());
     }
 
     // ==================== PO ↔ Entity 转换 ====================
@@ -61,15 +71,17 @@ public class DocumentRepositoryImpl implements IDocumentRepository {
      */
     private SourceDocumentPO toDocumentPO(SourceDocumentEntity entity) {
         return SourceDocumentPO.builder()
-                .id(entity.getId())
-                .fileName(entity.getFileName())
-                .fileType(entity.getFileType() != null ? entity.getFileType().getCode() : DocumentType.MARKDOWN.getCode())
-                .rawContent(entity.getRawContent())
-                .refCount(entity.getRefCount())
-                .isDeleted(entity.getIsDeleted() != null && entity.getIsDeleted() ? 1 : 0)
-                .createdAt(entity.getCreatedAt())
-                .updatedAt(entity.getUpdatedAt())
-                .build();
+                               .id(entity.getId())
+                               .fileName(entity.getFileName())
+                               .fileType(entity.getFileType() != null ? entity.getFileType()
+                                                                              .getCode() : DocumentType.MARKDOWN.getCode())
+                               .rawContent(entity.getRawContent())
+                               .contentMd5(entity.getContentMd5())
+                               .refCount(entity.getRefCount())
+                               .isDeleted(entity.getIsDeleted() != null && entity.getIsDeleted() ? 1 : 0)
+                               .createdAt(entity.getCreatedAt())
+                               .updatedAt(entity.getUpdatedAt())
+                               .build();
     }
 
     /**
@@ -86,15 +98,16 @@ public class DocumentRepositoryImpl implements IDocumentRepository {
             }
         }
         return SourceDocumentEntity.builder()
-                .id(po.getId())
-                .fileName(po.getFileName())
-                .fileType(docType)
-                .rawContent(po.getRawContent())
-                .refCount(po.getRefCount())
-                .isDeleted(po.getIsDeleted() != null && po.getIsDeleted() == 1)
-                .createdAt(po.getCreatedAt())
-                .updatedAt(po.getUpdatedAt())
-                .build();
+                                   .id(po.getId())
+                                   .fileName(po.getFileName())
+                                   .fileType(docType)
+                                   .rawContent(po.getRawContent())
+                                   .contentMd5(po.getContentMd5())
+                                   .refCount(po.getRefCount())
+                                   .isDeleted(po.getIsDeleted() != null && po.getIsDeleted() == 1)
+                                   .createdAt(po.getCreatedAt())
+                                   .updatedAt(po.getUpdatedAt())
+                                   .build();
     }
 
 }

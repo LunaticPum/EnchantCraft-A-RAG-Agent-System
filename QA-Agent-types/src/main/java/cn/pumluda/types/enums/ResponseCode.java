@@ -23,6 +23,7 @@ public enum ResponseCode {
     DOCUMENT_UPLOAD_FAILED("40002", "文档上传失败"),
     DOCUMENT_TYPE_UNSUPPORTED("40003", "不支持的文档类型"),
     DOCUMENT_CONTENT_EMPTY("40004", "文档内容为空"),
+    DOCUMENT_DUPLICATE("40005", "文档已存在（内容重复）"),
     ;
 
     /** 错误码 */

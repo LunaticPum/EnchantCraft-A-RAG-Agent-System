@@ -1,7 +1,7 @@
 package cn.pumluda.domain.document.service;
 
-import cn.pumluda.domain.document.adapter.repository.IDocumentRepository;
 import cn.pumluda.domain.document.adapter.repository.IDocumentChunkRepository;
+import cn.pumluda.domain.document.adapter.repository.IDocumentRepository;
 import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
 import cn.pumluda.domain.document.service.chunk.IMarkdownChunker;
@@ -11,6 +11,7 @@ import cn.pumluda.types.exception.AppException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class DocumentServiceImpl implements IDocumentService {
     private final IEmbeddingService embeddingService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public SourceDocumentEntity uploadDocument(String fileName, String content) {
         log.info("[文档上传] 开始处理: fileName={}, contentLength={}", fileName, content.length());
 
@@ -42,8 +44,26 @@ public class DocumentServiceImpl implements IDocumentService {
         }
         if (!fileName.endsWith(".md") && !fileName.endsWith(".markdown")) {
             log.warn("[文档上传] 不支持的文件类型: fileName={}", fileName);
-            throw new AppException(ResponseCode.DOCUMENT_TYPE_UNSUPPORTED.getCode(), "仅支持 Markdown 文件（.md / .markdown）");
+            throw new AppException(
+                    ResponseCode.DOCUMENT_TYPE_UNSUPPORTED.getCode(),
+                    "仅支持 Markdown 文件（.md / .markdown）"
+            );
         }
+
+        // 0. MD5 查重——防止重复上传相同内容的文档
+        String contentMd5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(content);
+        documentRepository.findByContentMd5(contentMd5).ifPresent(existing -> {
+            log.warn(
+                    "[文档上传] 内容重复: fileName={}, existingId={}, existingName={}",
+                    fileName,
+                    existing.getId(),
+                    existing.getFileName()
+            );
+            throw new AppException(
+                    ResponseCode.DOCUMENT_DUPLICATE.getCode(),
+                    "文档内容重复，已存在同名文档: " + existing.getFileName()
+            );
+        });
 
         // 1. 保存文档原文
         SourceDocumentEntity entity = SourceDocumentEntity.create(fileName, content);
@@ -64,11 +84,10 @@ public class DocumentServiceImpl implements IDocumentService {
     @Override
     public SourceDocumentEntity getDocument(String id) {
         log.info("[文档查询] 查询文档: id={}", id);
-        return documentRepository.findById(id)
-                .orElseThrow(() -> {
-                    log.warn("[文档查询] 文档不存在: id={}", id);
-                    return new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在: " + id);
-                });
+        return documentRepository.findById(id).orElseThrow(() -> {
+            log.warn("[文档查询] 文档不存在: id={}", id);
+            return new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在: " + id);
+        });
     }
 
     @Override
@@ -83,11 +102,10 @@ public class DocumentServiceImpl implements IDocumentService {
     public List<DocumentChunkEntity> getDocumentChunks(String documentId) {
         log.info("[文档分块] 查询分块: documentId={}", documentId);
         // 先校验文档存在
-        documentRepository.findById(documentId)
-                .orElseThrow(() -> {
-                    log.warn("[文档分块] 文档不存在: id={}", documentId);
-                    return new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在: " + documentId);
-                });
+        documentRepository.findById(documentId).orElseThrow(() -> {
+            log.warn("[文档分块] 文档不存在: id={}", documentId);
+            return new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在: " + documentId);
+        });
         List<DocumentChunkEntity> chunks = chunkRepository.findByDocumentId(documentId);
         log.info("[文档分块] 查询完成: count={}", chunks.size());
         return chunks;

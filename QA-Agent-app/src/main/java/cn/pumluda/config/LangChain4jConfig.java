@@ -43,7 +43,7 @@ public class LangChain4jConfig {
     /**
      * 依据 OpenAI 标准定义的对话模型
      *
-     * @return DeepSeek 对话模型
+     * @return DeepSeek-v4-proan 对话模型
      */
     @Bean
     public OpenAiChatModel chatModel() {
@@ -55,7 +55,7 @@ public class LangChain4jConfig {
     /**
      * 依据 OpenAI 标准定义的 Embedding 模型
      *
-     * @return DeepSeek Embedding 模型
+     * @return 阿里云百炼 Text-Embedding-v4 模型
      */
     @Bean
     public EmbeddingModel embeddingModel() {

@@ -35,6 +35,9 @@ public class SourceDocumentPO {
     /** 文档完整原始文本内容 */
     private String rawContent;
 
+    /** 文档内容的 MD5 摘要（32位十六进制），用于上传去重校验 */
+    private String contentMd5;
+
     /** 被 QA 集引用次数 */
     private Integer refCount;
 

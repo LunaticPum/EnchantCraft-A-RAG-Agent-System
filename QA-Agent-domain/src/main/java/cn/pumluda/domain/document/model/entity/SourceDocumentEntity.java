@@ -30,6 +30,9 @@ public class SourceDocumentEntity {
     /** 文档完整原始文本内容 */
     private String rawContent;
 
+    /** 文档内容的 MD5 摘要（32位十六进制），用于上传去重 */
+    private String contentMd5;
+
     /** 被 QA 集引用的次数 */
     private Integer refCount;
 
@@ -45,15 +48,17 @@ public class SourceDocumentEntity {
     /**
      * 创建新文档实体（工厂方法）
      *
-     * @param fileName  原始文件名
+     * @param fileName   原始文件名
      * @param rawContent 文档文本内容
-     * @return 初始化后的文档实体，id 为 null（由持久层自动生成）
+     * @return 初始化后的文档实体，id 为 null（由持久层自动生成），contentMd5 已计算
      */
     public static SourceDocumentEntity create(String fileName, String rawContent) {
+        String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(rawContent);
         return SourceDocumentEntity.builder()
                 .fileName(fileName)
                 .fileType(DocumentType.MARKDOWN)
                 .rawContent(rawContent)
+                .contentMd5(md5)
                 .refCount(0)
                 .isDeleted(false)
                 .createdAt(LocalDateTime.now())
