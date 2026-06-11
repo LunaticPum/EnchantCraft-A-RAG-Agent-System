@@ -44,6 +44,12 @@
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j</artifactId>
         </dependency>
+        <!-- flexmark：Markdown AST 解析，用于文档分块 -->
+        <dependency>
+            <groupId>com.vladsch.flexmark</groupId>
+            <artifactId>flexmark-all</artifactId>
+            <version>${flexmark.version}</version>
+        </dependency>
         <!-- 系统模块 -->
         <dependency>
             <groupId>cn.pumluda</groupId>

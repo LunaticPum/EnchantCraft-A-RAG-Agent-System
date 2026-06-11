@@ -1,6 +1,6 @@
 package cn.pumluda.infrastructure.adapter.repository;
 
-import cn.pumluda.domain.document.adapter.repository.DocumentRepository;
+import cn.pumluda.domain.document.adapter.repository.IDocumentRepository;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
 import cn.pumluda.domain.document.model.valobj.DocumentType;
 import cn.pumluda.infrastructure.dao.SourceDocumentDao;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class DocumentRepositoryImpl implements DocumentRepository {
+public class DocumentRepositoryImpl implements IDocumentRepository {
 
     private final SourceDocumentDao sourceDocumentDao;
 

@@ -9,7 +9,7 @@ import java.util.Optional;
  * Project: QA-Agent-Pumluda
  * Description: 文档仓储接口（domain 层定义契约，infrastructure 层实现）
  */
-public interface DocumentRepository {
+public interface IDocumentRepository {
 
     /**
      * 保存文档

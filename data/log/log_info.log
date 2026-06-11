@@ -1,0 +1,533 @@
+26-06-11.14:08:30.259 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 12688 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:08:30.264 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:08:30.266 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:08:32.990 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+26-06-11.14:08:33.016 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.14:08:33.081 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getType(AbstractBeanFactory.java:745)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAnnotationOnBean(DefaultListableBeanFactory.java:791)
+	at org.springframework.boot.sql.init.dependency.AnnotationDependsOnDatabaseInitializationDetector.detect(AnnotationDependsOnDatabaseInitializationDetector.java:36)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.detectDependsOnInitializationBeanNames(DatabaseInitializationDependencyConfigurer.java:152)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.postProcessBeanFactory(DatabaseInitializationDependencyConfigurer.java:115)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+26-06-11.14:10:05.320 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 6260 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:10:05.327 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:10:05.331 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:10:07.970 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+26-06-11.14:10:07.993 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.14:10:08.048 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getType(AbstractBeanFactory.java:745)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAnnotationOnBean(DefaultListableBeanFactory.java:791)
+	at org.springframework.boot.sql.init.dependency.AnnotationDependsOnDatabaseInitializationDetector.detect(AnnotationDependsOnDatabaseInitializationDetector.java:36)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.detectDependsOnInitializationBeanNames(DatabaseInitializationDependencyConfigurer.java:152)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.postProcessBeanFactory(DatabaseInitializationDependencyConfigurer.java:115)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+26-06-11.14:10:59.691 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 21612 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:10:59.696 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:10:59.699 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:11:02.300 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+26-06-11.14:11:02.324 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.14:11:02.411 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getType(AbstractBeanFactory.java:745)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAnnotationOnBean(DefaultListableBeanFactory.java:791)
+	at org.springframework.boot.sql.init.dependency.AnnotationDependsOnDatabaseInitializationDetector.detect(AnnotationDependsOnDatabaseInitializationDetector.java:36)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.detectDependsOnInitializationBeanNames(DatabaseInitializationDependencyConfigurer.java:152)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.postProcessBeanFactory(DatabaseInitializationDependencyConfigurer.java:115)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+26-06-11.14:15:02.408 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 14656 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:15:02.412 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:15:02.414 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:15:04.976 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+26-06-11.14:15:05.004 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.14:15:05.076 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getType(AbstractBeanFactory.java:745)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAnnotationOnBean(DefaultListableBeanFactory.java:791)
+	at org.springframework.boot.sql.init.dependency.AnnotationDependsOnDatabaseInitializationDetector.detect(AnnotationDependsOnDatabaseInitializationDetector.java:36)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.detectDependsOnInitializationBeanNames(DatabaseInitializationDependencyConfigurer.java:152)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.postProcessBeanFactory(DatabaseInitializationDependencyConfigurer.java:115)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+26-06-11.14:15:54.358 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 23520 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:15:54.363 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:15:54.365 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:15:56.726 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+26-06-11.14:15:56.749 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.14:15:56.803 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getType(AbstractBeanFactory.java:745)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAnnotationOnBean(DefaultListableBeanFactory.java:791)
+	at org.springframework.boot.sql.init.dependency.AnnotationDependsOnDatabaseInitializationDetector.detect(AnnotationDependsOnDatabaseInitializationDetector.java:36)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.detectDependsOnInitializationBeanNames(DatabaseInitializationDependencyConfigurer.java:152)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.postProcessBeanFactory(DatabaseInitializationDependencyConfigurer.java:115)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+26-06-11.14:17:56.617 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 23012 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:17:56.622 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:17:56.623 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:17:59.076 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+26-06-11.14:17:59.101 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.14:17:59.173 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getType(AbstractBeanFactory.java:745)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAnnotationOnBean(DefaultListableBeanFactory.java:791)
+	at org.springframework.boot.sql.init.dependency.AnnotationDependsOnDatabaseInitializationDetector.detect(AnnotationDependsOnDatabaseInitializationDetector.java:36)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.detectDependsOnInitializationBeanNames(DatabaseInitializationDependencyConfigurer.java:152)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.postProcessBeanFactory(DatabaseInitializationDependencyConfigurer.java:115)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+26-06-11.14:19:07.564 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 4748 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:19:07.568 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:19:07.570 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:19:09.715 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+26-06-11.14:19:09.739 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.14:19:09.789 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:858)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getType(AbstractBeanFactory.java:745)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAnnotationOnBean(DefaultListableBeanFactory.java:791)
+	at org.springframework.boot.sql.init.dependency.AnnotationDependsOnDatabaseInitializationDetector.detect(AnnotationDependsOnDatabaseInitializationDetector.java:36)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.detectDependsOnInitializationBeanNames(DatabaseInitializationDependencyConfigurer.java:152)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.postProcessBeanFactory(DatabaseInitializationDependencyConfigurer.java:115)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+26-06-11.14:21:12.089 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 21020 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:21:12.094 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:21:12.096 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:21:15.231 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.14:21:15.240 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.14:21:15.241 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.14:21:15.278 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.14:21:15.318 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.14:21:15.324 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.14:21:15.324 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.14:21:15.590 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.14:21:15.591 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3371 ms
+26-06-11.14:21:18.321 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.14:21:18.911 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@3a0807b7
+26-06-11.14:21:19.231 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.14:21:19.259 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.14:21:19.283 [main            ] INFO  Application            - Started Application in 9.135 seconds (process running for 10.979)
+26-06-11.14:22:04.610 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.14:22:04.611 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.14:22:04.614 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 1 ms
+26-06-11.14:22:04.798 [http-nio-8091-exec-1] INFO  DocumentController     - 收到文档上传请求: fileName=README.md, size=557
+26-06-11.14:22:04.912 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-11.14:22:05.418 [http-nio-8091-exec-1] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7e1050c0
+26-06-11.14:22:05.422 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-11.14:22:05.440 [http-nio-8091-exec-1] DEBUG insert                 - ==>  Preparing: INSERT INTO source_document ( id, file_name, file_type, raw_content, ref_count, is_deleted, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+26-06-11.14:22:05.504 [http-nio-8091-exec-1] DEBUG insert                 - ==> Parameters: 8f67c66a3a4a266bafda8ee616e983d3(String), README.md(String), MARKDOWN(String), # xfg-frame-archetype - DDD 脚手架 - @小傅哥 v2.2
+
+- docker 使用文档：[https://bugstack.cn/md/road-map/docker.html](https://bugstack.cn/md/road-map/docker.html)
+- DDD 教程；
+  - [DDD 概念理论](https://bugstack.cn/md/road-map/ddd-guide-01.html)
+  - [DDD 建模方法](https://bugstack.cn/md/road-map/ddd-guide-02.html)
+  - [DDD 工程模型](https://bugstack.cn/md/road-map/ddd-guide-03.html)
+  - [DDD 架构设计](https://bugstack.cn/md/road-map/ddd.html)
+  - [DDD 建模案例](https://bugstack.cn/md/road-map/ddd-model.html)
+
+(String), 0(Integer), 0(Integer), 2026-06-11T14:22:04.805408500(LocalDateTime), 2026-06-11T14:22:04.805408500(LocalDateTime)
+26-06-11.14:22:05.709 [http-nio-8091-exec-1] DEBUG insert                 - <==    Updates: 1
+26-06-11.14:23:23.559 [http-nio-8091-exec-3] ERROR [dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Name for argument of type [java.lang.String] not specified, and parameter name information not available via reflection. Ensure that the compiler uses the '-parameters' flag.] with root cause
+java.lang.IllegalArgumentException: Name for argument of type [java.lang.String] not specified, and parameter name information not available via reflection. Ensure that the compiler uses the '-parameters' flag.
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.updateNamedValueInfo(AbstractNamedValueMethodArgumentResolver.java:186)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.getNamedValueInfo(AbstractNamedValueMethodArgumentResolver.java:161)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:107)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:226)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:180)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+26-06-11.14:27:53.922 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.14:27:54.704 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-11.14:27:54.713 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-11.14:27:54.735 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-11.14:28:07.717 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 5136 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:28:07.721 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:28:07.723 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:28:11.296 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.14:28:11.303 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.14:28:11.304 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.14:28:11.318 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.14:28:11.364 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.14:28:11.368 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.14:28:11.368 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.14:28:11.628 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.14:28:11.629 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3788 ms
+26-06-11.14:28:14.095 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.14:28:14.664 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@560513ce
+26-06-11.14:28:15.000 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.14:28:15.047 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.14:28:15.076 [main            ] INFO  Application            - Started Application in 9.089 seconds (process running for 10.97)
+26-06-11.14:28:30.898 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.14:28:30.899 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.14:28:30.902 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 3 ms
+26-06-11.14:28:31.096 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-11.14:28:31.785 [http-nio-8091-exec-1] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44913ea7
+26-06-11.14:28:31.790 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-11.14:28:31.811 [http-nio-8091-exec-1] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-11.14:28:31.881 [http-nio-8091-exec-1] DEBUG selectById             - ==> Parameters: 8f67c66a3a4a266bafda8ee616e983d3(String)
+26-06-11.14:28:31.988 [http-nio-8091-exec-1] DEBUG selectById             - <==      Total: 1
+26-06-11.14:28:56.750 [http-nio-8091-exec-3] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-11.14:28:56.751 [http-nio-8091-exec-3] DEBUG selectList             - ==> Parameters: 
+26-06-11.14:28:56.782 [http-nio-8091-exec-3] DEBUG selectList             - <==      Total: 1
+26-06-11.14:34:00.208 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.14:34:01.036 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-11.14:34:01.044 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-11.14:34:01.058 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-11.14:34:22.647 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 11340 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.14:34:22.653 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.14:34:22.655 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.14:34:26.136 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.14:34:26.144 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.14:34:26.144 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.14:34:26.156 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.14:34:26.191 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.14:34:26.195 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.14:34:26.195 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.14:34:26.437 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.14:34:26.437 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3658 ms
+26-06-11.14:34:28.877 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.14:34:29.490 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@35293c05
+26-06-11.14:34:29.837 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.14:34:29.886 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.14:34:29.916 [main            ] INFO  Application            - Started Application in 8.913 seconds (process running for 10.864)
+26-06-11.14:37:09.523 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.14:37:09.524 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.14:37:09.525 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 1 ms
+26-06-11.14:37:09.684 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 收到上传请求: fileName=%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84+II.md, size=2787 bytes
+26-06-11.14:37:09.687 [http-nio-8091-exec-1] INFO  DocumentServiceImpl    - [文档上传] 开始处理: fileName=%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84+II.md, contentLength=1961
+26-06-11.14:37:09.789 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-11.14:37:10.274 [http-nio-8091-exec-1] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1bac4728
+26-06-11.14:37:10.278 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-11.14:37:10.300 [http-nio-8091-exec-1] DEBUG insert                 - ==>  Preparing: INSERT INTO source_document ( id, file_name, file_type, raw_content, ref_count, is_deleted, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+26-06-11.14:37:10.364 [http-nio-8091-exec-1] DEBUG insert                 - ==> Parameters: 0eb325601049eb37e7f35192255a3955(String), %E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84+II.md(String), MARKDOWN(String), ---
+tags:
+  - 动态规划
+  - 不同路径
+---
+# [LeetCode 63.不同路径 II](https://leetcode.cn/problems/unique-paths-ii/)
+
+> [!question]+ 问题要求
+> 给定一个 `m x n` 的整数数组 `grid`。一个机器人初始位于 **左上角**（即 `grid[0][0]`）。机器人尝试移动到 **右下角**（即 `grid[m - 1][n - 1]`）。机器人每次只能向下或者向右移动一步。
+> 
+> 网格中的障碍物和空位置分别用 `1` 和 `0` 来表示。机器人的移动路径中不能包含 **任何** 有障碍物的方格。
+> 
+> 返回机器人能够到达右下角的不同路径数量。
+> 
+> 测试用例保证答案小于等于 `2 * 109`。
+> 
+> 示例一：
+> ![[Pasted image 20260510070551.png|示例图|250]]
+> > 输入：obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]
+> > 输出：2
+> > 解释：3x3 网格的正中间有一个障碍物。
+> > 从左上角到右下角一共有 `2` 条不同的路径：
+> > 1. 向右 -> 向右 -> 向下 -> 向下
+> > 2. 向下 -> 向下 -> 向右 -> 向右
+
+> [!check]- 题解思路
+> 本题的基本思路与 [[不同路径]] 类似，都是使用动态规划计算从起点到终点的路径数。不同之处在于需要考虑障碍物的影响：
+> 1. **初始状态判断**：如果起点或终点有障碍物，则路径数为 0。
+> 2. **障碍物对行列的影响**：由于移动方向**只能向下或向右**，一旦某行或某列中出现障碍物，则**该障碍物及其之后的所有位置都不可达**。
+> 3. **动态规划递推**：对于非障碍物位置 `(i, j)`，路径数等于其上方 `(i-1, j)` 与左方 `(i, j-1)` 的路径数之和；若当前位置是障碍物，则路径数为 0。
+
+```java title:"不同路径 II"
+class Solution {  
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {  
+        int n = obstacleGrid.length;  
+        int m = obstacleGrid[0].length;  
+        int[][] dp = new int[n][m];  
+  
+        dp[0][0] = (obstacleGrid[0][0] == 1) ? 0 : 1;  
+        for (int i = 1; i < n; i++) {  
+            if (obstacleGrid[i][0] == 1 || dp[i-1][0] == 0) {  
+                dp[i][0] = 0;  
+            } else {  
+                dp[i][0] = 1;  
+            }  
+        }        for (int j = 1; j < m; j++) {  
+            if (obstacleGrid[0][j] == 1 || dp[0][j-1] == 0) {  
+                dp[0][j] = 0;  
+            } else {  
+                dp[0][j] = 1;  
+            }  
+        }        for (int i = 1; i < n; i++) {  
+            for (int j = 1; j < m; j++) {  
+                if (obstacleGrid[i][j] == 1) {  
+                    dp[i][j] = 0;  
+                } else {  
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];  
+                }  
+            }        
+        }        
+        return dp[n - 1][m - 1];  
+    }  
+}
+```(String), 0(Integer), 0(Integer), 2026-06-11T14:37:09.692340(LocalDateTime), 2026-06-11T14:37:09.692340(LocalDateTime)
+26-06-11.14:37:10.402 [http-nio-8091-exec-1] DEBUG insert                 - <==    Updates: 1
+26-06-11.14:37:10.405 [http-nio-8091-exec-1] DEBUG DocumentRepositoryImpl - [文档仓储] 插入新记录: id=0eb325601049eb37e7f35192255a3955
+26-06-11.14:37:10.405 [http-nio-8091-exec-1] INFO  DocumentServiceImpl    - [文档上传] 保存成功: id=0eb325601049eb37e7f35192255a3955, fileName=%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84+II.md
+26-06-11.14:37:10.406 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 上传完成: id=0eb325601049eb37e7f35192255a3955
+26-06-11.14:38:04.530 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 查询详情: id=0eb325601049eb37e7f35192255a3955
+26-06-11.14:38:04.530 [http-nio-8091-exec-2] INFO  DocumentServiceImpl    - [文档查询] 查询文档: id=0eb325601049eb37e7f35192255a3955
+26-06-11.14:38:04.570 [http-nio-8091-exec-2] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-11.14:38:04.570 [http-nio-8091-exec-2] DEBUG selectById             - ==> Parameters: 0eb325601049eb37e7f35192255a3955(String)
+26-06-11.14:38:04.748 [http-nio-8091-exec-2] DEBUG selectById             - <==      Total: 1
+26-06-11.14:50:21.748 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.15:38:06.228 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 10684 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.15:38:06.233 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.15:38:06.235 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.15:38:09.480 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.15:38:09.491 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.15:38:09.491 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.15:38:09.524 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.15:38:09.570 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.15:38:09.574 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.15:38:09.575 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.15:38:09.858 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.15:38:09.859 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3495 ms
+26-06-11.15:38:12.842 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.15:38:13.557 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2db2dd9d
+26-06-11.15:38:13.993 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.15:38:14.025 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.15:38:14.049 [main            ] INFO  Application            - Started Application in 10.168 seconds (process running for 12.633)
+26-06-11.15:39:36.980 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.15:39:36.981 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.15:39:36.984 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 1 ms
+26-06-11.15:39:37.153 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 收到上传请求: fileName=%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86.md, size=1635 bytes
+26-06-11.15:39:37.157 [http-nio-8091-exec-1] INFO  DocumentServiceImpl    - [文档上传] 开始处理: fileName=整数拆分.md, contentLength=1029
+26-06-11.15:39:37.270 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-11.15:39:37.845 [http-nio-8091-exec-1] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5cbc3751
+26-06-11.15:39:37.850 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-11.15:39:37.876 [http-nio-8091-exec-1] DEBUG insert                 - ==>  Preparing: INSERT INTO source_document ( id, file_name, file_type, raw_content, ref_count, is_deleted, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+26-06-11.15:39:37.946 [http-nio-8091-exec-1] DEBUG insert                 - ==> Parameters: bb71e4b881023634f1ab89112c3552ee(String), 整数拆分.md(String), MARKDOWN(String), ---
+tags:
+  - 动态规划
+  - 整数拆分
+---
+# [LeetCode 343.整数拆分](https://leetcode.cn/problems/integer-break/)
+
+> [!question]+ 问题要求
+> 给定一个正整数 `n` ，将其拆分为 `k` 个 **正整数** 的和（ `k >= 2` ），并使这些整数的乘积最大化。
+> 
+> 返回 _你可以获得的最大乘积_ 。
+
+> [!check]- 题解思路
+> 本题要求将一个整数 `n` 拆分成至少两个正整数，使得拆分整数的乘积最大。核心思路是使用 **动态规划**：
+> 1. **状态定义**：`dp[i]` 表示将整数 `i` 拆分后的最大乘积。
+> 2. **初始状态**：最小可拆分整数为 `2`，即 `2 = 1 + 1`，乘积为 `1`，所以 `dp[2] = 1`。
+> 3. **状态转移**：对每个整数 `i`，枚举拆分出的第一个整数 `j`（`1 ≤ j ≤ i/2`，只需枚举到一半避免重复），剩下的整数为 `i - j`，有两种选择：
+> 	- 不再拆分剩余整数，乘积为 `j * (i-j)`
+> 	- 继续拆分剩余整数，乘积为 `j * dp[i-j]`
+> 	- 将这两种情况取最大值，并与当前 `dp[i]` 比较，更新 `dp[i]`。
+> 4. **结果**：最终 `dp[n]` 即为将整数 `n` 拆分后的最大乘积。
+
+```java title:"整数拆分"
+class Solution {  
+    public int integerBreak(int n) {  
+        int[] dp = new int[n+1];  
+        dp[2] = 1;  //初始化  
+        for(int i = 3; i <= n; i++){  
+            for(int j = 1; j <= i/2; j++){  
+                dp[i] = Math.max(dp[i],Math.max( dp[i-j]*j, (i-j)*j));  //dp[i]也是根据不同的j在一直迭代，所以需要参与比较  
+            }  
+        }        
+        return dp[n];  
+    }  
+}
+```(String), 0(Integer), 0(Integer), 2026-06-11T15:39:37.163433400(LocalDateTime), 2026-06-11T15:39:37.163433400(LocalDateTime)
+26-06-11.15:39:37.991 [http-nio-8091-exec-1] DEBUG insert                 - <==    Updates: 1
+26-06-11.15:39:37.994 [http-nio-8091-exec-1] DEBUG DocumentRepositoryImpl - [文档仓储] 插入新记录: id=bb71e4b881023634f1ab89112c3552ee
+26-06-11.15:39:37.995 [http-nio-8091-exec-1] INFO  DocumentServiceImpl    - [文档上传] 文档保存成功: id=bb71e4b881023634f1ab89112c3552ee
+26-06-11.15:39:37.995 [http-nio-8091-exec-1] INFO  MarkdownChunkerImpl    - [分块] 开始处理: documentId=bb71e4b881023634f1ab89112c3552ee, contentLength=1029
+26-06-11.15:39:38.314 [http-nio-8091-exec-1] INFO  MarkdownChunkerImpl    - [分块] 处理完成: chunks=2
+26-06-11.15:39:38.777 [http-nio-8091-exec-1] DEBUG insert                 - ==>  Preparing: INSERT INTO document_chunk ( id, document_id, chunk_index, content, module_tags, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+26-06-11.15:39:38.779 [http-nio-8091-exec-1] DEBUG insert                 - ==> Parameters: 29fb9c4452bcd00f9cfdb1c3efa23877(String), bb71e4b881023634f1ab89112c3552ee(String), 1(Integer), ---
+
+tags:
+
+- 动态规划
+  - 整数拆分
+
+---(String), [](String), 2026-06-11T15:39:38.311593100(LocalDateTime), 2026-06-11T15:39:38.311593100(LocalDateTime)
+26-06-11.15:39:38.806 [http-nio-8091-exec-1] DEBUG insert                 - <==    Updates: 1
+26-06-11.15:39:38.808 [http-nio-8091-exec-1] DEBUG insert                 - ==>  Preparing: INSERT INTO document_chunk ( id, document_id, chunk_index, title_path, content, module_tags, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+26-06-11.15:39:38.811 [http-nio-8091-exec-1] DEBUG insert                 - ==> Parameters: 80a638102c903af81fcf49fb863f285e(String), bb71e4b881023634f1ab89112c3552ee(String), 2(Integer), [LeetCode 343.整数拆分](https://leetcode.cn/problems/integer-break/)(String), > [!question]+ 问题要求
+> 给定一个正整数 `n` ，将其拆分为 `k` 个 **正整数** 的和（ `k >= 2` ），并使这些整数的乘积最大化。
+> 
+> 返回 _你可以获得的最大乘积_ 。
+
+> [!check]- 题解思路
+> 本题要求将一个整数 `n` 拆分成至少两个正整数，使得拆分整数的乘积最大。核心思路是使用 **动态规划**：
+> 1. **状态定义**：`dp[i]` 表示将整数 `i` 拆分后的最大乘积。
+> 2. **初始状态**：最小可拆分整数为 `2`，即 `2 = 1 + 1`，乘积为 `1`，所以 `dp[2] = 1`。
+> 3. **状态转移**：对每个整数 `i`，枚举拆分出的第一个整数 `j`（`1 ≤ j ≤ i/2`，只需枚举到一半避免重复），剩下的整数为 `i - j`，有两种选择：
+> 	- 不再拆分剩余整数，乘积为 `j * (i-j)`
+> 	- 继续拆分剩余整数，乘积为 `j * dp[i-j]`
+> 	- 将这两种情况取最大值，并与当前 `dp[i]` 比较，更新 `dp[i]`。
+> 4. **结果**：最终 `dp[n]` 即为将整数 `n` 拆分后的最大乘积。
+
+```java title:"整数拆分"
+class Solution {  
+    public int integerBreak(int n) {  
+        int[] dp = new int[n+1];  
+        dp[2] = 1;  //初始化  
+        for(int i = 3; i <= n; i++){  
+            for(int j = 1; j <= i/2; j++){  
+                dp[i] = Math.max(dp[i],Math.max( dp[i-j]*j, (i-j)*j));  //dp[i]也是根据不同的j在一直迭代，所以需要参与比较  
+            }  
+        }        
+        return dp[n];  
+    }  
+}
+```(String), ["[LeetCode 343.整数拆分](https://leetcode.cn/problems/integer-break/)"](String), 2026-06-11T15:39:38.314591800(LocalDateTime), 2026-06-11T15:39:38.314591800(LocalDateTime)
+26-06-11.15:39:38.839 [http-nio-8091-exec-1] DEBUG insert                 - <==    Updates: 1
+26-06-11.15:39:38.839 [http-nio-8091-exec-1] INFO  DocumentChunkRepositoryImpl - [分块仓储] 批量保存完成: count=2
+26-06-11.15:39:38.839 [http-nio-8091-exec-1] INFO  DocumentServiceImpl    - [文档上传] 分块完成: chunks=2
+26-06-11.15:39:38.840 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 上传完成: id=bb71e4b881023634f1ab89112c3552ee
+26-06-11.15:40:57.733 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 查询分块: documentId=bb71e4b881023634f1ab89112c3552ee
+26-06-11.15:40:57.733 [http-nio-8091-exec-2] INFO  DocumentServiceImpl    - [文档分块] 查询分块: documentId=bb71e4b881023634f1ab89112c3552ee
+26-06-11.15:40:57.748 [http-nio-8091-exec-2] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-11.15:40:57.749 [http-nio-8091-exec-2] DEBUG selectById             - ==> Parameters: bb71e4b881023634f1ab89112c3552ee(String)
+26-06-11.15:40:57.854 [http-nio-8091-exec-2] DEBUG selectById             - <==      Total: 1
+26-06-11.15:40:57.969 [http-nio-8091-exec-2] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-11.15:40:57.970 [http-nio-8091-exec-2] DEBUG selectList             - ==> Parameters: bb71e4b881023634f1ab89112c3552ee(String)
+26-06-11.15:40:57.986 [http-nio-8091-exec-2] DEBUG selectList             - <==      Total: 2
+26-06-11.15:40:58.015 [http-nio-8091-exec-2] INFO  DocumentServiceImpl    - [文档分块] 查询完成: count=2
+26-06-11.15:40:58.019 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 返回 2 个分块
+26-06-11.15:41:30.671 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.15:41:31.516 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-11.15:41:31.527 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-11.15:41:31.548 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.

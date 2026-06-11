@@ -1,7 +1,9 @@
 package cn.pumluda.trigger.http;
 
+import cn.pumluda.api.dto.ChunkResponse;
 import cn.pumluda.api.dto.DocumentResponse;
 import cn.pumluda.api.response.Response;
+import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
 import cn.pumluda.domain.document.service.IDocumentService;
 import cn.pumluda.types.enums.ResponseCode;
@@ -85,6 +87,24 @@ public class DocumentController {
                        .build();
     }
 
+    /**
+     * 查询某文档的所有分块
+     */
+    @GetMapping("/{id}/chunks")
+    public Response<List<ChunkResponse>> chunks(@PathVariable("id") String id) {
+        log.info("[文档接口] 查询分块: documentId={}", id);
+        List<DocumentChunkEntity> chunks = documentService.getDocumentChunks(id);
+        List<ChunkResponse> data = chunks.stream()
+                .map(this::toChunkResponse)
+                .collect(Collectors.toList());
+        log.info("[文档接口] 返回 {} 个分块", data.size());
+        return Response.<List<ChunkResponse>>builder()
+                .code(ResponseCode.SUCCESS.getCode())
+                .info(ResponseCode.SUCCESS.getInfo())
+                .data(data)
+                .build();
+    }
+
     // ==================== DTO 转换 ====================
 
     /**
@@ -100,6 +120,21 @@ public class DocumentController {
                                .createdAt(entity.getCreatedAt())
                                .updatedAt(entity.getUpdatedAt())
                                .build();
+    }
+
+    /**
+     * DocumentChunkEntity → ChunkResponse：将分块领域实体转换为 API 响应 DTO
+     */
+    private ChunkResponse toChunkResponse(DocumentChunkEntity entity) {
+        return ChunkResponse.builder()
+                            .id(entity.getId())
+                            .documentId(entity.getDocumentId())
+                            .chunkIndex(entity.getChunkIndex())
+                            .titlePath(entity.getTitlePath())
+                            .content(entity.getContent())
+                            .moduleTags(entity.getModuleTags())
+                            .createdAt(entity.getCreatedAt())
+                            .build();
     }
 
 }

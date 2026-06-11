@@ -1,5 +1,6 @@
 package cn.pumluda.domain.document.service;
 
+import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
 
 import java.util.List;
@@ -28,5 +29,13 @@ public interface IDocumentService {
      * 查询所有文档列表
      */
     List<SourceDocumentEntity> listDocuments();
+
+    /**
+     * 根据文档 ID 查询其所有分块
+     *
+     * @param documentId 文档 ID
+     * @return 分块实体列表，按 chunk_index 升序
+     */
+    List<DocumentChunkEntity> getDocumentChunks(String documentId);
 
 }
