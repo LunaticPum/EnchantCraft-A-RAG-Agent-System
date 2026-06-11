@@ -5167,3 +5167,52 @@ cn.pumluda.types.exception.AppException: null
 26-06-11.18:41:20.935 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
 26-06-11.18:41:20.954 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 26-06-11.18:41:21.020 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-11.19:02:30.741 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 21196 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.19:02:30.746 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.19:02:30.748 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.19:02:34.885 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.19:02:34.896 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.19:02:34.897 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.19:02:34.933 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.19:02:34.983 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.19:02:34.988 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.19:02:34.989 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.19:02:35.251 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.19:02:35.251 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4347 ms
+26-06-11.19:02:38.551 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.19:02:39.288 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@29ad44e3
+26-06-11.19:02:39.676 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.19:02:39.708 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.19:02:39.733 [main            ] INFO  Application            - Started Application in 11.342 seconds (process running for 13.983)
+26-06-11.19:03:55.061 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.19:03:55.062 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.19:03:55.066 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 3 ms
+26-06-11.19:03:55.206 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 检索请求: keyword=InnoDB, topK=5, strategy=HYBRID, rerank=true
+26-06-11.19:03:55.207 [http-nio-8091-exec-1] INFO  HybridRetrieverImpl    - [混合检索] 开始: query=InnoDB, topK=5, rerank=true
+26-06-11.19:03:55.207 [http-nio-8091-exec-1] INFO  SemanticRetrieverImpl  - [语义检索] 开始检索: query=InnoDB, topK=10
+26-06-11.19:03:56.527 [http-nio-8091-exec-1] INFO  SemanticRetrieverImpl  - [语义检索] 命中 0 条结果
+26-06-11.19:03:56.528 [http-nio-8091-exec-1] INFO  KeywordRetrieverImpl   - [关键词检索] keyword=InnoDB, topK=10
+26-06-11.19:03:56.744 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-11.19:03:57.616 [http-nio-8091-exec-1] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1859b9bf
+26-06-11.19:03:57.627 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-11.19:03:57.654 [http-nio-8091-exec-1] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (content LIKE ?) LIMIT 10
+26-06-11.19:03:57.732 [http-nio-8091-exec-1] DEBUG selectList             - ==> Parameters: %InnoDB%(String)
+26-06-11.19:03:57.887 [http-nio-8091-exec-1] DEBUG selectList             - <==      Total: 8
+26-06-11.19:03:58.388 [http-nio-8091-exec-1] INFO  KeywordRetrieverImpl   - [关键词检索] 命中 8 条
+26-06-11.19:03:58.391 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=1, chunkId=0135aa30fb2c3d0f6c5a56fbc2340c1c, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB > 存储文件, rrf=0.01639344262295082
+26-06-11.19:03:58.391 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=2, chunkId=24c5eccdcef474876eb3ff166b4fe47d, titlePath=MySQL 存储引擎 > 存储引擎的选择, rrf=0.016129032258064516
+26-06-11.19:03:58.391 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=3, chunkId=7acaa8dd84f719f930282a9b18b8989a, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB > 特点, rrf=0.015873015873015872
+26-06-11.19:03:58.391 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=4, chunkId=970f7df9da6d2d31b97b5d21413e4ed7, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB > 逻辑存储结构, rrf=0.015625
+26-06-11.19:03:58.392 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=5, chunkId=98faee493200e6e5f12cdc83567ec4a3, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > Memory > 存储文件, rrf=0.015384615384615385
+26-06-11.19:03:58.392 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=6, chunkId=a4c404d321eb22de3fb02b2ac5f6d37a, titlePath=MySQl 架构, rrf=0.015151515151515152
+26-06-11.19:03:58.392 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=7, chunkId=b367fac0f5c5d4245a2f607beb2a1068, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB, rrf=0.014925373134328358
+26-06-11.19:03:58.392 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=8, chunkId=de0df94227a18945cd57a43bb3e9e38e, titlePath=MySQL 存储引擎, rrf=0.014705882352941176
+26-06-11.19:03:58.393 [http-nio-8091-exec-1] INFO  HybridRetrieverImpl    - [混合检索] 语义0条 + 关键词8条 → RRF融合8条
+26-06-11.19:03:58.395 [http-nio-8091-exec-1] INFO  DashScopeRerankerImpl  - [Rerank] 开始: query=InnoDB, candidates=8
+26-06-11.19:03:59.081 [http-nio-8091-exec-1] INFO  DashScopeRerankerImpl  - [Rerank] 完成: 8 条候选 → 8 条重排
+26-06-11.19:03:59.081 [http-nio-8091-exec-1] INFO  HybridRetrieverImpl    - [混合检索] Rerank 精排完成: 最终返回 5 条
+26-06-11.19:03:59.088 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 返回 5 条结果
+26-06-11.19:13:07.670 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.19:13:08.506 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-11.19:13:08.522 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-11.19:13:08.547 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
