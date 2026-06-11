@@ -8,7 +8,9 @@ import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
 import cn.pumluda.domain.document.model.valobj.SearchResult;
 import cn.pumluda.domain.document.service.IDocumentService;
-import cn.pumluda.domain.document.service.rag.IRagSearchService;
+import cn.pumluda.domain.document.service.rag.HybridRetrieverImpl;
+import cn.pumluda.domain.document.service.rag.IKeywordRetriever;
+import cn.pumluda.domain.document.service.rag.ISemanticRetriever;
 import cn.pumluda.types.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +34,9 @@ import java.util.stream.Collectors;
 public class DocumentController {
 
     private final IDocumentService documentService;
-    private final IRagSearchService ragSearchService;
+    private final ISemanticRetriever semanticRetriever; // 按语义检索（直接用 LangChain4j 现成的 Embedding 相关度算法）
+    private final IKeywordRetriever keywordRetriever;   // 按关键字检索（MySQL 模糊匹配）
+    private final HybridRetrieverImpl hybridRetriever;  // 上述两者结果 + RRF 评分重计算 + topK
 
     /**
      * 上传 Markdown 文档
@@ -108,16 +112,28 @@ public class DocumentController {
     }
 
     /**
-     * 语义检索——输入查询关键词，返回最相似的文档分块
+     * RAG检索——输入查询关键词，返回最相似的文档分块
      */
     @GetMapping("/search")
-    public Response<List<SearchResultResponse>> search(@RequestParam("keyword") String keyword, @RequestParam(value = "topK", defaultValue = "5") int topK) {
-        log.info("[文档接口] 语义检索: keyword={}, topK={}", keyword, topK);
-        List<SearchResult> results = ragSearchService.search(keyword, topK);
+    public Response<List<SearchResultResponse>> search(
+            @RequestParam("keyword") String keyword,
+            @RequestParam(value = "topK", defaultValue = "5") int topK,
+            @RequestParam(value = "strategy", defaultValue = "HYBRID") String strategy) {
+        log.info("[文档接口] 检索请求: keyword={}, topK={}, strategy={}", keyword, topK, strategy);
+
+        List<SearchResult> results = switch (strategy.toUpperCase()) {
+            case "SEMANTIC" -> semanticRetriever.search(keyword, topK);
+            case "KEYWORD" -> keywordRetriever.search(keyword, topK);
+            case "HYBRID" -> hybridRetriever.search(keyword, topK);
+            default -> {
+                log.warn("[文档接口] 未知检索策略: {}，回退为 HYBRID", strategy);
+                yield hybridRetriever.search(keyword, topK);
+            }
+        };
+
         List<SearchResultResponse> data = results.stream()
                                                  .map(this::toSearchResultResponse)
                                                  .toList();
-
         log.info("[文档接口] 返回 {} 条结果", data.size());
         return Response.<List<SearchResultResponse>>builder()
                        .code(ResponseCode.SUCCESS.getCode())

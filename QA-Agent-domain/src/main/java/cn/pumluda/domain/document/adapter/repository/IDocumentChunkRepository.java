@@ -20,4 +20,13 @@ public interface IDocumentChunkRepository {
      */
     List<DocumentChunkEntity> findByDocumentId(String documentId);
 
+    /**
+     * 关键词检索——在分块内容中 LIKE 匹配关键词，按 chunk_index 排序
+     *
+     * @param keyword 搜索关键词
+     * @param limit   返回条数上限
+     * @return 匹配的分块列表
+     */
+    List<DocumentChunkEntity> findByKeyword(String keyword, int limit);
+
 }

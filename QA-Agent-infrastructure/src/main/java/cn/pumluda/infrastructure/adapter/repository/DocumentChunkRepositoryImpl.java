@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Project: QA-Agent-Pumluda
@@ -47,6 +46,18 @@ public class DocumentChunkRepositoryImpl implements IDocumentChunkRepository {
     }
 
     @Override
+    public List<DocumentChunkEntity> findByKeyword(String keyword, int limit) {
+        List<DocumentChunkPO> poList = documentChunkDao.selectList(
+                new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<DocumentChunkPO>()
+                        .like(DocumentChunkPO::getContent, keyword)
+                        .last("LIMIT " + limit)
+        );
+        return poList.stream()
+                     .map(this::toChunkEntity)
+                     .toList();
+    }
+
+    @Override
     public List<DocumentChunkEntity> findByDocumentId(String documentId) {
         List<DocumentChunkPO> poList = documentChunkDao.selectList(
                 new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<DocumentChunkPO>()
@@ -55,7 +66,7 @@ public class DocumentChunkRepositoryImpl implements IDocumentChunkRepository {
         );
         return poList.stream()
                      .map(this::toChunkEntity)
-                     .collect(Collectors.toList());
+                     .toList();
     }
 
     // ==================== PO ↔ Entity 转换 ====================

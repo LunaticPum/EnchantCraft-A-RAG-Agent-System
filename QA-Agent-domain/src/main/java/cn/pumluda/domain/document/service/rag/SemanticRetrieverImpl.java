@@ -20,14 +20,14 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class RagSearchServiceImpl implements IRagSearchService {
+public class SemanticRetrieverImpl implements ISemanticRetriever {
 
     private final EmbeddingModel embeddingModel;
     private final EmbeddingStore<TextSegment> embeddingStore;
 
     @Override
     public List<SearchResult> search(String query, int topK) {
-        log.info("[检索] 开始检索: query={}, topK={}", query, topK);
+        log.info("[语义检索] 开始检索: query={}, topK={}", query, topK);
 
         // 1. 将用户的查询文本（提问）向量化
         Embedding queryEmbedding = embeddingModel.embed(query).content();
@@ -39,7 +39,7 @@ public class RagSearchServiceImpl implements IRagSearchService {
                                                                      .build();
         List<EmbeddingMatch<TextSegment>> matches = embeddingStore.search(searchRequest).matches();
 
-        log.info("[检索] 命中 {} 条结果", matches.size());
+        log.info("[语义检索] 命中 {} 条结果", matches.size());
 
         // 3. 将 EmbeddingMatch 转为业务层 SearchResult
         return matches.stream()

@@ -699,7 +699,7 @@ java.lang.RuntimeException: java.io.IOException: Connection reset
 	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.embedAll(OpenAiEmbeddingModel.java:90)
 	at dev.langchain4j.model.embedding.EmbeddingModel.embed(EmbeddingModel.java:36)
 	at dev.langchain4j.model.embedding.EmbeddingModel.embed(EmbeddingModel.java:26)
-	at cn.pumluda.domain.document.service.rag.RagSearchServiceImpl.search(RagSearchServiceImpl.java:33)
+	at cn.pumluda.domain.document.service.rag.SemanticRetrieverImpl.search(RagSearchServiceImpl.java:33)
 	at cn.pumluda.trigger.http.DocumentController.search(DocumentController.java:116)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -847,3 +847,5 @@ cn.pumluda.types.exception.AppException: null
 26-06-11.18:03:45.686 [http-nio-8091-exec-3] WARN  GlobalExceptionHandler - [异常处理] 业务异常: code=40005, message=null
 26-06-11.18:06:09.604 [http-nio-8091-exec-1] WARN  DocumentServiceImpl    - [文档上传] 内容重复: fileName=MySQL 存储引擎.md, existingId=9b881f826f4eaf4c1b94fd3cc7a71965, existingName=MySQL 存储引擎.md
 26-06-11.18:06:09.758 [http-nio-8091-exec-1] WARN  GlobalExceptionHandler - [异常处理] 业务异常: code=40005, message=null
+26-06-11.18:09:05.192 [http-nio-8091-exec-1] WARN  DocumentServiceImpl    - [文档上传] 内容重复: fileName=MySQL 存储引擎.md, existingId=9b881f826f4eaf4c1b94fd3cc7a71965, existingName=MySQL 存储引擎.md
+26-06-11.18:09:05.240 [http-nio-8091-exec-1] WARN  GlobalExceptionHandler - [异常处理] 业务异常: code=40005, message=文档内容重复，已存在同名文档: MySQL 存储引擎.md

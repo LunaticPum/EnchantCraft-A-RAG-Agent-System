@@ -8,10 +8,10 @@ import java.util.List;
  * Project: QA-Agent-Pumluda
  * Description: RAG 检索服务接口——语义搜索文档分块
  */
-public interface IRagSearchService {
+public interface ISemanticRetriever {
 
     /**
-     * 语义检索（召回）
+     * 语义检索
      *
      * @param query 用户查询文本
      * @param topK  返回最相似的分块数量

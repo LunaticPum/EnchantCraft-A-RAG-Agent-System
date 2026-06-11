@@ -4430,7 +4430,7 @@ java.lang.RuntimeException: java.io.IOException: Connection reset
 	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.embedAll(OpenAiEmbeddingModel.java:90)
 	at dev.langchain4j.model.embedding.EmbeddingModel.embed(EmbeddingModel.java:36)
 	at dev.langchain4j.model.embedding.EmbeddingModel.embed(EmbeddingModel.java:26)
-	at cn.pumluda.domain.document.service.rag.RagSearchServiceImpl.search(RagSearchServiceImpl.java:33)
+	at cn.pumluda.domain.document.service.rag.SemanticRetrieverImpl.search(RagSearchServiceImpl.java:33)
 	at cn.pumluda.trigger.http.DocumentController.search(DocumentController.java:116)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -5090,3 +5090,80 @@ cn.pumluda.types.exception.AppException: null
 26-06-11.18:08:31.548 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
 26-06-11.18:08:31.557 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 26-06-11.18:08:31.573 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-11.18:08:52.155 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 22924 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.18:08:52.160 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.18:08:52.163 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.18:08:56.086 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.18:08:56.094 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.18:08:56.095 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.18:08:56.110 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.18:08:56.155 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.18:08:56.161 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.18:08:56.161 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.18:08:56.437 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.18:08:56.439 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4125 ms
+26-06-11.18:08:59.498 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.18:09:00.221 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@352c308
+26-06-11.18:09:00.600 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.18:09:00.632 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.18:09:00.658 [main            ] INFO  Application            - Started Application in 10.483 seconds (process running for 12.694)
+26-06-11.18:09:03.760 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.18:09:03.760 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.18:09:03.762 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 1 ms
+26-06-11.18:09:03.968 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 收到上传请求: fileName=MySQL+%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.md, size=13130 bytes
+26-06-11.18:09:03.995 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-11.18:09:04.655 [http-nio-8091-exec-1] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@292015c2
+26-06-11.18:09:04.660 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-11.18:09:04.701 [http-nio-8091-exec-1] INFO  DocumentServiceImpl    - [文档上传] 开始处理: fileName=MySQL 存储引擎.md, contentLength=6413
+26-06-11.18:09:04.963 [http-nio-8091-exec-1] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0 AND (content_md5 = ?)
+26-06-11.18:09:05.036 [http-nio-8091-exec-1] DEBUG selectList             - ==> Parameters: ebe8c50918818a7be661b4761041dc19(String)
+26-06-11.18:09:05.173 [http-nio-8091-exec-1] DEBUG selectList             - <==      Total: 1
+26-06-11.18:09:05.192 [http-nio-8091-exec-1] WARN  DocumentServiceImpl    - [文档上传] 内容重复: fileName=MySQL 存储引擎.md, existingId=9b881f826f4eaf4c1b94fd3cc7a71965, existingName=MySQL 存储引擎.md
+26-06-11.18:09:05.240 [http-nio-8091-exec-1] WARN  GlobalExceptionHandler - [异常处理] 业务异常: code=40005, message=文档内容重复，已存在同名文档: MySQL 存储引擎.md
+26-06-11.18:10:54.391 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.18:10:55.250 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-11.18:10:55.262 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-11.18:10:55.282 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-11.18:37:52.002 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 19548 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.18:37:52.008 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.18:37:52.010 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.18:37:55.608 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.18:37:55.617 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.18:37:55.618 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.18:37:55.634 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.18:37:55.701 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.18:37:55.708 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.18:37:55.708 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.18:37:56.003 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.18:37:56.005 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3838 ms
+26-06-11.18:37:58.387 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.18:37:58.949 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@48f5bde6
+26-06-11.18:37:59.273 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.18:37:59.298 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.18:37:59.311 [main            ] INFO  Application            - Started Application in 9.71 seconds (process running for 11.857)
+26-06-11.18:38:19.560 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.18:38:19.560 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.18:38:19.562 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 2 ms
+26-06-11.18:38:19.685 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 检索请求: keyword=InnoDB, topK=5, strategy=HYBRID
+26-06-11.18:38:19.685 [http-nio-8091-exec-1] INFO  HybridRetrieverImpl    - [混合检索] 开始: query=InnoDB, topK=5
+26-06-11.18:38:19.686 [http-nio-8091-exec-1] INFO  SemanticRetrieverImpl  - [检索] 开始检索: query=InnoDB, topK=5
+26-06-11.18:38:20.870 [http-nio-8091-exec-1] INFO  SemanticRetrieverImpl  - [检索] 命中 0 条结果
+26-06-11.18:38:20.871 [http-nio-8091-exec-1] INFO  KeywordRetrieverImpl   - [关键词检索] keyword=InnoDB, topK=5
+26-06-11.18:38:21.061 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-11.18:38:21.748 [http-nio-8091-exec-1] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5338fc
+26-06-11.18:38:21.755 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-11.18:38:21.781 [http-nio-8091-exec-1] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (content LIKE ?) LIMIT 5
+26-06-11.18:38:21.853 [http-nio-8091-exec-1] DEBUG selectList             - ==> Parameters: %InnoDB%(String)
+26-06-11.18:38:22.014 [http-nio-8091-exec-1] DEBUG selectList             - <==      Total: 5
+26-06-11.18:38:22.398 [http-nio-8091-exec-1] INFO  KeywordRetrieverImpl   - [关键词检索] 命中 5 条
+26-06-11.18:38:22.400 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=1, chunkId=0135aa30fb2c3d0f6c5a56fbc2340c1c, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB > 存储文件, rrf=0.01639344262295082
+26-06-11.18:38:22.400 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=2, chunkId=24c5eccdcef474876eb3ff166b4fe47d, titlePath=MySQL 存储引擎 > 存储引擎的选择, rrf=0.016129032258064516
+26-06-11.18:38:22.400 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=3, chunkId=7acaa8dd84f719f930282a9b18b8989a, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB > 特点, rrf=0.015873015873015872
+26-06-11.18:38:22.400 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=4, chunkId=970f7df9da6d2d31b97b5d21413e4ed7, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB > 逻辑存储结构, rrf=0.015625
+26-06-11.18:38:22.401 [http-nio-8091-exec-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=关键词, rank=5, chunkId=98faee493200e6e5f12cdc83567ec4a3, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > Memory > 存储文件, rrf=0.015384615384615385
+26-06-11.18:38:22.408 [http-nio-8091-exec-1] INFO  HybridRetrieverImpl    - [混合检索] 语义0条 + 关键词5条 → 融合后5条，最终返回5条
+26-06-11.18:38:22.412 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 返回 5 条结果
+26-06-11.18:41:20.145 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.18:41:20.935 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-11.18:41:20.954 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-11.18:41:21.020 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
