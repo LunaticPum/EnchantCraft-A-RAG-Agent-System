@@ -5216,3 +5216,1035 @@ cn.pumluda.types.exception.AppException: null
 26-06-11.19:13:08.506 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
 26-06-11.19:13:08.522 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 26-06-11.19:13:08.547 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-11.21:36:57.922 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 6340 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.21:36:57.927 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.21:36:57.928 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.21:37:01.347 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.21:37:01.356 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.21:37:01.358 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.21:37:01.395 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.21:37:01.436 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.21:37:01.441 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.21:37:01.442 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.21:37:01.729 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.21:37:01.730 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3672 ms
+26-06-11.21:37:02.591 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-11.21:37:03.156 [main            ] INFO  HikariPool             - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@79df80a4
+26-06-11.21:37:03.160 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-11.21:37:05.290 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.21:37:05.890 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@797501a
+26-06-11.21:37:06.213 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.21:37:06.247 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.21:37:06.273 [main            ] INFO  Application            - Started Application in 10.633 seconds (process running for 12.997)
+26-06-11.21:37:25.840 [http-nio-8091-exec-2] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.21:37:25.841 [http-nio-8091-exec-2] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.21:37:25.843 [http-nio-8091-exec-2] INFO  DispatcherServlet      - Completed initialization in 2 ms
+26-06-11.21:37:26.014 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 收到上传请求: fileName=MySQL+%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.md, size=13130 bytes
+26-06-11.21:37:26.078 [http-nio-8091-exec-2] INFO  DocumentServiceImpl    - [文档上传] 开始处理: fileName=MySQL 存储引擎.md, contentLength=6413
+26-06-11.21:37:26.322 [http-nio-8091-exec-2] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0 AND (content_md5 = ?)
+26-06-11.21:37:26.366 [http-nio-8091-exec-2] DEBUG selectList             - ==> Parameters: ebe8c50918818a7be661b4761041dc19(String)
+26-06-11.21:37:26.799 [http-nio-8091-exec-2] ERROR GlobalExceptionHandler - [异常处理] 未知异常: 
+### Error querying database.  Cause: org.postgresql.util.PSQLException: ERROR: relation "source_document" does not exist
+  位置：105
+### The error may exist in cn/pumluda/infrastructure/dao/SourceDocumentDao.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  id,file_name,file_type,raw_content,content_md5,ref_count,is_deleted,created_at,updated_at  FROM source_document  WHERE is_deleted=0     AND (content_md5 = ?)
+### Cause: org.postgresql.util.PSQLException: ERROR: relation "source_document" does not exist
+  位置：105
+; bad SQL grammar []
+org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: org.postgresql.util.PSQLException: ERROR: relation "source_document" does not exist
+  位置：105
+### The error may exist in cn/pumluda/infrastructure/dao/SourceDocumentDao.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  id,file_name,file_type,raw_content,content_md5,ref_count,is_deleted,created_at,updated_at  FROM source_document  WHERE is_deleted=0     AND (content_md5 = ?)
+### Cause: org.postgresql.util.PSQLException: ERROR: relation "source_document" does not exist
+  位置：105
+; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:246)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:95)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347)
+	at jdk.proxy2/jdk.proxy2.$Proxy72.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:194)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.executeForMany(MybatisMapperMethod.java:164)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:77)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:156)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy76.selectList(Unknown Source)
+	at com.baomidou.mybatisplus.core.mapper.BaseMapper.selectOne(BaseMapper.java:337)
+	at java.base/java.lang.invoke.MethodHandle.invokeWithArguments(MethodHandle.java:732)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$DefaultMethodInvoker.invoke(MybatisMapperProxy.java:172)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy76.selectOne(Unknown Source)
+	at com.baomidou.mybatisplus.core.mapper.BaseMapper.selectOne(BaseMapper.java:326)
+	at java.base/java.lang.invoke.MethodHandle.invokeWithArguments(MethodHandle.java:732)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$DefaultMethodInvoker.invoke(MybatisMapperProxy.java:182)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy76.selectOne(Unknown Source)
+	at cn.pumluda.infrastructure.adapter.repository.DocumentRepositoryImpl.findByContentMd5(DocumentRepositoryImpl.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at cn.pumluda.infrastructure.adapter.repository.DocumentRepositoryImpl$$SpringCGLIB$$0.findByContentMd5(<generated>)
+	at cn.pumluda.domain.document.service.DocumentServiceImpl.uploadDocument(DocumentServiceImpl.java:55)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at cn.pumluda.domain.document.service.DocumentServiceImpl$$SpringCGLIB$$0.uploadDocument(<generated>)
+	at cn.pumluda.trigger.http.DocumentController.upload(DocumentController.java:61)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "source_document" does not exist
+  位置：105
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2712)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2400)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:367)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:177)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy3/jdk.proxy3.$Proxy91.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
+	... 93 common frames omitted
+26-06-11.21:40:02.426 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.21:40:03.217 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-11.21:40:03.225 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-11.21:40:03.231 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-11.21:40:21.332 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 22688 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.21:40:21.337 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.21:40:21.338 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.21:40:24.500 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.21:40:24.508 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.21:40:24.508 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.21:40:24.519 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.21:40:24.556 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.21:40:24.560 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.21:40:24.561 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.21:40:24.831 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.21:40:24.832 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3352 ms
+26-06-11.21:40:25.398 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+26-06-11.21:40:25.404 [main            ] INFO  StandardService        - Stopping service [Tomcat]
+26-06-11.21:40:25.501 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.21:40:25.570 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1542)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1436)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1606)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 49 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:546)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1527)
+	... 60 common frames omitted
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:2177)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1627)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 73 common frames omitted
+26-06-11.21:41:44.464 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 18804 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.21:41:44.468 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.21:41:44.469 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.21:41:47.961 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.21:41:47.968 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.21:41:47.969 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.21:41:47.982 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.21:41:48.020 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.21:41:48.024 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.21:41:48.025 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.21:41:48.278 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.21:41:48.278 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3654 ms
+26-06-11.21:41:48.872 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+26-06-11.21:41:48.878 [main            ] INFO  StandardService        - Stopping service [Tomcat]
+26-06-11.21:41:48.964 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.21:41:49.031 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1542)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1436)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1606)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 49 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [cn/pumluda/config/MyBatisPlusConfig.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:546)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1527)
+	... 60 common frames omitted
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Qualifier("dataSource")}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:2177)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1627)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 73 common frames omitted
+26-06-11.21:43:15.465 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 20052 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.21:43:15.472 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.21:43:15.474 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.21:43:19.161 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.21:43:19.168 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.21:43:19.168 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.21:43:19.181 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.21:43:19.219 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.21:43:19.223 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.21:43:19.223 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.21:43:19.457 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.21:43:19.458 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3830 ms
+26-06-11.21:43:22.062 [main            ] ERROR HikariConfig           - HikariPool-1 - jdbcUrl is required with driverClassName.
+26-06-11.21:43:22.070 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 3: Error creating bean with name 'embeddingServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\embedding\EmbeddingServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+26-06-11.21:43:22.076 [main            ] INFO  StandardService        - Stopping service [Tomcat]
+26-06-11.21:43:22.159 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.21:43:22.202 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 3: Error creating bean with name 'embeddingServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\embedding\EmbeddingServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 3: Error creating bean with name 'embeddingServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\embedding\EmbeddingServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'embeddingServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\embedding\EmbeddingServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:546)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1606)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 49 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 62 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:199)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 76 common frames omitted
+Caused by: java.lang.IllegalArgumentException: jdbcUrl is required with driverClassName.
+	at com.zaxxer.hikari.HikariConfig.validate(HikariConfig.java:1028)
+	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:76)
+	at cn.pumluda.config.PostgresDataSourceConfig.postgresDataSource(PostgresDataSourceConfig.java:26)
+	at cn.pumluda.config.PostgresDataSourceConfig$$SpringCGLIB$$0.CGLIB$postgresDataSource$1(<generated>)
+	at cn.pumluda.config.PostgresDataSourceConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:372)
+	at cn.pumluda.config.PostgresDataSourceConfig$$SpringCGLIB$$0.postgresDataSource(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+	... 79 common frames omitted
+26-06-11.21:45:05.468 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 21780 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.21:45:05.472 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.21:45:05.474 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.21:45:08.768 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.21:45:08.774 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.21:45:08.775 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.21:45:08.788 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.21:45:08.828 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.21:45:08.832 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.21:45:08.833 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.21:45:09.071 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.21:45:09.071 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3476 ms
+26-06-11.21:45:11.360 [main            ] ERROR HikariConfig           - HikariPool-1 - jdbcUrl is required with driverClassName.
+26-06-11.21:45:11.366 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 3: Error creating bean with name 'embeddingServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\embedding\EmbeddingServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+26-06-11.21:45:11.372 [main            ] INFO  StandardService        - Stopping service [Tomcat]
+26-06-11.21:45:11.453 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.21:45:11.496 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 3: Error creating bean with name 'embeddingServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\embedding\EmbeddingServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 3: Error creating bean with name 'embeddingServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\embedding\EmbeddingServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'embeddingServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\embedding\EmbeddingServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'embeddingStore' defined in class path resource [cn/pumluda/config/LangChain4jConfig.class]: Unsatisfied dependency expressed through method 'embeddingStore' parameter 0: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:546)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1606)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 49 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'postgresDataSource' defined in class path resource [cn/pumluda/config/PostgresDataSourceConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 62 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'postgresDataSource' threw exception with message: jdbcUrl is required with driverClassName.
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:199)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 76 common frames omitted
+Caused by: java.lang.IllegalArgumentException: jdbcUrl is required with driverClassName.
+	at com.zaxxer.hikari.HikariConfig.validate(HikariConfig.java:1028)
+	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:76)
+	at cn.pumluda.config.PostgresDataSourceConfig.postgresDataSource(PostgresDataSourceConfig.java:26)
+	at cn.pumluda.config.PostgresDataSourceConfig$$SpringCGLIB$$0.CGLIB$postgresDataSource$1(<generated>)
+	at cn.pumluda.config.PostgresDataSourceConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:372)
+	at cn.pumluda.config.PostgresDataSourceConfig$$SpringCGLIB$$0.postgresDataSource(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+	... 79 common frames omitted
+26-06-11.21:46:19.245 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 5400 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.21:46:19.249 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.21:46:19.250 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.21:46:22.767 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.21:46:22.774 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.21:46:22.775 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.21:46:22.789 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.21:46:22.826 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.21:46:22.832 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.21:46:22.833 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.21:46:23.092 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.21:46:23.092 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3712 ms
+26-06-11.21:46:25.834 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.21:46:26.438 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@797501a
+26-06-11.21:46:26.736 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.21:46:26.767 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.21:46:26.790 [main            ] INFO  Application            - Started Application in 9.499 seconds (process running for 11.456)
+26-06-11.21:46:31.233 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.21:46:31.234 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.21:46:31.236 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 2 ms
+26-06-11.21:46:31.408 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 收到上传请求: fileName=MySQL+%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.md, size=13130 bytes
+26-06-11.21:46:31.430 [http-nio-8091-exec-1] ERROR HikariConfig           - HikariPool-1 - jdbcUrl is required with driverClassName.
+26-06-11.21:46:31.434 [http-nio-8091-exec-1] ERROR GlobalExceptionHandler - [异常处理] 未知异常: Could not open JDBC Connection for transaction
+org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:313)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.startTransaction(AbstractPlatformTransactionManager.java:532)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:405)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:639)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:374)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at cn.pumluda.domain.document.service.DocumentServiceImpl$$SpringCGLIB$$0.uploadDocument(<generated>)
+	at cn.pumluda.trigger.http.DocumentController.upload(DocumentController.java:61)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.lang.IllegalArgumentException: jdbcUrl is required with driverClassName.
+	at com.zaxxer.hikari.HikariConfig.validate(HikariConfig.java:1028)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:108)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:269)
+	... 59 common frames omitted
+26-06-11.21:48:29.735 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.21:48:30.545 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-11.21:48:47.410 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 10072 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.21:48:47.413 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.21:48:47.414 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.21:48:50.704 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.21:48:50.711 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.21:48:50.712 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.21:48:50.730 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.21:48:50.776 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.21:48:50.780 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.21:48:50.781 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.21:48:51.058 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.21:48:51.059 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3530 ms
+26-06-11.21:48:51.695 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+26-06-11.21:48:51.701 [main            ] INFO  StandardService        - Stopping service [Tomcat]
+26-06-11.21:48:51.811 [main            ] INFO  ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+26-06-11.21:48:51.859 [main            ] ERROR SpringApplication      - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentController' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-trigger\target\classes\cn\pumluda\trigger\http\DocumentController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at cn.pumluda.Application.main(Application.java:12)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentServiceImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-domain\target\classes\cn\pumluda\domain\document\service\DocumentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'documentRepositoryImpl' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\adapter\repository\DocumentRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sourceDocumentDao' defined in file [D:\JavaProject\QA-Agent-Pumluda\QA-Agent-infrastructure\target\classes\cn\pumluda\infrastructure\dao\SourceDocumentDao.class]: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1812)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1606)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 49 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required
+	at org.springframework.util.Assert.notNull(Assert.java:181)
+	at org.mybatis.spring.support.SqlSessionDaoSupport.checkDaoConfig(SqlSessionDaoSupport.java:122)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:69)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	... 59 common frames omitted
+26-06-11.21:49:53.126 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 13292 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.21:49:53.129 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.21:49:53.131 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.21:49:56.308 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.21:49:56.315 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.21:49:56.316 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.21:49:56.328 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.21:49:56.370 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.21:49:56.374 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.21:49:56.375 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.21:49:56.660 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.21:49:56.662 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3419 ms
+26-06-11.21:49:59.604 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.21:50:00.453 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.21:50:00.480 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.21:50:00.501 [main            ] INFO  Application            - Started Application in 9.155 seconds (process running for 11.357)
+26-06-11.21:50:03.524 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.21:50:03.524 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.21:50:03.527 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 2 ms
+26-06-11.21:50:03.673 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 收到上传请求: fileName=MySQL+%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.md, size=13130 bytes
+26-06-11.21:50:03.695 [http-nio-8091-exec-1] ERROR HikariConfig           - HikariPool-1 - jdbcUrl is required with driverClassName.
+26-06-11.21:50:03.698 [http-nio-8091-exec-1] ERROR GlobalExceptionHandler - [异常处理] 未知异常: Could not open JDBC Connection for transaction
+org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:313)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.startTransaction(AbstractPlatformTransactionManager.java:532)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:405)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:639)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:374)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at cn.pumluda.domain.document.service.DocumentServiceImpl$$SpringCGLIB$$0.uploadDocument(<generated>)
+	at cn.pumluda.trigger.http.DocumentController.upload(DocumentController.java:61)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.lang.IllegalArgumentException: jdbcUrl is required with driverClassName.
+	at com.zaxxer.hikari.HikariConfig.validate(HikariConfig.java:1028)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:108)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:269)
+	... 59 common frames omitted
+26-06-11.21:51:29.949 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.21:51:30.657 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-11.21:51:42.936 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 9164 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-11.21:51:42.941 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-11.21:51:42.943 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-11.21:51:46.361 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-11.21:51:46.367 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-11.21:51:46.368 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-11.21:51:46.381 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-11.21:51:46.421 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-11.21:51:46.425 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-11.21:51:46.426 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-11.21:51:46.650 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-11.21:51:46.651 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3564 ms
+26-06-11.21:51:49.330 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-11.21:51:50.322 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-11.21:51:50.351 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-11.21:51:50.375 [main            ] INFO  Application            - Started Application in 9.237 seconds (process running for 11.063)
+26-06-11.21:51:54.425 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-11.21:51:54.426 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-11.21:51:54.428 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 2 ms
+26-06-11.21:51:54.592 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 收到上传请求: fileName=MySQL+%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.md, size=13130 bytes
+26-06-11.21:51:54.616 [http-nio-8091-exec-1] ERROR HikariConfig           - HikariPool-1 - jdbcUrl is required with driverClassName.
+26-06-11.21:51:54.620 [http-nio-8091-exec-1] ERROR GlobalExceptionHandler - [异常处理] 未知异常: Could not open JDBC Connection for transaction
+org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:313)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.startTransaction(AbstractPlatformTransactionManager.java:532)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:405)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:639)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:374)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at cn.pumluda.domain.document.service.DocumentServiceImpl$$SpringCGLIB$$0.uploadDocument(<generated>)
+	at cn.pumluda.trigger.http.DocumentController.upload(DocumentController.java:61)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.lang.IllegalArgumentException: jdbcUrl is required with driverClassName.
+	at com.zaxxer.hikari.HikariConfig.validate(HikariConfig.java:1028)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:108)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:269)
+	... 59 common frames omitted
+26-06-11.21:54:38.257 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-11.21:54:39.125 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete

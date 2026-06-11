@@ -39,6 +39,7 @@ public class EmbeddingServiceImpl implements IEmbeddingService {
             metadata.put("chunkId", chunk.getId());
             metadata.put("documentId", chunk.getDocumentId());
             metadata.put("titlePath", chunk.getTitlePath() != null ? chunk.getTitlePath() : "");
+            metadata.put("moduleTags", chunk.getModuleTags() != null ? String.join(",", chunk.getModuleTags()) : "");
             return TextSegment.from(chunk.getContent(), metadata);
         }).toList();
 

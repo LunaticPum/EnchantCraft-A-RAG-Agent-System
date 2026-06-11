@@ -16,8 +16,9 @@ spring:
       connection-timeout: 30000
 
 # PostgreSQL + pgvector 数据源（RAG 检索引擎）
-  datasource-postgres:
-    jdbc-url: jdbc:postgresql://localhost:15432/qa_agent
+pg:
+  datasource:
+    url: jdbc:postgresql://134.175.232.110:15432/qa_agent
     username: root
     password: 123456
     driver-class-name: org.postgresql.Driver
@@ -34,6 +35,7 @@ deepSeek:
   base-url: "https://api.deepseek.com/v1"
   api-key: "sk-7416cf0764fa4a89851fc611b4a9eec4"
 
+# 阿里云百炼模型广场
 dashScope:
   embedding-model: "text-embedding-v4"
   rerank-model: "gte-rerank-v2"

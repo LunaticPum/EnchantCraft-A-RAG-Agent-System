@@ -63,7 +63,7 @@ services:
 
   # PostgreSQL + pgvector（RAG 检索引擎 —— 语义向量 + 中文分词全文检索）
   postgres:
-    image: pgvector/pgvector:pg17
+    build: ./postgres
     container_name: postgres
     restart: always
     environment:

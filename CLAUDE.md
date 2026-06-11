@@ -4,32 +4,29 @@
 
 复刻项目 [QA-Agent](D:\JavaProject\QA-Agent)，一个**技术面试训练工作台**。用户上传 Markdown 学习材料 → 系统自动分块、向量化 → 基于 LangChain4j Agent DAG 自动生成结构化问答集 → 支持练习、反馈、评分。
 
-**目标：** 按 V1 → V2 → V3 → V4 → V5 → V6 版本迭代，逐步复刻原项目核心能力。当前在 V2 阶段。
+**目标：** 按 V1 → V2 → V3 → V4 → V5 → V6 版本迭代，逐步复刻原项目核心能力。当前在 V3 阶段。
+
+**当前分支：** `v3-ADD-PostgreSQL`
 
 ## 技术栈
 
-| 类别 | 技术 | 版本 | 来源 |
+| 类别 | 技术 | 版本 | 说明 |
 |------|------|------|------|
 | 语言 | Java | 17 | - |
-| 框架 | Spring Boot | 3.4.3 | 当前 POM |
-| AI 框架 | LangChain4j BOM | 1.14.0 | 对齐 QA-Agent |
-| AI 模块 | langchain4j-open-ai | 1.14.0 | DeepSeek 兼容 OpenAI 协议 |
-| AI 模块 | langchain4j-agentic | 1.14.0-beta24 | V3 Agent DAG |
-| 对话模型 | DeepSeek (OpenAiChatModel) | - | 已配置 |
-| Embedding | DeepSeek (OpenAiEmbeddingModel) | - | 已配置，向量维度待确认 |
-| 向量存储 | InMemoryEmbeddingStore | - | V2 临时方案，后续升级 pgvector |
-| ORM | MyBatis-Plus | 3.5.16 | 对齐 QA-Agent |
-| 数据库 | MySQL | 8.0+ | 业务数据 |
-| 数据库 | PostgreSQL + pgvector | - | V3+ 向量检索 |
-| Markdown 解析 | flexmark | 0.64.8 | 对齐 QA-Agent |
-| JSON | fastjson2 | 2.0.61 | 对齐 QA-Agent |
-| JWT | jjwt | 0.12.6 | 后续版本启用 |
-| 工具 | Hutool | 5.8.36 | 对齐 QA-Agent |
-| 测试 | JUnit + Spring Boot Test | - | API 测试验证 |
-
-**模型配置（application-dev.yml）：**
-- Chat Model: `deepSeek.api-key`, `deepSeek.base-url`, `deepSeek.model`
-- Embedding Model: 同 API key + base URL，独立 model 名
+| 框架 | Spring Boot | 3.4.3 | 父 POM |
+| AI 框架 | LangChain4j BOM | 1.14.0 | 管理所有 langchain4j 模块版本 |
+| AI 框架 | langchain4j-agentic | 1.14.0-beta24 | V3+ Agent DAG |
+| 对话模型 | DeepSeek v4-pro | OpenAI 协议 | `OpenAiChatModel` |
+| Embedding | 阿里云 DashScope text-embedding-v4 | 1024维 | `OpenAiEmbeddingModel`（OpenAI 兼容协议） |
+| Rerank | 阿里云 DashScope gte-rerank-v2 | - | DashScope 原生 SDK |
+| 向量存储 | PostgreSQL pgvector | pg17 | 自定义 `PgVectorStore` (JdbcTemplate) |
+| ORM | MyBatis-Plus | 3.5.16 | MySQL 业务数据 |
+| 数据库 | MySQL | 8.0+ | 远程 134.175.232.110:13306 |
+| 数据库 | PostgreSQL + pgvector + zhparser | pg17 | 本地 Docker 15432 |
+| Markdown 解析 | flexmark | 0.64.8 | AST 按标题层级分块 |
+| DashScope SDK | dashscope-sdk-java | 2.22.17 | Rerank 重排序 |
+| JSON | fastjson2 | 2.0.61 | - |
+| 工具 | Hutool | 5.8.36 | - |
 
 ## 项目结构（DDD 六模块）
 
@@ -37,15 +34,19 @@
 QA-Agent-Pumluda/
 ├── QA-Agent-api/          API 契约 DTO（对外接口定义）
 ├── QA-Agent-types/        共享类型、常量、枚举、异常、Response 包装
-├── QA-Agent-domain/       领域模型 + 领域服务接口
-├── QA-Agent-infrastructure/  DAO/PO/Repository 实现、技术适配
-├── QA-Agent-trigger/      HTTP Controller、Job、Listener（入口层）
-├── QA-Agent-app/          Spring Boot 启动入口 + 配置类
-├── docs/                  设计文档（用户手动编写）
+├── QA-Agent-domain/       领域模型 + 领域服务接口 + 实现
+├── QA-Agent-infrastructure/  DAO/PO/Repository 实现、PgVectorStore
+├── QA-Agent-trigger/      HTTP Controller、全局异常处理
+├── QA-Agent-app/          Spring Boot 启动入口 + 配置类 + 数据源
+├── docs/
+│   ├── dev-docs/V2/       V2 开发日志（V2.1~V2.5）
+│   ├── dev-docs/V3/       V3 开发日志
+│   ├── dev-ops/           Docker Compose + Dockerfile
+│   └── sql/               建表/迁移 SQL
 └── CLAUDE.md              本文件
 ```
 
-### DDD 层依赖关系
+### DDD 层依赖
 
 ```
 app → trigger → api/types/domain
@@ -54,134 +55,116 @@ trigger → api, types, domain
 infrastructure → domain → types
 ```
 
-### 与原项目 QA-Agent 的层映射
-
-| 原项目 | Pumluda | 说明 |
-|--------|---------|------|
-| `qa-agent-types` | `QA-Agent-types` + `QA-Agent-api` | 共享类型放 types，API DTO 放 api |
-| `qa-agent-domain` | `QA-Agent-domain` | 业务逻辑 + 领域服务 |
-| `qa-agent-infrastructure` | `QA-Agent-infrastructure` | DAO/PO/Repository 实现 |
-| `qa-agent-interfaces` | `QA-Agent-trigger` | Controller、Job、Listener |
-| `qa-agent-application` | `QA-Agent-app` | 启动 + 配置 |
-
-### 包名规范
-
-基础包名：`cn.pumluda`
-
-| 层 | 包名模式 |
-|----|----------|
-| domain | `cn.pumluda.domain.<bounded-context>.model.{entity,valobj,aggregate}` |
-| domain service | `cn.pumluda.domain.<bounded-context>.service` |
-| domain repository | `cn.pumluda.domain.<bounded-context>.adapter.repository` |
-| infrastructure DAO | `cn.pumluda.infrastructure.dao` |
-| infrastructure PO | `cn.pumluda.infrastructure.dao.po` |
-| infrastructure adapter | `cn.pumluda.infrastructure.adapter.repository` |
-| trigger HTTP | `cn.pumluda.trigger.http` |
-| app config | `cn.pumluda.config` |
-
 ## 版本规划
 
 ### 总体路线
 
 | 大版本 | 核心能力 | 状态 |
 |--------|----------|------|
-| V1 | 框架搭建 + 依赖导入 + LangChain4j 配置 | ✅ 基本完成 |
-| V2 | 文档上传 + Markdown 分块 + Embedding + 检索 + 数据库 | 🚧 当前阶段 |
-| V3 | QA 生成 Agent DAG（DECIDE→PLAN→WRITE→VALIDATE→SUMMARIZE） | ⏳ |
-| V4 | 反馈 Agent DAG | ⏳ |
-| V5 | 评分 Agent DAG | ⏳ |
+| V1 | 框架搭建 + 依赖导入 + LangChain4j 配置 | ✅ 完成 |
+| V2 | 文档上传 + Markdown 分块 + Embedding + RAG 检索 | ✅ 完成 |
+| V3 | PostgreSQL pgvector 检索引擎 | 🚧 当前阶段 |
+| V4 | QA 生成 Agent DAG | ⏳ |
+| V5 | 反馈 + 评分 Agent | ⏳ |
 | V6 | Memory & History | ⏳ |
 
-### V2 子版本规划
+### V2 完成情况
 
-| 子版本 | 核心功能 | 关键交付 |
+| 子版本 | 核心功能 | Git 提交 |
 |--------|----------|----------|
-| V2.1 | 文档上传 + MySQL | source_document 表 + 上传/查询 API + MyBatis-Plus 配置 |
-| V2.2 | Markdown 分块 | flexmark AST 按标题层级切分 + document_chunk 表 |
-| V2.3 | Embedding + 检索 | DeepSeek Embedding 向量化 + 语义检索 API |
-| V2.4 | 混合检索（可选） | 关键词 + 语义 + RRF 融合 |
+| V2.1 | 文档上传 + MySQL + MyBatis-Plus | ✅ |
+| V2.2 | flexmark AST 按标题分块 | ✅ |
+| V2.3 | DashScope Embedding + 语义检索 | ✅ |
+| V2.3.1 | 事务 + MD5 幂等 + 全局异常处理 | ✅ |
+| V2.4 | 关键词检索 + RRF 多路融合混合检索 | ✅ |
+| V2.5 | DashScope gte-rerank 重排序 | ✅ |
+
+### V3 子版本规划
+
+| 子版本 | 核心功能 | 状态 |
+|--------|----------|------|
+| V3.1 | PostgreSQL + pgvector + zhparser 部署 + chunk_search 建表 | ✅ 完成 |
+| V3.2 | PgVectorStore 替换 InMemoryEmbeddingStore（JdbcTemplate + 手写 SQL） | ✅ 完成 |
+| V3.3 | 中文分词全文检索（zhparser tsvector 替换 MySQL LIKE） | ⏳ 下一步 |
+| V3.4 | 数据重建 + 增量同步 | ⏳ |
+
+### V3.3 规划 —— 中文分词全文检索
+
+**目标：** 关键词检索从 MySQL `LIKE '%keyword%'` 升级为 PostgreSQL `tsvector + zhparser + GIN` 索引检索
+
+**当前问题：**
+- `KeywordRetrieverImpl` 走 MySQL `LIKE`，全表扫，无索引
+- 关键字段 `content_tsv`（tsvector 列）和 `module_tags`（JSONB 列）已建但未填充
+- zhparser 中文分词扩展已编译部署（Dockerfile），`chinese` 分词配置已建
+
+**要做的事：**
+1. `PgVectorStore.addAll()` 插入时：`to_tsvector('chinese', content)` 写入 `content_tsv`
+2. 新增 `IDocumentChunkRepository.findByFullText(query, limit)` → PostgreSQL `ts_rank + tsquery`
+3. `KeywordRetrieverImpl` 切换为调用 PostgreSQL 全文检索（复用 `postgresDataSource`）
+4. 验证：搜索"存储引擎"和"引擎存储"结果不同（分词生效），搜索速度对比
 
 ## 开发约束
 
 ### 依赖管理
 - 所有依赖版本号统一在**父 POM `<properties>`** 中声明
 - 子模块引用使用 `${property.name}`，禁止硬编码版本号
-- 版本号对齐 QA-Agent 原项目（`D:\JavaProject\QA-Agent\backend\pom.xml`）
+- 版本号优先对齐 QA-Agent 原项目
 
 ### Git 提交
 - **Commit message 使用中文**
-- 格式：`<gitmoji> <类型>: <描述>`
-- 示例：`✨ feat: 添加文档上传API和source_document表`
-- 分支：`dev/v1-my-implementation`（当前开发分支）
+- 格式：`✨ feat: <描述>`
+- 当前分支：`v3-ADD-PostgreSQL`（从 v2-Document 创建）
 
 ### 代码风格
-- 尽量仿照 QA-Agent 原项目代码结构
-- DDD 层职责清晰，禁止跨层调用
-- 领域服务放在 domain 层，用接口+实现模式
-- Controller 尽量薄，只做参数转换和调用 domain 服务
+- 所有 DDD 层可用 Spring 注解（`@Service`、`@Repository` 等）
+- 服务接口命名：`IXxxService` / `IXxxRetriever` / `IXxxer` 等
+- 实体字段必须加 `/** */` 注释
+- DTO 转换方法按实体类型命名：`toXxxResponse()` / `toXxxPO()` / `toXxxEntity()`
+- 多用 `@Slf4j` + `log.info("[模块] ...")` 标注执行状态
+- Optional + `orElseThrow(() -> new AppException(...))` 模式
+- 自定义业务异常统一通过 `ResponseCode` 枚举 + `AppException` 抛出
+- API 版本显式写在参数注解：`@PathVariable("id")`、`@RequestParam("file")`
 
-### 开发流程
-1. 每个子版本功能完成后，通过 API 测试验证
-2. 前端暂不开发，通过 Postman/curl 测试 API
-3. 用户认证暂缓，后续版本再做
-4. 设计文档由用户手动编写到 `docs/` 目录，完成后让 AI 检查和优化
+### API 约定
+- 全局异常处理：`GlobalExceptionHandler` 拦截 `AppException` + `Exception`
+- 响应统一用 `Response<T>` 包装（code + info + data）
+- 中文文件名需 URL 解码：`URLDecoder.decode(rawFileName, StandardCharsets.UTF_8)`
 
-### 已废弃内容（忽略即可）
-- Vault 扫描配置（VaultProperties）和相关代码 — 已废弃，改用上传 API 模式
-- Obsidian 本地路径相关配置 — 不生效
+### 开发日志
+- 路径：`docs/dev-docs/<版本号>/`
+- 风格：个人学习笔记，Obsidian 格式，多用 callout 和 mermaid 图表
+- 调用链/流程图统一用 ````mermaid` 代码块
 
-## 数据库表设计
+## 数据库表
 
-### V2 表
+### MySQL（业务数据）
 
 | 表名 | 用途 | 版本 |
 |------|------|------|
-| `source_document` | 文档仓库，存上传的 Markdown 原文 | V2.1 |
-| `document_chunk` | 分块文本，按标题层级切分后的语义块 | V2.2 |
+| `source_document` | 文档仓库 | V2.1 |
+| `document_chunk` | 分块文本 | V2.2 |
 
-### source_document 表结构
+### PostgreSQL（RAG 检索引擎）
 
-| 字段 | 类型 | 说明 |
+| 表名 | 用途 | 版本 |
 |------|------|------|
-| id | VARCHAR(36) PK | UUID |
-| file_name | VARCHAR(255) | 上传时的原始文件名 |
-| file_type | VARCHAR(20) | 文件类型，默认 MARKDOWN |
-| raw_content | MEDIUMTEXT | 文档完整原始文本 |
-| ref_count | INT | 被 QA 集引用次数 |
-| is_deleted | TINYINT | 软删除标记 |
-| created_at | DATETIME | 创建时间 |
-| updated_at | DATETIME | 更新时间 |
-
-### document_chunk 表结构
-
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | VARCHAR(36) PK | UUID |
-| document_id | VARCHAR(36) FK | 关联 source_document.id |
-| chunk_index | INT | 块在文档中的序号 |
-| title_path | VARCHAR(500) | 标题路径，如 "Java基础>集合>HashMap" |
-| content | MEDIUMTEXT | 分块文本内容 |
-| module_tags | VARCHAR(500) | 模块标签 JSON 数组 |
-| created_at | DATETIME | 创建时间 |
-| updated_at | DATETIME | 更新时间 |
+| `chunk_search` | 向量 + 全文索引（embedding / content_tsv / module_tags） | V3.1 |
 
 ## 当前状态
 
-### 已完成（V1）
-- [x] DDD 六模块骨架搭建
-- [x] LangChain4j 依赖配置
-- [x] DeepSeek ChatModel Bean
-- [x] DeepSeek EmbeddingModel Bean
-- [x] InMemoryEmbeddingStore Bean
-- [x] SSE 聊天测试端点 `POST /api/v1/chat`
-- [x] 多环境配置（dev/test/prod）
-- [x] Logback 日志配置
+### 远程服务
+| 服务 | 地址 | 状态 |
+|------|------|------|
+| MySQL | 134.175.232.110:13306 | ✅ 运行中 |
+| PostgreSQL | 134.175.232.110:15432 | ✅ 运行中（pgvector + zhparser） |
 
-### 下一步（V2.1）
-- [ ] 父 POM 声明 MyBatis-Plus、MySQL 驱动版本
-- [ ] MySQL DataSource 配置
-- [ ] MyBatis-Plus 配置类
-- [ ] source_document 建表 SQL
-- [ ] SourceDocumentPO + SourceDocumentDao
-- [ ] DocumentService 领域服务
-- [ ] DocumentController (上传 API + 查询 API)
+### V3.2 已完成
+- [x] PostgreSQL + zhparser 容器部署
+- [x] chunk_search 建表 + V3.2 迁移
+- [x] PgVectorStore（JdbcTemplate 手写）替换 InMemoryEmbeddingStore
+- [x] 上传文档 → Embedding → PostgreSQL 持久化
+- [x] 双数据源（MySQL 自动配置 + PostgreSQL 内部创建，不冲突）
+
+### V3.2 待优化
+- [ ] `module_tags` 字段写入已验证（需重新上传文档生效）
+- [ ] `content_tsv` 字段待 V3.3 zhparser 全文检索填充
