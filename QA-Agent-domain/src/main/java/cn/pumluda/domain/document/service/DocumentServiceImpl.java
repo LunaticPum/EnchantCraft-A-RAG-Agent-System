@@ -5,6 +5,7 @@ import cn.pumluda.domain.document.adapter.repository.IDocumentChunkRepository;
 import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
 import cn.pumluda.domain.document.service.chunk.IMarkdownChunker;
+import cn.pumluda.domain.document.service.embedding.IEmbeddingService;
 import cn.pumluda.types.enums.ResponseCode;
 import cn.pumluda.types.exception.AppException;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 
 /**
  * Project: QA-Agent-Pumluda
- * Description: 文档领域服务实现——处理文档上传、查询、分块等核心业务逻辑
+ * Description: 文档领域服务实现——处理文档上传、查询、分块、Embedding 等核心业务逻辑
  */
 @Slf4j
 @Service
@@ -25,6 +26,7 @@ public class DocumentServiceImpl implements IDocumentService {
     private final IDocumentRepository documentRepository;
     private final IMarkdownChunker markdownChunker;
     private final IDocumentChunkRepository chunkRepository;
+    private final IEmbeddingService embeddingService;
 
     @Override
     public SourceDocumentEntity uploadDocument(String fileName, String content) {
@@ -52,6 +54,9 @@ public class DocumentServiceImpl implements IDocumentService {
         List<DocumentChunkEntity> chunks = markdownChunker.chunk(saved);
         chunkRepository.saveAll(chunks);
         log.info("[文档上传] 分块完成: chunks={}", chunks.size());
+
+        // 3. 分块列表 Embedding 向量化
+        embeddingService.embedChunks(chunks);
 
         return saved;
     }

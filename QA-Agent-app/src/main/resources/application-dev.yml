@@ -18,8 +18,14 @@ spring:
 # DeepSeek 作为基础对话模型以及 Embedding 模型
 deepSeek:
   model: "deepseek-v4-pro"
-  base-url: "https://api.deepseek.com"
+  base-url: "https://api.deepseek.com/v1"
   api-key: "sk-7416cf0764fa4a89851fc611b4a9eec4"
+
+dashScope:
+  embedding-model: "text-embedding-v4"
+  rerank-model: "gte-rerank-v2"
+  base-url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api-key: "sk-b566df923861479284d8d726c681a2a8"
 
 # 日志
 logging:

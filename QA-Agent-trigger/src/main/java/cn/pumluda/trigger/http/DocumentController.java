@@ -2,10 +2,13 @@ package cn.pumluda.trigger.http;
 
 import cn.pumluda.api.dto.ChunkResponse;
 import cn.pumluda.api.dto.DocumentResponse;
+import cn.pumluda.api.dto.SearchResultResponse;
 import cn.pumluda.api.response.Response;
 import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
+import cn.pumluda.domain.document.model.valobj.SearchResult;
 import cn.pumluda.domain.document.service.IDocumentService;
+import cn.pumluda.domain.document.service.rag.IRagSearchService;
 import cn.pumluda.types.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +22,7 @@ import java.util.stream.Collectors;
 
 /**
  * Project: QA-Agent-Pumluda
- * Description: 文档管理 REST 接口——提供文档上传、详情查询、列表查询
+ * Description: 文档管理 REST 接口——提供文档上传、详情查询、列表查询、分块查询、语义检索
  */
 @Slf4j
 @RestController
@@ -29,6 +32,7 @@ import java.util.stream.Collectors;
 public class DocumentController {
 
     private final IDocumentService documentService;
+    private final IRagSearchService ragSearchService;
 
     /**
      * 上传 Markdown 文档
@@ -94,15 +98,32 @@ public class DocumentController {
     public Response<List<ChunkResponse>> chunks(@PathVariable("id") String id) {
         log.info("[文档接口] 查询分块: documentId={}", id);
         List<DocumentChunkEntity> chunks = documentService.getDocumentChunks(id);
-        List<ChunkResponse> data = chunks.stream()
-                .map(this::toChunkResponse)
-                .collect(Collectors.toList());
+        List<ChunkResponse> data = chunks.stream().map(this::toChunkResponse).collect(Collectors.toList());
         log.info("[文档接口] 返回 {} 个分块", data.size());
         return Response.<List<ChunkResponse>>builder()
-                .code(ResponseCode.SUCCESS.getCode())
-                .info(ResponseCode.SUCCESS.getInfo())
-                .data(data)
-                .build();
+                       .code(ResponseCode.SUCCESS.getCode())
+                       .info(ResponseCode.SUCCESS.getInfo())
+                       .data(data)
+                       .build();
+    }
+
+    /**
+     * 语义检索——输入查询关键词，返回最相似的文档分块
+     */
+    @GetMapping("/search")
+    public Response<List<SearchResultResponse>> search(@RequestParam("keyword") String keyword, @RequestParam(value = "topK", defaultValue = "5") int topK) {
+        log.info("[文档接口] 语义检索: keyword={}, topK={}", keyword, topK);
+        List<SearchResult> results = ragSearchService.search(keyword, topK);
+        List<SearchResultResponse> data = results.stream()
+                                                 .map(this::toSearchResultResponse)
+                                                 .toList();
+
+        log.info("[文档接口] 返回 {} 条结果", data.size());
+        return Response.<List<SearchResultResponse>>builder()
+                       .code(ResponseCode.SUCCESS.getCode())
+                       .info(ResponseCode.SUCCESS.getInfo())
+                       .data(data)
+                       .build();
     }
 
     // ==================== DTO 转换 ====================
@@ -135,6 +156,14 @@ public class DocumentController {
                             .moduleTags(entity.getModuleTags())
                             .createdAt(entity.getCreatedAt())
                             .build();
+    }
+
+    /**
+     * SearchResult → SearchResultResponse：将检索结果值对象转换为 API 响应 DTO
+     */
+    private SearchResultResponse toSearchResultResponse(SearchResult result) {
+        return SearchResultResponse.builder().chunkId(result.getChunkId()).documentId(result.getDocumentId()).titlePath(
+                result.getTitlePath()).content(result.getContent()).score(result.getScore()).build();
     }
 
 }
