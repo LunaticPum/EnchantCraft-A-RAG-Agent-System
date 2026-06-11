@@ -44,6 +44,7 @@
         <mysql-connector.version>8.0.33</mysql-connector.version>
         <fastjson2.version>2.0.61</fastjson2.version>
         <hutool.version>5.8.36</hutool.version>
+        <dashscope-sdk.version>2.22.17</dashscope-sdk.version>
     </properties>
 
     <developers>
@@ -94,6 +95,11 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dashscope-sdk-java</artifactId>
+                <version>${dashscope-sdk.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j</groupId>

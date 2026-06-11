@@ -8,9 +8,9 @@ import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
 import cn.pumluda.domain.document.model.valobj.SearchResult;
 import cn.pumluda.domain.document.service.IDocumentService;
-import cn.pumluda.domain.document.service.rag.HybridRetrieverImpl;
-import cn.pumluda.domain.document.service.rag.IKeywordRetriever;
-import cn.pumluda.domain.document.service.rag.ISemanticRetriever;
+import cn.pumluda.domain.document.service.rag.recall.HybridRetrieverImpl;
+import cn.pumluda.domain.document.service.rag.recall.IKeywordRetriever;
+import cn.pumluda.domain.document.service.rag.recall.ISemanticRetriever;
 import cn.pumluda.types.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -118,16 +118,17 @@ public class DocumentController {
     public Response<List<SearchResultResponse>> search(
             @RequestParam("keyword") String keyword,
             @RequestParam(value = "topK", defaultValue = "5") int topK,
-            @RequestParam(value = "strategy", defaultValue = "HYBRID") String strategy) {
-        log.info("[文档接口] 检索请求: keyword={}, topK={}, strategy={}", keyword, topK, strategy);
+            @RequestParam(value = "strategy", defaultValue = "HYBRID") String strategy,
+            @RequestParam(value = "rerank", defaultValue = "true") boolean rerank) {
+        log.info("[文档接口] 检索请求: keyword={}, topK={}, strategy={}, rerank={}", keyword, topK, strategy, rerank);
 
         List<SearchResult> results = switch (strategy.toUpperCase()) {
             case "SEMANTIC" -> semanticRetriever.search(keyword, topK);
             case "KEYWORD" -> keywordRetriever.search(keyword, topK);
-            case "HYBRID" -> hybridRetriever.search(keyword, topK);
+            case "HYBRID" -> hybridRetriever.search(keyword, topK, rerank);
             default -> {
                 log.warn("[文档接口] 未知检索策略: {}，回退为 HYBRID", strategy);
-                yield hybridRetriever.search(keyword, topK);
+                yield hybridRetriever.search(keyword, topK, rerank);
             }
         };
 

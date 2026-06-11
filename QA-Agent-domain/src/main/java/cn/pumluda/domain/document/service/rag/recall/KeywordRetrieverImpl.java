@@ -1,4 +1,4 @@
-package cn.pumluda.domain.document.service.rag;
+package cn.pumluda.domain.document.service.rag.recall;
 
 import cn.pumluda.domain.document.adapter.repository.IDocumentChunkRepository;
 import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;

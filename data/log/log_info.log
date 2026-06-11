@@ -4430,7 +4430,7 @@ java.lang.RuntimeException: java.io.IOException: Connection reset
 	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.embedAll(OpenAiEmbeddingModel.java:90)
 	at dev.langchain4j.model.embedding.EmbeddingModel.embed(EmbeddingModel.java:36)
 	at dev.langchain4j.model.embedding.EmbeddingModel.embed(EmbeddingModel.java:26)
-	at cn.pumluda.domain.document.service.rag.SemanticRetrieverImpl.search(RagSearchServiceImpl.java:33)
+	at cn.pumluda.domain.document.service.rag.recall.SemanticRetrieverImpl.search(RagSearchServiceImpl.java:33)
 	at cn.pumluda.trigger.http.DocumentController.search(DocumentController.java:116)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)

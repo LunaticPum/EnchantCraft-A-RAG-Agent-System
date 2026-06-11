@@ -33,8 +33,6 @@ public class LangChain4jConfig {
 
     @Value("${dashScope.embedding-model}")
     private String embeddingModel;
-    @Value("${dashScope.rerank-model}")
-    private String rerankModel;          // 预留：V2.4 混合检索时用，需自定义适配 DashScope gte-rerank
     @Value("${dashScope.api-key}")
     private String dashScopeApiKey;
     @Value("${dashScope.base-url}")
