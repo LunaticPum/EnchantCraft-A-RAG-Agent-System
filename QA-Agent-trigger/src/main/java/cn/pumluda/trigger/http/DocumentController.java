@@ -45,20 +45,25 @@ public class DocumentController {
      * 委托领域服务完成校验和持久化，返回文档元数据。
      */
     @PostMapping("/upload")
-    public Response<DocumentResponse> upload(@RequestParam("file") MultipartFile file) throws IOException {
-        log.info("[文档接口] 收到上传请求: fileName={}, size={} bytes", file.getOriginalFilename(), file.getSize());
+    public Response<DocumentResponse> upload(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "directoryPath", defaultValue = "") String directoryPath) throws IOException {
+        log.info(
+                "[文档接口] 收到上传请求: fileName={}, dir={}, size={} bytes",
+                file.getOriginalFilename(), directoryPath, file.getSize()
+        );
 
-        String rawFileName = file.getOriginalFilename();  // 浏览器会预先对请求头中文字符串做URL编码，因此我们要先做URL解码
+        String rawFileName = file.getOriginalFilename();
         String fileName;
         if (rawFileName != null) {
             fileName = java.net.URLDecoder.decode(rawFileName, StandardCharsets.UTF_8);
         } else {
             throw new RuntimeException("文件上传有误，文件名为空");
         }
-        // MultipartFile.getBytes() 获取上传文件的原始字节流，按 UTF-8 解码为文本
+        String directoryPathDecoded = java.net.URLDecoder.decode(directoryPath, StandardCharsets.UTF_8);
         String content = new String(file.getBytes(), StandardCharsets.UTF_8);
 
-        SourceDocumentEntity entity = documentService.uploadDocument(fileName, content);
+        SourceDocumentEntity entity = documentService.uploadDocument(fileName, content, directoryPathDecoded);
         log.info("[文档接口] 上传完成: id={}", entity.getId());
 
         return Response.<DocumentResponse>builder().code(ResponseCode.SUCCESS.getCode()).info("上传成功").data(
@@ -179,6 +184,7 @@ public class DocumentController {
                                .id(entity.getId())
                                .fileName(entity.getFileName())
                                .fileType(entity.getFileType() != null ? entity.getFileType().getCode() : null)
+                               .directoryPath(entity.getDirectoryPath())
                                .rawContent(entity.getRawContent())
                                .refCount(entity.getRefCount())
                                .createdAt(entity.getCreatedAt())

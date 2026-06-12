@@ -26,6 +26,9 @@ public class DocumentResponse {
     /** 文件类型（MARKDOWN） */
     private String fileType;
 
+    /** 文件相对路径，如 MySQL/存储引擎 */
+    private String directoryPath;
+
     /** 文档完整原始文本内容 */
     private String rawContent;
 

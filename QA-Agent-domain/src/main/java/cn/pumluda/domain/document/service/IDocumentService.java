@@ -14,11 +14,12 @@ public interface IDocumentService {
     /**
      * 上传并保存 Markdown 文档
      *
-     * @param fileName 原始文件名
-     * @param content  文件内容
+     * @param fileName      原始文件名
+     * @param content       文件内容
+     * @param directoryPath 文件所在目录的相对路径，如 MySQL/存储引擎
      * @return 保存后的文档实体
      */
-    SourceDocumentEntity uploadDocument(String fileName, String content);
+    SourceDocumentEntity uploadDocument(String fileName, String content, String directoryPath);
 
     /**
      * 根据 ID 查询文档

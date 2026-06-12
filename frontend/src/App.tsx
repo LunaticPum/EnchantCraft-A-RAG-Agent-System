@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink, Navigate, Outlet } from "react-router-dom";
-import { Files, MessageSquare, Search, Zap, LogOut, Database, Brain } from "lucide-react";
+import { Files, MessageSquare, Search, LogOut, Database, Brain } from "lucide-react";
 import DocumentPage from "./pages/DocumentPage";
 import AgentPage from "./pages/AgentPage";
 import SearchPage from "./pages/SearchPage";
@@ -18,14 +18,12 @@ function AppShell() {
   return (
     <div className="min-h-screen flex flex-col p-6">
       <div className="flex-1 flex flex-col max-w-[1480px] mx-auto w-full gap-5">
-        <header className="flex items-center justify-between px-5 py-2.5 glass rounded-full">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] flex items-center justify-center shadow-lg">
-              <Zap size={16} className="text-[var(--color-bg-root)]" fill="currentColor" />
-            </div>
+        <header className="flex items-center px-5 py-2.5 glass rounded-full">
+          <div className="flex items-center gap-2.5 w-[220px] flex-shrink-0">
+            <img src="/obsidian-icon.png" alt="QA Agent" className="w-8 h-8" />
             <span className="font-semibold text-sm tracking-wide">QA Agent</span>
           </div>
-          <nav className="flex items-center gap-1">
+          <nav className="flex-1 flex items-center justify-center gap-1">
             {nav.map(({ to, icon: Icon, label }) => (
               <NavLink
                 key={to}
@@ -42,7 +40,7 @@ function AppShell() {
               </NavLink>
             ))}
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 justify-end w-[240px] flex-shrink-0">
             <span className="text-[11px] text-[var(--color-ink-faint)] flex items-center gap-1.5"><Database size={11} /> pgvector</span>
             <span className="text-[11px] text-[var(--color-ink-faint)] flex items-center gap-1.5"><Brain size={11} /> DeepSeek</span>
             <button onClick={logout} className="ml-2 flex items-center gap-1.5 text-[11px] text-[var(--color-ink-faint)] hover:text-[var(--color-danger)] transition-colors">

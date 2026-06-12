@@ -48,10 +48,11 @@ public class DocumentRepositoryImpl implements IDocumentRepository {
 
     @Override
     public Optional<SourceDocumentEntity> findByContentMd5(String contentMd5) {
-        SourceDocumentPO po = sourceDocumentDao.selectOne(new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<SourceDocumentPO>().eq(
-                SourceDocumentPO::getContentMd5,
-                contentMd5
-        ));
+        SourceDocumentPO po = sourceDocumentDao.selectOne(
+                new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<SourceDocumentPO>().eq(
+                        SourceDocumentPO::getContentMd5,
+                        contentMd5
+                ));
         if (po == null) {
             return Optional.empty();
         }
@@ -76,6 +77,7 @@ public class DocumentRepositoryImpl implements IDocumentRepository {
                                .fileType(entity.getFileType() != null ? entity.getFileType()
                                                                               .getCode() : DocumentType.MARKDOWN.getCode())
                                .rawContent(entity.getRawContent())
+                               .directoryPath(entity.getDirectoryPath())
                                .contentMd5(entity.getContentMd5())
                                .refCount(entity.getRefCount())
                                .isDeleted(entity.getIsDeleted() != null && entity.getIsDeleted() ? 1 : 0)
@@ -102,6 +104,7 @@ public class DocumentRepositoryImpl implements IDocumentRepository {
                                    .fileName(po.getFileName())
                                    .fileType(docType)
                                    .rawContent(po.getRawContent())
+                                   .directoryPath(po.getDirectoryPath())
                                    .contentMd5(po.getContentMd5())
                                    .refCount(po.getRefCount())
                                    .isDeleted(po.getIsDeleted() != null && po.getIsDeleted() == 1)

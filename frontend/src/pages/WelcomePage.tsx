@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, BookOpen, Brain, Zap, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Brain, Sparkles, Zap } from "lucide-react";
 
 const features = [
   {
@@ -29,9 +29,7 @@ export default function WelcomePage() {
     <div className="min-h-screen flex flex-col items-center justify-center p-8" style={{ gap: 48 }}>
       {/* Hero */}
       <div className="text-center flex flex-col items-center" style={{ gap: 24 }}>
-        <div className="w-20 h-20 rounded-3xl bg-[var(--color-accent)] flex items-center justify-center shadow-2xl">
-          <Zap size={36} className="text-[var(--color-bg-root)]" fill="currentColor" />
-        </div>
+        <img src="/obsidian-icon.png" alt="QA Agent" className="w-20 h-20" />
         <div>
           <h1 className="serif font-bold tracking-tight" style={{
             fontSize: "clamp(48px, 7vw, 80px)",

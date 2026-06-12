@@ -37,8 +37,8 @@ public class DocumentServiceImpl implements IDocumentService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public SourceDocumentEntity uploadDocument(String fileName, String content) {
-        log.info("[文档上传] 开始: fileName={}, contentLength={}", fileName, content.length());
+    public SourceDocumentEntity uploadDocument(String fileName, String content, String directoryPath) {
+        log.info("[文档上传] 开始: fileName={}, dir={}, contentLength={}", fileName, directoryPath, content.length());
 
         if (fileName == null || fileName.isBlank()) {
             throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), "文件名不能为空");
@@ -63,7 +63,7 @@ public class DocumentServiceImpl implements IDocumentService {
         });
 
         // ② 保存文档原文 + 分块（纯 MySQL，事务内）
-        SourceDocumentEntity entity = SourceDocumentEntity.create(fileName, content);
+        SourceDocumentEntity entity = SourceDocumentEntity.create(fileName, content, directoryPath);
         SourceDocumentEntity saved = documentRepository.save(entity);
         List<DocumentChunkEntity> chunks = markdownChunker.chunk(saved);
         chunkRepository.saveAll(chunks);

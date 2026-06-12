@@ -30,6 +30,9 @@ public class SourceDocumentEntity {
     /** 文档完整原始文本内容 */
     private String rawContent;
 
+    /** 文件在原始目录中的相对路径，如 MySQL/存储引擎 */
+    private String directoryPath;
+
     /** 文档内容的 MD5 摘要（32位十六进制），用于上传去重 */
     private String contentMd5;
 
@@ -48,16 +51,18 @@ public class SourceDocumentEntity {
     /**
      * 创建新文档实体（工厂方法）
      *
-     * @param fileName   原始文件名
-     * @param rawContent 文档文本内容
+     * @param fileName      原始文件名
+     * @param rawContent    文档文本内容
+     * @param directoryPath 文件相对路径，如 MySQL/存储引擎
      * @return 初始化后的文档实体，id 为 null（由持久层自动生成），contentMd5 已计算
      */
-    public static SourceDocumentEntity create(String fileName, String rawContent) {
+    public static SourceDocumentEntity create(String fileName, String rawContent, String directoryPath) {
         String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(rawContent);
         return SourceDocumentEntity.builder()
                 .fileName(fileName)
                 .fileType(DocumentType.MARKDOWN)
                 .rawContent(rawContent)
+                .directoryPath(directoryPath)
                 .contentMd5(md5)
                 .refCount(0)
                 .isDeleted(false)
