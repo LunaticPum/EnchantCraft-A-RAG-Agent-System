@@ -4185,3 +4185,479 @@ CREATE TABLE `user_tag_record`
 26-06-12.15:58:32.760 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
 26-06-12.15:58:32.771 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 26-06-12.15:58:32.785 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-12.16:07:02.231 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 16532 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-12.16:07:02.234 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-12.16:07:02.237 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-12.16:07:05.955 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-12.16:07:05.962 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-12.16:07:05.962 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-12.16:07:05.974 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-12.16:07:06.013 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-12.16:07:06.017 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-12.16:07:06.017 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-12.16:07:06.276 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-12.16:07:06.278 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3908 ms
+26-06-12.16:07:09.589 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-12.16:07:10.269 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@69adf72c
+26-06-12.16:07:10.806 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-12.16:07:10.838 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-12.16:07:10.953 [main            ] INFO  ConsumerConfig         - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [134.175.232.110:19092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-qa-agent-indexing-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = qa-agent-indexing
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+26-06-12.16:07:11.087 [main            ] INFO  KafkaMetricsCollector  - initializing Kafka metrics collector
+26-06-12.16:07:11.314 [main            ] INFO  AppInfoParser          - Kafka version: 3.8.1
+26-06-12.16:07:11.315 [main            ] INFO  AppInfoParser          - Kafka commitId: 70d6ff42debf7e17
+26-06-12.16:07:11.315 [main            ] INFO  AppInfoParser          - Kafka startTimeMs: 1781251631311
+26-06-12.16:07:11.325 [main            ] INFO  LegacyKafkaConsumer    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Subscribed to topic(s): document.indexing
+26-06-12.16:07:11.375 [main            ] INFO  Application            - Started Application in 11.073 seconds (process running for 13.04)
+26-06-12.16:07:11.579 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-12.16:07:12.092 [scheduling-1    ] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3cbd15ec
+26-06-12.16:07:12.099 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-12.16:07:12.129 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:07:12.200 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:07:12.310 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:07:12.438 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metadata               - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+26-06-12.16:07:12.441 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Discovered group coordinator 134.175.232.110:19092 (id: 2147483646 rack: null)
+26-06-12.16:07:12.446 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] (Re-)joining group
+26-06-12.16:07:12.513 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: need to re-join with the given member-id: consumer-qa-agent-indexing-1-192c921d-dd34-4a4e-9a9b-6e9c65b0f176
+26-06-12.16:07:12.515 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] (Re-)joining group
+26-06-12.16:07:15.538 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Successfully joined group with generation Generation{generationId=15, memberId='consumer-qa-agent-indexing-1-192c921d-dd34-4a4e-9a9b-6e9c65b0f176', protocol='range'}
+26-06-12.16:07:15.552 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Finished assignment for group at generation 15: {consumer-qa-agent-indexing-1-192c921d-dd34-4a4e-9a9b-6e9c65b0f176=Assignment(partitions=[document.indexing-0, document.indexing-1, document.indexing-2])}
+26-06-12.16:07:15.593 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Successfully synced group in generation Generation{generationId=15, memberId='consumer-qa-agent-indexing-1-192c921d-dd34-4a4e-9a9b-6e9c65b0f176', protocol='range'}
+26-06-12.16:07:15.594 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Notifying assignor about the new Assignment(partitions=[document.indexing-0, document.indexing-1, document.indexing-2])
+26-06-12.16:07:15.600 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Adding newly assigned partitions: document.indexing-0, document.indexing-1, document.indexing-2
+26-06-12.16:07:15.634 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Found no committed offset for partition document.indexing-1
+26-06-12.16:07:15.639 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerUtils          - Setting offset for partition document.indexing-2 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=2}}
+26-06-12.16:07:15.640 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerUtils          - Setting offset for partition document.indexing-0 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=2}}
+26-06-12.16:07:15.693 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  SubscriptionState      - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting offset for partition document.indexing-1 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=2}}.
+26-06-12.16:07:15.695 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: partitions assigned: [document.indexing-0, document.indexing-1, document.indexing-2]
+26-06-12.16:07:41.381 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:07:41.382 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:07:41.392 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:08:11.387 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:08:11.389 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:08:11.402 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:08:41.396 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:08:41.396 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:08:41.411 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:08:50.129 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-12.16:08:50.130 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-12.16:08:50.135 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 2 ms
+26-06-12.16:08:50.387 [http-nio-8091-exec-1] INFO  AgentController        - [Agent接口] 对话请求: sessionId=, mode=TOOL, message=你好我想学习java的MySQL知识，你可以简单介绍什么是存储引擎吗，存储引擎有哪些
+26-06-12.16:08:50.394 [ForkJoinPool.commonPool-worker-1] INFO  AgentChatImpl          - [Agent对话] sessionId=, mode=TOOL, message=你好我想学习java的MySQL知识，你可以简单介绍什么是存储引擎吗，存储引擎有哪些
+26-06-12.16:08:50.770 [ForkJoinPool.commonPool-worker-1] INFO  LoggingHttpClient      - HTTP request:
+- method: POST
+- url: https://api.deepseek.com/v1/chat/completions
+- headers: [Authorization: Beare...c4], [User-Agent: langchain4j-openai], [Content-Type: application/json]
+- body: {
+  "model" : "deepseek-v4-pro",
+  "messages" : [ {
+    "role" : "system",
+    "content" : "你是一个技术知识库助手。回答用户的学习问题。\n\n## 核心规则\n\n1. **需要查资料时调用工具**：当用户询问技术问题、概念解释、代码用法等需要查找资料的问题时，调用 `searchKnowledgeBase` 工具检索知识库\n2. **不需要时直接回答**：当用户闲聊、问候、提问非技术问题时，直接回答，不要调用工具\n3. **基于证据回答**：基于工具返回的资料回答，并标注信息来源\n4. **证据不足**：如果工具返回\"未找到相关内容\"，告诉用户知识库中暂无相关内容，建议换个关键词或补充学习资料\n"
+  }, {
+    "role" : "user",
+    "content" : "你好我想学习java的MySQL知识，你可以简单介绍什么是存储引擎吗，存储引擎有哪些"
+  } ],
+  "stream" : false,
+  "tools" : [ {
+    "type" : "function",
+    "function" : {
+      "name" : "searchKnowledgeBase",
+      "description" : "在用户的知识库（Markdown 学习笔记）中搜索相关内容。当用户询问技术问题、概念解释、代码用法等可能需要查资料的问题时调用。query 参数使用关键词形式，如 'InnoDB 索引原理'。",
+      "parameters" : {
+        "type" : "object",
+        "properties" : {
+          "query" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "query" ]
+      }
+    }
+  } ]
+}
+
+26-06-12.16:08:54.515 [ForkJoinPool.commonPool-worker-1] INFO  LoggingHttpClient      - HTTP response:
+- status code: 200
+- headers: [:status: 200], [access-control-allow-credentials: true], [age: 0], [content-type: application/json], [date: Fri, 12 Jun 2026 08:08:58 GMT], [eo-cache-status: MISS], [eo-log-uuid: 659907301662773036], [server: openresty], [strict-transport-security: max-age=31536000; includeSubDomains; preload], [vary: origin, access-control-request-method, access-control-request-headers], [x-content-type-options: nosniff], [x-ds-trace-id: a2e562f6491e31351ea6a6939983851d]
+- body: {"id":"dcf85bfb-5656-43ef-b62d-253bcc6730f7","object":"chat.completion","created":1781251738,"model":"deepseek-v4-pro","choices":[{"index":0,"message":{"role":"assistant","content":"你好！MySQL 存储引擎是数据库底层负责数据存储、查询、更新等操作的软件组件，理解它对你学习 Java 操作 MySQL 很有帮助。让我先查一下你的知识库中是否有相关资料。","reasoning_content":"用户想学习Java中的MySQL知识，特别是关于存储引擎的介绍。我需要调用searchKnowledgeBase来查找相关资料。","tool_calls":[{"index":0,"id":"call_00_heYNEkRTvy6SP8EIn9r77135","type":"function","function":{"name":"searchKnowledgeBase","arguments":"{\"query\": \"MySQL 存储引擎 介绍\"}"}}]},"logprobs":null,"finish_reason":"tool_calls"}],"usage":{"prompt_tokens":471,"completion_tokens":116,"total_tokens":587,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":23},"prompt_cache_hit_tokens":0,"prompt_cache_miss_tokens":471},"system_fingerprint":"fp_9954b31ca7_prod0820_fp8_kvcache_20260402"}
+
+26-06-12.16:08:54.622 [ForkJoinPool.commonPool-worker-1] INFO  KnowledgeBaseSearchTool - [MCP工具] 知识库检索: query=MySQL 存储引擎 介绍
+26-06-12.16:08:54.623 [ForkJoinPool.commonPool-worker-1] INFO  HybridRetrieverImpl    - [混合检索] 开始: query=MySQL 存储引擎 介绍, topK=5, rerank=true
+26-06-12.16:08:54.623 [ForkJoinPool.commonPool-worker-1] INFO  SemanticRetrieverImpl  - [语义检索] 开始检索: query=MySQL 存储引擎 介绍, topK=10
+26-06-12.16:08:55.184 [ForkJoinPool.commonPool-worker-1] INFO  HikariDataSource       - HikariPool-2 - Starting...
+26-06-12.16:08:55.611 [ForkJoinPool.commonPool-worker-1] INFO  HikariPool             - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@5650c0ad
+26-06-12.16:08:55.612 [ForkJoinPool.commonPool-worker-1] INFO  HikariDataSource       - HikariPool-2 - Start completed.
+26-06-12.16:08:55.681 [ForkJoinPool.commonPool-worker-1] INFO  SemanticRetrieverImpl  - [语义检索] 命中 10 条结果
+26-06-12.16:08:55.685 [ForkJoinPool.commonPool-worker-1] INFO  KeywordRetrieverImpl   - [关键词检索] PostgreSQL 全文检索: keyword=MySQL 存储引擎 介绍, topK=10
+26-06-12.16:08:55.685 [ForkJoinPool.commonPool-worker-1] INFO  PgVectorStore          - [PgVector全文检索] queryText=MySQL 存储引擎 介绍, tsquery=MySQL & 存储引擎 & 介绍, limit=10
+26-06-12.16:08:55.719 [ForkJoinPool.commonPool-worker-1] INFO  PgVectorStore          - [PgVector全文检索] 命中 0 条
+26-06-12.16:08:55.719 [ForkJoinPool.commonPool-worker-1] INFO  KeywordRetrieverImpl   - [关键词检索] 命中 0 条
+26-06-12.16:08:55.722 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=1, chunkId=0bcd7ba03921d1b516736d7205849601, titlePath=MySQL 存储引擎, rrf=0.01639344262295082
+26-06-12.16:08:55.722 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=2, chunkId=a44f41fd274edc85e6bb8aa534565db3, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB, rrf=0.016129032258064516
+26-06-12.16:08:55.722 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=3, chunkId=2533918e43f66eb48e613ab952cb2eb6, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > Memory > 存储文件, rrf=0.015873015873015872
+26-06-12.16:08:55.722 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=4, chunkId=5ba38143abe63e6b7f942d15d495bf0f, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > MyISAM, rrf=0.015625
+26-06-12.16:08:55.722 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=5, chunkId=db232cf71e44953de99f521b61f5c200, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > Memory, rrf=0.015384615384615385
+26-06-12.16:08:55.722 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=6, chunkId=54ceef2e9300bf4fc2cbc2de1ba0d469, titlePath=MySQL 存储引擎 > 存储引擎的选择, rrf=0.015151515151515152
+26-06-12.16:08:55.723 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=7, chunkId=dd2239e203365c7f2e12b2e97b42b8ad, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > Memory > 特点, rrf=0.014925373134328358
+26-06-12.16:08:55.723 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=8, chunkId=2e58418d5072f40d97f476c46a3ae710, titlePath=MySQl 架构, rrf=0.014705882352941176
+26-06-12.16:08:55.723 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=9, chunkId=268705290512de48d7a6fde44ae5eeda, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > MyISAM > 存储文件, rrf=0.014492753623188406
+26-06-12.16:08:55.723 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=10, chunkId=ddd2c564bd1d48df45b61e9750c7a581, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB > 存储文件, rrf=0.014285714285714285
+26-06-12.16:08:55.726 [ForkJoinPool.commonPool-worker-1] INFO  HybridRetrieverImpl    - [混合检索] 语义10条 + 关键词0条 → RRF融合10条
+26-06-12.16:08:55.726 [ForkJoinPool.commonPool-worker-1] INFO  DashScopeRerankerImpl  - [Rerank] 开始: query=MySQL 存储引擎 介绍, candidates=10
+26-06-12.16:08:56.382 [ForkJoinPool.commonPool-worker-1] INFO  DashScopeRerankerImpl  - [Rerank] 完成: 10 条候选 → 10 条重排
+26-06-12.16:08:56.382 [ForkJoinPool.commonPool-worker-1] INFO  HybridRetrieverImpl    - [混合检索] Rerank 精排完成: 最终返回 5 条
+26-06-12.16:08:56.415 [ForkJoinPool.commonPool-worker-1] INFO  LoggingHttpClient      - HTTP request:
+- method: POST
+- url: https://api.deepseek.com/v1/chat/completions
+- headers: [Authorization: Beare...c4], [User-Agent: langchain4j-openai], [Content-Type: application/json]
+- body: {
+  "model" : "deepseek-v4-pro",
+  "messages" : [ {
+    "role" : "system",
+    "content" : "你是一个技术知识库助手。回答用户的学习问题。\n\n## 核心规则\n\n1. **需要查资料时调用工具**：当用户询问技术问题、概念解释、代码用法等需要查找资料的问题时，调用 `searchKnowledgeBase` 工具检索知识库\n2. **不需要时直接回答**：当用户闲聊、问候、提问非技术问题时，直接回答，不要调用工具\n3. **基于证据回答**：基于工具返回的资料回答，并标注信息来源\n4. **证据不足**：如果工具返回\"未找到相关内容\"，告诉用户知识库中暂无相关内容，建议换个关键词或补充学习资料\n"
+  }, {
+    "role" : "user",
+    "content" : "你好我想学习java的MySQL知识，你可以简单介绍什么是存储引擎吗，存储引擎有哪些"
+  }, {
+    "role" : "assistant",
+    "content" : "你好！MySQL 存储引擎是数据库底层负责数据存储、查询、更新等操作的软件组件，理解它对你学习 Java 操作 MySQL 很有帮助。让我先查一下你的知识库中是否有相关资料。",
+    "tool_calls" : [ {
+      "id" : "call_00_heYNEkRTvy6SP8EIn9r77135",
+      "type" : "function",
+      "function" : {
+        "name" : "searchKnowledgeBase",
+        "arguments" : "{\"query\": \"MySQL 存储引擎 介绍\"}"
+      }
+    } ]
+  }, {
+    "role" : "tool",
+    "tool_call_id" : "call_00_heYNEkRTvy6SP8EIn9r77135",
+    "content" : "--- 来源 1: MySQL 存储引擎 > 存储引擎的选择 ---\n在选择 MySQL 存储引擎时，应根据应用系统的特点、业务需求和性能要求来决定。通常考虑以下几个因素：\n\n- 是否需要**事务支持和 ACID 特性**；\n- 数据**读写比例及并发访问量**；\n- **数据量大小及存储持久性需求**；\n- 是否需要**支持外键约束**；\n- 是否对**查询速度要求**极高。\n\n在绝大多数业务场景下，使用 **InnoDB** 即可满足需求，但针对特定场景，也可以选择 MyISAM 或 Memory。\n\n> [!example]+ InnoDB\n> - **适用场景**：**事务型应用**、**高并发读写**、需要保证**数据一致性和完整性**的业务表。\n> - **选择理由**：支持事务、行级锁、MVCC 和外键约束，能够在高并发场景下保持数据安全和性能稳定。\n> - **示例**：*订单表、支付记录表、库存表*等核心业务数据表。\n\n> [!example]+ MyISAM\n> - **适用场景**：以**读操作为主**，**插入操作较多**，**更新和删除操作较少**的业务表。\n> - **选择理由**：**查询速度快，存储结构简单**，适合**不需要事务和行级锁的场景**。\n> - **示例**：*用户浏览记录、评论日志、统计报表表*等**只读或读多写少**的数据 表\n\n> [!example]+ Memory\n> - **适用场景**：对**访问速度要求极高**、**数据可以容忍丢失**的临时数据表或缓存表。\n> - **选择理由**：数据存储在内存中，访问速度极快，但服务重启或宕机后数据会丢失，不适合核心业务数据。\n> - **示例**：会话表、临时统计表、缓存表等对性能要求高且可重建的数据表。\n\n> [!note]+ NoSQL 替代方案\n> 在实际应用中，大部分 MySQL 业务表都使用 **InnoDB** 存储引擎。其他存储引擎在很多场景下已经可以用更专业的工具替代：\n> - **MyISAM**：适合读多写少的场景，可以考虑使用 **MongoDB** 或其他文档型数据库来替代，以获得更灵活的数据模型和可扩展性。\n> - **Memory**：适合对访问速度要求极高、数据可丢失的临时表或缓存表，可以使用 **Redis** 或 **Memcached** 替代，以获得更高性能和更丰富的缓存策略。\n\n--- 来源 2: MySQL 存储引擎 ---\n存储引擎是 MySQL 用于处理**数据存储**、**索引管理**以及**数据查询与更新操作**的核心组件。**不同存储引擎拥有不同的数据组织方式、索引实现机制以及锁策略**，因此*在事务支持、并发性能和存储效率等方面也存在差异*。\n\n> [!quote]+ 表类型\n> **存储引擎是作用于数据表级别的，而非数据库级别**。**同一个数据库中的不同数据表可以选择不同的存储引擎**，因此**存储引擎也被称为表类型**。例如，一个数据库中的订单表可以使用 InnoDB，而日志表则可以使用 MyISAM。*若不指定表的存储引擎，则默认表的存储引擎就为 InnoDB。*\n\n```mysql title:\"指定创建表的存储引擎\"\nCREATE TABLE `user_tag_record`  \n(  \n    `id`          BIGINT unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',  \n    `user_id`     BIGINT UNSIGNED NOT NULL COMMENT '用户 ID',  \n    `user_tag`    INT UNSIGNED    NOT NULL DEFAULT 0 COMMENT '用户标签位图',  \n    `create_time` DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,  \n    `update_time` DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  \n    PRIMARY KEY (`id`),  \n    UNIQUE KEY (`user_id`),  \n    KEY `idx_user_id` (`user_id`)  \n) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;\n```\n\n--- 来源 3: MySQl 架构 ---\n![[Pasted image 20260601084056.png|MySQL 架构|500]]\n\n>[!quote]+ MySQL 架构设计\n> 如上图所示，MySQL 服务端整体采用分层架构设计，大致可以分为三层：**连接层**、**服务层**和**存储引擎层**。\n> 1. **连接层**：**负责客户端与 MySQL 服务端之间的通信与连接管理**。各种客户端程序（如 JDBC、ODBC、.NET、PHP、Python、Ruby、Perl 等）都需要通过对应的连接器与 MySQL 建立连接。在这一层中，MySQL 主要完成：\n> \t- TCP 连接建立与释放；\n> \t- 用户身份认证；\n> \t- 权限校验；\n> \t- 连接数控制与线程管理；\n> \t- 网络通信协议处理。\n> \n> \t当客户端发起连接请求时，MySQL 会首先在连接层完成用户认证和权限检查，认证通过后才允许后续 SQL 请求进入服务层进行处理。\n> \t\n> 2. **服务层**：服务层是 MySQL 的核心组成部分，**绝大多数数据库功能都在这一层实现，并且与具体的存储引擎无关**。主要包含以下模块：\n> \t- **SQL 接口**：**负责接收客户端发送的 SQL 语句**，并向下调用解析器、优化器和存储引擎完成请求处理。同时*提供大量内置函数、存储过程、触发器、视图等数据库功能*。\n> \t- 解析器：对 SQL 语句进行**词法分析**和**语法分析**，判断 SQL 是否符合语法规范，并生成对应的**语法树**。\n> \t- 查询优化器：**根据 SQL 语句生成多种执行方案**，并结合统计信息评估成本，最终选择代价最小的执行计划。例如决定：\n> \t\t- 使用哪个索引；\n> \t\t- 多表 Join 的执行顺序；\n> \t\t- 是否进行索引下推；\n> \t\t- 是否采用覆盖索引等优化策略。\n> \t- 执行器：**根据优化器生成的执行计划调用对应存储引擎接口**，完成数据的读取、更新、删除和插入操作。\n> \t- 缓存与缓冲：**早期 MySQL 提供查询缓存机制**，但由于其在高并发场景下性能较差，**已在 MySQL 8.0 中被彻底移除**。目前缓存能力更多由 **InnoDB Buffer Pool** 等存储引擎内部组件提供。\n> \t\n> 3. **存储引擎层**：**负责数据的实际存储与读取**，是 MySQL 与底层数据文件交互的核心模块。MySQL 采用**可插拔存储引擎架构**，开发者可以根据业务需求选择不同的存储引擎，因此这一层又被称为**可插拔存储引擎层**。常见存储引擎包括：\n> \t- InnoDB（MySQL 默认存储引擎）\n> \t- MyISAM\n> \t- Memory\n> \t- NDB Cluster\n> \t- Archive\n> \t\n> \t不同存储引擎具有不同的实现机制和适用场景。例如：\n> \t- InnoDB 支持事务、MVCC、行级锁和外键；\n> \t- MyISAM 不支持事务，但查询效率较高；\n> \t- Memory 将数据存储于内存中，适用于高速临时数据访问场景。\n> \t\n> \t此外，我们常说的索**引实现也位于存储引擎层**，**不同存储引擎的索引组织方式并不相同**。例如 InnoDB 的聚簇索引和二级索引均采用 **B+ 树**数据结构实现，而其他存储引擎则可能采用不同的数据组织方式。\n> \n> 总结来说，**连接层负责接入，服务层负责 SQL 处理，存储引擎层负责数据存储**。一条 SQL 从客户端发出后，会依次经过“**连接层 → 解析器 → 优化器 → 执行器 → 存储引擎**”，最终完成数据的读写操作。\n\n--- 来源 4: MySQL 存储引擎 > 各种存储引擎特点 > InnoDB ---\nInnoDB 是 MySQL 中一种兼顾**高可靠性**与**高性能**的通用存储引擎，自 MySQL 5.5 起被设为默认存储引擎。\n\n--- 来源 5: MySQL 存储引擎 > 各种存储引擎特点 > MyISAM ---\nMyISAM 是 MySQL 早期的默认存储引擎，**其结构简单，适合只读或读多写少的应用**，但由于**缺乏事务和行级锁，不适合高并发写入和对数据一致性要求高的场景**。\n\n"
+  } ],
+  "stream" : false,
+  "tools" : [ {
+    "type" : "function",
+    "function" : {
+      "name" : "searchKnowledgeBase",
+      "description" : "在用户的知识库（Markdown 学习笔记）中搜索相关内容。当用户询问技术问题、概念解释、代码用法等可能需要查资料的问题时调用。query 参数使用关键词形式，如 'InnoDB 索引原理'。",
+      "parameters" : {
+        "type" : "object",
+        "properties" : {
+          "query" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "query" ]
+      }
+    }
+  } ]
+}
+
+26-06-12.16:09:11.395 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:09:11.396 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:09:11.415 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:09:12.682 [ForkJoinPool.commonPool-worker-1] INFO  LoggingHttpClient      - HTTP response:
+- status code: 200
+- headers: [:status: 200], [access-control-allow-credentials: true], [age: 0], [content-type: application/json], [date: Fri, 12 Jun 2026 08:09:03 GMT], [eo-cache-status: MISS], [eo-log-uuid: 10163680665223183955], [server: openresty], [strict-transport-security: max-age=31536000; includeSubDomains; preload], [vary: origin, access-control-request-method, access-control-request-headers], [x-content-type-options: nosniff], [x-ds-trace-id: f2b6d2dc9fe812039f4edf459027a08c]
+- body: {"id":"66d016ac-6ce6-479f-a6f0-8fb27b26599f","object":"chat.completion","created":1781251743,"model":"deepseek-v4-pro","choices":[{"index":0,"message":{"role":"assistant","content":"根据你的知识库，我来为你系统地介绍一下 MySQL 存储引擎。\n\n---\n\n## 一、什么是存储引擎？\n\n> **存储引擎**是 MySQL 用于处理**数据存储、索引管理以及数据查询与更新操作**的核心组件。不同存储引擎拥有不同的数据组织方式、索引实现机制以及锁策略，因此在事务支持、并发性能和存储效率等方面也存在差异。\n\n简单来说，**存储引擎决定了数据如何被存储、如何被检索**。而且存储引擎是**作用于数据表级别**的，同一个数据库中的不同表可以选用不同的存储引擎，因此它也被称为\"**表类型**\"。比如，订单表用 InnoDB，日志表用 MyISAM。\n\n> 如果不指定，MySQL 默认使用 **InnoDB**。\n\n---\n\n## 二、MySQL 架构中的存储引擎\n\n从你的知识库中的 MySQL 架构图可以看到，MySQL 整体分为三层：\n\n| 层级 | 职责 |\n|------|------|\n| **连接层** | 负责客户端连接管理、身份认证、权限校验 |\n| **服务层** | SQL 解析、查询优化、执行计划生成（与存储引擎无关） |\n| **存储引擎层** | 负责数据的实际存储与读取，采用**可插拔架构** |\n\n一条 SQL 的完整流程：**连接层 → 解析器 → 优化器 → 执行器 → 存储引擎**。\n\n---\n\n## 三、常见的三种存储引擎\n\n### 1. InnoDB（默认引擎，最常用 ✅）\n\n| 特性 | 说明 |\n|------|------|\n| **事务支持** | ✅ 支持 ACID 事务 |\n| **锁粒度** | 行级锁 + MVCC |\n| **外键** | ✅ 支持 |\n| **索引结构** | B+ 树（聚簇索引 + 二级索引） |\n| **适用场景** | 事务型应用、高并发读写、核心业务表 |\n\n> 💡 **示例表**：订单表、支付记录表、库存表等需要数据一致性和完整性的表。\n\n### 2. MyISAM\n\n| 特性 | 说明 |\n|------|------|\n| **事务支持** | ❌ 不支持 |\n| **锁粒度** | 表级锁 |\n| **外键** | ❌ 不支持 |\n| **查询速度** | 快，结构简单 |\n| **适用场景** | 读多写少、更新删除少的场景 |\n\n> 💡 **示例表**：用户浏览记录、评论日志、统计报表等。\n\n### 3. Memory\n\n| 特性 | 说明 |\n|------|------|\n| **存储位置** | 内存 |\n| **数据持久性** | ❌ 重启/宕机后数据丢失 |\n| **访问速度** | 极快 |\n| **适用场景** | 临时表、缓存表、会话表 |\n\n> 💡 **示例表**：会话表、临时统计表等对性能要求高且可重建的数据。\n\n---\n\n## 四、如何选择？\n\n| 需求 | 推荐 |\n|------|------|\n| 需要事务、高并发、数据一致性 | **InnoDB** ✅ |\n| 读多写少、不需要事务 | MyISAM |\n| 极高速度、数据可丢失 | Memory |\n\n> 🎯 **实际开发中，绝大多数场景使用 InnoDB 即可**。而 MyISAM 的场景可以用 MongoDB 替代，Memory 的场景可以用 Redis 替代。\n\n---\n\n## 五、Java 中的使用示例\n\n创建表时通过 `ENGINE` 指定存储引擎：\n\n```sql\nCREATE TABLE `user_tag_record`  \n(  \n    `id`          BIGINT unsigned NOT NULL AUTO_INCREMENT,\n    `user_id`     BIGINT UNSIGNED NOT NULL,\n    `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    PRIMARY KEY (`id`),\n    UNIQUE KEY (`user_id`)\n) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;\n```\n\n在 Java 中通过 JDBC 或 MyBatis 执行这条 DDL 即可，实际开发中一般不需要手动切换引擎，保持 **InnoDB** 默认设置就足够。\n\n---\n\n还有什么想深入了解的吗？比如 InnoDB 的 B+ 树索引原理、MVCC 机制、或者 Java 中如何配置数据源？😊","reasoning_content":"知识库中有很丰富的关于MySQL存储引擎的内容。让我整理一下，从以下几个角度来回答：\n\n1. 什么是存储引擎\n2. 存储引擎在MySQL架构中的位置\n3. 常见的存储引擎及其特点\n4. 如何选择存储引擎\n\n让我组织这些信息，并标注好来源。"},"logprobs":null,"finish_reason":"stop"}],"usage":{"prompt_tokens":2467,"completion_tokens":983,"total_tokens":3450,"prompt_tokens_details":{"cached_tokens":512},"completion_tokens_details":{"reasoning_tokens":66},"prompt_cache_hit_tokens":512,"prompt_cache_miss_tokens":1955},"system_fingerprint":"fp_9954b31ca7_prod0820_fp8_kvcache_20260402"}
+
+26-06-12.16:09:41.391 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:09:41.393 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:09:41.405 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:10:11.386 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:10:11.387 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:10:11.398 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:10:41.388 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:10:41.390 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:10:41.402 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:11:11.385 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:11:11.385 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:11:11.395 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:11:41.388 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:11:41.389 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:11:41.403 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:12:11.398 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:12:11.399 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:12:11.411 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:12:41.386 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:12:41.387 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:12:41.430 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:13:11.398 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:13:11.399 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:13:11.410 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:13:41.382 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:13:41.383 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:13:41.395 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:14:11.400 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:14:11.401 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:14:11.416 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:14:41.391 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:14:41.393 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:14:41.409 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:15:11.408 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:15:11.409 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:15:11.434 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:15:41.394 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:15:41.394 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:15:41.412 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:16:11.393 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:16:11.394 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:16:11.404 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:16:12.444 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  NetworkClient          - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Node -1 disconnected.
+26-06-12.16:16:41.396 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:16:41.397 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:16:41.413 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:17:11.400 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:17:11.401 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:17:11.411 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:17:41.395 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:17:41.396 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:17:41.408 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:18:11.387 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:18:11.388 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:18:11.402 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:18:41.388 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:18:41.389 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:18:41.402 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:19:11.397 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:19:11.398 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:19:11.416 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:19:41.399 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:19:41.400 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:19:41.414 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:20:11.393 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:20:11.393 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:20:11.407 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:20:41.394 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:20:41.395 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:20:41.405 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:21:11.390 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:21:11.391 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:21:11.405 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:21:41.388 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:21:41.389 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:21:41.399 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:22:11.400 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:22:11.400 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:22:11.417 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:22:41.397 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:22:41.397 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:22:41.409 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:23:11.393 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:23:11.393 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:23:11.407 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:23:41.387 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:23:41.388 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:23:41.405 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:24:11.396 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:24:11.397 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:24:11.410 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:24:41.390 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:24:41.391 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:24:41.410 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:25:11.446 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:25:11.447 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:25:11.469 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:25:41.443 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:25:41.444 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:25:41.458 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:26:11.413 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:26:11.413 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:26:11.447 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:26:12.650 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  NetworkClient          - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Node -1 disconnected.
+26-06-12.16:26:41.396 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:26:41.396 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:26:41.408 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:27:11.390 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:27:11.391 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:27:11.404 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:27:41.391 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:27:41.391 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:27:41.406 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:28:11.400 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:28:11.400 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:28:11.413 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:28:41.392 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:28:41.392 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:28:41.401 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:29:11.394 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:29:11.394 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:29:11.407 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:29:41.394 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:29:41.395 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:29:41.412 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:30:11.396 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:30:11.396 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:30:11.410 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:30:41.398 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:30:41.398 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:30:41.421 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:31:11.399 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:31:11.400 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:31:11.412 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:31:41.397 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:31:41.398 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:31:41.411 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:32:11.396 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:32:11.397 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:32:11.407 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:32:41.392 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:32:41.393 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:32:41.406 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:33:11.387 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:33:11.388 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:33:11.404 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:33:41.393 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:33:41.393 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:33:41.406 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:34:11.388 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:34:11.389 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:34:11.406 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:34:41.394 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:34:41.394 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:34:41.408 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:35:11.394 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:35:11.394 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:35:11.413 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:35:41.399 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:35:41.400 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:35:41.411 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:36:11.401 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:36:11.402 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:36:11.414 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:36:41.391 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:36:41.392 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:36:41.404 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:37:11.390 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:37:11.392 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:37:11.403 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:37:41.395 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:37:41.395 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:37:41.408 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:38:11.382 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:38:11.383 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:38:11.394 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:38:41.398 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:38:41.398 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:38:41.409 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:39:11.390 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:39:11.390 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:39:11.405 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:39:41.398 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.16:39:41.398 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.16:39:41.412 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.16:39:41.565 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Revoke previously assigned partitions document.indexing-0, document.indexing-1, document.indexing-2
+26-06-12.16:39:41.567 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: partitions revoked: [document.indexing-0, document.indexing-1, document.indexing-2]
+26-06-12.16:39:41.567 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Member consumer-qa-agent-indexing-1-192c921d-dd34-4a4e-9a9b-6e9c65b0f176 sending LeaveGroup request to coordinator 134.175.232.110:19092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+26-06-12.16:39:41.569 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting generation and member id due to: consumer pro-actively leaving the group
+26-06-12.16:39:41.569 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: consumer pro-actively leaving the group
+26-06-12.16:39:41.569 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  LegacyKafkaConsumer    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Unsubscribed all topics or patterns and assigned partitions
+26-06-12.16:39:41.572 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting generation and member id due to: consumer pro-actively leaving the group
+26-06-12.16:39:41.572 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: consumer pro-actively leaving the group
+26-06-12.16:39:41.990 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Metrics scheduler closed
+26-06-12.16:39:41.992 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+26-06-12.16:39:41.992 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+26-06-12.16:39:41.993 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Metrics reporters closed
+26-06-12.16:39:42.011 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  AppInfoParser          - App info kafka.consumer for consumer-qa-agent-indexing-1 unregistered
+26-06-12.16:39:42.012 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: Consumer stopped
+26-06-12.16:39:42.019 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-12.16:39:43.084 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-12.16:39:43.096 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-12.16:39:43.101 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.

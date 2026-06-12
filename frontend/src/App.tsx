@@ -1,0 +1,81 @@
+import { BrowserRouter, Routes, Route, NavLink, Navigate, Outlet } from "react-router-dom";
+import { Files, MessageSquare, Search, Zap, LogOut, Database, Brain } from "lucide-react";
+import DocumentPage from "./pages/DocumentPage";
+import AgentPage from "./pages/AgentPage";
+import SearchPage from "./pages/SearchPage";
+import WelcomePage from "./pages/WelcomePage";
+import LoginPage from "./pages/LoginPage";
+import { AuthProvider, useAuth } from "./lib/mockAuth";
+
+const nav = [
+  { to: "/documents", icon: Files, label: "仓库" },
+  { to: "/agent", icon: MessageSquare, label: "Agent" },
+  { to: "/search", icon: Search, label: "检索" },
+];
+
+function AppShell() {
+  const { logout } = useAuth();
+  return (
+    <div className="min-h-screen flex flex-col p-6">
+      <div className="flex-1 flex flex-col max-w-[1480px] mx-auto w-full gap-5">
+        <header className="flex items-center justify-between px-5 py-2.5 glass rounded-full">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] flex items-center justify-center shadow-lg">
+              <Zap size={16} className="text-[var(--color-bg-root)]" fill="currentColor" />
+            </div>
+            <span className="font-semibold text-sm tracking-wide">QA Agent</span>
+          </div>
+          <nav className="flex items-center gap-1">
+            {nav.map(({ to, icon: Icon, label }) => (
+              <NavLink
+                key={to}
+                to={to}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-all duration-180 ${
+                    isActive
+                      ? "bg-[var(--color-pill-dark)] text-[var(--color-pill-text)] shadow-[var(--shadow-btn)]"
+                      : "text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"
+                  }`
+                }
+              >
+                <Icon size={15} />{label}
+              </NavLink>
+            ))}
+          </nav>
+          <div className="flex items-center gap-3">
+            <span className="text-[11px] text-[var(--color-ink-faint)] flex items-center gap-1.5"><Database size={11} /> pgvector</span>
+            <span className="text-[11px] text-[var(--color-ink-faint)] flex items-center gap-1.5"><Brain size={11} /> DeepSeek</span>
+            <button onClick={logout} className="ml-2 flex items-center gap-1.5 text-[11px] text-[var(--color-ink-faint)] hover:text-[var(--color-danger)] transition-colors">
+              <LogOut size={13} />退出
+            </button>
+          </div>
+        </header>
+        <div className="flex-1 glass-lg overflow-hidden"><Outlet /></div>
+        <footer className="text-center text-[11px] text-[var(--color-ink-faint)] py-2 opacity-50">QA Agent · React + Vite + TypeScript</footer>
+      </div>
+    </div>
+  );
+}
+
+function ProtectedRoute() {
+  const { authed } = useAuth();
+  return authed ? <AppShell /> : <Navigate to="/login" replace />;
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/documents" element={<DocumentPage />} />
+            <Route path="/agent" element={<AgentPage />} />
+            <Route path="/search" element={<SearchPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}
