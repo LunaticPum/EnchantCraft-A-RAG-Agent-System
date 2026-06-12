@@ -17,7 +17,7 @@ function AppShell() {
   const { logout } = useAuth();
   return (
     <div className="min-h-screen flex flex-col p-6">
-      <div className="flex-1 flex flex-col max-w-[1480px] mx-auto w-full gap-5">
+      <div className="flex-1 flex flex-col max-w-[1480px] mx-auto w-full gap-4">
         <header className="flex items-center px-5 py-2.5 glass rounded-full">
           <div className="flex items-center gap-2.5 w-[220px] flex-shrink-0">
             <img src="/obsidian-icon.png" alt="QA Agent" className="w-8 h-8" />
@@ -49,7 +49,7 @@ function AppShell() {
           </div>
         </header>
         <div className="flex-1 glass-lg overflow-hidden"><Outlet /></div>
-        <footer className="text-center text-[11px] text-[var(--color-ink-faint)] py-2 opacity-50">QA Agent · React + Vite + TypeScript</footer>
+        <footer className="text-center text-[10px] text-[var(--color-ink-faint)] opacity-40">QA Agent · React + Vite + TypeScript</footer>
       </div>
     </div>
   );

@@ -664,3 +664,78 @@ Caused by: org.springframework.messaging.converter.MessageConversionException: C
 26-06-12.18:02:42.351 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=0c91d469c60351d7c7f83b4bdeffdc09, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"9c8bcd6b-8478-9fe1-8094-422c88d4d058","request_id":"9c8bcd6b-8478-9fe1-8094-422c88d4d058"}
 26-06-12.18:02:42.584 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=bb085ac73350d88bda26aa04781acbc3, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"92cf0598-54dd-9f7d-9c2c-f83c700371ed","request_id":"92cf0598-54dd-9f7d-9c2c-f83c700371ed"}
 26-06-12.18:02:42.729 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=df4b35edcc4e2a59757b8f4d80dc6776, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"095425c0-90ab-9b48-8c30-54b2f5d25896","request_id":"095425c0-90ab-9b48-8c30-54b2f5d25896"}
+26-06-12.18:04:15.249 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=69f330ab66bd5863eedd65632c2ed45a, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"e57d3e81-d9f0-93f7-821a-dd77d69b2991","request_id":"e57d3e81-d9f0-93f7-821a-dd77d69b2991"}
+26-06-12.18:04:15.429 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=f42ae009e72ca9056bf3e0e9de45c976, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"87e7b609-3f15-9cdb-91b0-f7e45a5cd649","request_id":"87e7b609-3f15-9cdb-91b0-f7e45a5cd649"}
+26-06-12.18:04:15.591 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=48dddd90446e1cee68a2d84d417b44c0, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"c7e0e794-fc21-966f-9cc1-5c0fea3870da","request_id":"c7e0e794-fc21-966f-9cc1-5c0fea3870da"}
+26-06-12.18:04:15.735 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=0a24a263bf3e3dc350876568e2abfeba, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"aed849e0-2ea8-9713-a27e-fd4d53f87ee9","request_id":"aed849e0-2ea8-9713-a27e-fd4d53f87ee9"}
+26-06-12.18:04:15.874 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=f6f2f776110b0ce7f058c6db1476dd64, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"c40b9b34-8861-938a-9bff-1b0d945c24a3","request_id":"c40b9b34-8861-938a-9bff-1b0d945c24a3"}
+26-06-12.18:04:16.025 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=0d684c11ec12682e2832d43679de090f, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"f0d70e44-2f8a-9b25-88a9-b19adb8d79d1","request_id":"f0d70e44-2f8a-9b25-88a9-b19adb8d79d1"}
+26-06-12.18:04:16.150 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=d9a0248aaddf8b68d4bb31146f91625a, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"4e8630b9-c451-9ac5-9ff0-818f9d66d2aa","request_id":"4e8630b9-c451-9ac5-9ff0-818f9d66d2aa"}
+26-06-12.18:04:16.304 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=b90ef4bb00389e2602fc3f34721cf08d, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"e80b7917-8b70-9cef-8066-e2587802b86f","request_id":"e80b7917-8b70-9cef-8066-e2587802b86f"}
+26-06-12.18:04:16.432 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=0168b40acebfb8ea856bccb5b99f4034, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"bff10ca0-78f9-9b6a-b9c1-1cb64fa5ebab","request_id":"bff10ca0-78f9-9b6a-b9c1-1cb64fa5ebab"}
+26-06-12.18:04:16.562 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=0c91d469c60351d7c7f83b4bdeffdc09, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"f3f21744-cc21-9b7a-bc79-9452f21aa400","request_id":"f3f21744-cc21-9b7a-bc79-9452f21aa400"}
+26-06-12.18:04:16.693 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=bb085ac73350d88bda26aa04781acbc3, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"7dd7be63-a704-9f9c-b264-f55fcc7739b8","request_id":"7dd7be63-a704-9f9c-b264-f55fcc7739b8"}
+26-06-12.18:04:16.812 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=df4b35edcc4e2a59757b8f4d80dc6776, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"9c530f1f-084b-9e7f-b5f2-5d45b9a1fac5","request_id":"9c530f1f-084b-9e7f-b5f2-5d45b9a1fac5"}
+26-06-12.18:10:43.353 [scheduling-1    ] WARN  RetryUtils             - A retriable exception occurred. Remaining retries: 2 of 2
+java.lang.RuntimeException: java.io.IOException: Connection reset
+	at dev.langchain4j.http.client.jdk.JdkHttpClient.execute(JdkHttpClient.java:64)
+	at dev.langchain4j.model.openai.internal.SyncRequestExecutor.execute(SyncRequestExecutor.java:20)
+	at dev.langchain4j.model.openai.internal.RequestExecutor.executeRaw(RequestExecutor.java:44)
+	at dev.langchain4j.model.openai.internal.RequestExecutor.execute(RequestExecutor.java:38)
+	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.lambda$embedTexts$0(OpenAiEmbeddingModel.java:131)
+	at dev.langchain4j.internal.ExceptionMapper.withExceptionMapper(ExceptionMapper.java:29)
+	at dev.langchain4j.internal.RetryUtils.lambda$withRetryMappingExceptions$1(RetryUtils.java:326)
+	at dev.langchain4j.internal.RetryUtils$RetryPolicy.withRetry(RetryUtils.java:204)
+	at dev.langchain4j.internal.RetryUtils.withRetry(RetryUtils.java:263)
+	at dev.langchain4j.internal.RetryUtils.withRetryMappingExceptions(RetryUtils.java:326)
+	at dev.langchain4j.internal.RetryUtils.withRetryMappingExceptions(RetryUtils.java:309)
+	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.embedTexts(OpenAiEmbeddingModel.java:131)
+	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.embedBatchedTexts(OpenAiEmbeddingModel.java:106)
+	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.embedAll(OpenAiEmbeddingModel.java:90)
+	at cn.pumluda.domain.document.service.embedding.EmbeddingServiceImpl.embedChunks(EmbeddingServiceImpl.java:53)
+	at cn.pumluda.domain.document.service.DocumentServiceImpl.embedDocumentChunks(DocumentServiceImpl.java:90)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:723)
+	at cn.pumluda.domain.document.service.DocumentServiceImpl$$SpringCGLIB$$0.embedDocumentChunks(<generated>)
+	at cn.pumluda.trigger.job.MessageRetryJob.retryPendingMessages(MessageRetryJob.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.io.IOException: Connection reset
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:591)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123)
+	at dev.langchain4j.http.client.jdk.JdkHttpClient.execute(JdkHttpClient.java:51)
+	... 39 common frames omitted
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426)
+	at java.net.http/jdk.internal.net.http.SocketTube.readAvailable(SocketTube.java:1170)
+	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.read(SocketTube.java:833)
+	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowTask.run(SocketTube.java:181)
+	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230)
+	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:303)
+	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:256)
+	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.signalReadable(SocketTube.java:774)
+	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$ReadEvent.signalEvent(SocketTube.java:957)
+	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowEvent.handle(SocketTube.java:253)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:984)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:939)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:939)

@@ -44,7 +44,7 @@ body {
 
 /* glass card */
 .glass { background: var(--color-bg-glass); backdrop-filter: blur(12px) saturate(110%); border: 1px solid var(--color-line); border-radius: 28px; }
-.glass-lg { border-radius: 40px; }
+.glass-lg { border-radius: 24px; }
 .glass-sm { border-radius: 20px; }
 
 /* pill button */
@@ -102,6 +102,7 @@ body {
 .callout-question { border-left-color: #eab308; }
 .callout-success, .callout-todo { border-left-color: #22c55e; }
 
-::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--color-line-strong); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-faint); }

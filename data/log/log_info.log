@@ -8745,3 +8745,774 @@ aliases:
 26-06-12.18:02:42.775 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=df4b35edcc4e2a59757b8f4d80dc6776, status=FAILED
 26-06-12.18:02:42.780 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 26-06-12.18:02:42.796 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-12.18:04:03.969 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 22668 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-12.18:04:03.975 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-12.18:04:03.976 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-12.18:04:07.531 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-12.18:04:07.541 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-12.18:04:07.542 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-12.18:04:07.556 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-12.18:04:07.595 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-12.18:04:07.599 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-12.18:04:07.600 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-12.18:04:07.849 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-12.18:04:07.850 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3748 ms
+26-06-12.18:04:11.272 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-12.18:04:11.907 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7544a1e4
+26-06-12.18:04:12.458 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-12.18:04:12.486 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-12.18:04:12.598 [main            ] INFO  ConsumerConfig         - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [134.175.232.110:19092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-qa-agent-indexing-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = qa-agent-indexing
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+26-06-12.18:04:12.749 [main            ] INFO  KafkaMetricsCollector  - initializing Kafka metrics collector
+26-06-12.18:04:12.960 [main            ] INFO  AppInfoParser          - Kafka version: 3.8.1
+26-06-12.18:04:12.961 [main            ] INFO  AppInfoParser          - Kafka commitId: 70d6ff42debf7e17
+26-06-12.18:04:12.961 [main            ] INFO  AppInfoParser          - Kafka startTimeMs: 1781258652957
+26-06-12.18:04:12.971 [main            ] INFO  LegacyKafkaConsumer    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Subscribed to topic(s): document.indexing
+26-06-12.18:04:13.015 [main            ] INFO  Application            - Started Application in 10.763 seconds (process running for 12.738)
+26-06-12.18:04:13.240 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-12.18:04:13.770 [scheduling-1    ] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d139ab1
+26-06-12.18:04:13.776 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-12.18:04:13.798 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:04:13.885 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:04:13.977 [scheduling-1    ] DEBUG selectList             - <==      Total: 12
+26-06-12.18:04:13.990 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 发现 12 条待处理消息，开始重试
+26-06-12.18:04:13.990 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=69f330ab66bd5863eedd65632c2ed45a
+26-06-12.18:04:13.998 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:14.001 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 69f330ab66bd5863eedd65632c2ed45a(String)
+26-06-12.18:04:14.020 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:04:14.117 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metadata               - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+26-06-12.18:04:14.119 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Discovered group coordinator 134.175.232.110:19092 (id: 2147483646 rack: null)
+26-06-12.18:04:14.124 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] (Re-)joining group
+26-06-12.18:04:14.207 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: need to re-join with the given member-id: consumer-qa-agent-indexing-1-e0d320c8-c7ff-4d11-8c8a-1f292e81fa09
+26-06-12.18:04:14.223 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] (Re-)joining group
+26-06-12.18:04:14.433 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:04:15.249 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=69f330ab66bd5863eedd65632c2ed45a, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"e57d3e81-d9f0-93f7-821a-dd77d69b2991","request_id":"e57d3e81-d9f0-93f7-821a-dd77d69b2991"}
+26-06-12.18:04:15.268 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:15.271 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"e57d3e81-d9f0-93f7-821a-dd77d69b2991","request_id":"e57d3e81-d9f0-93f7-821a-dd77d69b2991"}(String), 69f330ab66bd5863eedd65632c2ed45a(String)
+26-06-12.18:04:15.301 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:15.302 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=69f330ab66bd5863eedd65632c2ed45a, status=FAILED
+26-06-12.18:04:15.302 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=f42ae009e72ca9056bf3e0e9de45c976
+26-06-12.18:04:15.303 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:15.304 [scheduling-1    ] DEBUG selectList             - ==> Parameters: f42ae009e72ca9056bf3e0e9de45c976(String)
+26-06-12.18:04:15.321 [scheduling-1    ] DEBUG selectList             - <==      Total: 9
+26-06-12.18:04:15.322 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=9
+26-06-12.18:04:15.429 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=f42ae009e72ca9056bf3e0e9de45c976, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"87e7b609-3f15-9cdb-91b0-f7e45a5cd649","request_id":"87e7b609-3f15-9cdb-91b0-f7e45a5cd649"}
+26-06-12.18:04:15.432 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:15.433 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"87e7b609-3f15-9cdb-91b0-f7e45a5cd649","request_id":"87e7b609-3f15-9cdb-91b0-f7e45a5cd649"}(String), f42ae009e72ca9056bf3e0e9de45c976(String)
+26-06-12.18:04:15.458 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:15.459 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=f42ae009e72ca9056bf3e0e9de45c976, status=FAILED
+26-06-12.18:04:15.459 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=48dddd90446e1cee68a2d84d417b44c0
+26-06-12.18:04:15.461 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:15.462 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 48dddd90446e1cee68a2d84d417b44c0(String)
+26-06-12.18:04:15.479 [scheduling-1    ] DEBUG selectList             - <==      Total: 3
+26-06-12.18:04:15.479 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=3
+26-06-12.18:04:15.591 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=48dddd90446e1cee68a2d84d417b44c0, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"c7e0e794-fc21-966f-9cc1-5c0fea3870da","request_id":"c7e0e794-fc21-966f-9cc1-5c0fea3870da"}
+26-06-12.18:04:15.592 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:15.593 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"c7e0e794-fc21-966f-9cc1-5c0fea3870da","request_id":"c7e0e794-fc21-966f-9cc1-5c0fea3870da"}(String), 48dddd90446e1cee68a2d84d417b44c0(String)
+26-06-12.18:04:15.628 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:15.629 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=48dddd90446e1cee68a2d84d417b44c0, status=FAILED
+26-06-12.18:04:15.629 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=0a24a263bf3e3dc350876568e2abfeba
+26-06-12.18:04:15.630 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:15.631 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 0a24a263bf3e3dc350876568e2abfeba(String)
+26-06-12.18:04:15.649 [scheduling-1    ] DEBUG selectList             - <==      Total: 5
+26-06-12.18:04:15.649 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=5
+26-06-12.18:04:15.735 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=0a24a263bf3e3dc350876568e2abfeba, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"aed849e0-2ea8-9713-a27e-fd4d53f87ee9","request_id":"aed849e0-2ea8-9713-a27e-fd4d53f87ee9"}
+26-06-12.18:04:15.739 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:15.740 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"aed849e0-2ea8-9713-a27e-fd4d53f87ee9","request_id":"aed849e0-2ea8-9713-a27e-fd4d53f87ee9"}(String), 0a24a263bf3e3dc350876568e2abfeba(String)
+26-06-12.18:04:15.769 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:15.769 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=0a24a263bf3e3dc350876568e2abfeba, status=FAILED
+26-06-12.18:04:15.770 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=f6f2f776110b0ce7f058c6db1476dd64
+26-06-12.18:04:15.771 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:15.772 [scheduling-1    ] DEBUG selectList             - ==> Parameters: f6f2f776110b0ce7f058c6db1476dd64(String)
+26-06-12.18:04:15.787 [scheduling-1    ] DEBUG selectList             - <==      Total: 3
+26-06-12.18:04:15.788 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=3
+26-06-12.18:04:15.874 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=f6f2f776110b0ce7f058c6db1476dd64, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"c40b9b34-8861-938a-9bff-1b0d945c24a3","request_id":"c40b9b34-8861-938a-9bff-1b0d945c24a3"}
+26-06-12.18:04:15.877 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:15.878 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"c40b9b34-8861-938a-9bff-1b0d945c24a3","request_id":"c40b9b34-8861-938a-9bff-1b0d945c24a3"}(String), f6f2f776110b0ce7f058c6db1476dd64(String)
+26-06-12.18:04:15.906 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:15.907 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=f6f2f776110b0ce7f058c6db1476dd64, status=FAILED
+26-06-12.18:04:15.907 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=0d684c11ec12682e2832d43679de090f
+26-06-12.18:04:15.909 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:15.909 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 0d684c11ec12682e2832d43679de090f(String)
+26-06-12.18:04:15.922 [scheduling-1    ] DEBUG selectList             - <==      Total: 2
+26-06-12.18:04:15.922 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=2
+26-06-12.18:04:16.025 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=0d684c11ec12682e2832d43679de090f, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"f0d70e44-2f8a-9b25-88a9-b19adb8d79d1","request_id":"f0d70e44-2f8a-9b25-88a9-b19adb8d79d1"}
+26-06-12.18:04:16.027 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:16.027 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"f0d70e44-2f8a-9b25-88a9-b19adb8d79d1","request_id":"f0d70e44-2f8a-9b25-88a9-b19adb8d79d1"}(String), 0d684c11ec12682e2832d43679de090f(String)
+26-06-12.18:04:16.052 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:16.052 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=0d684c11ec12682e2832d43679de090f, status=FAILED
+26-06-12.18:04:16.052 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=d9a0248aaddf8b68d4bb31146f91625a
+26-06-12.18:04:16.054 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:16.054 [scheduling-1    ] DEBUG selectList             - ==> Parameters: d9a0248aaddf8b68d4bb31146f91625a(String)
+26-06-12.18:04:16.071 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:04:16.071 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:04:16.150 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=d9a0248aaddf8b68d4bb31146f91625a, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"4e8630b9-c451-9ac5-9ff0-818f9d66d2aa","request_id":"4e8630b9-c451-9ac5-9ff0-818f9d66d2aa"}
+26-06-12.18:04:16.153 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:16.154 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"4e8630b9-c451-9ac5-9ff0-818f9d66d2aa","request_id":"4e8630b9-c451-9ac5-9ff0-818f9d66d2aa"}(String), d9a0248aaddf8b68d4bb31146f91625a(String)
+26-06-12.18:04:16.180 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:16.181 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=d9a0248aaddf8b68d4bb31146f91625a, status=FAILED
+26-06-12.18:04:16.181 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=b90ef4bb00389e2602fc3f34721cf08d
+26-06-12.18:04:16.183 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:16.185 [scheduling-1    ] DEBUG selectList             - ==> Parameters: b90ef4bb00389e2602fc3f34721cf08d(String)
+26-06-12.18:04:16.199 [scheduling-1    ] DEBUG selectList             - <==      Total: 2
+26-06-12.18:04:16.201 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=2
+26-06-12.18:04:16.304 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=b90ef4bb00389e2602fc3f34721cf08d, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"e80b7917-8b70-9cef-8066-e2587802b86f","request_id":"e80b7917-8b70-9cef-8066-e2587802b86f"}
+26-06-12.18:04:16.307 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:16.308 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"e80b7917-8b70-9cef-8066-e2587802b86f","request_id":"e80b7917-8b70-9cef-8066-e2587802b86f"}(String), b90ef4bb00389e2602fc3f34721cf08d(String)
+26-06-12.18:04:16.333 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:16.333 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=b90ef4bb00389e2602fc3f34721cf08d, status=FAILED
+26-06-12.18:04:16.333 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=0168b40acebfb8ea856bccb5b99f4034
+26-06-12.18:04:16.336 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:16.337 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 0168b40acebfb8ea856bccb5b99f4034(String)
+26-06-12.18:04:16.349 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:04:16.350 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:04:16.432 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=0168b40acebfb8ea856bccb5b99f4034, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"bff10ca0-78f9-9b6a-b9c1-1cb64fa5ebab","request_id":"bff10ca0-78f9-9b6a-b9c1-1cb64fa5ebab"}
+26-06-12.18:04:16.434 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:16.435 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"bff10ca0-78f9-9b6a-b9c1-1cb64fa5ebab","request_id":"bff10ca0-78f9-9b6a-b9c1-1cb64fa5ebab"}(String), 0168b40acebfb8ea856bccb5b99f4034(String)
+26-06-12.18:04:16.459 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:16.459 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=0168b40acebfb8ea856bccb5b99f4034, status=FAILED
+26-06-12.18:04:16.460 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=0c91d469c60351d7c7f83b4bdeffdc09
+26-06-12.18:04:16.461 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:16.462 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 0c91d469c60351d7c7f83b4bdeffdc09(String)
+26-06-12.18:04:16.474 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:04:16.476 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:04:16.562 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=0c91d469c60351d7c7f83b4bdeffdc09, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"f3f21744-cc21-9b7a-bc79-9452f21aa400","request_id":"f3f21744-cc21-9b7a-bc79-9452f21aa400"}
+26-06-12.18:04:16.564 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:16.565 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"f3f21744-cc21-9b7a-bc79-9452f21aa400","request_id":"f3f21744-cc21-9b7a-bc79-9452f21aa400"}(String), 0c91d469c60351d7c7f83b4bdeffdc09(String)
+26-06-12.18:04:16.589 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:16.589 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=0c91d469c60351d7c7f83b4bdeffdc09, status=FAILED
+26-06-12.18:04:16.589 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=bb085ac73350d88bda26aa04781acbc3
+26-06-12.18:04:16.590 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:16.591 [scheduling-1    ] DEBUG selectList             - ==> Parameters: bb085ac73350d88bda26aa04781acbc3(String)
+26-06-12.18:04:16.606 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:04:16.606 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:04:16.693 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=bb085ac73350d88bda26aa04781acbc3, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"7dd7be63-a704-9f9c-b264-f55fcc7739b8","request_id":"7dd7be63-a704-9f9c-b264-f55fcc7739b8"}
+26-06-12.18:04:16.694 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:16.695 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"7dd7be63-a704-9f9c-b264-f55fcc7739b8","request_id":"7dd7be63-a704-9f9c-b264-f55fcc7739b8"}(String), bb085ac73350d88bda26aa04781acbc3(String)
+26-06-12.18:04:16.720 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:16.720 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=bb085ac73350d88bda26aa04781acbc3, status=FAILED
+26-06-12.18:04:16.720 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=df4b35edcc4e2a59757b8f4d80dc6776
+26-06-12.18:04:16.722 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:16.723 [scheduling-1    ] DEBUG selectList             - ==> Parameters: df4b35edcc4e2a59757b8f4d80dc6776(String)
+26-06-12.18:04:16.734 [scheduling-1    ] DEBUG selectList             - <==      Total: 2
+26-06-12.18:04:16.735 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=2
+26-06-12.18:04:16.812 [scheduling-1    ] WARN  MessageRetryJob        - [消息兜底] 重试失败: documentId=df4b35edcc4e2a59757b8f4d80dc6776, error={"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"9c530f1f-084b-9e7f-b5f2-5d45b9a1fac5","request_id":"9c530f1f-084b-9e7f-b5f2-5d45b9a1fac5"}
+26-06-12.18:04:16.815 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=?,error_msg=?,retry_count = retry_count + 1 WHERE (document_id = ?)
+26-06-12.18:04:16.816 [scheduling-1    ] DEBUG update                 - ==> Parameters: FAILED(String), {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"9c530f1f-084b-9e7f-b5f2-5d45b9a1fac5","request_id":"9c530f1f-084b-9e7f-b5f2-5d45b9a1fac5"}(String), df4b35edcc4e2a59757b8f4d80dc6776(String)
+26-06-12.18:04:16.852 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:04:16.852 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=df4b35edcc4e2a59757b8f4d80dc6776, status=FAILED
+26-06-12.18:04:17.241 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Successfully joined group with generation Generation{generationId=23, memberId='consumer-qa-agent-indexing-1-e0d320c8-c7ff-4d11-8c8a-1f292e81fa09', protocol='range'}
+26-06-12.18:04:17.255 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Finished assignment for group at generation 23: {consumer-qa-agent-indexing-1-e0d320c8-c7ff-4d11-8c8a-1f292e81fa09=Assignment(partitions=[document.indexing-0, document.indexing-1, document.indexing-2])}
+26-06-12.18:04:17.283 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Successfully synced group in generation Generation{generationId=23, memberId='consumer-qa-agent-indexing-1-e0d320c8-c7ff-4d11-8c8a-1f292e81fa09', protocol='range'}
+26-06-12.18:04:17.284 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Notifying assignor about the new Assignment(partitions=[document.indexing-0, document.indexing-1, document.indexing-2])
+26-06-12.18:04:17.292 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Adding newly assigned partitions: document.indexing-0, document.indexing-1, document.indexing-2
+26-06-12.18:04:17.323 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerUtils          - Setting offset for partition document.indexing-2 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=2}}
+26-06-12.18:04:17.324 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerUtils          - Setting offset for partition document.indexing-1 to the committed offset FetchPosition{offset=5, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=2}}
+26-06-12.18:04:17.324 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerUtils          - Setting offset for partition document.indexing-0 to the committed offset FetchPosition{offset=6, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=2}}
+26-06-12.18:04:17.326 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: partitions assigned: [document.indexing-0, document.indexing-1, document.indexing-2]
+26-06-12.18:04:20.317 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-12.18:04:20.317 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-12.18:04:20.321 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 3 ms
+26-06-12.18:04:20.409 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:04:20.409 [http-nio-8091-exec-1] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:04:20.429 [http-nio-8091-exec-1] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:04:20.429 [http-nio-8091-exec-1] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:04:20.464 [http-nio-8091-exec-1] DEBUG selectList             - <==      Total: 13
+26-06-12.18:04:20.474 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:04:28.486 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:04:28.486 [http-nio-8091-exec-2] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:04:28.501 [http-nio-8091-exec-2] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:04:28.502 [http-nio-8091-exec-2] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:04:28.526 [http-nio-8091-exec-2] DEBUG selectList             - <==      Total: 13
+26-06-12.18:04:28.526 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:04:41.326 [http-nio-8091-exec-3] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:04:41.326 [http-nio-8091-exec-3] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:04:41.341 [http-nio-8091-exec-3] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:04:41.341 [http-nio-8091-exec-3] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:04:41.365 [http-nio-8091-exec-3] DEBUG selectList             - <==      Total: 13
+26-06-12.18:04:41.368 [http-nio-8091-exec-3] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:04:41.394 [http-nio-8091-exec-4] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:04:41.394 [http-nio-8091-exec-4] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:04:41.394 [http-nio-8091-exec-4] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:04:41.396 [http-nio-8091-exec-4] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:04:41.416 [http-nio-8091-exec-4] DEBUG selectList             - <==      Total: 13
+26-06-12.18:04:41.417 [http-nio-8091-exec-4] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:04:43.033 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:04:43.034 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:04:43.046 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:04:47.143 [http-nio-8091-exec-5] INFO  DocumentController     - [文档接口] 查询分块: documentId=0168b40acebfb8ea856bccb5b99f4034
+26-06-12.18:04:47.143 [http-nio-8091-exec-5] INFO  DocumentServiceImpl    - [文档分块] documentId=0168b40acebfb8ea856bccb5b99f4034
+26-06-12.18:04:47.156 [http-nio-8091-exec-5] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-12.18:04:47.156 [http-nio-8091-exec-5] DEBUG selectById             - ==> Parameters: 0168b40acebfb8ea856bccb5b99f4034(String)
+26-06-12.18:04:47.168 [http-nio-8091-exec-5] DEBUG selectById             - <==      Total: 1
+26-06-12.18:04:47.171 [http-nio-8091-exec-5] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:47.171 [http-nio-8091-exec-5] DEBUG selectList             - ==> Parameters: 0168b40acebfb8ea856bccb5b99f4034(String)
+26-06-12.18:04:47.194 [http-nio-8091-exec-5] DEBUG selectList             - <==      Total: 4
+26-06-12.18:04:47.199 [http-nio-8091-exec-5] INFO  DocumentController     - [文档接口] 返回 4 个分块
+26-06-12.18:04:48.209 [http-nio-8091-exec-6] INFO  DocumentController     - [文档接口] 查询分块: documentId=0a24a263bf3e3dc350876568e2abfeba
+26-06-12.18:04:48.211 [http-nio-8091-exec-6] INFO  DocumentServiceImpl    - [文档分块] documentId=0a24a263bf3e3dc350876568e2abfeba
+26-06-12.18:04:48.223 [http-nio-8091-exec-6] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-12.18:04:48.223 [http-nio-8091-exec-6] DEBUG selectById             - ==> Parameters: 0a24a263bf3e3dc350876568e2abfeba(String)
+26-06-12.18:04:48.235 [http-nio-8091-exec-6] DEBUG selectById             - <==      Total: 1
+26-06-12.18:04:48.237 [http-nio-8091-exec-6] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:48.239 [http-nio-8091-exec-6] DEBUG selectList             - ==> Parameters: 0a24a263bf3e3dc350876568e2abfeba(String)
+26-06-12.18:04:48.249 [http-nio-8091-exec-6] DEBUG selectList             - <==      Total: 5
+26-06-12.18:04:48.249 [http-nio-8091-exec-6] INFO  DocumentController     - [文档接口] 返回 5 个分块
+26-06-12.18:04:48.692 [http-nio-8091-exec-7] INFO  DocumentController     - [文档接口] 查询分块: documentId=0d684c11ec12682e2832d43679de090f
+26-06-12.18:04:48.692 [http-nio-8091-exec-7] INFO  DocumentServiceImpl    - [文档分块] documentId=0d684c11ec12682e2832d43679de090f
+26-06-12.18:04:48.693 [http-nio-8091-exec-7] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-12.18:04:48.693 [http-nio-8091-exec-7] DEBUG selectById             - ==> Parameters: 0d684c11ec12682e2832d43679de090f(String)
+26-06-12.18:04:48.705 [http-nio-8091-exec-7] DEBUG selectById             - <==      Total: 1
+26-06-12.18:04:48.707 [http-nio-8091-exec-7] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:48.708 [http-nio-8091-exec-7] DEBUG selectList             - ==> Parameters: 0d684c11ec12682e2832d43679de090f(String)
+26-06-12.18:04:48.719 [http-nio-8091-exec-7] DEBUG selectList             - <==      Total: 2
+26-06-12.18:04:48.720 [http-nio-8091-exec-7] INFO  DocumentController     - [文档接口] 返回 2 个分块
+26-06-12.18:04:50.749 [http-nio-8091-exec-8] INFO  DocumentController     - [文档接口] 查询分块: documentId=0c91d469c60351d7c7f83b4bdeffdc09
+26-06-12.18:04:50.749 [http-nio-8091-exec-8] INFO  DocumentServiceImpl    - [文档分块] documentId=0c91d469c60351d7c7f83b4bdeffdc09
+26-06-12.18:04:50.759 [http-nio-8091-exec-8] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-12.18:04:50.760 [http-nio-8091-exec-8] DEBUG selectById             - ==> Parameters: 0c91d469c60351d7c7f83b4bdeffdc09(String)
+26-06-12.18:04:50.773 [http-nio-8091-exec-8] DEBUG selectById             - <==      Total: 1
+26-06-12.18:04:50.775 [http-nio-8091-exec-8] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:50.775 [http-nio-8091-exec-8] DEBUG selectList             - ==> Parameters: 0c91d469c60351d7c7f83b4bdeffdc09(String)
+26-06-12.18:04:50.789 [http-nio-8091-exec-8] DEBUG selectList             - <==      Total: 4
+26-06-12.18:04:50.790 [http-nio-8091-exec-8] INFO  DocumentController     - [文档接口] 返回 4 个分块
+26-06-12.18:04:53.509 [http-nio-8091-exec-9] INFO  DocumentController     - [文档接口] 查询分块: documentId=dee83191ba2f4a847906eb3adad0ee00
+26-06-12.18:04:53.509 [http-nio-8091-exec-9] INFO  DocumentServiceImpl    - [文档分块] documentId=dee83191ba2f4a847906eb3adad0ee00
+26-06-12.18:04:53.520 [http-nio-8091-exec-9] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-12.18:04:53.520 [http-nio-8091-exec-9] DEBUG selectById             - ==> Parameters: dee83191ba2f4a847906eb3adad0ee00(String)
+26-06-12.18:04:53.533 [http-nio-8091-exec-9] DEBUG selectById             - <==      Total: 1
+26-06-12.18:04:53.535 [http-nio-8091-exec-9] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:53.535 [http-nio-8091-exec-9] DEBUG selectList             - ==> Parameters: dee83191ba2f4a847906eb3adad0ee00(String)
+26-06-12.18:04:53.549 [http-nio-8091-exec-9] DEBUG selectList             - <==      Total: 13
+26-06-12.18:04:53.550 [http-nio-8091-exec-9] INFO  DocumentController     - [文档接口] 返回 13 个分块
+26-06-12.18:04:54.089 [http-nio-8091-exec-10] INFO  DocumentController     - [文档接口] 查询分块: documentId=df4b35edcc4e2a59757b8f4d80dc6776
+26-06-12.18:04:54.089 [http-nio-8091-exec-10] INFO  DocumentServiceImpl    - [文档分块] documentId=df4b35edcc4e2a59757b8f4d80dc6776
+26-06-12.18:04:54.099 [http-nio-8091-exec-10] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-12.18:04:54.100 [http-nio-8091-exec-10] DEBUG selectById             - ==> Parameters: df4b35edcc4e2a59757b8f4d80dc6776(String)
+26-06-12.18:04:54.111 [http-nio-8091-exec-10] DEBUG selectById             - <==      Total: 1
+26-06-12.18:04:54.113 [http-nio-8091-exec-10] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:04:54.114 [http-nio-8091-exec-10] DEBUG selectList             - ==> Parameters: df4b35edcc4e2a59757b8f4d80dc6776(String)
+26-06-12.18:04:54.126 [http-nio-8091-exec-10] DEBUG selectList             - <==      Total: 2
+26-06-12.18:04:54.126 [http-nio-8091-exec-10] INFO  DocumentController     - [文档接口] 返回 2 个分块
+26-06-12.18:05:13.029 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:05:13.030 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:05:13.047 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:05:43.037 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:05:43.038 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:05:43.050 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:06:13.028 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:06:13.028 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:06:13.045 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:06:43.027 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:06:43.029 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:06:43.041 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:07:13.037 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:07:13.037 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:07:13.054 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:07:43.034 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:07:43.034 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:07:43.050 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:08:13.029 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:08:13.029 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:08:13.042 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:08:43.038 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:08:43.039 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:08:43.053 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:09:13.036 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:09:13.037 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:09:13.052 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:09:43.025 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:09:43.025 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:09:43.037 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:10:13.038 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:10:13.039 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:10:13.052 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:10:43.072 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:10:43.072 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:10:43.193 [scheduling-1    ] DEBUG selectList             - <==      Total: 12
+26-06-12.18:10:43.193 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 发现 12 条待处理消息，开始重试
+26-06-12.18:10:43.194 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=69f330ab66bd5863eedd65632c2ed45a
+26-06-12.18:10:43.194 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:43.195 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 69f330ab66bd5863eedd65632c2ed45a(String)
+26-06-12.18:10:43.235 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:10:43.235 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:10:43.353 [scheduling-1    ] WARN  RetryUtils             - A retriable exception occurred. Remaining retries: 2 of 2
+java.lang.RuntimeException: java.io.IOException: Connection reset
+	at dev.langchain4j.http.client.jdk.JdkHttpClient.execute(JdkHttpClient.java:64)
+	at dev.langchain4j.model.openai.internal.SyncRequestExecutor.execute(SyncRequestExecutor.java:20)
+	at dev.langchain4j.model.openai.internal.RequestExecutor.executeRaw(RequestExecutor.java:44)
+	at dev.langchain4j.model.openai.internal.RequestExecutor.execute(RequestExecutor.java:38)
+	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.lambda$embedTexts$0(OpenAiEmbeddingModel.java:131)
+	at dev.langchain4j.internal.ExceptionMapper.withExceptionMapper(ExceptionMapper.java:29)
+	at dev.langchain4j.internal.RetryUtils.lambda$withRetryMappingExceptions$1(RetryUtils.java:326)
+	at dev.langchain4j.internal.RetryUtils$RetryPolicy.withRetry(RetryUtils.java:204)
+	at dev.langchain4j.internal.RetryUtils.withRetry(RetryUtils.java:263)
+	at dev.langchain4j.internal.RetryUtils.withRetryMappingExceptions(RetryUtils.java:326)
+	at dev.langchain4j.internal.RetryUtils.withRetryMappingExceptions(RetryUtils.java:309)
+	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.embedTexts(OpenAiEmbeddingModel.java:131)
+	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.embedBatchedTexts(OpenAiEmbeddingModel.java:106)
+	at dev.langchain4j.model.openai.OpenAiEmbeddingModel.embedAll(OpenAiEmbeddingModel.java:90)
+	at cn.pumluda.domain.document.service.embedding.EmbeddingServiceImpl.embedChunks(EmbeddingServiceImpl.java:53)
+	at cn.pumluda.domain.document.service.DocumentServiceImpl.embedDocumentChunks(DocumentServiceImpl.java:90)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:723)
+	at cn.pumluda.domain.document.service.DocumentServiceImpl$$SpringCGLIB$$0.embedDocumentChunks(<generated>)
+	at cn.pumluda.trigger.job.MessageRetryJob.retryPendingMessages(MessageRetryJob.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.io.IOException: Connection reset
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:591)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123)
+	at dev.langchain4j.http.client.jdk.JdkHttpClient.execute(JdkHttpClient.java:51)
+	... 39 common frames omitted
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426)
+	at java.net.http/jdk.internal.net.http.SocketTube.readAvailable(SocketTube.java:1170)
+	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.read(SocketTube.java:833)
+	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowTask.run(SocketTube.java:181)
+	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230)
+	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:303)
+	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:256)
+	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.signalReadable(SocketTube.java:774)
+	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$ReadEvent.signalEvent(SocketTube.java:957)
+	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowEvent.handle(SocketTube.java:253)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:984)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:939)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:939)
+26-06-12.18:10:44.721 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 4 条
+26-06-12.18:10:44.738 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-2 - Starting...
+26-06-12.18:10:45.713 [scheduling-1    ] INFO  HikariPool             - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@1c99fe9
+26-06-12.18:10:45.713 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-2 - Start completed.
+26-06-12.18:10:46.961 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 4 条
+26-06-12.18:10:46.961 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 4 条
+26-06-12.18:10:46.961 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=69f330ab66bd5863eedd65632c2ed45a, chunks=4
+26-06-12.18:10:47.041 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:47.042 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), 69f330ab66bd5863eedd65632c2ed45a(String)
+26-06-12.18:10:47.452 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:47.452 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=69f330ab66bd5863eedd65632c2ed45a, status=COMPLETED
+26-06-12.18:10:47.452 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=69f330ab66bd5863eedd65632c2ed45a
+26-06-12.18:10:47.452 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=f42ae009e72ca9056bf3e0e9de45c976
+26-06-12.18:10:47.453 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:47.454 [scheduling-1    ] DEBUG selectList             - ==> Parameters: f42ae009e72ca9056bf3e0e9de45c976(String)
+26-06-12.18:10:47.636 [scheduling-1    ] DEBUG selectList             - <==      Total: 9
+26-06-12.18:10:47.637 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=9
+26-06-12.18:10:48.141 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 9 条
+26-06-12.18:10:48.581 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 9 条
+26-06-12.18:10:48.581 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 9 条
+26-06-12.18:10:48.581 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=f42ae009e72ca9056bf3e0e9de45c976, chunks=9
+26-06-12.18:10:48.663 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:48.663 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), f42ae009e72ca9056bf3e0e9de45c976(String)
+26-06-12.18:10:48.799 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:48.799 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=f42ae009e72ca9056bf3e0e9de45c976, status=COMPLETED
+26-06-12.18:10:48.799 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=f42ae009e72ca9056bf3e0e9de45c976
+26-06-12.18:10:48.799 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=48dddd90446e1cee68a2d84d417b44c0
+26-06-12.18:10:48.801 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:48.801 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 48dddd90446e1cee68a2d84d417b44c0(String)
+26-06-12.18:10:49.071 [scheduling-1    ] DEBUG selectList             - <==      Total: 3
+26-06-12.18:10:49.072 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=3
+26-06-12.18:10:49.505 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 3 条
+26-06-12.18:10:49.780 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 3 条
+26-06-12.18:10:49.780 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 3 条
+26-06-12.18:10:49.780 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=48dddd90446e1cee68a2d84d417b44c0, chunks=3
+26-06-12.18:10:49.847 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:49.848 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), 48dddd90446e1cee68a2d84d417b44c0(String)
+26-06-12.18:10:50.340 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:50.340 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=48dddd90446e1cee68a2d84d417b44c0, status=COMPLETED
+26-06-12.18:10:50.340 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=48dddd90446e1cee68a2d84d417b44c0
+26-06-12.18:10:50.342 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=0a24a263bf3e3dc350876568e2abfeba
+26-06-12.18:10:50.343 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:50.344 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 0a24a263bf3e3dc350876568e2abfeba(String)
+26-06-12.18:10:50.408 [scheduling-1    ] DEBUG selectList             - <==      Total: 5
+26-06-12.18:10:50.408 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=5
+26-06-12.18:10:50.738 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 5 条
+26-06-12.18:10:50.943 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 5 条
+26-06-12.18:10:50.943 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 5 条
+26-06-12.18:10:50.943 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=0a24a263bf3e3dc350876568e2abfeba, chunks=5
+26-06-12.18:10:51.729 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:51.730 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), 0a24a263bf3e3dc350876568e2abfeba(String)
+26-06-12.18:10:52.196 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:52.196 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=0a24a263bf3e3dc350876568e2abfeba, status=COMPLETED
+26-06-12.18:10:52.196 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=0a24a263bf3e3dc350876568e2abfeba
+26-06-12.18:10:52.196 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=f6f2f776110b0ce7f058c6db1476dd64
+26-06-12.18:10:52.197 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:52.198 [scheduling-1    ] DEBUG selectList             - ==> Parameters: f6f2f776110b0ce7f058c6db1476dd64(String)
+26-06-12.18:10:52.244 [scheduling-1    ] DEBUG selectList             - <==      Total: 3
+26-06-12.18:10:52.244 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=3
+26-06-12.18:10:52.540 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 3 条
+26-06-12.18:10:52.793 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 3 条
+26-06-12.18:10:52.793 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 3 条
+26-06-12.18:10:52.793 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=f6f2f776110b0ce7f058c6db1476dd64, chunks=3
+26-06-12.18:10:52.975 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:52.975 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), f6f2f776110b0ce7f058c6db1476dd64(String)
+26-06-12.18:10:53.075 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:53.075 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=f6f2f776110b0ce7f058c6db1476dd64, status=COMPLETED
+26-06-12.18:10:53.075 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=f6f2f776110b0ce7f058c6db1476dd64
+26-06-12.18:10:53.075 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=0d684c11ec12682e2832d43679de090f
+26-06-12.18:10:53.076 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:53.077 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 0d684c11ec12682e2832d43679de090f(String)
+26-06-12.18:10:53.167 [scheduling-1    ] DEBUG selectList             - <==      Total: 2
+26-06-12.18:10:53.168 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=2
+26-06-12.18:10:53.531 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 2 条
+26-06-12.18:10:53.785 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 2 条
+26-06-12.18:10:53.785 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 2 条
+26-06-12.18:10:53.785 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=0d684c11ec12682e2832d43679de090f, chunks=2
+26-06-12.18:10:53.835 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:53.835 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), 0d684c11ec12682e2832d43679de090f(String)
+26-06-12.18:10:54.498 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:54.500 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=0d684c11ec12682e2832d43679de090f, status=COMPLETED
+26-06-12.18:10:54.500 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=0d684c11ec12682e2832d43679de090f
+26-06-12.18:10:54.500 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=d9a0248aaddf8b68d4bb31146f91625a
+26-06-12.18:10:54.501 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:54.501 [scheduling-1    ] DEBUG selectList             - ==> Parameters: d9a0248aaddf8b68d4bb31146f91625a(String)
+26-06-12.18:10:54.873 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:10:54.875 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:10:55.157 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 4 条
+26-06-12.18:10:55.297 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 4 条
+26-06-12.18:10:55.297 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 4 条
+26-06-12.18:10:55.297 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=d9a0248aaddf8b68d4bb31146f91625a, chunks=4
+26-06-12.18:10:55.298 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:55.298 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), d9a0248aaddf8b68d4bb31146f91625a(String)
+26-06-12.18:10:55.675 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:55.675 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=d9a0248aaddf8b68d4bb31146f91625a, status=COMPLETED
+26-06-12.18:10:55.675 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=d9a0248aaddf8b68d4bb31146f91625a
+26-06-12.18:10:55.675 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=b90ef4bb00389e2602fc3f34721cf08d
+26-06-12.18:10:55.676 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:55.677 [scheduling-1    ] DEBUG selectList             - ==> Parameters: b90ef4bb00389e2602fc3f34721cf08d(String)
+26-06-12.18:10:55.870 [scheduling-1    ] DEBUG selectList             - <==      Total: 2
+26-06-12.18:10:55.870 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=2
+26-06-12.18:10:56.289 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 2 条
+26-06-12.18:10:56.509 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 2 条
+26-06-12.18:10:56.510 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 2 条
+26-06-12.18:10:56.510 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=b90ef4bb00389e2602fc3f34721cf08d, chunks=2
+26-06-12.18:10:56.633 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:56.634 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), b90ef4bb00389e2602fc3f34721cf08d(String)
+26-06-12.18:10:56.728 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:56.728 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=b90ef4bb00389e2602fc3f34721cf08d, status=COMPLETED
+26-06-12.18:10:56.728 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=b90ef4bb00389e2602fc3f34721cf08d
+26-06-12.18:10:56.729 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=0168b40acebfb8ea856bccb5b99f4034
+26-06-12.18:10:56.729 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:56.731 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 0168b40acebfb8ea856bccb5b99f4034(String)
+26-06-12.18:10:56.745 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:10:56.746 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:10:57.017 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 4 条
+26-06-12.18:10:57.646 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 4 条
+26-06-12.18:10:57.647 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 4 条
+26-06-12.18:10:57.647 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=0168b40acebfb8ea856bccb5b99f4034, chunks=4
+26-06-12.18:10:57.747 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:57.747 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), 0168b40acebfb8ea856bccb5b99f4034(String)
+26-06-12.18:10:57.810 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:57.810 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=0168b40acebfb8ea856bccb5b99f4034, status=COMPLETED
+26-06-12.18:10:57.810 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=0168b40acebfb8ea856bccb5b99f4034
+26-06-12.18:10:57.810 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=0c91d469c60351d7c7f83b4bdeffdc09
+26-06-12.18:10:57.810 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:57.812 [scheduling-1    ] DEBUG selectList             - ==> Parameters: 0c91d469c60351d7c7f83b4bdeffdc09(String)
+26-06-12.18:10:57.826 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:10:57.827 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:10:58.314 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 4 条
+26-06-12.18:10:58.526 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 4 条
+26-06-12.18:10:58.526 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 4 条
+26-06-12.18:10:58.526 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=0c91d469c60351d7c7f83b4bdeffdc09, chunks=4
+26-06-12.18:10:58.722 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:10:58.723 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), 0c91d469c60351d7c7f83b4bdeffdc09(String)
+26-06-12.18:10:58.920 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:10:58.920 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=0c91d469c60351d7c7f83b4bdeffdc09, status=COMPLETED
+26-06-12.18:10:58.920 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=0c91d469c60351d7c7f83b4bdeffdc09
+26-06-12.18:10:58.920 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=bb085ac73350d88bda26aa04781acbc3
+26-06-12.18:10:58.922 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:10:58.922 [scheduling-1    ] DEBUG selectList             - ==> Parameters: bb085ac73350d88bda26aa04781acbc3(String)
+26-06-12.18:10:58.952 [scheduling-1    ] DEBUG selectList             - <==      Total: 4
+26-06-12.18:10:58.953 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=4
+26-06-12.18:10:59.456 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 4 条
+26-06-12.18:11:00.163 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 4 条
+26-06-12.18:11:00.163 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 4 条
+26-06-12.18:11:00.163 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=bb085ac73350d88bda26aa04781acbc3, chunks=4
+26-06-12.18:11:00.368 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:11:00.369 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), bb085ac73350d88bda26aa04781acbc3(String)
+26-06-12.18:11:00.817 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:11:00.817 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=bb085ac73350d88bda26aa04781acbc3, status=COMPLETED
+26-06-12.18:11:00.817 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=bb085ac73350d88bda26aa04781acbc3
+26-06-12.18:11:00.818 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 开始: documentId=df4b35edcc4e2a59757b8f4d80dc6776
+26-06-12.18:11:00.819 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:11:00.819 [scheduling-1    ] DEBUG selectList             - ==> Parameters: df4b35edcc4e2a59757b8f4d80dc6776(String)
+26-06-12.18:11:00.995 [scheduling-1    ] DEBUG selectList             - <==      Total: 2
+26-06-12.18:11:00.995 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 开始向量化: chunks=2
+26-06-12.18:11:01.249 [scheduling-1    ] INFO  PgVectorStore          - [PgVector存储] 批量写入: 2 条
+26-06-12.18:11:01.303 [scheduling-1    ] DEBUG EmbeddingServiceImpl   - [Embedding] 批次 1/1: 2 条
+26-06-12.18:11:01.303 [scheduling-1    ] INFO  EmbeddingServiceImpl   - [Embedding] 向量化全部完成: 2 条
+26-06-12.18:11:01.303 [scheduling-1    ] INFO  DocumentServiceImpl    - [异步Embedding] 完成: documentId=df4b35edcc4e2a59757b8f4d80dc6776, chunks=2
+26-06-12.18:11:01.304 [scheduling-1    ] DEBUG update                 - ==>  Preparing: UPDATE message_job SET status=? WHERE (document_id = ?)
+26-06-12.18:11:01.304 [scheduling-1    ] DEBUG update                 - ==> Parameters: COMPLETED(String), df4b35edcc4e2a59757b8f4d80dc6776(String)
+26-06-12.18:11:01.766 [scheduling-1    ] DEBUG update                 - <==    Updates: 1
+26-06-12.18:11:01.766 [scheduling-1    ] DEBUG MessageJobRepositoryImpl - [消息仓储] 更新状态: documentId=df4b35edcc4e2a59757b8f4d80dc6776, status=COMPLETED
+26-06-12.18:11:01.766 [scheduling-1    ] INFO  MessageRetryJob        - [消息兜底] 重试成功: documentId=df4b35edcc4e2a59757b8f4d80dc6776
+26-06-12.18:11:13.029 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:11:13.030 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:11:13.044 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:11:43.037 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:11:43.038 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:11:43.055 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:12:13.038 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:12:13.038 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:12:13.054 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:12:27.249 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:12:27.250 [http-nio-8091-exec-1] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:12:27.262 [http-nio-8091-exec-1] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:12:27.262 [http-nio-8091-exec-1] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:12:27.310 [http-nio-8091-exec-1] DEBUG selectList             - <==      Total: 13
+26-06-12.18:12:27.311 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:12:27.333 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:12:27.333 [http-nio-8091-exec-2] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:12:27.333 [http-nio-8091-exec-2] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:12:27.334 [http-nio-8091-exec-2] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:12:27.384 [http-nio-8091-exec-2] DEBUG selectList             - <==      Total: 13
+26-06-12.18:12:27.384 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:12:43.024 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:12:43.024 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:12:43.041 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:13:13.027 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:13:13.028 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:13:13.043 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:13:14.198 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  NetworkClient          - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Node -1 disconnected.
+26-06-12.18:13:43.038 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:13:43.039 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:13:43.049 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:13:45.541 [http-nio-8091-exec-3] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:13:45.541 [http-nio-8091-exec-3] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:13:45.552 [http-nio-8091-exec-3] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:13:45.553 [http-nio-8091-exec-3] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:13:45.610 [http-nio-8091-exec-3] DEBUG selectList             - <==      Total: 13
+26-06-12.18:13:45.610 [http-nio-8091-exec-3] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:13:45.628 [http-nio-8091-exec-4] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:13:45.628 [http-nio-8091-exec-4] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:13:45.629 [http-nio-8091-exec-4] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:13:45.629 [http-nio-8091-exec-4] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:13:45.670 [http-nio-8091-exec-4] DEBUG selectList             - <==      Total: 13
+26-06-12.18:13:45.670 [http-nio-8091-exec-4] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:13:48.886 [http-nio-8091-exec-5] INFO  DocumentController     - [文档接口] 查询分块: documentId=0168b40acebfb8ea856bccb5b99f4034
+26-06-12.18:13:48.886 [http-nio-8091-exec-5] INFO  DocumentServiceImpl    - [文档分块] documentId=0168b40acebfb8ea856bccb5b99f4034
+26-06-12.18:13:48.898 [http-nio-8091-exec-5] DEBUG selectById             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE id=? AND is_deleted=0
+26-06-12.18:13:48.899 [http-nio-8091-exec-5] DEBUG selectById             - ==> Parameters: 0168b40acebfb8ea856bccb5b99f4034(String)
+26-06-12.18:13:48.910 [http-nio-8091-exec-5] DEBUG selectById             - <==      Total: 1
+26-06-12.18:13:48.911 [http-nio-8091-exec-5] DEBUG selectList             - ==>  Preparing: SELECT id,document_id,chunk_index,title_path,content,module_tags,created_at,updated_at FROM document_chunk WHERE (document_id = ?) ORDER BY chunk_index ASC
+26-06-12.18:13:48.912 [http-nio-8091-exec-5] DEBUG selectList             - ==> Parameters: 0168b40acebfb8ea856bccb5b99f4034(String)
+26-06-12.18:13:48.926 [http-nio-8091-exec-5] DEBUG selectList             - <==      Total: 4
+26-06-12.18:13:48.928 [http-nio-8091-exec-5] INFO  DocumentController     - [文档接口] 返回 4 个分块
+26-06-12.18:14:13.024 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:14:13.024 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:14:13.037 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:14:43.035 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:14:43.035 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:14:43.056 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:15:13.025 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:15:13.026 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:15:13.043 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:15:43.028 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:15:43.029 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:15:43.044 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:16:13.032 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:16:13.033 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:16:13.048 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:16:32.719 [http-nio-8091-exec-6] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:16:32.719 [http-nio-8091-exec-6] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:16:32.731 [http-nio-8091-exec-6] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:16:32.732 [http-nio-8091-exec-6] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:16:32.777 [http-nio-8091-exec-6] DEBUG selectList             - <==      Total: 13
+26-06-12.18:16:32.777 [http-nio-8091-exec-6] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:16:32.793 [http-nio-8091-exec-7] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:16:32.793 [http-nio-8091-exec-7] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:16:32.793 [http-nio-8091-exec-7] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:16:32.795 [http-nio-8091-exec-7] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:16:32.841 [http-nio-8091-exec-7] DEBUG selectList             - <==      Total: 13
+26-06-12.18:16:32.842 [http-nio-8091-exec-7] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:16:43.039 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:16:43.039 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:16:43.056 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:17:13.033 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:17:13.034 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:17:13.046 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:17:43.061 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:17:43.063 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:17:43.080 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:18:13.036 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:18:13.037 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:18:13.050 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:18:43.028 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:18:43.029 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:18:43.049 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:19:13.037 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:19:13.038 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:19:13.049 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:19:43.033 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:19:43.034 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:19:43.052 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:20:13.034 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:20:13.034 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:20:13.046 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:20:25.384 [http-nio-8091-exec-8] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:20:25.385 [http-nio-8091-exec-8] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:20:25.396 [http-nio-8091-exec-8] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:20:25.397 [http-nio-8091-exec-8] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:20:25.435 [http-nio-8091-exec-8] DEBUG selectList             - <==      Total: 13
+26-06-12.18:20:25.435 [http-nio-8091-exec-8] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:20:25.463 [http-nio-8091-exec-9] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:20:25.463 [http-nio-8091-exec-9] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:20:25.465 [http-nio-8091-exec-9] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:20:25.466 [http-nio-8091-exec-9] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:20:25.505 [http-nio-8091-exec-9] DEBUG selectList             - <==      Total: 13
+26-06-12.18:20:25.505 [http-nio-8091-exec-9] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:20:43.029 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:20:43.029 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:20:43.042 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:21:13.024 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:21:13.024 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:21:13.036 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:21:43.028 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:21:43.028 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:21:43.041 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:21:56.532 [http-nio-8091-exec-10] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:21:56.533 [http-nio-8091-exec-10] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:21:56.551 [http-nio-8091-exec-10] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:21:56.551 [http-nio-8091-exec-10] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:21:56.594 [http-nio-8091-exec-10] DEBUG selectList             - <==      Total: 13
+26-06-12.18:21:56.595 [http-nio-8091-exec-10] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:21:56.614 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:21:56.614 [http-nio-8091-exec-1] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:21:56.614 [http-nio-8091-exec-1] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:21:56.615 [http-nio-8091-exec-1] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:21:56.655 [http-nio-8091-exec-1] DEBUG selectList             - <==      Total: 13
+26-06-12.18:21:56.656 [http-nio-8091-exec-1] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:22:01.119 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:22:01.120 [http-nio-8091-exec-2] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:22:01.134 [http-nio-8091-exec-2] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:22:01.134 [http-nio-8091-exec-2] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:22:01.177 [http-nio-8091-exec-2] DEBUG selectList             - <==      Total: 13
+26-06-12.18:22:01.177 [http-nio-8091-exec-2] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:22:01.196 [http-nio-8091-exec-3] INFO  DocumentController     - [文档接口] 查询文档列表
+26-06-12.18:22:01.197 [http-nio-8091-exec-3] INFO  DocumentServiceImpl    - [文档列表] 查询所有
+26-06-12.18:22:01.199 [http-nio-8091-exec-3] DEBUG selectList             - ==>  Preparing: SELECT id,file_name,file_type,raw_content,directory_path,content_md5,ref_count,is_deleted,created_at,updated_at FROM source_document WHERE is_deleted=0
+26-06-12.18:22:01.199 [http-nio-8091-exec-3] DEBUG selectList             - ==> Parameters: 
+26-06-12.18:22:01.236 [http-nio-8091-exec-3] DEBUG selectList             - <==      Total: 13
+26-06-12.18:22:01.236 [http-nio-8091-exec-3] INFO  DocumentController     - [文档接口] 返回 13 条记录
+26-06-12.18:22:13.040 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:22:13.040 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:22:13.055 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.18:22:43.029 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.18:22:43.029 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.18:22:43.043 [scheduling-1    ] DEBUG selectList             - <==      Total: 0

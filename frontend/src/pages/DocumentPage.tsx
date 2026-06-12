@@ -140,7 +140,7 @@ export default function DocumentPage() {
   return (
     <div className="h-full flex min-h-[600px]">
       {/* Left sidebar */}
-      <div className="w-[340px] flex-shrink-0 border-r border-[var(--color-line)] flex flex-col">
+      <div className="w-[340px] flex-shrink-0 border-r border-[var(--color-line)] flex flex-col max-h-[calc(100vh-160px)]">
         <div className="flex gap-1 p-3 border-b border-[var(--color-line)]">
           {([
             { key: "repository", icon: FolderTree, label: "资料库" },
@@ -156,7 +156,7 @@ export default function DocumentPage() {
         </div>
 
         {tab === "repository" ? (
-          <div className="flex-1 overflow-auto p-3 space-y-0">
+          <div className="flex-1 min-h-0 overflow-y-auto p-3 space-y-0">
             <button onClick={loadDocs} className="mb-2 text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] flex items-center gap-1">
               <RefreshCw size={10} /> 刷新
             </button>
@@ -219,7 +219,7 @@ export default function DocumentPage() {
       </div>
 
       {/* Right panel */}
-      <div className="flex-1 overflow-auto p-8">
+      <div className="flex-1 min-h-0 overflow-y-auto p-8 pr-4 max-h-[calc(100vh-160px)]">
         {selectedDoc ? (
           <div>
             <h3 className="serif text-2xl font-semibold mb-1">{selectedDoc.fileName}</h3>
