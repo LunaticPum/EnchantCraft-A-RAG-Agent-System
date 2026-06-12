@@ -4,6 +4,7 @@ import cn.pumluda.domain.agent.adapter.prompt.IPromptLoader;
 import cn.pumluda.domain.agent.model.valobj.Citation;
 import cn.pumluda.domain.agent.model.valobj.RetrievalMode;
 import cn.pumluda.domain.agent.service.memory.IAgentMemory;
+import cn.pumluda.domain.agent.service.rewrite.IQueryRewriter;
 import cn.pumluda.domain.document.model.valobj.SearchResult;
 import cn.pumluda.domain.document.service.rag.recall.HybridRetrieverImpl;
 import dev.langchain4j.data.message.ChatMessage;
@@ -34,20 +35,27 @@ public class AgentChatImpl implements IAgentChat {
     private final HybridRetrieverImpl hybridRetriever;
     private final IPromptLoader promptLoader;
     private final IAgentMemory agentMemory;
+    private final IQueryRewriter queryRewriter;
 
-    public AgentChatImpl(ChatModel chatModel, HybridRetrieverImpl hybridRetriever, IPromptLoader promptLoader, IAgentMemory agentMemory) {
+    public AgentChatImpl(ChatModel chatModel, HybridRetrieverImpl hybridRetriever,
+                         IPromptLoader promptLoader, IAgentMemory agentMemory,
+                         IQueryRewriter queryRewriter) {
         this.chatModel = chatModel;
         this.hybridRetriever = hybridRetriever;
         this.promptLoader = promptLoader;
         this.agentMemory = agentMemory;
+        this.queryRewriter = queryRewriter;
     }
 
     @Override
     public String chat(String sessionId, String userMessage, RetrievalMode retrievalMode, Consumer<String> onToken, Consumer<List<Citation>> onCitation) {
         log.info("[Agent对话] sessionId={}, mode={}, message={}", sessionId, retrievalMode, userMessage);
 
-        // 1. RAG 检索证据
-        List<SearchResult> searchResults = hybridRetriever.search(userMessage, 5, true);
+        // 0. 查询改写（提升检索召回率）
+        String searchQuery = queryRewriter.rewrite(userMessage);
+
+        // 1. RAG 检索证据（以改写后的 query 检索）
+        List<SearchResult> searchResults = hybridRetriever.search(searchQuery, 5, true);
         List<Citation> citations = buildCitations(searchResults);
         onCitation.accept(citations);
 
