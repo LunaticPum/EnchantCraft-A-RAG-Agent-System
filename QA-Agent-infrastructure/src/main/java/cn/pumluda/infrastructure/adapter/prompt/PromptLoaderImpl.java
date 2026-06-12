@@ -17,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class PromptLoaderImpl implements IPromptLoader {
 
-    private static final String PROMPT_PATH = "prompts/agent-system-prompt.md";
+    private static final String PROMPT_PATH = "prompts/agent/system-prompt.md";
 
     @Override
     public String loadSystemPrompt() {

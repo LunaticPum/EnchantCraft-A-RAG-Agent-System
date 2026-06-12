@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class QueryRewriterImpl implements IQueryRewriter {
 
-    private static final String PROMPT_PATH = "prompts/query-rewriter-prompt.md";
+    private static final String PROMPT_PATH = "prompts/rewrite/query-rewriter.md";
 
     private final ChatModel chatModel;
 

@@ -3743,3 +3743,445 @@ CREATE TABLE `user_tag_record`
 26-06-12.15:31:54.329 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
 26-06-12.15:31:54.348 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 26-06-12.15:31:54.365 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-12.15:55:17.411 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 22868 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-12.15:55:17.418 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-12.15:55:17.421 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-12.15:55:20.523 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 15936 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-12.15:55:20.529 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-12.15:55:20.530 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-12.15:55:23.036 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-12.15:55:23.068 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-12.15:55:23.068 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-12.15:55:23.110 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-12.15:55:23.159 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-12.15:55:23.167 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-12.15:55:23.167 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-12.15:55:23.468 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-12.15:55:23.470 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5822 ms
+26-06-12.15:55:24.722 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-12.15:55:24.730 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-12.15:55:24.731 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-12.15:55:25.040 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4313 ms
+26-06-12.15:55:27.860 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-12.15:55:28.787 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6c4f9535
+26-06-12.15:55:29.166 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-12.15:55:29.678 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-12.15:55:29.818 [main            ] INFO  ConsumerConfig         - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [134.175.232.110:19092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-qa-agent-indexing-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = qa-agent-indexing
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+26-06-12.15:55:29.977 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@797501a
+26-06-12.15:55:30.004 [main            ] INFO  KafkaMetricsCollector  - initializing Kafka metrics collector
+26-06-12.15:55:30.289 [main            ] INFO  AppInfoParser          - Kafka version: 3.8.1
+26-06-12.15:55:30.289 [main            ] INFO  AppInfoParser          - Kafka commitId: 70d6ff42debf7e17
+26-06-12.15:55:30.290 [main            ] INFO  AppInfoParser          - Kafka startTimeMs: 1781250930284
+26-06-12.15:55:30.300 [main            ] INFO  LegacyKafkaConsumer    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Subscribed to topic(s): document.indexing
+26-06-12.15:55:30.351 [main            ] INFO  Application            - Started Application in 15.766 seconds (process running for 19.757)
+26-06-12.15:55:30.584 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+26-06-12.15:55:30.586 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-12.15:55:31.192 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting generation and member id due to: consumer pro-actively leaving the group
+26-06-12.15:55:31.193 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: consumer pro-actively leaving the group
+26-06-12.15:55:31.193 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  LegacyKafkaConsumer    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Unsubscribed all topics or patterns and assigned partitions
+26-06-12.15:55:31.208 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting generation and member id due to: consumer pro-actively leaving the group
+26-06-12.15:55:31.208 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: consumer pro-actively leaving the group
+26-06-12.15:55:31.224 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Metrics scheduler closed
+26-06-12.15:55:31.225 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+26-06-12.15:55:31.225 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+26-06-12.15:55:31.226 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Metrics reporters closed
+26-06-12.15:55:31.240 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  AppInfoParser          - App info kafka.consumer for consumer-qa-agent-indexing-1 unregistered
+26-06-12.15:55:31.242 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: Consumer stopped
+26-06-12.15:55:31.249 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-12.15:55:31.481 [scheduling-1    ] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2441a0ea
+26-06-12.15:55:31.488 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-12.15:55:31.510 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.15:55:31.593 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.15:55:31.696 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.15:55:31.894 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-12.15:55:31.904 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-12.15:55:31.985 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-12.15:55:53.519 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 2100 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-12.15:55:53.524 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-12.15:55:53.525 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-12.15:55:57.229 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-12.15:55:57.235 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-12.15:55:57.236 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-12.15:55:57.251 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-12.15:55:57.296 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-12.15:55:57.300 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-12.15:55:57.301 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-12.15:55:57.592 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-12.15:55:57.593 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3919 ms
+26-06-12.15:56:00.917 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-12.15:56:01.629 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7544a1e4
+26-06-12.15:56:02.302 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-12.15:56:02.335 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-12.15:56:02.460 [main            ] INFO  ConsumerConfig         - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [134.175.232.110:19092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-qa-agent-indexing-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = qa-agent-indexing
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+26-06-12.15:56:02.642 [main            ] INFO  KafkaMetricsCollector  - initializing Kafka metrics collector
+26-06-12.15:56:02.892 [main            ] INFO  AppInfoParser          - Kafka version: 3.8.1
+26-06-12.15:56:02.893 [main            ] INFO  AppInfoParser          - Kafka commitId: 70d6ff42debf7e17
+26-06-12.15:56:02.895 [main            ] INFO  AppInfoParser          - Kafka startTimeMs: 1781250962888
+26-06-12.15:56:02.907 [main            ] INFO  LegacyKafkaConsumer    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Subscribed to topic(s): document.indexing
+26-06-12.15:56:02.956 [main            ] INFO  Application            - Started Application in 11.425 seconds (process running for 13.402)
+26-06-12.15:56:03.185 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-12.15:56:03.812 [scheduling-1    ] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f93ace8
+26-06-12.15:56:03.818 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-12.15:56:03.843 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.15:56:03.923 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.15:56:04.001 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.15:56:04.137 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metadata               - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+26-06-12.15:56:04.139 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Discovered group coordinator 134.175.232.110:19092 (id: 2147483646 rack: null)
+26-06-12.15:56:04.147 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] (Re-)joining group
+26-06-12.15:56:04.232 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: need to re-join with the given member-id: consumer-qa-agent-indexing-1-3975cc36-07ab-4c90-a86c-3a28f1b21af1
+26-06-12.15:56:04.234 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] (Re-)joining group
+26-06-12.15:56:07.246 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Successfully joined group with generation Generation{generationId=13, memberId='consumer-qa-agent-indexing-1-3975cc36-07ab-4c90-a86c-3a28f1b21af1', protocol='range'}
+26-06-12.15:56:07.261 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Finished assignment for group at generation 13: {consumer-qa-agent-indexing-1-3975cc36-07ab-4c90-a86c-3a28f1b21af1=Assignment(partitions=[document.indexing-0, document.indexing-1, document.indexing-2])}
+26-06-12.15:56:07.286 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Successfully synced group in generation Generation{generationId=13, memberId='consumer-qa-agent-indexing-1-3975cc36-07ab-4c90-a86c-3a28f1b21af1', protocol='range'}
+26-06-12.15:56:07.287 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Notifying assignor about the new Assignment(partitions=[document.indexing-0, document.indexing-1, document.indexing-2])
+26-06-12.15:56:07.300 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Adding newly assigned partitions: document.indexing-0, document.indexing-1, document.indexing-2
+26-06-12.15:56:07.329 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Found no committed offset for partition document.indexing-1
+26-06-12.15:56:07.336 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerUtils          - Setting offset for partition document.indexing-2 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=0}}
+26-06-12.15:56:07.336 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerUtils          - Setting offset for partition document.indexing-0 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=0}}
+26-06-12.15:56:07.376 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  SubscriptionState      - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting offset for partition document.indexing-1 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=0}}.
+26-06-12.15:56:07.378 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: partitions assigned: [document.indexing-0, document.indexing-1, document.indexing-2]
+26-06-12.15:56:32.999 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.15:56:33.000 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.15:56:33.029 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.15:57:02.979 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.15:57:02.981 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.15:57:02.997 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.15:57:22.165 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-06-12.15:57:22.165 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-06-12.15:57:22.169 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 3 ms
+26-06-12.15:57:22.419 [http-nio-8091-exec-1] INFO  AgentController        - [Agent接口] 对话请求: sessionId=, mode=TOOL, message=你好我想学习java的MySQL知识，你可以简单介绍什么是存储引擎吗，存储引擎有哪些
+26-06-12.15:57:22.425 [ForkJoinPool.commonPool-worker-1] INFO  AgentChatImpl          - [Agent对话] sessionId=, mode=TOOL, message=你好我想学习java的MySQL知识，你可以简单介绍什么是存储引擎吗，存储引擎有哪些
+26-06-12.15:57:22.769 [ForkJoinPool.commonPool-worker-1] INFO  LoggingHttpClient      - HTTP request:
+- method: POST
+- url: https://api.deepseek.com/v1/chat/completions
+- headers: [Authorization: Beare...c4], [User-Agent: langchain4j-openai], [Content-Type: application/json]
+- body: {
+  "model" : "deepseek-v4-pro",
+  "messages" : [ {
+    "role" : "system",
+    "content" : "你是一个技术知识库助手。回答用户的学习问题。\n\n核心规则：\n1. 当用户询问技术问题、概念解释、代码用法等需要查找资料的问题时，调用 searchKnowledgeBase 工具检索知识库\n2. 当用户闲聊、问候、提问非技术问题时，直接回答，不要调用工具\n3. 基于检索返回的资料回答，并标注信息来源\n4. 如果检索结果为空，告诉用户知识库中暂无相关内容\n"
+  }, {
+    "role" : "user",
+    "content" : "你好我想学习java的MySQL知识，你可以简单介绍什么是存储引擎吗，存储引擎有哪些"
+  } ],
+  "stream" : false,
+  "tools" : [ {
+    "type" : "function",
+    "function" : {
+      "name" : "searchKnowledgeBase",
+      "description" : "在用户的知识库（Markdown 学习笔记）中搜索相关内容。当用户询问技术问题、概念解释、代码用法等可能需要查资料的问题时调用。query 参数使用关键词形式，如 'InnoDB 索引原理'。",
+      "parameters" : {
+        "type" : "object",
+        "properties" : {
+          "query" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "query" ]
+      }
+    }
+  } ]
+}
+
+26-06-12.15:57:25.795 [ForkJoinPool.commonPool-worker-1] INFO  LoggingHttpClient      - HTTP response:
+- status code: 200
+- headers: [:status: 200], [access-control-allow-credentials: true], [age: 0], [content-type: application/json], [date: Fri, 12 Jun 2026 07:57:30 GMT], [eo-cache-status: MISS], [eo-log-uuid: 8624751375483213122], [server: openresty], [strict-transport-security: max-age=31536000; includeSubDomains; preload], [vary: origin, access-control-request-method, access-control-request-headers], [x-content-type-options: nosniff], [x-ds-trace-id: 7894837eabd2a3e40e27d7962428d57d]
+- body: {"id":"b962ebeb-a89f-4af4-b4d0-c4716b9a59df","object":"chat.completion","created":1781251050,"model":"deepseek-v4-pro","choices":[{"index":0,"message":{"role":"assistant","content":"好的，我先帮你查一下知识库中关于 MySQL 存储引擎的内容。","reasoning_content":"用户想学习Java中的MySQL知识，想了解存储引擎是什么以及有哪些存储引擎。这是一个技术问题，需要查询知识库。","tool_calls":[{"index":0,"id":"call_00_9UuYgrUuuWVgCGL1j4iL6665","type":"function","function":{"name":"searchKnowledgeBase","arguments":"{\"query\": \"MySQL 存储引擎 介绍 分类\"}"}}]},"logprobs":null,"finish_reason":"tool_calls"}],"usage":{"prompt_tokens":433,"completion_tokens":94,"total_tokens":527,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":27},"prompt_cache_hit_tokens":0,"prompt_cache_miss_tokens":433},"system_fingerprint":"fp_9954b31ca7_prod0820_fp8_kvcache_20260402"}
+
+26-06-12.15:57:25.891 [ForkJoinPool.commonPool-worker-1] INFO  KnowledgeBaseSearchTool - [MCP工具] 知识库检索: query=MySQL 存储引擎 介绍 分类
+26-06-12.15:57:25.891 [ForkJoinPool.commonPool-worker-1] INFO  HybridRetrieverImpl    - [混合检索] 开始: query=MySQL 存储引擎 介绍 分类, topK=5, rerank=true
+26-06-12.15:57:25.891 [ForkJoinPool.commonPool-worker-1] INFO  SemanticRetrieverImpl  - [语义检索] 开始检索: query=MySQL 存储引擎 介绍 分类, topK=10
+26-06-12.15:57:26.357 [ForkJoinPool.commonPool-worker-1] INFO  HikariDataSource       - HikariPool-2 - Starting...
+26-06-12.15:57:26.814 [ForkJoinPool.commonPool-worker-1] INFO  HikariPool             - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@3259a29a
+26-06-12.15:57:26.815 [ForkJoinPool.commonPool-worker-1] INFO  HikariDataSource       - HikariPool-2 - Start completed.
+26-06-12.15:57:26.901 [ForkJoinPool.commonPool-worker-1] INFO  SemanticRetrieverImpl  - [语义检索] 命中 10 条结果
+26-06-12.15:57:26.905 [ForkJoinPool.commonPool-worker-1] INFO  KeywordRetrieverImpl   - [关键词检索] PostgreSQL 全文检索: keyword=MySQL 存储引擎 介绍 分类, topK=10
+26-06-12.15:57:26.905 [ForkJoinPool.commonPool-worker-1] INFO  PgVectorStore          - [PgVector全文检索] queryText=MySQL 存储引擎 介绍 分类, tsquery=MySQL & 存储引擎 & 介绍 & 分类, limit=10
+26-06-12.15:57:26.946 [ForkJoinPool.commonPool-worker-1] INFO  PgVectorStore          - [PgVector全文检索] 命中 0 条
+26-06-12.15:57:26.946 [ForkJoinPool.commonPool-worker-1] INFO  KeywordRetrieverImpl   - [关键词检索] 命中 0 条
+26-06-12.15:57:26.947 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=1, chunkId=0bcd7ba03921d1b516736d7205849601, titlePath=MySQL 存储引擎, rrf=0.01639344262295082
+26-06-12.15:57:26.947 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=2, chunkId=5ba38143abe63e6b7f942d15d495bf0f, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > MyISAM, rrf=0.016129032258064516
+26-06-12.15:57:26.947 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=3, chunkId=a44f41fd274edc85e6bb8aa534565db3, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB, rrf=0.015873015873015872
+26-06-12.15:57:26.947 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=4, chunkId=2533918e43f66eb48e613ab952cb2eb6, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > Memory > 存储文件, rrf=0.015625
+26-06-12.15:57:26.947 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=5, chunkId=db232cf71e44953de99f521b61f5c200, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > Memory, rrf=0.015384615384615385
+26-06-12.15:57:26.948 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=6, chunkId=54ceef2e9300bf4fc2cbc2de1ba0d469, titlePath=MySQL 存储引擎 > 存储引擎的选择, rrf=0.015151515151515152
+26-06-12.15:57:26.948 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=7, chunkId=2e58418d5072f40d97f476c46a3ae710, titlePath=MySQl 架构, rrf=0.014925373134328358
+26-06-12.15:57:26.948 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=8, chunkId=268705290512de48d7a6fde44ae5eeda, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > MyISAM > 存储文件, rrf=0.014705882352941176
+26-06-12.15:57:26.948 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=9, chunkId=dd2239e203365c7f2e12b2e97b42b8ad, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > Memory > 特点, rrf=0.014492753623188406
+26-06-12.15:57:26.948 [ForkJoinPool.commonPool-worker-1] DEBUG HybridRetrieverImpl    - [RRF] 来源=语义, rank=10, chunkId=ddd2c564bd1d48df45b61e9750c7a581, titlePath=MySQL 存储引擎 > 各种存储引擎特点 > InnoDB > 存储文件, rrf=0.014285714285714285
+26-06-12.15:57:26.952 [ForkJoinPool.commonPool-worker-1] INFO  HybridRetrieverImpl    - [混合检索] 语义10条 + 关键词0条 → RRF融合10条
+26-06-12.15:57:26.953 [ForkJoinPool.commonPool-worker-1] INFO  DashScopeRerankerImpl  - [Rerank] 开始: query=MySQL 存储引擎 介绍 分类, candidates=10
+26-06-12.15:57:27.562 [ForkJoinPool.commonPool-worker-1] INFO  DashScopeRerankerImpl  - [Rerank] 完成: 10 条候选 → 10 条重排
+26-06-12.15:57:27.562 [ForkJoinPool.commonPool-worker-1] INFO  HybridRetrieverImpl    - [混合检索] Rerank 精排完成: 最终返回 5 条
+26-06-12.15:57:27.594 [ForkJoinPool.commonPool-worker-1] INFO  LoggingHttpClient      - HTTP request:
+- method: POST
+- url: https://api.deepseek.com/v1/chat/completions
+- headers: [Authorization: Beare...c4], [User-Agent: langchain4j-openai], [Content-Type: application/json]
+- body: {
+  "model" : "deepseek-v4-pro",
+  "messages" : [ {
+    "role" : "system",
+    "content" : "你是一个技术知识库助手。回答用户的学习问题。\n\n核心规则：\n1. 当用户询问技术问题、概念解释、代码用法等需要查找资料的问题时，调用 searchKnowledgeBase 工具检索知识库\n2. 当用户闲聊、问候、提问非技术问题时，直接回答，不要调用工具\n3. 基于检索返回的资料回答，并标注信息来源\n4. 如果检索结果为空，告诉用户知识库中暂无相关内容\n"
+  }, {
+    "role" : "user",
+    "content" : "你好我想学习java的MySQL知识，你可以简单介绍什么是存储引擎吗，存储引擎有哪些"
+  }, {
+    "role" : "assistant",
+    "content" : "好的，我先帮你查一下知识库中关于 MySQL 存储引擎的内容。",
+    "tool_calls" : [ {
+      "id" : "call_00_9UuYgrUuuWVgCGL1j4iL6665",
+      "type" : "function",
+      "function" : {
+        "name" : "searchKnowledgeBase",
+        "arguments" : "{\"query\": \"MySQL 存储引擎 介绍 分类\"}"
+      }
+    } ]
+  }, {
+    "role" : "tool",
+    "tool_call_id" : "call_00_9UuYgrUuuWVgCGL1j4iL6665",
+    "content" : "--- 来源 1: MySQL 存储引擎 > 存储引擎的选择 ---\n在选择 MySQL 存储引擎时，应根据应用系统的特点、业务需求和性能要求来决定。通常考虑以下几个因素：\n\n- 是否需要**事务支持和 ACID 特性**；\n- 数据**读写比例及并发访问量**；\n- **数据量大小及存储持久性需求**；\n- 是否需要**支持外键约束**；\n- 是否对**查询速度要求**极高。\n\n在绝大多数业务场景下，使用 **InnoDB** 即可满足需求，但针对特定场景，也可以选择 MyISAM 或 Memory。\n\n> [!example]+ InnoDB\n> - **适用场景**：**事务型应用**、**高并发读写**、需要保证**数据一致性和完整性**的业务表。\n> - **选择理由**：支持事务、行级锁、MVCC 和外键约束，能够在高并发场景下保持数据安全和性能稳定。\n> - **示例**：*订单表、支付记录表、库存表*等核心业务数据表。\n\n> [!example]+ MyISAM\n> - **适用场景**：以**读操作为主**，**插入操作较多**，**更新和删除操作较少**的业务表。\n> - **选择理由**：**查询速度快，存储结构简单**，适合**不需要事务和行级锁的场景**。\n> - **示例**：*用户浏览记录、评论日志、统计报表表*等**只读或读多写少**的数据 表\n\n> [!example]+ Memory\n> - **适用场景**：对**访问速度要求极高**、**数据可以容忍丢失**的临时数据表或缓存表。\n> - **选择理由**：数据存储在内存中，访问速度极快，但服务重启或宕机后数据会丢失，不适合核心业务数据。\n> - **示例**：会话表、临时统计表、缓存表等对性能要求高且可重建的数据表。\n\n> [!note]+ NoSQL 替代方案\n> 在实际应用中，大部分 MySQL 业务表都使用 **InnoDB** 存储引擎。其他存储引擎在很多场景下已经可以用更专业的工具替代：\n> - **MyISAM**：适合读多写少的场景，可以考虑使用 **MongoDB** 或其他文档型数据库来替代，以获得更灵活的数据模型和可扩展性。\n> - **Memory**：适合对访问速度要求极高、数据可丢失的临时表或缓存表，可以使用 **Redis** 或 **Memcached** 替代，以获得更高性能和更丰富的缓存策略。\n\n--- 来源 2: MySQL 存储引擎 ---\n存储引擎是 MySQL 用于处理**数据存储**、**索引管理**以及**数据查询与更新操作**的核心组件。**不同存储引擎拥有不同的数据组织方式、索引实现机制以及锁策略**，因此*在事务支持、并发性能和存储效率等方面也存在差异*。\n\n> [!quote]+ 表类型\n> **存储引擎是作用于数据表级别的，而非数据库级别**。**同一个数据库中的不同数据表可以选择不同的存储引擎**，因此**存储引擎也被称为表类型**。例如，一个数据库中的订单表可以使用 InnoDB，而日志表则可以使用 MyISAM。*若不指定表的存储引擎，则默认表的存储引擎就为 InnoDB。*\n\n```mysql title:\"指定创建表的存储引擎\"\nCREATE TABLE `user_tag_record`  \n(  \n    `id`          BIGINT unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',  \n    `user_id`     BIGINT UNSIGNED NOT NULL COMMENT '用户 ID',  \n    `user_tag`    INT UNSIGNED    NOT NULL DEFAULT 0 COMMENT '用户标签位图',  \n    `create_time` DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,  \n    `update_time` DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  \n    PRIMARY KEY (`id`),  \n    UNIQUE KEY (`user_id`),  \n    KEY `idx_user_id` (`user_id`)  \n) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;\n```\n\n--- 来源 3: MySQl 架构 ---\n![[Pasted image 20260601084056.png|MySQL 架构|500]]\n\n>[!quote]+ MySQL 架构设计\n> 如上图所示，MySQL 服务端整体采用分层架构设计，大致可以分为三层：**连接层**、**服务层**和**存储引擎层**。\n> 1. **连接层**：**负责客户端与 MySQL 服务端之间的通信与连接管理**。各种客户端程序（如 JDBC、ODBC、.NET、PHP、Python、Ruby、Perl 等）都需要通过对应的连接器与 MySQL 建立连接。在这一层中，MySQL 主要完成：\n> \t- TCP 连接建立与释放；\n> \t- 用户身份认证；\n> \t- 权限校验；\n> \t- 连接数控制与线程管理；\n> \t- 网络通信协议处理。\n> \n> \t当客户端发起连接请求时，MySQL 会首先在连接层完成用户认证和权限检查，认证通过后才允许后续 SQL 请求进入服务层进行处理。\n> \t\n> 2. **服务层**：服务层是 MySQL 的核心组成部分，**绝大多数数据库功能都在这一层实现，并且与具体的存储引擎无关**。主要包含以下模块：\n> \t- **SQL 接口**：**负责接收客户端发送的 SQL 语句**，并向下调用解析器、优化器和存储引擎完成请求处理。同时*提供大量内置函数、存储过程、触发器、视图等数据库功能*。\n> \t- 解析器：对 SQL 语句进行**词法分析**和**语法分析**，判断 SQL 是否符合语法规范，并生成对应的**语法树**。\n> \t- 查询优化器：**根据 SQL 语句生成多种执行方案**，并结合统计信息评估成本，最终选择代价最小的执行计划。例如决定：\n> \t\t- 使用哪个索引；\n> \t\t- 多表 Join 的执行顺序；\n> \t\t- 是否进行索引下推；\n> \t\t- 是否采用覆盖索引等优化策略。\n> \t- 执行器：**根据优化器生成的执行计划调用对应存储引擎接口**，完成数据的读取、更新、删除和插入操作。\n> \t- 缓存与缓冲：**早期 MySQL 提供查询缓存机制**，但由于其在高并发场景下性能较差，**已在 MySQL 8.0 中被彻底移除**。目前缓存能力更多由 **InnoDB Buffer Pool** 等存储引擎内部组件提供。\n> \t\n> 3. **存储引擎层**：**负责数据的实际存储与读取**，是 MySQL 与底层数据文件交互的核心模块。MySQL 采用**可插拔存储引擎架构**，开发者可以根据业务需求选择不同的存储引擎，因此这一层又被称为**可插拔存储引擎层**。常见存储引擎包括：\n> \t- InnoDB（MySQL 默认存储引擎）\n> \t- MyISAM\n> \t- Memory\n> \t- NDB Cluster\n> \t- Archive\n> \t\n> \t不同存储引擎具有不同的实现机制和适用场景。例如：\n> \t- InnoDB 支持事务、MVCC、行级锁和外键；\n> \t- MyISAM 不支持事务，但查询效率较高；\n> \t- Memory 将数据存储于内存中，适用于高速临时数据访问场景。\n> \t\n> \t此外，我们常说的索**引实现也位于存储引擎层**，**不同存储引擎的索引组织方式并不相同**。例如 InnoDB 的聚簇索引和二级索引均采用 **B+ 树**数据结构实现，而其他存储引擎则可能采用不同的数据组织方式。\n> \n> 总结来说，**连接层负责接入，服务层负责 SQL 处理，存储引擎层负责数据存储**。一条 SQL 从客户端发出后，会依次经过“**连接层 → 解析器 → 优化器 → 执行器 → 存储引擎**”，最终完成数据的读写操作。\n\n--- 来源 4: MySQL 存储引擎 > 各种存储引擎特点 > MyISAM ---\nMyISAM 是 MySQL 早期的默认存储引擎，**其结构简单，适合只读或读多写少的应用**，但由于**缺乏事务和行级锁，不适合高并发写入和对数据一致性要求高的场景**。\n\n--- 来源 5: MySQL 存储引擎 > 各种存储引擎特点 > InnoDB ---\nInnoDB 是 MySQL 中一种兼顾**高可靠性**与**高性能**的通用存储引擎，自 MySQL 5.5 起被设为默认存储引擎。\n\n"
+  } ],
+  "stream" : false,
+  "tools" : [ {
+    "type" : "function",
+    "function" : {
+      "name" : "searchKnowledgeBase",
+      "description" : "在用户的知识库（Markdown 学习笔记）中搜索相关内容。当用户询问技术问题、概念解释、代码用法等可能需要查资料的问题时调用。query 参数使用关键词形式，如 'InnoDB 索引原理'。",
+      "parameters" : {
+        "type" : "object",
+        "properties" : {
+          "query" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "query" ]
+      }
+    }
+  } ]
+}
+
+26-06-12.15:57:32.970 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.15:57:32.970 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.15:57:32.988 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.15:57:45.112 [ForkJoinPool.commonPool-worker-1] INFO  LoggingHttpClient      - HTTP response:
+- status code: 200
+- headers: [:status: 200], [access-control-allow-credentials: true], [age: 0], [content-type: application/json], [date: Fri, 12 Jun 2026 07:57:34 GMT], [eo-cache-status: MISS], [eo-log-uuid: 12475086688843519713], [server: openresty], [strict-transport-security: max-age=31536000; includeSubDomains; preload], [vary: origin, access-control-request-method, access-control-request-headers], [x-content-type-options: nosniff], [x-ds-trace-id: 94a0ba6078e24a4bf5c9971a17a54f08]
+- body: {"id":"bf1aeb8a-ecb6-4715-888d-d638bdb36568","object":"chat.completion","created":1781251054,"model":"deepseek-v4-pro","choices":[{"index":0,"message":{"role":"assistant","content":"根据你的知识库，下面为你梳理一下 MySQL 存储引擎的核心概念。\n\n---\n\n## 一、什么是存储引擎？\n\n**存储引擎**是 MySQL 中负责**数据存储、索引管理以及数据查询与更新操作**的核心组件。不同的存储引擎拥有不同的数据组织方式、索引实现机制以及锁策略，因此在事务支持、并发性能和存储效率等方面也存在差异。\n\n从 MySQL 的整体架构来看，它采用分层设计：\n\n```\n连接层 → 服务层（解析器 → 优化器 → 执行器）→ 存储引擎层\n```\n\n存储引擎位于最底层的**存储引擎层**，负责与底层数据文件交互，完成数据的实际存储与读取。MySQL 采用**可插拔存储引擎架构**，开发者可以根据业务需求灵活选择。\n\n> **重要特性**：存储引擎是**表级别**的，而非数据库级别。同一个数据库中的不同表可以选择不同的存储引擎，因此存储引擎也被称为「表类型」。如果不指定，默认使用 **InnoDB**。\n\n---\n\n## 二、常见的存储引擎有哪些？\n\n知识库中提到了以下几种：\n\n### 1. InnoDB（默认存储引擎）\n\n| 维度 | 说明 |\n|------|------|\n| **特点** | 支持**事务（ACID）**、**行级锁**、**MVCC（多版本并发控制）**、**外键约束** |\n| **索引结构** | 聚簇索引和二级索引均采用 **B+ 树** |\n| **适用场景** | 事务型应用、高并发读写、需要数据一致性和完整性的核心业务表 |\n| **典型示例** | 订单表、支付记录表、库存表 |\n\n自 **MySQL 5.5** 起，InnoDB 被设为默认存储引擎，兼顾高可靠性与高性能。\n\n### 2. MyISAM\n\n| 维度 | 说明 |\n|------|------|\n| **特点** | 结构简单，查询速度快，但**不支持事务和行级锁** |\n| **局限** | 不适合高并发写入和对数据一致性要求高的场景 |\n| **适用场景** | 以读为主、插入较多、更新和删除较少的场景 |\n| **典型示例** | 用户浏览记录、评论日志、统计报表等读多写少的表 |\n\nMyISAM 是 MySQL 早期的默认存储引擎，现在已逐渐被替代。\n\n### 3. Memory\n\n| 维度 | 说明 |\n|------|------|\n| **特点** | 数据全部存储在**内存**中，访问速度极快 |\n| **局限** | 服务重启或宕机后**数据会丢失**，不适合核心业务数据 |\n| **适用场景** | 对速度要求极高、数据可容忍丢失的临时表或缓存表 |\n| **典型示例** | 会话表、临时统计表、缓存表 |\n\n### 4. 其他存储引擎\n\n知识库中还提到 **NDB Cluster**（适合分布式集群）和 **Archive**（适合归档存储），但未展开详细介绍。\n\n---\n\n## 三、如何选择存储引擎？\n\n选择时通常考虑以下几个因素：\n\n1. 是否需要**事务支持和 ACID 特性**\n2. 数据的**读写比例及并发访问量**\n3. **数据量大小及存储持久性需求**\n4. 是否需要**支持外键约束**\n5. 对**查询速度**的要求\n\n> **实际建议**：在绝大多数业务场景下，直接使用 **InnoDB** 即可满足需求。而 MyISAM 和 Memory 的场景如今可以用更专业的工具替代：读多写少场景可以考虑 **MongoDB**，高速缓存场景可以用 **Redis** 或 **Memcached**。\n\n---\n\n## 四、代码示例\n\n创建表时通过 `ENGINE` 关键字指定存储引擎：\n\n```sql\nCREATE TABLE `user_tag_record`  \n(  \n    `id`          BIGINT unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',  \n    `user_id`     BIGINT UNSIGNED NOT NULL COMMENT '用户 ID',  \n    `user_tag`    INT UNSIGNED    NOT NULL DEFAULT 0 COMMENT '用户标签位图',  \n    `create_time` DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,  \n    `update_time` DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  \n    PRIMARY KEY (`id`),  \n    UNIQUE KEY (`user_id`),  \n    KEY `idx_user_id` (`user_id`)  \n) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;\n```\n\n默认不写 `ENGINE` 时，MySQL 会自动使用 **InnoDB**。\n\n---\n\n> 📚 **以上内容整理自你的知识库**：MySQL 存储引擎章节、MySQL 架构章节。\n\n如果你想进一步了解 InnoDB 的事务机制、MVCC 原理或者 B+ 树索引结构，随时告诉我，我帮你继续查 😊","reasoning_content":"知识库中找到了关于MySQL存储引擎的丰富内容。让我根据这些资料来回答用户的问题。\n\n需要涵盖：\n1. 什么是存储引擎 - 来自来源2和来源3\n2. 存储引擎有哪些 - 来自来源3、来源4、来源5\n3. 各种存储引擎的特点和适用场景 - 来自来源1、来源2、来源4、来源5\n\n让我组织一下回答。"},"logprobs":null,"finish_reason":"stop"}],"usage":{"prompt_tokens":2407,"completion_tokens":1127,"total_tokens":3534,"prompt_tokens_details":{"cached_tokens":512},"completion_tokens_details":{"reasoning_tokens":87},"prompt_cache_hit_tokens":512,"prompt_cache_miss_tokens":1895},"system_fingerprint":"fp_9954b31ca7_prod0820_fp8_kvcache_20260402"}
+
+26-06-12.15:58:02.977 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.15:58:02.978 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.15:58:02.992 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.15:58:31.853 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Revoke previously assigned partitions document.indexing-0, document.indexing-1, document.indexing-2
+26-06-12.15:58:31.855 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: partitions revoked: [document.indexing-0, document.indexing-1, document.indexing-2]
+26-06-12.15:58:31.856 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Member consumer-qa-agent-indexing-1-3975cc36-07ab-4c90-a86c-3a28f1b21af1 sending LeaveGroup request to coordinator 134.175.232.110:19092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+26-06-12.15:58:31.858 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting generation and member id due to: consumer pro-actively leaving the group
+26-06-12.15:58:31.858 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: consumer pro-actively leaving the group
+26-06-12.15:58:31.858 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  LegacyKafkaConsumer    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Unsubscribed all topics or patterns and assigned partitions
+26-06-12.15:58:31.861 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting generation and member id due to: consumer pro-actively leaving the group
+26-06-12.15:58:31.861 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: consumer pro-actively leaving the group
+26-06-12.15:58:32.029 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Metrics scheduler closed
+26-06-12.15:58:32.029 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+26-06-12.15:58:32.029 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+26-06-12.15:58:32.029 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Metrics reporters closed
+26-06-12.15:58:32.042 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  AppInfoParser          - App info kafka.consumer for consumer-qa-agent-indexing-1 unregistered
+26-06-12.15:58:32.043 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: Consumer stopped
+26-06-12.15:58:32.050 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-12.15:58:32.760 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-12.15:58:32.771 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-12.15:58:32.785 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.

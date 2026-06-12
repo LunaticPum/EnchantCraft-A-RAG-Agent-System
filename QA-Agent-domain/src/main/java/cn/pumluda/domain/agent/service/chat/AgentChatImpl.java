@@ -3,6 +3,8 @@ package cn.pumluda.domain.agent.service.chat;
 import cn.pumluda.domain.agent.adapter.prompt.IPromptLoader;
 import cn.pumluda.domain.agent.model.valobj.Citation;
 import cn.pumluda.domain.agent.model.valobj.RetrievalMode;
+import cn.pumluda.domain.agent.service.mcp.agent.IToolCallingAgent;
+import cn.pumluda.domain.agent.service.mcp.tool.KnowledgeBaseSearchTool;
 import cn.pumluda.domain.agent.service.memory.IAgentMemory;
 import cn.pumluda.domain.agent.service.rewrite.IQueryRewriter;
 import cn.pumluda.domain.document.model.valobj.SearchResult;
@@ -13,6 +15,7 @@ import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.chat.response.ChatResponse;
+import dev.langchain4j.service.AiServices;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -36,54 +39,66 @@ public class AgentChatImpl implements IAgentChat {
     private final IPromptLoader promptLoader;
     private final IAgentMemory agentMemory;
     private final IQueryRewriter queryRewriter;
+    private final IToolCallingAgent toolCallingAgent;
 
-    public AgentChatImpl(ChatModel chatModel, HybridRetrieverImpl hybridRetriever,
-                         IPromptLoader promptLoader, IAgentMemory agentMemory,
-                         IQueryRewriter queryRewriter) {
+    public AgentChatImpl(ChatModel chatModel, HybridRetrieverImpl hybridRetriever, IPromptLoader promptLoader, IAgentMemory agentMemory, IQueryRewriter queryRewriter, KnowledgeBaseSearchTool knowledgeBaseTool) {
         this.chatModel = chatModel;
         this.hybridRetriever = hybridRetriever;
         this.promptLoader = promptLoader;
         this.agentMemory = agentMemory;
         this.queryRewriter = queryRewriter;
+        this.toolCallingAgent = AiServices.builder(IToolCallingAgent.class).chatModel(chatModel).chatMemoryProvider(
+                agentMemory.getProvider()).tools(knowledgeBaseTool).build();
     }
 
     @Override
     public String chat(String sessionId, String userMessage, RetrievalMode retrievalMode, Consumer<String> onToken, Consumer<List<Citation>> onCitation) {
         log.info("[Agent对话] sessionId={}, mode={}, message={}", sessionId, retrievalMode, userMessage);
 
-        // 0. 查询改写（提升检索召回率）
+        if (retrievalMode == RetrievalMode.TOOL) {
+            return chatWithToolCalling(sessionId, userMessage, onToken);
+        }
+        return chatWithForceRetrieval(sessionId, userMessage, onToken, onCitation);
+    }
+
+    // ==================== FORCE 模式（强制检索） ====================
+
+    private String chatWithForceRetrieval(String sessionId, String userMessage, Consumer<String> onToken, Consumer<List<Citation>> onCitation) {
+        // ① 查询改写 → ② RAG 检索 → ③ Prompt 组装 → ④ LLM 生成 → ⑤ 记忆追加
         String searchQuery = queryRewriter.rewrite(userMessage);
-
-        // 1. RAG 检索证据（以改写后的 query 检索）
         List<SearchResult> searchResults = hybridRetriever.search(searchQuery, 5, true);
-        List<Citation> citations = buildCitations(searchResults);
-        onCitation.accept(citations);
+        onCitation.accept(buildCitations(searchResults));
 
-        // 2. 组装上下文
         ChatMemory memory = agentMemory.getProvider().get(sessionId);
         String evidence = buildEvidenceText(searchResults);
         String systemPrompt = promptLoader.loadSystemPrompt().replace("{evidence}", evidence);
         UserMessage userMsg = UserMessage.from(userMessage);
 
-        // 3. 组装消息列表：SystemPrompt + 历史 + 当前用户问题
         List<ChatMessage> allMessages = new ArrayList<>();
         allMessages.add(SystemMessage.from(systemPrompt));
-        allMessages.addAll(memory.messages());      // ChatMemory 已有的历史消息
+        allMessages.addAll(memory.messages());
         allMessages.add(userMsg);
 
-        // 4. 调 LLM → Response<AiMessage> → .aiMessage().text()
         ChatResponse response = chatModel.chat(allMessages);
         String fullAnswer = response.aiMessage().text();
 
-        // 5. 追加到记忆
         memory.add(userMsg);
         memory.add(response.aiMessage());
 
-        // 6. 逐字符回调给上层（Controller 用 SSE 推送）
         for (char c : fullAnswer.toCharArray()) {
             onToken.accept(String.valueOf(c));
         }
+        return fullAnswer;
+    }
 
+    // ==================== TOOL 模式（AiServices Tool Calling） ====================
+
+    private String chatWithToolCalling(String sessionId, String userMessage, Consumer<String> onToken) {
+        String fullAnswer = toolCallingAgent.chat(sessionId, userMessage);
+
+        for (char c : fullAnswer.toCharArray()) {
+            onToken.accept(String.valueOf(c));
+        }
         return fullAnswer;
     }
 
