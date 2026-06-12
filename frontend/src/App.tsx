@@ -16,8 +16,8 @@ const nav = [
 function AppShell() {
   const { logout } = useAuth();
   return (
-    <div className="min-h-screen flex flex-col p-6">
-      <div className="flex-1 flex flex-col max-w-[1480px] mx-auto w-full gap-4">
+    <div className="h-screen flex flex-col p-6 overflow-hidden">
+      <div className="flex-1 min-h-0 flex flex-col max-w-[1480px] mx-auto w-full gap-4">
         <header className="flex items-center px-5 py-2.5 glass rounded-full">
           <div className="flex items-center gap-2.5 w-[220px] flex-shrink-0">
             <img src="/obsidian-icon.png" alt="QA Agent" className="w-8 h-8" />
@@ -48,7 +48,7 @@ function AppShell() {
             </button>
           </div>
         </header>
-        <div className="flex-1 glass-lg overflow-hidden"><Outlet /></div>
+        <div className="flex-1 min-h-0 flex flex-col glass-lg overflow-hidden"><Outlet /></div>
         <footer className="text-center text-[10px] text-[var(--color-ink-faint)] opacity-40">QA Agent · React + Vite + TypeScript</footer>
       </div>
     </div>

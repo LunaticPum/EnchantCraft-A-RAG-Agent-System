@@ -1,5 +1,9 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 
 /** Obsidian callout → 普通 blockquote 文本转换 */
 const CALLOUT_RE = /^\[!(\w+)\]\s*(.*)/;
@@ -54,7 +58,7 @@ export function MdViewer({ content, maxLen = 3000 }: MdViewerProps) {
   const md = truncateContent(convertCallouts(content || ""), maxLen);
   return (
     <div className="md-content">
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{md}</ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]} rehypePlugins={[rehypeKatex]}>{md}</ReactMarkdown>
     </div>
   );
 }

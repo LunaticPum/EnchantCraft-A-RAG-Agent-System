@@ -164,7 +164,7 @@ export default function DocumentPage() {
               <p className="text-xs text-[var(--color-ink-faint)] px-2">暂无文档</p>
             ) : (
               tree.map((node) => (
-                <RenderTreeNode key={node.name || "__root__"} node={node} depth={0}
+                <RenderTreeNode key={node.docs[0]?.id || node.name || `root-${Math.random()}`} node={node} depth={0}
                   selectedDocId={selectedDoc?.id} onSelect={(d) => { setSelectedDoc(d); loadChunks(d.id); }}
                   expanded={expandedFolders} toggle={(name) => setExpandedFolders(p => {
                     const n = new Set(p); n.has(name) ? n.delete(name) : n.add(name); return n;

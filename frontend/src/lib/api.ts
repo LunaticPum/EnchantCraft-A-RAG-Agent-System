@@ -1,4 +1,4 @@
-const BASE = "/api/v1";
+const BASE = "http://localhost:8091/api/v1";
 
 export interface DocumentItem {
   id: string;
@@ -21,11 +21,10 @@ export interface ChunkItem {
   createdAt: string;
 }
 
-export interface ApiResponse<T> {
-  code: string;
-  info: string;
-  data: T;
+export interface CitationItem {
+  chunkId: string; documentId: string; titlePath: string; snippet: string;
 }
+export interface ApiResponse<T> { code: string; info: string; data: T; }
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(BASE + url, options);
@@ -61,5 +60,48 @@ export const api = {
       xhr.open("POST", BASE + "/document/upload");
       xhr.send(form);
     });
+  },
+
+  /* Agent SSE chat */
+  agentChat: (
+    body: { sessionId?: string; message: string; retrievalMode: string },
+    onCitation: (c: CitationItem[]) => void,
+    onToken: (t: string) => void,
+    onDone: (sid: string) => void,
+    onError: (err: string) => void,
+  ) => {
+    fetch(BASE + "/agent/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }).then(async (res) => {
+      if (!res.ok || !res.body) { onError("请求失败"); return; }
+      const reader = res.body.getReader();
+      const dec = new TextDecoder();
+      let buf = "", eType = "";
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        const lines = buf.split("\n");
+        buf = lines.pop() || "";  // keep incomplete line for next read
+        for (const line of lines) {
+          const l = line.replace(/\r$/, "");
+          if (l === "") continue;  // skip blank lines between frames
+          if (l.startsWith("event:")) { eType = l.slice(6).trim(); }
+          else if (l.startsWith("data:") && eType) {
+            const raw = l.slice(5);
+            const d = eType === "token" ? raw : raw.replace(/^\s/, "");
+            try {
+              if (eType === "citation") onCitation(JSON.parse(d));
+              else if (eType === "token") onToken(d);
+              else if (eType === "done") onDone(d);
+              else if (eType === "error") onError(d);
+            } catch {}
+            eType = "";  // dispatched, clear for next
+          }
+        }
+      }
+    }).catch((e) => onError(e.message || "对话失败"));
   },
 };

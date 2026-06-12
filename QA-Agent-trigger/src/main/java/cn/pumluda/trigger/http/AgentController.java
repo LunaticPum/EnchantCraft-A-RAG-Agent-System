@@ -1,22 +1,17 @@
 package cn.pumluda.trigger.http;
 
 import cn.pumluda.api.dto.AgentChatRequest;
-import cn.pumluda.domain.agent.model.valobj.Citation;
 import cn.pumluda.domain.agent.model.valobj.RetrievalMode;
 import cn.pumluda.domain.agent.service.chat.IAgentChat;
+import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
-/**
- * Agent 对话接口 —— SSE 流式推送
- */
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/agent")
@@ -29,62 +24,58 @@ public class AgentController {
         this.agentChat = agentChat;
     }
 
-    /**
-     * Agent RAG 对话（SSE 流式）
-     * <p>
-     * 事件类型：
-     * <ul>
-     *   <li>{@code citation} — 检索完成后推送的引用列表（JSON）</li>
-     *   <li>{@code token} — 逐字推送的回答文本</li>
-     *   <li>{@code done} — 对话结束</li>
-     * </ul>
-     */
-    @PostMapping(value = "/chat", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @PostMapping(value = "/chat", produces = "text/event-stream;charset=UTF-8")
     public SseEmitter chat(@RequestBody AgentChatRequest request) {
-        String sessionId = request.getSessionId() != null ? request.getSessionId() : UUID.randomUUID().toString();
-        RetrievalMode mode = "TOOL".equalsIgnoreCase(
-                request.getRetrievalMode()) ? RetrievalMode.TOOL : RetrievalMode.FORCE;
+        String sessionId = request.getSessionId() != null
+                ? request.getSessionId() : UUID.randomUUID().toString();
+        RetrievalMode mode = "TOOL".equalsIgnoreCase(request.getRetrievalMode())
+                ? RetrievalMode.TOOL : RetrievalMode.FORCE;
 
         log.info("[Agent接口] 对话请求: sessionId={}, mode={}, message={}", sessionId, mode, request.getMessage());
 
-        SseEmitter emitter = new SseEmitter(5 * 60_000L); // 5 分钟超时
+        SseEmitter emitter = new SseEmitter(5 * 60_000L);
+        emitter.onTimeout(emitter::complete);
+        emitter.onError(emitter::completeWithError);
 
-        CompletableFuture.runAsync(() -> {
+        // 单线程执行，保序
+        new Thread(() -> {
             try {
-                List<Citation>[] citationsHolder = new List[1];
-
-                String answer = agentChat.chat(
-                        sessionId, request.getMessage(), mode, token -> {
+                // 先发引用
+                agentChat.chat(
+                        sessionId, request.getMessage(), mode,
+                        token -> {
                             try {
-                                emitter.send(SseEmitter.event().name("token").data(token));
+                                sse(emitter, "token", token);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
-                        }, citations -> {
-                            citationsHolder[0] = citations;
+                        },
+                        citations -> {
                             try {
-                                emitter.send(SseEmitter.event().name("citation").data(citations));
+                                sse(emitter, "citation", JSON.toJSONString(citations));
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
                         }
                 );
-
-                emitter.send(SseEmitter.event().name("done").data("{\"sessionId\":\"" + sessionId + "\"}"));
+                sse(emitter, "done", sessionId);
                 emitter.complete();
-
             } catch (Exception e) {
-                log.error("[Agent接口] 对话失败: {}", e.getMessage(), e);
+                log.error("[Agent接口] 失败: {}", e.getMessage(), e);
                 try {
-                    emitter.send(SseEmitter.event().name("error").data(e.getMessage()));
+                    sse(emitter, "error", e.getMessage());
                     emitter.complete();
                 } catch (IOException ex) {
                     emitter.completeWithError(ex);
                 }
             }
-        });
+        }).start();
 
         return emitter;
+    }
+
+    private void sse(SseEmitter emitter, String event, String data) throws IOException {
+        emitter.send(SseEmitter.event().name(event).data(data));
     }
 
 }

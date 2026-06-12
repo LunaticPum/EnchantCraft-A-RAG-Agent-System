@@ -17,6 +17,8 @@ spring:
   # Kafka 消息队列：异步索引
   kafka:
     bootstrap-servers: 134.175.232.110:19092
+    listener:
+      auto-startup: false
     consumer:
       group-id: qa-agent-indexing
       auto-offset-reset: earliest
@@ -56,4 +58,6 @@ logging:
   level:
     cn.pumluda: debug
     dev.langchain4j: debug
+    org.apache.kafka: error
+    org.springframework.kafka: error
   config: classpath:logback-spring.xml

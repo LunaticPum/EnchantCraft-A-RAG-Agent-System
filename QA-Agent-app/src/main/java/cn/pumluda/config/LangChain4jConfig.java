@@ -5,6 +5,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
+import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,26 +43,23 @@ public class LangChain4jConfig {
 
     @Bean
     public OpenAiChatModel chatModel() {
-        return OpenAiChatModel.builder()
-                              .apiKey(chatModelApiKey)
-                              .baseUrl(chatModelBaseUrl)
-                              .modelName(chatModel)
-                              .timeout(Duration.ofSeconds(60))
-                              .logRequests(true)
-                              .logResponses(true)
-                              .build();
+        return OpenAiChatModel.builder().apiKey(chatModelApiKey).baseUrl(chatModelBaseUrl).modelName(chatModel).timeout(
+                Duration.ofSeconds(60)).logRequests(true).logResponses(true).build();
+    }
+
+    /**
+     * 流式对话模型
+     */
+    @Bean
+    public OpenAiStreamingChatModel streamingChatModel() {
+        return OpenAiStreamingChatModel.builder().apiKey(chatModelApiKey).baseUrl(chatModelBaseUrl).modelName(chatModel)
+                                       .timeout(Duration.ofSeconds(60)).build();
     }
 
     @Bean
     public EmbeddingModel embeddingModel() {
-        return OpenAiEmbeddingModel.builder()
-                                   .apiKey(dashScopeApiKey)
-                                   .baseUrl(dashScopeBaseUrl)
-                                   .modelName(embeddingModel)
-                                   .timeout(Duration.ofSeconds(60))
-                                   .logRequests(false)
-                                   .logResponses(false)
-                                   .build();
+        return OpenAiEmbeddingModel.builder().apiKey(dashScopeApiKey).baseUrl(dashScopeBaseUrl).modelName(
+                embeddingModel).timeout(Duration.ofSeconds(60)).logRequests(false).logResponses(false).build();
     }
 
     @Bean

@@ -1,17 +1,15 @@
 package cn.pumluda.domain.agent.adapter.prompt;
 
+import cn.pumluda.domain.agent.model.valobj.RetrievalMode;
+
 /**
- * Prompt 模板加载器 —— 从外部文件读取 System Prompt
- * <p>
- * 每次调用实时读取文件，天然支持热更新——改完 docs/prompts/*.md 无需重启。
+ * Prompt 模板加载器 —— 每次调用实时读取文件，支持热更新
  */
 public interface IPromptLoader {
 
     /**
-     * 加载 Agent System Prompt 模板
-     *
-     * @return 原始模板文本（包含 {evidence} 等占位符）
+     * 根据检索模式加载对应的 System Prompt
      */
-    String loadSystemPrompt();
+    String loadPrompt(RetrievalMode mode);
 
 }
