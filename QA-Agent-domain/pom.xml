@@ -59,6 +59,10 @@
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j</artifactId>
         </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-open-ai</artifactId>
+        </dependency>
         <!-- flexmark：Markdown AST 解析，用于文档分块 -->
         <dependency>
             <groupId>com.vladsch.flexmark</groupId>

@@ -3003,3 +3003,251 @@ CREATE TABLE `user_tag_record`
 26-06-12.14:03:16.202 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
 26-06-12.14:03:16.240 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 26-06-12.14:03:16.289 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+26-06-12.14:03:36.641 [main            ] INFO  Application            - Starting Application using Java 17.0.14 with PID 7200 (D:\JavaProject\QA-Agent-Pumluda\QA-Agent-app\target\classes started by 16374 in D:\JavaProject\QA-Agent-Pumluda)
+26-06-12.14:03:36.647 [main            ] DEBUG Application            - Running with Spring Boot v3.4.3, Spring v6.2.3
+26-06-12.14:03:36.649 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-06-12.14:03:40.460 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port 8091 (http)
+26-06-12.14:03:40.470 [main            ] INFO  AprLifecycleListener   - An older version [2.0.3] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+26-06-12.14:03:40.471 [main            ] INFO  AprLifecycleListener   - Loaded Apache Tomcat Native library [2.0.3] using APR version [1.7.2].
+26-06-12.14:03:40.485 [main            ] INFO  AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 3.0.8 7 Feb 2023]
+26-06-12.14:03:40.524 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-06-12.14:03:40.528 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-06-12.14:03:40.529 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/10.1.36]
+26-06-12.14:03:40.775 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-06-12.14:03:40.776 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3950 ms
+26-06-12.14:03:43.746 [main            ] INFO  OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+26-06-12.14:03:44.415 [main            ] INFO  MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7544a1e4
+26-06-12.14:03:44.994 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-06-12.14:03:45.024 [main            ] INFO  TomcatWebServer        - Tomcat started on port 8091 (http) with context path '/'
+26-06-12.14:03:45.145 [main            ] INFO  ConsumerConfig         - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [134.175.232.110:19092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-qa-agent-indexing-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = qa-agent-indexing
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+26-06-12.14:03:45.305 [main            ] INFO  KafkaMetricsCollector  - initializing Kafka metrics collector
+26-06-12.14:03:45.553 [main            ] INFO  AppInfoParser          - Kafka version: 3.8.1
+26-06-12.14:03:45.554 [main            ] INFO  AppInfoParser          - Kafka commitId: 70d6ff42debf7e17
+26-06-12.14:03:45.554 [main            ] INFO  AppInfoParser          - Kafka startTimeMs: 1781244225550
+26-06-12.14:03:45.562 [main            ] INFO  LegacyKafkaConsumer    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Subscribed to topic(s): document.indexing
+26-06-12.14:03:45.602 [main            ] INFO  Application            - Started Application in 11.034 seconds (process running for 12.997)
+26-06-12.14:03:45.798 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+26-06-12.14:03:46.393 [scheduling-1    ] INFO  HikariPool             - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@437ebc15
+26-06-12.14:03:46.398 [scheduling-1    ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+26-06-12.14:03:46.416 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:03:46.516 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:03:46.613 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:03:46.765 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metadata               - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+26-06-12.14:03:46.768 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Discovered group coordinator 134.175.232.110:19092 (id: 2147483646 rack: null)
+26-06-12.14:03:46.775 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] (Re-)joining group
+26-06-12.14:03:46.829 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: need to re-join with the given member-id: consumer-qa-agent-indexing-1-6c8689f4-704f-471f-b1a7-2ad30543dff2
+26-06-12.14:03:46.831 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] (Re-)joining group
+26-06-12.14:03:49.845 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Successfully joined group with generation Generation{generationId=7, memberId='consumer-qa-agent-indexing-1-6c8689f4-704f-471f-b1a7-2ad30543dff2', protocol='range'}
+26-06-12.14:03:49.863 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Finished assignment for group at generation 7: {consumer-qa-agent-indexing-1-6c8689f4-704f-471f-b1a7-2ad30543dff2=Assignment(partitions=[document.indexing-0, document.indexing-1, document.indexing-2])}
+26-06-12.14:03:49.890 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Successfully synced group in generation Generation{generationId=7, memberId='consumer-qa-agent-indexing-1-6c8689f4-704f-471f-b1a7-2ad30543dff2', protocol='range'}
+26-06-12.14:03:49.893 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Notifying assignor about the new Assignment(partitions=[document.indexing-0, document.indexing-1, document.indexing-2])
+26-06-12.14:03:49.901 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Adding newly assigned partitions: document.indexing-0, document.indexing-1, document.indexing-2
+26-06-12.14:03:49.930 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Found no committed offset for partition document.indexing-1
+26-06-12.14:03:49.936 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerUtils          - Setting offset for partition document.indexing-2 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=0}}
+26-06-12.14:03:49.937 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerUtils          - Setting offset for partition document.indexing-0 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=0}}
+26-06-12.14:03:49.984 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  SubscriptionState      - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting offset for partition document.indexing-1 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[134.175.232.110:19092 (id: 1 rack: null)], epoch=0}}.
+26-06-12.14:03:49.986 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: partitions assigned: [document.indexing-0, document.indexing-1, document.indexing-2]
+26-06-12.14:04:15.613 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:04:15.614 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:04:15.627 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:04:45.613 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:04:45.615 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:04:45.627 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:05:15.622 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:05:15.623 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:05:15.639 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:05:45.612 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:05:45.613 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:05:45.627 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:06:15.615 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:06:15.615 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:06:15.627 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:06:46.244 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:06:46.244 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:06:46.263 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:07:15.626 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:07:15.627 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:07:15.642 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:07:45.623 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:07:45.624 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:07:45.641 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:08:15.623 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:08:15.624 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:08:15.636 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:08:45.622 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:08:45.624 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:08:45.637 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:09:15.623 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:09:15.624 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:09:15.638 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:09:45.623 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:09:45.623 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:09:45.636 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:10:15.612 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:10:15.612 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:10:15.623 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:10:45.621 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:10:45.622 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:10:45.633 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:11:15.630 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:11:15.632 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:11:15.654 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:11:46.109 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:11:46.110 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:11:46.125 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:12:15.624 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:12:15.625 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:12:15.639 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:12:45.625 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:12:45.626 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:12:45.636 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:12:46.897 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  NetworkClient          - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Node -1 disconnected.
+26-06-12.14:13:15.619 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:13:15.620 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:13:15.634 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:13:45.612 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:13:45.613 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:13:45.629 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:14:15.614 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:14:15.616 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:14:15.628 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:14:45.618 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:14:45.619 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:14:45.629 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:15:15.616 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:15:15.617 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:15:15.630 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:15:45.621 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:15:45.622 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:15:45.636 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:16:15.621 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:16:15.623 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:16:15.633 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:16:45.617 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:16:45.618 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:16:45.630 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:17:15.620 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:17:15.620 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:17:15.630 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:17:45.622 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:17:45.624 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:17:45.636 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:18:15.619 [scheduling-1    ] DEBUG selectList             - ==>  Preparing: SELECT job_id,document_id,topic,status,retry_count,error_msg,created_at,updated_at FROM message_job WHERE ((status = ? OR (status = ? AND retry_count < ?)))
+26-06-12.14:18:15.621 [scheduling-1    ] DEBUG selectList             - ==> Parameters: PENDING(String), FAILED(String), 3(Integer)
+26-06-12.14:18:15.634 [scheduling-1    ] DEBUG selectList             - <==      Total: 0
+26-06-12.14:18:31.722 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Revoke previously assigned partitions document.indexing-0, document.indexing-1, document.indexing-2
+26-06-12.14:18:31.724 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: partitions revoked: [document.indexing-0, document.indexing-1, document.indexing-2]
+26-06-12.14:18:31.725 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Member consumer-qa-agent-indexing-1-6c8689f4-704f-471f-b1a7-2ad30543dff2 sending LeaveGroup request to coordinator 134.175.232.110:19092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+26-06-12.14:18:31.726 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting generation and member id due to: consumer pro-actively leaving the group
+26-06-12.14:18:31.726 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: consumer pro-actively leaving the group
+26-06-12.14:18:31.726 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  LegacyKafkaConsumer    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Unsubscribed all topics or patterns and assigned partitions
+26-06-12.14:18:31.731 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Resetting generation and member id due to: consumer pro-actively leaving the group
+26-06-12.14:18:31.731 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  ConsumerCoordinator    - [Consumer clientId=consumer-qa-agent-indexing-1, groupId=qa-agent-indexing] Request joining group due to: consumer pro-actively leaving the group
+26-06-12.14:18:32.191 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Metrics scheduler closed
+26-06-12.14:18:32.191 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+26-06-12.14:18:32.192 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+26-06-12.14:18:32.192 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  Metrics                - Metrics reporters closed
+26-06-12.14:18:32.209 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  AppInfoParser          - App info kafka.consumer for consumer-qa-agent-indexing-1 unregistered
+26-06-12.14:18:32.211 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  KafkaMessageListenerContainer - qa-agent-indexing: Consumer stopped
+26-06-12.14:18:32.223 [SpringApplicationShutdownHook] INFO  GracefulShutdown       - Commencing graceful shutdown. Waiting for active requests to complete
+26-06-12.14:18:33.244 [tomcat-shutdown ] INFO  GracefulShutdown       - Graceful shutdown complete
+26-06-12.14:18:33.258 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+26-06-12.14:18:33.302 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
