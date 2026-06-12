@@ -22,7 +22,8 @@
 | 向量存储 | PostgreSQL pgvector | pg17 | 自定义 `PgVectorStore` (JdbcTemplate) |
 | ORM | MyBatis-Plus | 3.5.16 | MySQL 业务数据 |
 | 数据库 | MySQL | 8.0+ | 远程 134.175.232.110:13306 |
-| 数据库 | PostgreSQL + pgvector + zhparser | pg17 | 本地 Docker 15432 |
+| 数据库 | PostgreSQL + pgvector + zhparser | pg17 | 远程 134.175.232.110:15432 |
+| 消息队列 | Kafka | 4.0 | 异步索引、消息追踪 |
 | Markdown 解析 | flexmark | 0.64.8 | AST 按标题层级分块 |
 | DashScope SDK | dashscope-sdk-java | 2.22.17 | Rerank 重排序 |
 | JSON | fastjson2 | 2.0.61 | - |
@@ -36,7 +37,7 @@ QA-Agent-Pumluda/
 ├── QA-Agent-types/        共享类型、常量、枚举、异常、Response 包装
 ├── QA-Agent-domain/       领域模型 + 领域服务接口 + 实现
 ├── QA-Agent-infrastructure/  DAO/PO/Repository 实现、PgVectorStore
-├── QA-Agent-trigger/      HTTP Controller、全局异常处理
+├── QA-Agent-trigger/      HTTP Controller、Kafka Consumer、定时Job、全局异常处理
 ├── QA-Agent-app/          Spring Boot 启动入口 + 配置类 + 数据源
 ├── docs/
 │   ├── dev-docs/V2/       V2 开发日志（V2.1~V2.5）
@@ -55,6 +56,34 @@ trigger → api, types, domain
 infrastructure → domain → types
 ```
 
+### 与原项目 QA-Agent 的层映射
+
+| 原项目 | Pumluda | 说明 |
+|--------|---------|------|
+| `qa-agent-types` | `QA-Agent-types` + `QA-Agent-api` | 共享类型放 types，API DTO 放 api |
+| `qa-agent-domain` | `QA-Agent-domain` | 业务逻辑 + 领域服务 |
+| `qa-agent-infrastructure` | `QA-Agent-infrastructure` | DAO/PO/Repository 实现 |
+| `qa-agent-interfaces` | `QA-Agent-trigger` | Controller、Job、Listener |
+| `qa-agent-application` | `QA-Agent-app` | 启动 + 配置 |
+
+### 包名规范
+
+基础包名：`cn.pumluda`
+
+| 层 | 包名模式 |
+|----|----------|
+| domain | `cn.pumluda.domain.<bounded-context>.model.{entity,valobj,aggregate}` |
+| domain service | `cn.pumluda.domain.<bounded-context>.service` |
+| domain repository | `cn.pumluda.domain.<bounded-context>.adapter.repository` |
+| domain producer | `cn.pumluda.domain.<bounded-context>.adapter.producer` |
+| infrastructure DAO | `cn.pumluda.infrastructure.dao` |
+| infrastructure PO | `cn.pumluda.infrastructure.dao.po` |
+| infrastructure adapter | `cn.pumluda.infrastructure.adapter.repository` |
+| trigger HTTP | `cn.pumluda.trigger.http` |
+| trigger consumer | `cn.pumluda.trigger.consumer` |
+| trigger job | `cn.pumluda.trigger.job` |
+| app config | `cn.pumluda.config` |
+
 ## 版本规划
 
 ### 总体路线
@@ -63,8 +92,8 @@ infrastructure → domain → types
 |--------|----------|------|
 | V1 | 框架搭建 + 依赖导入 + LangChain4j 配置 | ✅ 完成 |
 | V2 | 文档上传 + Markdown 分块 + Embedding + RAG 检索 | ✅ 完成 |
-| V3 | PostgreSQL pgvector 检索引擎 | 🚧 当前阶段 |
-| V4 | QA 生成 Agent DAG | ⏳ |
+| V3 | PostgreSQL pgvector 检索引擎 | ✅ 完成 |
+| V4 | QA 生成 Agent DAG | ⏳ 下一步 |
 | V5 | 反馈 + 评分 Agent | ⏳ |
 | V6 | Memory & History | ⏳ |
 
@@ -79,29 +108,20 @@ infrastructure → domain → types
 | V2.4 | 关键词检索 + RRF 多路融合混合检索 | ✅ |
 | V2.5 | DashScope gte-rerank 重排序 | ✅ |
 
-### V3 子版本规划
+### V3 完成情况
 
-| 子版本 | 核心功能 | 状态 |
-|--------|----------|------|
-| V3.1 | PostgreSQL + pgvector + zhparser 部署 + chunk_search 建表 | ✅ 完成 |
-| V3.2 | PgVectorStore 替换 InMemoryEmbeddingStore（JdbcTemplate + 手写 SQL） | ✅ 完成 |
-| V3.3 | 中文分词全文检索（zhparser tsvector 替换 MySQL LIKE） | ⏳ 下一步 |
-| V3.4 | 数据重建 + 增量同步 | ⏳ |
+| 子版本 | 核心功能 | Git 提交 |
+|--------|----------|----------|
+| V3.1 | PostgreSQL + pgvector + zhparser 部署 + chunk_search 建表 | ✅ |
+| V3.2 | PgVectorStore 替换 InMemoryEmbeddingStore（JdbcTemplate + 手写 SQL） | ✅ |
+| V3.3 | 中文分词全文检索（zhparser tsvector + GIN 替换 MySQL LIKE） | ✅ |
+| V3.4 | Kafka 异步索引 + message_job 消息追踪 + 兜底轮询 | ✅ |
 
-### V3.3 规划 —— 中文分词全文检索
+### V4 规划 —— QA 生成 Agent DAG
 
-**目标：** 关键词检索从 MySQL `LIKE '%keyword%'` 升级为 PostgreSQL `tsvector + zhparser + GIN` 索引检索
+**目标：** 基于 LangChain4j Agentic 框架，实现文档→问答集的自动生成管线
 
-**当前问题：**
-- `KeywordRetrieverImpl` 走 MySQL `LIKE`，全表扫，无索引
-- 关键字段 `content_tsv`（tsvector 列）和 `module_tags`（JSONB 列）已建但未填充
-- zhparser 中文分词扩展已编译部署（Dockerfile），`chinese` 分词配置已建
-
-**要做的事：**
-1. `PgVectorStore.addAll()` 插入时：`to_tsvector('chinese', content)` 写入 `content_tsv`
-2. 新增 `IDocumentChunkRepository.findByFullText(query, limit)` → PostgreSQL `ts_rank + tsquery`
-3. `KeywordRetrieverImpl` 切换为调用 PostgreSQL 全文检索（复用 `postgresDataSource`）
-4. 验证：搜索"存储引擎"和"引擎存储"结果不同（分词生效），搜索速度对比
+待具体规划。
 
 ## 开发约束
 
@@ -135,20 +155,60 @@ infrastructure → domain → types
 - 风格：个人学习笔记，Obsidian 格式，多用 callout 和 mermaid 图表
 - 调用链/流程图统一用 ````mermaid` 代码块
 
+## DDD 架构红线（V3 踩坑总结）
+
+以下是在 V3 开发中实际犯过的错误，以后禁止：
+
+### 1. domain 层禁止直接引 infrastructure 层
+- ❌ `DocumentServiceImpl` 注入 `MessageJobDao`（MyBatis-Plus DAO）
+- ✅ `DocumentServiceImpl` 注入 `IMessageJobRepository`（domain 接口），infra 层实现
+- ❌ `DocumentController` 注入 `MessageJobDao` 查状态
+- ✅ Controller → `IDocumentService.getEmbeddingStatus()` → `IMessageJobRepository.getStatus()`
+
+**原则：** domain 和 trigger 层只依赖接口，infrastructure 做具体实现。需要一个外部依赖时，先在 domain 定义接口（`adapter/repository/` 或 `adapter/producer/`），在 infra 实现。
+
+### 2. 双数据源不要暴露两个 DataSource Bean
+- ❌ 同时创建 `dataSource` 和 `postgresDataSource` 两个 Bean → Spring Boot 自动配置被跳过
+- ❌ 两个都显式声明 + `@Primary` / `@Qualifier` 反复拉扯 → jdbcUrl 绑定失败
+- ✅ MySQL 交给 Spring Boot 自动配置，PostgreSQL 在 `LangChain4jConfig` 内部 `new HikariDataSource()`，不暴露为 Bean
+
+**原则：** 双数据源最简单的方式是只留一个自动配置，另一个完全手动管理，不注册为 Spring Bean。
+
+### 3. LangChain4j API 版本一致性
+- ❌ `EmbeddingStore.findRelevant()` — 1.14.0 已废弃，只有 `search(EmbeddingSearchRequest)`
+- ❌ 引入不存在的 `langchain4j-pgvector` — 1.14.0 BOM 中没有这个模块
+- ✅ 所有 SDK 调用前确认 properties 中声明的版本号，以该版本的 API 文档为准
+
+**原则：** 写代码前以父 POM `<properties>` 中声明的版本为准，不用记忆中的 API，不确定就查原项目怎么写的。
+
+### 4. Kafka 消费者参数类型
+- ❌ `@KafkaListener` 方法参数用 `Map<String, Object>` — Spring Kafka 反序列化失败
+- ✅ 用 `String` 接收原始 JSON → `JSON.parseObject()` 手动解析
+
+### 5. EmbeddingService 只做 Embedding，不做业务编排
+- `DocumentServiceImpl.uploadDocument()` 负责 ① ② 步（MySQL 事务内）
+- `embedDocumentChunks()` 负责 ③ 步（异步，无事务）
+- 拆分比一把梭更灵活
+
+### 6. YAML 一个文件只能有一个同名根节点
+- ❌ 两个 `spring:` 根节点 → `DuplicateKeyException`
+- ✅ 所有 spring 配置合并到一个 `spring:` 块下
+
 ## 数据库表
 
 ### MySQL（业务数据）
 
 | 表名 | 用途 | 版本 |
 |------|------|------|
-| `source_document` | 文档仓库 | V2.1 |
-| `document_chunk` | 分块文本 | V2.2 |
+| `source_document` | 文档仓库，存上传的 Markdown 原文 + MD5 查重 | V2.1 |
+| `document_chunk` | 分块文本，按标题层级切分后的语义块（业务真数据） | V2.2 |
+| `message_job` | Kafka 异步索引消息追踪（PENDING/COMPLETED/FAILED） | V3.4 |
 
 ### PostgreSQL（RAG 检索引擎）
 
 | 表名 | 用途 | 版本 |
 |------|------|------|
-| `chunk_search` | 向量 + 全文索引（embedding / content_tsv / module_tags） | V3.1 |
+| `chunk_search` | 向量 + 全文索引 + 标签（一表双引擎：HNSW + GIN） | V3.1 |
 
 ## 当前状态
 
@@ -157,14 +217,15 @@ infrastructure → domain → types
 |------|------|------|
 | MySQL | 134.175.232.110:13306 | ✅ 运行中 |
 | PostgreSQL | 134.175.232.110:15432 | ✅ 运行中（pgvector + zhparser） |
+| Kafka | 134.175.232.110:19092 | ✅ 运行中 |
 
-### V3.2 已完成
-- [x] PostgreSQL + zhparser 容器部署
-- [x] chunk_search 建表 + V3.2 迁移
+### V3 已完成
+- [x] PostgreSQL + zhparser 容器部署（Dockerfile 编译 scws + zhparser）
+- [x] chunk_search 表 + HNSW 向量索引 + GIN 全文索引 + GIN 标签索引
 - [x] PgVectorStore（JdbcTemplate 手写）替换 InMemoryEmbeddingStore
-- [x] 上传文档 → Embedding → PostgreSQL 持久化
-- [x] 双数据源（MySQL 自动配置 + PostgreSQL 内部创建，不冲突）
+- [x] 双数据源（MySQL 自动配置 + PostgreSQL `new HikariDataSource()` 内部创建）
+- [x] zhparser 中文分词全文检索（ts_rank + to_tsquery + GIN）替代 MySQL LIKE
+- [x] 上传 → Kafka 消息 → 异步 Embedding → message_job 追踪 → 兜底轮询
+- [x] Re-embed API（ON CONFLICT DO UPDATE 自动覆写）
+- [x] DDD 层间解耦（infra 实现的接口定义在 domain）
 
-### V3.2 待优化
-- [ ] `module_tags` 字段写入已验证（需重新上传文档生效）
-- [ ] `content_tsv` 字段待 V3.3 zhparser 全文检索填充
