@@ -30,8 +30,13 @@ public class IndexingProducer implements IIndexingMessageProducer {
                 "chunkCount", chunkCount,
                 "timestamp", LocalDateTime.now().toString()
         );
-        kafkaTemplate.send(TOPIC, documentId, message);
-        log.info("[Kafka生产者] 发送 Embedding 消息: documentId={}, chunks={}", documentId, chunkCount);
+        try {
+            kafkaTemplate.send(TOPIC, documentId, message);
+            log.info("[Kafka生产者] 发送成功: documentId={}", documentId);
+        } catch (Exception e) {
+            log.warn("[Kafka生产者] 发送失败(将由兜底轮询处理): documentId={}, error={}",
+                    documentId, e.getMessage());
+        }
     }
 
 }

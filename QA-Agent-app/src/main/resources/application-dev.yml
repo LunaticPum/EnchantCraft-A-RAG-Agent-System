@@ -17,14 +17,14 @@ spring:
   # Kafka 消息队列：异步索引
   kafka:
     bootstrap-servers: 134.175.232.110:19092
-    listener:
-      auto-startup: false
     consumer:
       group-id: qa-agent-indexing
       auto-offset-reset: earliest
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        max.block.ms: 3000
 
 # PostgreSQL + pgvector 数据源（RAG 检索引擎）
 pg:
@@ -58,6 +58,6 @@ logging:
   level:
     cn.pumluda: debug
     dev.langchain4j: debug
-    org.apache.kafka: error
-    org.springframework.kafka: error
+    org.apache.kafka.clients.NetworkClient: error
+    org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient: error
   config: classpath:logback-spring.xml

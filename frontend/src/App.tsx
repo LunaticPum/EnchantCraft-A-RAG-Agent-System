@@ -6,6 +6,7 @@ import SearchPage from "./pages/SearchPage";
 import WelcomePage from "./pages/WelcomePage";
 import LoginPage from "./pages/LoginPage";
 import { AuthProvider, useAuth } from "./lib/mockAuth";
+import { AgentStateProvider } from "./lib/agentStore";
 
 const nav = [
   { to: "/documents", icon: Files, label: "仓库" },
@@ -63,6 +64,7 @@ function ProtectedRoute() {
 export default function App() {
   return (
     <AuthProvider>
+      <AgentStateProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<WelcomePage />} />
@@ -74,6 +76,7 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </AgentStateProvider>
     </AuthProvider>
   );
 }

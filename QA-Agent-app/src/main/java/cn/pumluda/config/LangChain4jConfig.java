@@ -71,6 +71,9 @@ public class LangChain4jConfig {
         dataSource.setDriverClassName(pgDriver);
         dataSource.setMinimumIdle(2);
         dataSource.setMaximumPoolSize(10);
+        dataSource.setIdleTimeout(300000);
+        dataSource.setMaxLifetime(600000);
+        dataSource.setConnectionTestQuery("SELECT 1");
         return new PgVectorStore(dataSource);
     }
 

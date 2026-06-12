@@ -2,16 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import { Send, Sparkles, Link2, Bot, User, ToggleLeft, ToggleRight, ChevronDown } from "lucide-react";
 import { api, type CitationItem } from "../lib/api";
 import { MdViewer } from "../lib/markdown";
+import { useAgentStore, type Msg } from "../lib/agentStore";
 
 type Mode = "FORCE" | "TOOL";
-interface Msg { role: "USER" | "ASSISTANT"; content: string; citations?: CitationItem[]; done?: boolean; showCitations?: boolean }
 
 export default function AgentPage() {
+  const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid } = useAgentStore();
   const [mode, setMode] = useState<Mode>("FORCE");
   const [input, setInput] = useState("");
-  const [msgs, setMsgs] = useState<Msg[]>([]);
-  const [sending, setSending] = useState(false);
-  const [sid, setSid] = useState("");
   const bottom = useRef<HTMLDivElement>(null);
 
   useEffect(() => { if (sending) bottom.current?.scrollIntoView({ behavior: "smooth" }); }, [msgs.length]);

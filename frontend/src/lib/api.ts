@@ -24,6 +24,9 @@ export interface ChunkItem {
 export interface CitationItem {
   chunkId: string; documentId: string; titlePath: string; snippet: string;
 }
+export interface SearchResultItem {
+  chunkId: string; documentId: string; titlePath: string; content: string; score: number;
+}
 export interface ApiResponse<T> { code: string; info: string; data: T; }
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
@@ -104,4 +107,9 @@ export const api = {
       }
     }).catch((e) => onError(e.message || "对话失败"));
   },
+
+  search: (keyword: string, topK = 5, strategy = "HYBRID", rerank = true) =>
+    request<SearchResultItem[]>(
+      `/document/search?keyword=${encodeURIComponent(keyword)}&topK=${topK}&strategy=${strategy}&rerank=${rerank}`
+    ),
 };
