@@ -32,3 +32,4 @@ CREATE INDEX IF NOT EXISTS idx_chunk_search_content_tsv
 -- 模块标签索引：加速按标签过滤的查询
 CREATE INDEX IF NOT EXISTS idx_chunk_search_module_tags
     ON chunk_search USING GIN (module_tags);
+

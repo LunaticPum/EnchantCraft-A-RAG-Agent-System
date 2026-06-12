@@ -14,6 +14,15 @@ spring:
       idle-timeout: 300000
       max-lifetime: 1200000
       connection-timeout: 30000
+  # Kafka 消息队列：异步索引
+  kafka:
+    bootstrap-servers: 134.175.232.110:19092
+    consumer:
+      group-id: qa-agent-indexing
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 # PostgreSQL + pgvector 数据源（RAG 检索引擎）
 pg:

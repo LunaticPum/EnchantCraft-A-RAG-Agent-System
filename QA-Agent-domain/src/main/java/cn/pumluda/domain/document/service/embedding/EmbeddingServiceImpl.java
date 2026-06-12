@@ -58,9 +58,7 @@ public class EmbeddingServiceImpl implements IEmbeddingService {
             totalEmbedded += embeddings.size();
 
             log.debug(
-                    "[Embedding] 批次 {}/{}: {} 条",
-                    (i / batchSize) + 1,
-                    (segments.size() + batchSize - 1) / batchSize,
+                    "[Embedding] 批次 {}/{}: {} 条", (i / batchSize) + 1, (segments.size() + batchSize - 1) / batchSize,
                     embeddings.size()
             );
         }

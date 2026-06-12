@@ -143,6 +143,32 @@ public class DocumentController {
                        .build();
     }
 
+    /**
+     * 查询文档 Embedding 状态
+     */
+    @GetMapping("/{id}/embedding-status")
+    public Response<String> embeddingStatus(@PathVariable("id") String id) {
+        String status = documentService.getEmbeddingStatus(id);
+        return Response.<String>builder()
+                       .code(ResponseCode.SUCCESS.getCode())
+                       .info(status)
+                       .data(status)
+                       .build();
+    }
+
+    /**
+     * 手动触发 Embedding（用于重试或编辑后重建）
+     */
+    @PostMapping("/{id}/re-embed")
+    public Response<Void> reEmbed(@PathVariable("id") String id) {
+        log.info("[文档接口] 手动触发 Embedding: documentId={}", id);
+        documentService.embedDocumentChunks(id);
+        return Response.<Void>builder()
+                       .code(ResponseCode.SUCCESS.getCode())
+                       .info("Embedding 完成")
+                       .build();
+    }
+
     // ==================== DTO 转换 ====================
 
     /**

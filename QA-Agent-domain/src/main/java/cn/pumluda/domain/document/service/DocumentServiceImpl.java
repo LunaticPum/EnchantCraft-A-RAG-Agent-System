@@ -1,7 +1,9 @@
 package cn.pumluda.domain.document.service;
 
+import cn.pumluda.domain.document.adapter.producer.IIndexingMessageProducer;
 import cn.pumluda.domain.document.adapter.repository.IDocumentChunkRepository;
 import cn.pumluda.domain.document.adapter.repository.IDocumentRepository;
+import cn.pumluda.domain.document.adapter.repository.IMessageJobRepository;
 import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
 import cn.pumluda.domain.document.service.chunk.IMarkdownChunker;
@@ -17,7 +19,7 @@ import java.util.List;
 
 /**
  * Project: QA-Agent-Pumluda
- * Description: 文档领域服务实现——处理文档上传、查询、分块、Embedding 等核心业务逻辑
+ * Description: 文档领域服务实现——上传落库（事务） + 异步 Embedding（Kafka 驱动）
  */
 @Slf4j
 @Service
@@ -25,90 +27,94 @@ import java.util.List;
 public class DocumentServiceImpl implements IDocumentService {
 
     private final IDocumentRepository documentRepository;
-    private final IMarkdownChunker markdownChunker;
     private final IDocumentChunkRepository chunkRepository;
+
+    private final IMarkdownChunker markdownChunker;
     private final IEmbeddingService embeddingService;
+
+    private final IIndexingMessageProducer indexingProducer;
+    private final IMessageJobRepository messageJobRepository;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public SourceDocumentEntity uploadDocument(String fileName, String content) {
-        log.info("[文档上传] 开始处理: fileName={}, contentLength={}", fileName, content.length());
+        log.info("[文档上传] 开始: fileName={}, contentLength={}", fileName, content.length());
 
         if (fileName == null || fileName.isBlank()) {
-            log.warn("[文档上传] 文件名为空");
             throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), "文件名不能为空");
         }
         if (content == null || content.isBlank()) {
-            log.warn("[文档上传] 文件内容为空: fileName={}", fileName);
             throw new AppException(ResponseCode.DOCUMENT_CONTENT_EMPTY.getCode(), "文件内容不能为空");
         }
         if (!fileName.endsWith(".md") && !fileName.endsWith(".markdown")) {
-            log.warn("[文档上传] 不支持的文件类型: fileName={}", fileName);
             throw new AppException(
                     ResponseCode.DOCUMENT_TYPE_UNSUPPORTED.getCode(),
                     "仅支持 Markdown 文件（.md / .markdown）"
             );
         }
 
-        // 0. MD5 查重——防止重复上传相同内容的文档
+        // ① MD5 查重
         String contentMd5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(content);
         documentRepository.findByContentMd5(contentMd5).ifPresent(existing -> {
-            log.warn(
-                    "[文档上传] 内容重复: fileName={}, existingId={}, existingName={}",
-                    fileName,
-                    existing.getId(),
-                    existing.getFileName()
-            );
             throw new AppException(
                     ResponseCode.DOCUMENT_DUPLICATE.getCode(),
-                    "文档内容重复，已存在同名文档: " + existing.getFileName()
+                    "文档内容重复，已存在: " + existing.getFileName()
             );
         });
 
-        // 1. 保存文档原文
+        // ② 保存文档原文 + 分块（纯 MySQL，事务内）
         SourceDocumentEntity entity = SourceDocumentEntity.create(fileName, content);
         SourceDocumentEntity saved = documentRepository.save(entity);
-        log.info("[文档上传] 文档保存成功: id={}", saved.getId());
-
-        // 2. 分块 + 批量存储
         List<DocumentChunkEntity> chunks = markdownChunker.chunk(saved);
         chunkRepository.saveAll(chunks);
-        log.info("[文档上传] 分块完成: chunks={}", chunks.size());
+        log.info("[文档上传] 落库完成: id={}, chunks={}", saved.getId(), chunks.size());
 
-        // 3. 分块列表 Embedding 向量化
-        embeddingService.embedChunks(chunks);
+        // ③ 发送 Kafka 消息 + 记录 message_job（触发异步 Embedding）
+        indexingProducer.sendChunkEmbedMessage(saved.getId(), chunks.size());
+        messageJobRepository.savePending(saved.getId(), "document.indexing");
 
         return saved;
     }
 
+    /**
+     * 异步执行 Embedding —— Kafka Consumer 调用
+     */
+    @Override
+    public void embedDocumentChunks(String documentId) {
+        log.info("[异步Embedding] 开始: documentId={}", documentId);
+        List<DocumentChunkEntity> chunks = chunkRepository.findByDocumentId(documentId);
+        if (chunks.isEmpty()) {
+            log.warn("[异步Embedding] 文档无分块: documentId={}", documentId);
+            return;
+        }
+        embeddingService.embedChunks(chunks);
+        log.info("[异步Embedding] 完成: documentId={}, chunks={}", documentId, chunks.size());
+    }
+
+    @Override
+    public String getEmbeddingStatus(String documentId) {
+        return messageJobRepository.getStatus(documentId);
+    }
+
     @Override
     public SourceDocumentEntity getDocument(String id) {
-        log.info("[文档查询] 查询文档: id={}", id);
-        return documentRepository.findById(id).orElseThrow(() -> {
-            log.warn("[文档查询] 文档不存在: id={}", id);
-            return new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在: " + id);
-        });
+        log.info("[文档查询] id={}", id);
+        return documentRepository.findById(id).orElseThrow(
+                () -> new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在: " + id));
     }
 
     @Override
     public List<SourceDocumentEntity> listDocuments() {
-        log.info("[文档列表] 查询所有文档");
-        List<SourceDocumentEntity> documents = documentRepository.findAll();
-        log.info("[文档列表] 查询完成: count={}", documents.size());
-        return documents;
+        log.info("[文档列表] 查询所有");
+        return documentRepository.findAll();
     }
 
     @Override
     public List<DocumentChunkEntity> getDocumentChunks(String documentId) {
-        log.info("[文档分块] 查询分块: documentId={}", documentId);
-        // 先校验文档存在
-        documentRepository.findById(documentId).orElseThrow(() -> {
-            log.warn("[文档分块] 文档不存在: id={}", documentId);
-            return new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在: " + documentId);
-        });
-        List<DocumentChunkEntity> chunks = chunkRepository.findByDocumentId(documentId);
-        log.info("[文档分块] 查询完成: count={}", chunks.size());
-        return chunks;
+        log.info("[文档分块] documentId={}", documentId);
+        documentRepository.findById(documentId).orElseThrow(
+                () -> new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在: " + documentId));
+        return chunkRepository.findByDocumentId(documentId);
     }
 
 }

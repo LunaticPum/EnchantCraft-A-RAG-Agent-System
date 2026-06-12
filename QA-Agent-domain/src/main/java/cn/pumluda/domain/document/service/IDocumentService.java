@@ -38,4 +38,19 @@ public interface IDocumentService {
      */
     List<DocumentChunkEntity> getDocumentChunks(String documentId);
 
+    /**
+     * 异步执行 Embedding —— 从 MySQL 加载分块后向量化存入 PostgreSQL
+     *
+     * @param documentId 文档 ID
+     */
+    void embedDocumentChunks(String documentId);
+
+    /**
+     * 查询文档 Embedding 状态
+     *
+     * @param documentId 文档 ID
+     * @return 状态：PENDING / COMPLETED / FAILED / NOT_FOUND
+     */
+    String getEmbeddingStatus(String documentId);
+
 }
