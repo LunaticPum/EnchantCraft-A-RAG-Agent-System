@@ -18,7 +18,7 @@ const nav = [
 function AppShell() {
   const { logout } = useAuth();
   const resetAgent = useAgentReset();
-  const handleLogout = () => { resetAgent(); logout(); };
+  const handleLogout = () => { resetAgent(); logout(); window.location.href = "/"; };
   return (
     <div className="h-screen flex flex-col p-6 overflow-hidden">
       <div className="flex-1 min-h-0 flex flex-col max-w-[1480px] mx-auto w-full gap-4">

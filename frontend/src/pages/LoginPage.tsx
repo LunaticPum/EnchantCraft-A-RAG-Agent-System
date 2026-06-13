@@ -61,6 +61,8 @@ export default function LoginPage() {
             {loading ? "登录中..." : <span className="flex items-center gap-2">登录 <ArrowRight size={15} /></span>}
           </button>
           <p className="text-center text-[11px] text-[var(--color-ink-faint)] pt-3">
+            <Link to="/" className="hover:text-[var(--color-ink)]">← 返回首页</Link>
+            <span className="mx-2">·</span>
             没有账号？<Link to="/register" className="text-[var(--color-accent)] hover:underline">去注册</Link>
           </p>
         </div>
