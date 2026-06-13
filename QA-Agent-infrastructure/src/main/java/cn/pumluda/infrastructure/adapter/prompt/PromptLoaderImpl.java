@@ -37,19 +37,19 @@ public class PromptLoaderImpl implements IPromptLoader {
         if (Files.exists(external)) {
             try {
                 String content = Files.readString(external);
-                log.debug("[Prompt] 外部加载: {}", external);
+                log.info("[Prompt] 外部加载成功: {}", external);
                 return content;
             } catch (IOException e) {
                 log.warn("[Prompt] 外部读取失败: {}", e.getMessage());
             }
         } else {
-            log.debug("[Prompt] 外部不存在: {}，回退classpath", external);
+            log.info("[Prompt] 外部不存在: {}，回退classpath", external);
         }
 
         try {
             String content = new ClassPathResource("prompts/" + fileName)
                     .getContentAsString(StandardCharsets.UTF_8);
-            log.debug("[Prompt] classpath加载");
+            log.info("[Prompt] classpath加载: {}", fileName);
             return content;
         } catch (IOException e) {
             log.warn("[Prompt] 全部失败，用兜底");
