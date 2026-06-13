@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
+import { setAuthToken } from "./api";
 
 export interface UserInfo {
   userId: string;
