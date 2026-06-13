@@ -1,6 +1,6 @@
 package cn.pumluda.domain.agent.service.mcp.tool;
 
-import cn.pumluda.domain.document.service.rag.recall.HybridRetrieverImpl;
+import cn.pumluda.domain.document.service.rag.retriever.impl.HybridRetrieverImpl;
 import dev.langchain4j.agent.tool.Tool;
 import dev.langchain4j.agent.tool.ToolMemoryId;
 import lombok.extern.slf4j.Slf4j;

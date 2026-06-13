@@ -47,6 +47,12 @@ public class DocumentRepositoryImpl implements IDocumentRepository {
     }
 
     @Override
+    public void deleteById(String id) {
+        sourceDocumentDao.deleteById(id);
+        log.info("[文档仓储] 物理删除: id={}", id);
+    }
+
+    @Override
     public Optional<SourceDocumentEntity> findByContentMd5(String contentMd5) {
         SourceDocumentPO po = sourceDocumentDao.selectOne(
                 new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<SourceDocumentPO>().eq(

@@ -46,6 +46,9 @@ public interface IDocumentService {
      */
     void embedDocumentChunks(String documentId);
 
+    /** 删除文档：软删除 source_document + 删除 chunks + 清 PG 向量 */
+    void deleteDocument(String documentId);
+
     /**
      * 查询文档 Embedding 状态
      *

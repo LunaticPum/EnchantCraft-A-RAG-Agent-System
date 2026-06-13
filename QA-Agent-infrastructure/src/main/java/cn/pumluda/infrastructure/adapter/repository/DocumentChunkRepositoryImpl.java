@@ -46,6 +46,15 @@ public class DocumentChunkRepositoryImpl implements IDocumentChunkRepository {
     }
 
     @Override
+    public void deleteByDocumentId(String documentId) {
+        documentChunkDao.delete(
+                new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<DocumentChunkPO>()
+                        .eq(DocumentChunkPO::getDocumentId, documentId)
+        );
+        log.info("[分块仓储] 删除分块: documentId={}", documentId);
+    }
+
+    @Override
     public List<DocumentChunkEntity> findByDocumentId(String documentId) {
         List<DocumentChunkPO> poList = documentChunkDao.selectList(
                 new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<DocumentChunkPO>()

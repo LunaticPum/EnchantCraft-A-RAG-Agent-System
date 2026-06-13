@@ -1,4 +1,4 @@
-package cn.pumluda.domain.document.service.rag.recall;
+package cn.pumluda.domain.document.service.rag.retriever;
 
 import cn.pumluda.domain.document.model.valobj.SearchResult;
 

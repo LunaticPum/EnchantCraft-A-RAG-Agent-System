@@ -8,9 +8,9 @@ import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
 import cn.pumluda.domain.document.model.valobj.SearchResult;
 import cn.pumluda.domain.document.service.IDocumentService;
-import cn.pumluda.domain.document.service.rag.recall.HybridRetrieverImpl;
-import cn.pumluda.domain.document.service.rag.recall.IKeywordRetriever;
-import cn.pumluda.domain.document.service.rag.recall.ISemanticRetriever;
+import cn.pumluda.domain.document.service.rag.retriever.IHybridRetriever;
+import cn.pumluda.domain.document.service.rag.retriever.IKeywordRetriever;
+import cn.pumluda.domain.document.service.rag.retriever.ISemanticRetriever;
 import cn.pumluda.types.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +36,7 @@ public class DocumentController {
     private final IDocumentService documentService;
     private final ISemanticRetriever semanticRetriever; // 按语义检索（直接用 LangChain4j 现成的 Embedding 相关度算法）
     private final IKeywordRetriever keywordRetriever;   // 按关键字检索（MySQL 模糊匹配）
-    private final HybridRetrieverImpl hybridRetriever;  // 上述两者结果 + RRF 评分重计算 + topK
+    private final IHybridRetriever hybridRetriever;  // 上述两者结果 + RRF 评分重计算 + topK
 
     /**
      * 上传 Markdown 文档
@@ -45,12 +45,13 @@ public class DocumentController {
      * 委托领域服务完成校验和持久化，返回文档元数据。
      */
     @PostMapping("/upload")
-    public Response<DocumentResponse> upload(
-            @RequestParam("file") MultipartFile file,
-            @RequestParam(value = "directoryPath", defaultValue = "") String directoryPath) throws IOException {
+    public Response<DocumentResponse> upload(@RequestParam("file") MultipartFile file,
+                                             @RequestParam(value = "directoryPath", defaultValue = "") String directoryPath) throws IOException {
         log.info(
                 "[文档接口] 收到上传请求: fileName={}, dir={}, size={} bytes",
-                file.getOriginalFilename(), directoryPath, file.getSize()
+                file.getOriginalFilename(),
+                directoryPath,
+                file.getSize()
         );
 
         String rawFileName = file.getOriginalFilename();
@@ -120,11 +121,10 @@ public class DocumentController {
      * RAG检索——输入查询关键词，返回最相似的文档分块
      */
     @GetMapping("/search")
-    public Response<List<SearchResultResponse>> search(
-            @RequestParam("keyword") String keyword,
-            @RequestParam(value = "topK", defaultValue = "5") int topK,
-            @RequestParam(value = "strategy", defaultValue = "HYBRID") String strategy,
-            @RequestParam(value = "rerank", defaultValue = "true") boolean rerank) {
+    public Response<List<SearchResultResponse>> search(@RequestParam("keyword") String keyword,
+                                                       @RequestParam(value = "topK", defaultValue = "5") int topK,
+                                                       @RequestParam(value = "strategy", defaultValue = "HYBRID") String strategy,
+                                                       @RequestParam(value = "rerank", defaultValue = "true") boolean rerank) {
         log.info("[文档接口] 检索请求: keyword={}, topK={}, strategy={}, rerank={}", keyword, topK, strategy, rerank);
 
         List<SearchResult> results = switch (strategy.toUpperCase()) {
@@ -137,9 +137,7 @@ public class DocumentController {
             }
         };
 
-        List<SearchResultResponse> data = results.stream()
-                                                 .map(this::toSearchResultResponse)
-                                                 .toList();
+        List<SearchResultResponse> data = results.stream().map(this::toSearchResultResponse).toList();
         log.info("[文档接口] 返回 {} 条结果", data.size());
         return Response.<List<SearchResultResponse>>builder()
                        .code(ResponseCode.SUCCESS.getCode())
@@ -154,11 +152,7 @@ public class DocumentController {
     @GetMapping("/{id}/embedding-status")
     public Response<String> embeddingStatus(@PathVariable("id") String id) {
         String status = documentService.getEmbeddingStatus(id);
-        return Response.<String>builder()
-                       .code(ResponseCode.SUCCESS.getCode())
-                       .info(status)
-                       .data(status)
-                       .build();
+        return Response.<String>builder().code(ResponseCode.SUCCESS.getCode()).info(status).data(status).build();
     }
 
     /**
@@ -168,10 +162,14 @@ public class DocumentController {
     public Response<Void> reEmbed(@PathVariable("id") String id) {
         log.info("[文档接口] 手动触发 Embedding: documentId={}", id);
         documentService.embedDocumentChunks(id);
-        return Response.<Void>builder()
-                       .code(ResponseCode.SUCCESS.getCode())
-                       .info("Embedding 完成")
-                       .build();
+        return Response.<Void>builder().code(ResponseCode.SUCCESS.getCode()).info("Embedding 完成").build();
+    }
+
+    /** 删除文档：软删除 source_document + 清理 chunks + 清理 PG 向量 */
+    @DeleteMapping("/{id}")
+    public Response<Void> delete(@PathVariable("id") String id) {
+        documentService.deleteDocument(id);
+        return Response.<Void>builder().code(ResponseCode.SUCCESS.getCode()).info("删除成功").build();
     }
 
     // ==================== DTO 转换 ====================

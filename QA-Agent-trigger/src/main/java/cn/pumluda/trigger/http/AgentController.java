@@ -5,7 +5,6 @@ import cn.pumluda.domain.agent.model.valobj.RetrievalMode;
 import cn.pumluda.domain.agent.service.chat.IAgentChat;
 import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 

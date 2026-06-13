@@ -1,5 +1,6 @@
 package cn.pumluda.domain.document.service.embedding;
 
+import cn.pumluda.domain.document.adapter.repository.IFullTextSearchRepository;
 import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import dev.langchain4j.data.document.Metadata;
 import dev.langchain4j.data.embedding.Embedding;
@@ -13,10 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Project: QA-Agent-Pumluda
- * Description: DeepSeek Embedding 实现——将分块文本批量向量化并存入 InMemoryEmbeddingStore
- */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -24,6 +21,7 @@ public class EmbeddingServiceImpl implements IEmbeddingService {
 
     private final EmbeddingModel embeddingModel;
     private final EmbeddingStore<TextSegment> embeddingStore;
+    private final IFullTextSearchRepository fullTextSearchRepository;
 
     @Override
     public void embedChunks(List<DocumentChunkEntity> chunks) {
@@ -63,6 +61,11 @@ public class EmbeddingServiceImpl implements IEmbeddingService {
             );
         }
         log.info("[Embedding] 向量化全部完成: {} 条", totalEmbedded);
+    }
+
+    @Override
+    public void deleteByDocumentId(String documentId) {
+        fullTextSearchRepository.deleteByDocumentId(documentId);
     }
 
 }

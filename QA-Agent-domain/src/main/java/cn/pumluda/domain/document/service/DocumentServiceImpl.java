@@ -104,6 +104,21 @@ public class DocumentServiceImpl implements IDocumentService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteDocument(String documentId) {
+        log.info("[文档删除] 开始: documentId={}", documentId);
+        documentRepository.findById(documentId)
+                .orElseThrow(() -> new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在"));
+        // ① 软删除 source_document
+        documentRepository.deleteById(documentId);
+        // ② 删除 MySQL document_chunk
+        chunkRepository.deleteByDocumentId(documentId);
+        // ③ 删除 PG chunk_search 向量
+        embeddingService.deleteByDocumentId(documentId);
+        log.info("[文档删除] 完成: documentId={}", documentId);
+    }
+
+    @Override
     public List<SourceDocumentEntity> listDocuments() {
         log.info("[文档列表] 查询所有");
         return documentRepository.findAll();

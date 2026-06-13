@@ -1,6 +1,7 @@
-package cn.pumluda.domain.document.service.rag.recall;
+package cn.pumluda.domain.document.service.rag.retriever.impl;
 
 import cn.pumluda.domain.document.model.valobj.SearchResult;
+import cn.pumluda.domain.document.service.rag.retriever.ISemanticRetriever;
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;

@@ -196,6 +196,12 @@ public class PgVectorStore implements EmbeddingStore<TextSegment>, IFullTextSear
         ids.forEach(this::remove);
     }
 
+    @Override
+    public void deleteByDocumentId(String documentId) {
+        int deleted = jdbc.update("DELETE FROM chunk_search WHERE document_id = ?", documentId);
+        log.info("[PgVector存储] 删除向量: documentId={}, deleted={}", documentId, deleted);
+    }
+
     /**
      * 按条件过滤删除 —— 暂未实现
      */

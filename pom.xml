@@ -46,6 +46,8 @@
         <hutool.version>5.8.36</hutool.version>
         <dashscope-sdk.version>2.22.17</dashscope-sdk.version>
         <postgresql.version>42.7.1</postgresql.version>
+        <spring-security-crypto.version>6.4.2</spring-security-crypto.version>
+        <jjwt.version>0.12.6</jjwt.version>
     </properties>
 
     <developers>
@@ -113,6 +115,12 @@
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
             </dependency>
+            <!-- Spring Security Crypto（BCrypt） -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-crypto</artifactId>
+                <version>${spring-security-crypto.version}</version>
+            </dependency>
             <!-- Kafka 消息队列：异步索引 -->
             <dependency>
                 <groupId>org.springframework.kafka</groupId>
@@ -141,8 +149,18 @@
             </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>0.9.1</version>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.auth0</groupId>

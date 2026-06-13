@@ -8,9 +8,10 @@ export interface FileEntry {
  */
 export async function scanDirectory(): Promise<FileEntry[]> {
   const dirHandle = await (window as any).showDirectoryPicker();
-
+  // 以选中的根目录名作为顶层路径
+  const rootName = dirHandle.name || "";
   const entries: FileEntry[] = [];
-  await scanRecursive(dirHandle, "", entries);
+  await scanRecursive(dirHandle, rootName, entries);
   return entries.filter((e) => e.file.name.endsWith(".md"));
 }
 

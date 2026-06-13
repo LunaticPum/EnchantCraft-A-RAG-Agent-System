@@ -34,4 +34,7 @@ public interface IDocumentRepository {
      */
     Optional<SourceDocumentEntity> findByContentMd5(String contentMd5);
 
+    /** 物理删除文档（设置 is_deleted=1） */
+    void deleteById(String id);
+
 }

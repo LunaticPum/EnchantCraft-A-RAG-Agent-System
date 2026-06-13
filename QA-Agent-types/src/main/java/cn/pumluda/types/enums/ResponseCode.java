@@ -24,12 +24,23 @@ public enum ResponseCode {
     DOCUMENT_TYPE_UNSUPPORTED("40003", "不支持的文档类型"),
     DOCUMENT_CONTENT_EMPTY("40004", "文档内容为空"),
     DOCUMENT_DUPLICATE("40005", "文档已存在（内容重复）"),
+
+    // ==================== 认证 5xxxx ====================
+    AUTH_BAD_CREDENTIALS("50001", "用户名或密码错误"),
+    AUTH_USERNAME_EXISTS("50002", "用户名已存在"),
+    AUTH_ACCOUNT_DISABLED("50003", "账户已被禁用"),
+    AUTH_TOKEN_INVALID("50004", "Token 无效或已过期"),
+    AUTH_ACCESS_DENIED("50005", "无权限"),
     ;
 
-    /** 错误码 */
+    /**
+     * 错误码
+     */
     private String code;
 
-    /** 错误描述 */
+    /**
+     * 错误描述
+     */
     private String info;
 
 }

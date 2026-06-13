@@ -12,8 +12,9 @@ spring:
       minimum-idle: 5
       maximum-pool-size: 20
       idle-timeout: 300000
-      max-lifetime: 1200000
+      max-lifetime: 600000
       connection-timeout: 30000
+      connection-test-query: SELECT 1
   # Kafka 消息队列：异步索引
   kafka:
     bootstrap-servers: 134.175.232.110:19092
@@ -52,6 +53,15 @@ dashScope:
   rerank-model: "gte-rerank-v2"
   base-url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
   api-key: "sk-b566df923861479284d8d726c681a2a8"
+
+# Prompt 模板目录（部署时挂载宿主机目录到此处）
+prompt:
+  base-path: ./docs/prompts
+
+# JWT 认证配置
+jwt:
+  secret: "qa-agent-pumluda-2026-super-secret-key-for-jwt-signing"
+  expiration: 7200000  # 2h = 7200000ms
 
 # 日志
 logging:

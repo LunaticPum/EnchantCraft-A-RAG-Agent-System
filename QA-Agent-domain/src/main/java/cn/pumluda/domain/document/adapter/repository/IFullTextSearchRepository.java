@@ -19,4 +19,6 @@ public interface IFullTextSearchRepository {
      */
     List<SearchResult> searchByFullText(String queryText, int limit);
 
+    void deleteByDocumentId(String documentId);
+
 }

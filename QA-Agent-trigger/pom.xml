@@ -48,6 +48,10 @@
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.pumluda</groupId>
+            <artifactId>QA-Agent-infrastructure</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

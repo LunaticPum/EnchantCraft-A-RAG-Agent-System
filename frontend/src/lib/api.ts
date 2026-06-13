@@ -30,7 +30,9 @@ export interface SearchResultItem {
 export interface ApiResponse<T> { code: string; info: string; data: T; }
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(BASE + url, options);
+  const headers: Record<string, string> = { ...(options?.headers as Record<string, string> || {}) };
+  if (storedToken) headers["Authorization"] = "Bearer " + storedToken;
+  const res = await fetch(BASE + url, { ...options, headers });
   const json: ApiResponse<T> = await res.json();
   if (json.code !== "0000") throw new Error(json.info);
   return json.data;
@@ -61,6 +63,7 @@ export const api = {
       };
       xhr.onerror = () => reject(new Error("上传失败"));
       xhr.open("POST", BASE + "/document/upload");
+      if (storedToken) xhr.setRequestHeader("Authorization", "Bearer " + storedToken);
       xhr.send(form);
     });
   },
@@ -73,9 +76,11 @@ export const api = {
     onDone: (sid: string) => void,
     onError: (err: string) => void,
   ) => {
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (storedToken) headers["Authorization"] = "Bearer " + storedToken;
     fetch(BASE + "/agent/chat", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify(body),
     }).then(async (res) => {
       if (!res.ok || !res.body) { onError("请求失败"); return; }
@@ -112,4 +117,34 @@ export const api = {
     request<SearchResultItem[]>(
       `/document/search?keyword=${encodeURIComponent(keyword)}&topK=${topK}&strategy=${strategy}&rerank=${rerank}`
     ),
+
+  /* Document delete */
+  deleteDocument: (id: string) =>
+    request<void>(`/document/${id}`, { method: "DELETE" }),
+
+  /* Auth */
+  login: (username: string, password: string) =>
+    request<AuthResponse>("/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    }),
+
+  register: (username: string, password: string, email: string) =>
+    request<void>("/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password, email }),
+    }),
 };
+
+export interface AuthResponse {
+  token: string;
+  userId: string;
+  username: string;
+  role: string;
+}
+
+let storedToken = "";
+export function setAuthToken(t: string) { storedToken = t; }
+export function getAuthToken() { return storedToken; }

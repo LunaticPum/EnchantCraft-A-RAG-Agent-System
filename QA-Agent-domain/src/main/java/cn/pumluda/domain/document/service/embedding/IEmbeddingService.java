@@ -17,4 +17,6 @@ public interface IEmbeddingService {
      */
     void embedChunks(List<DocumentChunkEntity> chunks);
 
+    void deleteByDocumentId(String documentId);
+
 }

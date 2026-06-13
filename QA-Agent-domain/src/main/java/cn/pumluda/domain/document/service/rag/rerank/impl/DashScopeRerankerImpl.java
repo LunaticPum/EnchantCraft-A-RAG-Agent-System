@@ -1,6 +1,7 @@
-package cn.pumluda.domain.document.service.rag.rerank;
+package cn.pumluda.domain.document.service.rag.rerank.impl;
 
 import cn.pumluda.domain.document.model.valobj.SearchResult;
+import cn.pumluda.domain.document.service.rag.rerank.IReranker;
 import com.alibaba.dashscope.rerank.TextReRank;
 import com.alibaba.dashscope.rerank.TextReRankOutput;
 import com.alibaba.dashscope.rerank.TextReRankParam;

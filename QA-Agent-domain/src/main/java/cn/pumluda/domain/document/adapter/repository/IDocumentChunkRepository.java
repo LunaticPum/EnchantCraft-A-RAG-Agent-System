@@ -20,4 +20,7 @@ public interface IDocumentChunkRepository {
      */
     List<DocumentChunkEntity> findByDocumentId(String documentId);
 
+    /** 删除某文档的所有分块 */
+    void deleteByDocumentId(String documentId);
+
 }

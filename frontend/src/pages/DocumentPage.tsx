@@ -3,6 +3,7 @@ import { Upload, FolderTree, FileText, Layers, Clock, ChevronRight, Folder, File
 import { api, type DocumentItem, type ChunkItem } from "../lib/api";
 import { scanDirectory, batchUploadFiles, type FileEntry } from "../lib/directoryScan";
 import { MdViewer } from "../lib/markdown";
+import { useAuth } from "../lib/mockAuth";
 
 type Tab = "repository" | "upload";
 
@@ -78,6 +79,8 @@ function buildTree(docs: DocumentItem[]): TreeNode[] {
 }
 
 export default function DocumentPage() {
+  const { user } = useAuth();
+  const isAdmin = user?.role === "ADMIN";
   const [tab, setTab] = useState<Tab>("repository");
   const [docs, setDocs] = useState<DocumentItem[]>([]);
   const [selectedDoc, setSelectedDoc] = useState<DocumentItem | null>(null);
@@ -86,6 +89,8 @@ export default function DocumentPage() {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
   const [uploading, setUploading] = useState(false);
   const [uploadMsg, setUploadMsg] = useState("");
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
 
   const loadDocs = () => {
     api.listDocuments().then(setDocs).catch(() => {});
@@ -95,6 +100,24 @@ export default function DocumentPage() {
   };
 
   useEffect(() => { loadDocs(); }, []);
+
+  const handleDelete = async () => {
+    for (const id of selectedIds) {
+      try { await api.deleteDocument(id); } catch {}
+    }
+    setSelectedIds(new Set());
+    setDeleteConfirm(false);
+    loadDocs();
+    setSelectedDoc(null);
+  };
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
 
   const tree = useMemo(() => buildTree(docs), [docs]);
 
@@ -144,8 +167,8 @@ export default function DocumentPage() {
         <div className="flex gap-1 p-3 border-b border-[var(--color-line)]">
           {([
             { key: "repository", icon: FolderTree, label: "资料库" },
-            { key: "upload", icon: Upload, label: "上传管理" },
-          ] as const).map(({ key, icon: Icon, label }) => (
+            ...(isAdmin ? [{ key: "upload" as const, icon: Upload, label: "上传管理" }] : []),
+          ]).map(({ key, icon: Icon, label }) => (
             <button key={key} onClick={() => setTab(key)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-all ${
                 tab === key ? "bg-[var(--color-pill-dark)] text-[var(--color-pill-text)] shadow-[var(--shadow-btn)]"
@@ -161,7 +184,14 @@ export default function DocumentPage() {
               <RefreshCw size={10} /> 刷新
             </button>
             {tree.length === 0 ? (
-              <p className="text-xs text-[var(--color-ink-faint)] px-2">暂无文档</p>
+              <div>
+                <p className="text-xs text-[var(--color-ink-faint)] px-2">暂无文档</p>
+                {!isAdmin && (
+                  <p className="text-[11px] text-[var(--color-ink-faint)] px-2 mt-3 opacity-60">
+                    需要上传权限？联系管理员 admin@qa-agent.com
+                  </p>
+                )}
+              </div>
             ) : (
               tree.map((node) => (
                 <RenderTreeNode key={node.docs[0]?.id || node.name || `root-${Math.random()}`} node={node} depth={0}
@@ -170,6 +200,11 @@ export default function DocumentPage() {
                     const n = new Set(p); n.has(name) ? n.delete(name) : n.add(name); return n;
                   })} />
               ))
+            )}
+            {!isAdmin && tree.length > 0 && (
+              <p className="text-[11px] text-[var(--color-ink-faint)] px-2 mt-3 opacity-60">
+                需要上传权限？联系管理员 admin@qa-agent.com
+              </p>
             )}
           </div>
         ) : (
@@ -194,26 +229,50 @@ export default function DocumentPage() {
             <div className="flex-1 overflow-auto p-3 space-y-1">
               <div className="flex items-center justify-between px-1 mb-2">
                 <span className="text-[10px] text-[var(--color-ink-faint)] uppercase tracking-wider">已上传 ({docs.length})</span>
-                <button onClick={loadDocs} className="text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)]">
-                  <RefreshCw size={10} />
-                </button>
+                <div className="flex items-center gap-2">
+                  {selectedIds.size > 0 && (
+                    <button onClick={() => setDeleteConfirm(true)}
+                      className="text-[10px] text-[var(--color-danger)] hover:underline">删除 ({selectedIds.size})</button>
+                  )}
+                  <button onClick={loadDocs} className="text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)]">
+                    <RefreshCw size={10} />
+                  </button>
+                </div>
               </div>
               {docs.map((d) => (
-                <button key={d.id} onClick={() => { setSelectedDoc(d); loadChunks(d.id); }}
-                  className={`w-full text-left p-3 rounded-2xl transition-all border ${
-                    selectedDoc?.id === d.id ? "border-[var(--color-accent-border)] bg-[var(--color-accent-soft)]"
-                    : "border-transparent hover:border-[var(--color-line-strong)] hover:bg-[var(--color-bg-card)]"}`}>
-                  <div className="flex items-center gap-2">
-                    <FileText size={14} className={selectedDoc?.id === d.id ? "text-[var(--color-accent)]" : "text-[var(--color-ink-faint)]"} />
-                    <span className="text-xs font-medium truncate">{d.fileName}</span>
-                  </div>
-                  <div className="flex items-center gap-3 mt-1 text-[10px] text-[var(--color-ink-faint)]">
-                    <span className="flex items-center gap-1"><Clock size={9} /> {d.createdAt?.slice(0, 16)}</span>
-                    {d.directoryPath && <span className="flex items-center gap-1"><Folder size={9} /> {d.directoryPath}</span>}
-                  </div>
-                </button>
+                <div key={d.id} className="flex items-center gap-1">
+                  <input type="checkbox" checked={selectedIds.has(d.id)}
+                    onChange={() => toggleSelect(d.id)}
+                    className="w-3.5 h-3.5 accent-[var(--color-accent)] flex-shrink-0" />
+                  <button onClick={() => { setSelectedDoc(d); loadChunks(d.id); }}
+                    className={`flex-1 text-left p-3 rounded-2xl transition-all border ${
+                      selectedDoc?.id === d.id ? "border-[var(--color-accent-border)] bg-[var(--color-accent-soft)]"
+                      : "border-transparent hover:border-[var(--color-line-strong)] hover:bg-[var(--color-bg-card)]"}`}>
+                    <div className="flex items-center gap-2">
+                      <FileText size={14} className={selectedDoc?.id === d.id ? "text-[var(--color-accent)]" : "text-[var(--color-ink-faint)]"} />
+                      <span className="text-xs font-medium truncate">{d.fileName}</span>
+                    </div>
+                    <div className="flex items-center gap-3 mt-1 text-[10px] text-[var(--color-ink-faint)]">
+                      <span className="flex items-center gap-1"><Clock size={9} /> {d.createdAt?.slice(0, 16)}</span>
+                      {d.directoryPath && <span className="flex items-center gap-1"><Folder size={9} /> {d.directoryPath}</span>}
+                    </div>
+                  </button>
+                </div>
               ))}
             </div>
+            {deleteConfirm && (
+              <div className="p-3 border-t border-[var(--color-line)]">
+                <p className="text-xs text-[var(--color-ink-soft)] mb-2">
+                  将删除选中的 {selectedIds.size} 个文档及其分块、向量数据，不可恢复。确认？
+                </p>
+                <div className="flex gap-2">
+                  <button onClick={handleDelete}
+                    className="pill text-[11px] px-3 py-1.5 bg-[var(--color-danger)] text-white">确认删除</button>
+                  <button onClick={() => { setDeleteConfirm(false); setSelectedIds(new Set()); }}
+                    className="pill pill--ghost text-[11px] px-3 py-1.5">取消</button>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

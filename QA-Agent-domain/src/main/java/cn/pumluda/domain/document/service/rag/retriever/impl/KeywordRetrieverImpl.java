@@ -1,7 +1,8 @@
-package cn.pumluda.domain.document.service.rag.recall;
+package cn.pumluda.domain.document.service.rag.retriever.impl;
 
 import cn.pumluda.domain.document.adapter.repository.IFullTextSearchRepository;
 import cn.pumluda.domain.document.model.valobj.SearchResult;
+import cn.pumluda.domain.document.service.rag.retriever.IKeywordRetriever;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
