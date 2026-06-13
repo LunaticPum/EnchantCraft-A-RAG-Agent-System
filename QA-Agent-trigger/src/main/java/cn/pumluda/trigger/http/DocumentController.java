@@ -11,7 +11,9 @@ import cn.pumluda.domain.document.service.IDocumentService;
 import cn.pumluda.domain.document.service.rag.retriever.IHybridRetriever;
 import cn.pumluda.domain.document.service.rag.retriever.IKeywordRetriever;
 import cn.pumluda.domain.document.service.rag.retriever.ISemanticRetriever;
+import cn.pumluda.domain.identity.adapter.repository.IUserRepository;
 import cn.pumluda.types.enums.ResponseCode;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -37,6 +40,7 @@ public class DocumentController {
     private final ISemanticRetriever semanticRetriever; // 按语义检索（直接用 LangChain4j 现成的 Embedding 相关度算法）
     private final IKeywordRetriever keywordRetriever;   // 按关键字检索（MySQL 模糊匹配）
     private final IHybridRetriever hybridRetriever;  // 上述两者结果 + RRF 评分重计算 + topK
+    private final IUserRepository userRepository;
 
     /**
      * 上传 Markdown 文档
@@ -124,8 +128,12 @@ public class DocumentController {
     public Response<List<SearchResultResponse>> search(@RequestParam("keyword") String keyword,
                                                        @RequestParam(value = "topK", defaultValue = "5") int topK,
                                                        @RequestParam(value = "strategy", defaultValue = "HYBRID") String strategy,
-                                                       @RequestParam(value = "rerank", defaultValue = "true") boolean rerank) {
+                                                       @RequestParam(value = "rerank", defaultValue = "true") boolean rerank,
+                                                       HttpServletRequest request) {
         log.info("[文档接口] 检索请求: keyword={}, topK={}, strategy={}, rerank={}", keyword, topK, strategy, rerank);
+        String userId = (String) request.getAttribute("userId");
+        String role = (String) request.getAttribute("role");
+        userRepository.checkAndIncrementSearch(userId, role);
 
         List<SearchResult> results = switch (strategy.toUpperCase()) {
             case "SEMANTIC" -> semanticRetriever.search(keyword, topK);
@@ -165,25 +173,48 @@ public class DocumentController {
         return Response.<Void>builder().code(ResponseCode.SUCCESS.getCode()).info("Embedding 完成").build();
     }
 
-    /** 删除文档：软删除 source_document + 清理 chunks + 清理 PG 向量 */
+    /**
+     * 删除文档：软删除 source_document + 清理 chunks + 清理 PG 向量
+     */
     @DeleteMapping("/{id}")
     public Response<Void> delete(@PathVariable("id") String id) {
         documentService.deleteDocument(id);
         return Response.<Void>builder().code(ResponseCode.SUCCESS.getCode()).info("删除成功").build();
     }
 
-    /** 检查 PG 向量数据健康状态 */
+    /**
+     * 查询当前用户剩余配额
+     */
+    @GetMapping("/quota")
+    public Response<Map<String, Integer>> quota(HttpServletRequest request) {
+        String userId = (String) request.getAttribute("userId");
+        return Response.<Map<String, Integer>>builder()
+                       .code(ResponseCode.SUCCESS.getCode())
+                       .data(Map.of(
+                               "search",
+                               userRepository.getSearchRemaining(userId),
+                               "chat",
+                               userRepository.getChatRemaining(userId)
+                       ))
+                       .build();
+    }
+
+    /**
+     * 检查 PG 向量数据健康状态
+     */
     @GetMapping("/vector-health")
     public Response<Long> vectorHealth() {
         long count = documentService.checkVectorHealth();
         return Response.<Long>builder()
-                .code(ResponseCode.SUCCESS.getCode())
-                .info(count > 0 ? "向量数据正常" : "向量数据异常")
-                .data(count)
-                .build();
+                       .code(ResponseCode.SUCCESS.getCode())
+                       .info(count > 0 ? "向量数据正常" : "向量数据异常")
+                       .data(count)
+                       .build();
     }
 
-    /** 全量重建 Embedding */
+    /**
+     * 全量重建 Embedding
+     */
     @PostMapping("/re-embed-all")
     public Response<Void> reEmbedAll() {
         documentService.embedAllDocuments();

@@ -124,6 +124,7 @@ export const api = {
 
   vectorHealth: () => request<number>("/document/vector-health"),
   reEmbedAll: () => request<void>("/document/re-embed-all", { method: "POST" }),
+  quota: () => request<{search: number; chat: number}>("/document/quota"),
 
   /* Auth */
   login: (username: string, password: string) =>

@@ -182,9 +182,9 @@ export default function DocumentPage() {
 
         {tab === "repository" ? (
           <div className="flex-1 min-h-0 overflow-y-auto p-3 space-y-0">
-            <div className="flex items-center gap-2 mb-2">
-              <button onClick={loadDocs} className="text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] flex items-center gap-1">
-                <RefreshCw size={10} /> 刷新
+            <div className="flex items-center gap-2 mb-3 px-1">
+              <button onClick={loadDocs} className="pill pill--ghost text-[11px] px-3 py-1.5 flex items-center gap-1.5">
+                <RefreshCw size={12} /> 刷新列表
               </button>
               <button onClick={async () => {
                 try {
@@ -193,7 +193,7 @@ export default function DocumentPage() {
                   else if (confirm("向量数据异常，是否重新执行 Embedding？"))
                     await api.reEmbedAll();
                 } catch { alert("检查失败"); }
-              }} className="text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)]">
+              }} className="pill pill--ghost text-[11px] px-3 py-1.5">
                 向量检查
               </button>
             </div>
@@ -242,13 +242,17 @@ export default function DocumentPage() {
             </div>
             <div className="flex-1 overflow-auto p-3 space-y-1">
               <div className="flex items-center justify-between px-1 mb-2">
-                <span className="text-[10px] text-[var(--color-ink-faint)] uppercase tracking-wider">已上传 ({docs.length})</span>
-                <div className="flex items-center gap-2">
+                <span className="text-[11px] text-[var(--color-ink-faint)] tracking-wider">已上传 ({docs.length})</span>
+                <div className="flex items-center gap-1.5">
+                  <button onClick={loadDocs} className="pill pill--ghost text-[11px] px-2.5 py-1 flex items-center gap-1">
+                    <RefreshCw size={11} />
+                  </button>
                   <button onClick={() => { setDeleteMode(!deleteMode); setSelectedIds(new Set()); }}
-                    className="text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)]">
-                    {deleteMode ? "取消" : "批量删除"}</button>
+                    className={`pill text-[11px] px-2.5 py-1 ${deleteMode ? "pill--dark" : "pill--ghost"}`}>
+                    {deleteMode ? "取消" : "批量删除"}
+                  </button>
                   {deleteMode && (
-                    <label className="flex items-center gap-1 text-[10px] text-[var(--color-ink-faint)] cursor-pointer">
+                    <label className="pill pill--ghost text-[11px] px-2.5 py-1 cursor-pointer flex items-center gap-1">
                       <input type="checkbox" className="w-3 h-3 accent-[var(--color-accent)]"
                         checked={selectedIds.size === docs.length && docs.length > 0}
                         onChange={() => {
@@ -260,11 +264,8 @@ export default function DocumentPage() {
                   )}
                   {selectedIds.size > 0 && (
                     <button onClick={() => setDeleteConfirm(true)}
-                      className="text-[10px] text-[var(--color-danger)] hover:underline">删除 ({selectedIds.size})</button>
+                      className="pill pill--ghost text-[11px] px-2.5 py-1 text-[var(--color-danger)]">删除({selectedIds.size})</button>
                   )}
-                  <button onClick={loadDocs} className="text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)]">
-                    <RefreshCw size={10} />
-                  </button>
                 </div>
               </div>
               {docs.map((d) => (

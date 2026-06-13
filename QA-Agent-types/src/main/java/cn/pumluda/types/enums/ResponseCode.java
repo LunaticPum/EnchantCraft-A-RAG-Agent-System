@@ -31,6 +31,8 @@ public enum ResponseCode {
     AUTH_ACCOUNT_DISABLED("50003", "账户已被禁用"),
     AUTH_TOKEN_INVALID("50004", "Token 无效或已过期"),
     AUTH_ACCESS_DENIED("50005", "无权限"),
+    QUOTA_SEARCH_EXCEEDED("50006", "今日检索已达上限"),
+    QUOTA_CHAT_EXCEEDED("50007", "今日对话已达上限"),
     ;
 
     /**

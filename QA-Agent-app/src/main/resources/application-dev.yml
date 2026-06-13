@@ -45,7 +45,7 @@ pg:
 deepSeek:
   model: "deepseek-v4-pro"
   base-url: "https://api.deepseek.com/v1"
-  api-key: "sk-7416cf0764fa4a89851fc611b4a9eec4"
+  api-key: "sk-fa0a3902d0b142dbbd56723537e6e7eb"
 
 # 阿里云百炼模型广场
 dashScope:

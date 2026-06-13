@@ -7,9 +7,11 @@ import { useAgentStore } from "../lib/agentStore";
 export default function AgentPage() {
   const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid, mode, setMode } = useAgentStore();
   const [input, setInput] = useState("");
+  const [quota, setQuota] = useState<{search:number;chat:number} | null>(null);
   const bottom = useRef<HTMLDivElement>(null);
 
   useEffect(() => { if (sending) bottom.current?.scrollIntoView({ behavior: "smooth" }); }, [msgs.length]);
+  useEffect(() => { api.quota().then(setQuota).catch(()=>{}); }, [msgs.length]);
 
   const send = () => {
     if (!input.trim() || sending) return;
@@ -96,7 +98,12 @@ export default function AgentPage() {
       </div>
 
       {/* Fixed input bar */}
-      <div className="flex-shrink-0 p-4 border-t border-[var(--color-line)]">
+      <div className="flex-shrink-0 px-4 pt-2 pb-4 border-t border-[var(--color-line)]">
+        {quota && (
+          <p className="text-center text-[11px] text-[var(--color-pass)] mb-2">
+            今日剩余：检索 {quota.search} 次 · 对话 {quota.chat} 次
+          </p>
+        )}
         <div className="flex items-center gap-3">
           <div className="flex-1 relative">
             <input value={input} onChange={(e) => setInput(e.target.value)}

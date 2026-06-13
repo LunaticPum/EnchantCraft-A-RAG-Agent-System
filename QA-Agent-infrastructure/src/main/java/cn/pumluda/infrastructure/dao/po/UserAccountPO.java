@@ -20,20 +20,45 @@ public class UserAccountPO {
     @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
-    /** 用户名（唯一） */
+    /**
+     * 用户名（唯一）
+     */
     private String username;
 
-    /** 密码（BCrypt 加密） */
+    /**
+     * 密码（BCrypt 加密）
+     */
     private String password;
 
-    /** 邮箱 */
+    /**
+     * 邮箱
+     */
     private String email;
 
-    /** 角色：ADMIN / USER */
+    /**
+     * 角色：ADMIN / USER
+     */
     private String role;
 
-    /** 状态：1=正常，0=禁用 */
+    /**
+     * 状态：1=正常，0=禁用
+     */
     private Integer status;
+
+    /**
+     * 今日检索次数
+     */
+    private Integer searchCount;
+
+    /**
+     * 今日对话次数
+     */
+    private Integer chatCount;
+
+    /**
+     * 配额重置日期（跨天归零）
+     */
+    private java.time.LocalDate lastReset;
 
     private LocalDateTime createdAt;
 

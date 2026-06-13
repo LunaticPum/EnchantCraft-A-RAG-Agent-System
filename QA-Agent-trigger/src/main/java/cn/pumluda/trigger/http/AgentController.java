@@ -3,7 +3,9 @@ package cn.pumluda.trigger.http;
 import cn.pumluda.api.dto.AgentChatRequest;
 import cn.pumluda.domain.agent.model.valobj.RetrievalMode;
 import cn.pumluda.domain.agent.service.chat.IAgentChat;
+import cn.pumluda.domain.identity.adapter.repository.IUserRepository;
 import com.alibaba.fastjson2.JSON;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -18,19 +20,24 @@ import java.util.UUID;
 public class AgentController {
 
     private final IAgentChat agentChat;
+    private final IUserRepository userRepository;
 
-    public AgentController(IAgentChat agentChat) {
+    public AgentController(IAgentChat agentChat, IUserRepository userRepository) {
         this.agentChat = agentChat;
+        this.userRepository = userRepository;
     }
 
     @PostMapping(value = "/chat", produces = "text/event-stream;charset=UTF-8")
-    public SseEmitter chat(@RequestBody AgentChatRequest request) {
-        String sessionId = request.getSessionId() != null
-                ? request.getSessionId() : UUID.randomUUID().toString();
-        RetrievalMode mode = "TOOL".equalsIgnoreCase(request.getRetrievalMode())
+    public SseEmitter chat(@RequestBody AgentChatRequest req, HttpServletRequest request) {
+        String userId = (String) request.getAttribute("userId");
+        String role = (String) request.getAttribute("role");
+        userRepository.checkAndIncrementChat(userId, role);
+        String sessionId = req.getSessionId() != null
+                ? req.getSessionId() : UUID.randomUUID().toString();
+        RetrievalMode mode = "TOOL".equalsIgnoreCase(req.getRetrievalMode())
                 ? RetrievalMode.TOOL : RetrievalMode.FORCE;
 
-        log.info("[Agent接口] 对话请求: sessionId={}, mode={}, message={}", sessionId, mode, request.getMessage());
+        log.info("[Agent接口] 对话请求: sessionId={}, mode={}, message={}", sessionId, mode, req.getMessage());
 
         SseEmitter emitter = new SseEmitter(5 * 60_000L);
         emitter.onTimeout(emitter::complete);
@@ -41,7 +48,7 @@ public class AgentController {
             try {
                 // 先发引用
                 agentChat.chat(
-                        sessionId, request.getMessage(), mode,
+                        sessionId, req.getMessage(), mode,
                         token -> {
                             try {
                                 sse(emitter, "token", token);

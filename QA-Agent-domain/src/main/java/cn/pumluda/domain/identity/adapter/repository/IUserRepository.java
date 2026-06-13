@@ -12,4 +12,14 @@ public interface IUserRepository {
 
     boolean existsByUsername(String username);
 
+    /** 检查配额并自增（含跨天重置），超限抛 AppException */
+    void checkAndIncrementSearch(String userId, String role);
+
+    void checkAndIncrementChat(String userId, String role);
+
+    /** 查询剩余配额 */
+    int getSearchRemaining(String userId);
+
+    int getChatRemaining(String userId);
+
 }
