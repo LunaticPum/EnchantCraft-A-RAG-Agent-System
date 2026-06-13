@@ -6,7 +6,7 @@
 
 **目标：** 按 V1 → V2 → V3 → V4 → V5 → V6 版本迭代，逐步复刻原项目核心能力。V1-V6 已完成。
 
-**当前分支：** `v6-Operation`
+**当前分支：** `v7-BaguSkill`
 
 ## 技术栈
 
@@ -68,7 +68,7 @@ QA-Agent-Pumluda/
 | V4 | Agent 智能问答 + 流式对话 + MCP 工具 | ✅ |
 | V5 | 前端设计 + SSE 打字机 + Kafka 异步 + 联调 | ✅ |
 | V6 | JWT 认证 + 权限控制 + 用量配额 + 部署 | ✅ |
-| V7 | 未来规划 | ⏳ |
+| V7 | Bagu Skill 文档→问答集自动生成 | 🚧 规划完成，V7.1 待开始 |
 
 ### V6 完成情况
 
@@ -79,6 +79,7 @@ QA-Agent-Pumluda/
 | V6.1.2 | 前端 API base 切 Nginx 代理 + bug 修复 |
 | V6.2 | 用户用量配额（10 次/天）+ 跨天自动重置 + 配额显示 |
 | V6.2.1 | 用户注册 + 管理员欢迎语 + UI 图标按钮优化 |
+| V6.3 | 部署运维：MySQL 数据卷持久化 + init-qa-agent.sql 自动建库 + showDirectoryPicker→webkitdirectory 降级兼容 HTTP |
 
 ### V7 规划 —— Bagu Skill（Anything can be 八股）
 
@@ -157,8 +158,8 @@ domain/agent/service/bagu/
 
 ### Git 提交
 - **Commit message 使用中文**
-- 格式：`✨ feat: <描述>`
-- 当前分支：`v6-Operation`（从 v5-Frontend 创建）
+- 格式：`✨ feat: <描述>` / `🐛 fix: <描述>`
+- 当前分支：`v7-BaguSkill`（从 v6-Operation 创建）
 
 ### 代码风格
 - 所有 DDD 层可用 Spring 注解（`@Service`、`@Repository` 等）
@@ -208,6 +209,11 @@ domain/agent/service/bagu/
 16. **PromptLoaderImpl 外部路径解析** — `Path.of("./docs/prompts")` 在容器内解析为 `/docs/prompts` 而非 `/app/docs/prompts`，用绝对路径
 17. **`@SystemMessage(fromResource)` 只读 classpath** — TOOL 模式需用 `systemMessageProvider` + 每次重建 Agent
 
+### V6 部署踩坑
+18. **MySQL 容器无数据卷** — `docker-compose-env.yml` 必须挂载 `./mysql/data:/var/lib/mysql`，否则容器重建数据全丢
+19. **Docker MySQL init SQL 只跑一次** — `/docker-entrypoint-initdb.d` 仅在 `/var/lib/mysql` 为空时执行，存量数据库需手动执行迁移
+20. **`showDirectoryPicker` 需安全上下文** — HTTPS 或 localhost 才可用。HTTP 远程访问降级为 `<input webkitdirectory>`
+
 ## 数据库表
 
 ### MySQL
@@ -218,6 +224,7 @@ domain/agent/service/bagu/
 | `document_chunk` | 分块文本（业务真数据） | V2.2 |
 | `message_job` | Kafka 异步索引消息追踪 | V3.4 |
 | `user_account` | 用户账户（JWT + 角色 + 配额） | V6.1 |
+| (plan) `qa_set` / `qa_item` / `qa_set_document_ref` | Bagu Skill 问答集 | V7.1 |
 
 ### PostgreSQL
 
