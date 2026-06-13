@@ -57,4 +57,10 @@ public interface IDocumentService {
      */
     String getEmbeddingStatus(String documentId);
 
+    /** 检查 PG 向量健康状态（返回存活的向量总数） */
+    long checkVectorHealth();
+
+    /** 对全部文档重新执行 Embedding */
+    void embedAllDocuments();
+
 }

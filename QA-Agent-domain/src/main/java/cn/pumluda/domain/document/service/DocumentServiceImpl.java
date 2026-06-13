@@ -3,6 +3,7 @@ package cn.pumluda.domain.document.service;
 import cn.pumluda.domain.document.adapter.producer.IIndexingMessageProducer;
 import cn.pumluda.domain.document.adapter.repository.IDocumentChunkRepository;
 import cn.pumluda.domain.document.adapter.repository.IDocumentRepository;
+import cn.pumluda.domain.document.adapter.repository.IFullTextSearchRepository;
 import cn.pumluda.domain.document.adapter.repository.IMessageJobRepository;
 import cn.pumluda.domain.document.model.entity.DocumentChunkEntity;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
@@ -34,6 +35,7 @@ public class DocumentServiceImpl implements IDocumentService {
 
     private final IIndexingMessageProducer indexingProducer;
     private final IMessageJobRepository messageJobRepository;
+    private final IFullTextSearchRepository fullTextSearchRepository;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -89,6 +91,23 @@ public class DocumentServiceImpl implements IDocumentService {
         }
         embeddingService.embedChunks(chunks);
         log.info("[异步Embedding] 完成: documentId={}, chunks={}", documentId, chunks.size());
+    }
+
+    @Override
+    public long checkVectorHealth() {
+        long count = fullTextSearchRepository.count();
+        log.info("[向量检查] PG向量总数: {}", count);
+        return count;
+    }
+
+    @Override
+    public void embedAllDocuments() {
+        List<SourceDocumentEntity> docs = documentRepository.findAll();
+        log.info("[全量Embedding] 开始: 共 {} 个文档", docs.size());
+        for (SourceDocumentEntity doc : docs) {
+            embedDocumentChunks(doc.getId());
+        }
+        log.info("[全量Embedding] 完成");
     }
 
     @Override

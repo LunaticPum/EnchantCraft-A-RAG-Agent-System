@@ -172,6 +172,24 @@ public class DocumentController {
         return Response.<Void>builder().code(ResponseCode.SUCCESS.getCode()).info("删除成功").build();
     }
 
+    /** 检查 PG 向量数据健康状态 */
+    @GetMapping("/vector-health")
+    public Response<Long> vectorHealth() {
+        long count = documentService.checkVectorHealth();
+        return Response.<Long>builder()
+                .code(ResponseCode.SUCCESS.getCode())
+                .info(count > 0 ? "向量数据正常" : "向量数据异常")
+                .data(count)
+                .build();
+    }
+
+    /** 全量重建 Embedding */
+    @PostMapping("/re-embed-all")
+    public Response<Void> reEmbedAll() {
+        documentService.embedAllDocuments();
+        return Response.<Void>builder().code(ResponseCode.SUCCESS.getCode()).info("全量 Embedding 已触发").build();
+    }
+
     // ==================== DTO 转换 ====================
 
     /**

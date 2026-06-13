@@ -91,6 +91,7 @@ export default function DocumentPage() {
   const [uploadMsg, setUploadMsg] = useState("");
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [deleteConfirm, setDeleteConfirm] = useState(false);
+  const [deleteMode, setDeleteMode] = useState(false);
 
   const loadDocs = () => {
     api.listDocuments().then(setDocs).catch(() => {});
@@ -107,6 +108,7 @@ export default function DocumentPage() {
     }
     setSelectedIds(new Set());
     setDeleteConfirm(false);
+    setDeleteMode(false);
     loadDocs();
     setSelectedDoc(null);
   };
@@ -180,8 +182,21 @@ export default function DocumentPage() {
 
         {tab === "repository" ? (
           <div className="flex-1 min-h-0 overflow-y-auto p-3 space-y-0">
-            <button onClick={loadDocs} className="mb-2 text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] flex items-center gap-1">
-              <RefreshCw size={10} /> 刷新
+            <div className="flex items-center gap-2 mb-2">
+              <button onClick={loadDocs} className="text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] flex items-center gap-1">
+                <RefreshCw size={10} /> 刷新
+              </button>
+              <button onClick={async () => {
+                try {
+                  const count = await api.vectorHealth();
+                  if (count > 0) alert(`向量数据正常，共 ${count} 条`);
+                  else if (confirm("向量数据异常，是否重新执行 Embedding？"))
+                    await api.reEmbedAll();
+                } catch { alert("检查失败"); }
+              }} className="text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)]">
+                向量检查
+              </button>
+            </div>
             </button>
             {tree.length === 0 ? (
               <div>
@@ -230,6 +245,20 @@ export default function DocumentPage() {
               <div className="flex items-center justify-between px-1 mb-2">
                 <span className="text-[10px] text-[var(--color-ink-faint)] uppercase tracking-wider">已上传 ({docs.length})</span>
                 <div className="flex items-center gap-2">
+                  <button onClick={() => { setDeleteMode(!deleteMode); setSelectedIds(new Set()); }}
+                    className="text-[10px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)]">
+                    {deleteMode ? "取消" : "批量删除"}</button>
+                  {deleteMode && (
+                    <label className="flex items-center gap-1 text-[10px] text-[var(--color-ink-faint)] cursor-pointer">
+                      <input type="checkbox" className="w-3 h-3 accent-[var(--color-accent)]"
+                        checked={selectedIds.size === docs.length && docs.length > 0}
+                        onChange={() => {
+                          if (selectedIds.size === docs.length) setSelectedIds(new Set());
+                          else setSelectedIds(new Set(docs.map(d => d.id)));
+                        }} />
+                      全选
+                    </label>
+                  )}
                   {selectedIds.size > 0 && (
                     <button onClick={() => setDeleteConfirm(true)}
                       className="text-[10px] text-[var(--color-danger)] hover:underline">删除 ({selectedIds.size})</button>
@@ -241,9 +270,11 @@ export default function DocumentPage() {
               </div>
               {docs.map((d) => (
                 <div key={d.id} className="flex items-center gap-1">
-                  <input type="checkbox" checked={selectedIds.has(d.id)}
-                    onChange={() => toggleSelect(d.id)}
-                    className="w-3.5 h-3.5 accent-[var(--color-accent)] flex-shrink-0" />
+                  {deleteMode && (
+                    <input type="checkbox" checked={selectedIds.has(d.id)}
+                      onChange={() => toggleSelect(d.id)}
+                      className="w-3.5 h-3.5 accent-[var(--color-accent)] flex-shrink-0" />
+                  )}
                   <button onClick={() => { setSelectedDoc(d); loadChunks(d.id); }}
                     className={`flex-1 text-left p-3 rounded-2xl transition-all border ${
                       selectedDoc?.id === d.id ? "border-[var(--color-accent-border)] bg-[var(--color-accent-soft)]"

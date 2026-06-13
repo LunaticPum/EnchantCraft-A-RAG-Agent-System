@@ -202,6 +202,12 @@ public class PgVectorStore implements EmbeddingStore<TextSegment>, IFullTextSear
         log.info("[PgVector存储] 删除向量: documentId={}, deleted={}", documentId, deleted);
     }
 
+    @Override
+    public long count() {
+        Long c = jdbc.queryForObject("SELECT COUNT(*) FROM chunk_search", Long.class);
+        return c != null ? c : 0;
+    }
+
     /**
      * 按条件过滤删除 —— 暂未实现
      */

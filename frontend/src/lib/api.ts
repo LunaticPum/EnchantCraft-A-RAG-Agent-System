@@ -122,6 +122,9 @@ export const api = {
   deleteDocument: (id: string) =>
     request<void>(`/document/${id}`, { method: "DELETE" }),
 
+  vectorHealth: () => request<number>("/document/vector-health"),
+  reEmbedAll: () => request<void>("/document/re-embed-all", { method: "POST" }),
+
   /* Auth */
   login: (username: string, password: string) =>
     request<AuthResponse>("/auth/login", {

@@ -21,4 +21,6 @@ public interface IFullTextSearchRepository {
 
     void deleteByDocumentId(String documentId);
 
+    long count();
+
 }
