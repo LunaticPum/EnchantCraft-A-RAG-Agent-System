@@ -187,17 +187,19 @@ export default function DocumentPage() {
                 className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
                 <RefreshCw size={14} />
               </button>
-              <button onClick={async () => {
-                try {
-                  const count = await api.vectorHealth();
-                  if (count > 0) alert(`向量数据正常，共 ${count} 条`);
-                  else if (confirm("向量数据异常，是否重新执行 Embedding？"))
-                    await api.reEmbedAll();
-                } catch { alert("检查失败"); }
-              }} title="向量检查"
-                className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
-                <Zap size={14} />
-              </button>
+              {{isAdmin && (
+                <button onClick={async () => {
+                  try {
+                    const count = await api.vectorHealth();
+                    if (count > 0) alert(`向量数据正常，共 ${count} 条`);
+                    else if (confirm("向量数据异常，是否重新执行 Embedding？"))
+                      await api.reEmbedAll();
+                  } catch { alert("检查失败"); }
+                }} title="向量检查"
+                  className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
+                  <Zap size={14} />
+                </button>
+              )}}
             </div>
             {tree.length === 0 ? (
               <div>

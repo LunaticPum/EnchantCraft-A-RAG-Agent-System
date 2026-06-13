@@ -7,7 +7,7 @@ import WelcomePage from "./pages/WelcomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { AuthProvider, useAuth } from "./lib/mockAuth";
-import { AgentStateProvider } from "./lib/agentStore";
+import { AgentStateProvider, useAgentReset } from "./lib/agentStore";
 
 const nav = [
   { to: "/documents", icon: Files, label: "仓库" },
@@ -17,6 +17,8 @@ const nav = [
 
 function AppShell() {
   const { logout } = useAuth();
+  const resetAgent = useAgentReset();
+  const handleLogout = () => { resetAgent(); logout(); };
   return (
     <div className="h-screen flex flex-col p-6 overflow-hidden">
       <div className="flex-1 min-h-0 flex flex-col max-w-[1480px] mx-auto w-full gap-4">
@@ -45,7 +47,7 @@ function AppShell() {
           <div className="flex items-center gap-3 justify-end w-[240px] flex-shrink-0">
             <span className="text-[11px] text-[var(--color-ink-faint)] flex items-center gap-1.5"><Database size={11} /> pgvector</span>
             <span className="text-[11px] text-[var(--color-ink-faint)] flex items-center gap-1.5"><Brain size={11} /> DeepSeek</span>
-            <button onClick={logout} className="ml-2 flex items-center gap-1.5 text-[11px] text-[var(--color-ink-faint)] hover:text-[var(--color-danger)] transition-colors">
+            <button onClick={handleLogout} className="ml-2 flex items-center gap-1.5 text-[11px] text-[var(--color-ink-faint)] hover:text-[var(--color-danger)] transition-colors">
               <LogOut size={13} />退出
             </button>
           </div>

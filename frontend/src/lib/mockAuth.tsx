@@ -27,7 +27,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     <AuthContext.Provider value={{
       authed, user,
       login: (u) => { setAuthed(true); setUser(u); },
-      logout: () => { setAuthed(false); setUser(null); },
+      logout: () => { setAuthed(false); setUser(null); setAuthToken(""); },
     }}>
       {children}
     </AuthContext.Provider>
