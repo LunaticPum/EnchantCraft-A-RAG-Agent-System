@@ -5,13 +5,10 @@ export interface FileEntry {
 
 /**
  * 使用 File System Access API 打开目录，递归扫描所有 .md 文件
+ * 需要安全上下文（HTTPS 或 localhost）
  */
-export async function scanDirectory(): Promise<FileEntry[]> {
-  if (!(window as any).showDirectoryPicker) {
-    throw new Error("当前浏览器不支持目录选择，请使用 Chrome/Edge 浏览器");
-  }
+async function scanViaShowDirectoryPicker(): Promise<FileEntry[]> {
   const dirHandle = await (window as any).showDirectoryPicker();
-  // 以选中的根目录名作为顶层路径
   const rootName = dirHandle.name || "";
   const entries: FileEntry[] = [];
   await scanRecursive(dirHandle, rootName, entries);
@@ -32,6 +29,66 @@ async function scanRecursive(
       await scanRecursive(handle, childPath, entries);
     }
   }
+}
+
+/**
+ * 降级方案：使用 <input type="file" webkitdirectory>
+ * 兼容所有 Chrome 版本，无需安全上下文（HTTP 可用）
+ * webkitRelativePath 示例: "MySQL/存储引擎/InnoDB.md"
+ */
+function scanViaInput(): Promise<FileEntry[]> {
+  return new Promise((resolve, reject) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.webkitdirectory = true;
+    input.multiple = true;
+    input.style.display = "none";
+    document.body.appendChild(input);
+
+    input.onchange = () => {
+      const files = input.files;
+      const entries: FileEntry[] = [];
+      if (files) {
+        for (let i = 0; i < files.length; i++) {
+          const f = files[i];
+          if (!f.name.endsWith(".md")) continue;
+          // webkitRelativePath: "MySQL/存储引擎/InnoDB.md" → relativePath: "MySQL/存储引擎"
+          const parts = (f as any).webkitRelativePath?.split("/") || [];
+          const relativePath = parts.length > 1 ? parts.slice(0, -1).join("/") : "";
+          entries.push({ file: f, relativePath });
+        }
+      }
+      document.body.removeChild(input);
+      resolve(entries);
+    };
+
+    input.oncancel = () => {
+      document.body.removeChild(input);
+      reject(new Error("用户取消了选择"));
+    };
+
+    // 兼容处理：某些情况下没有 oncancel 事件
+    input.addEventListener("cancel", () => {
+      document.body.removeChild(input);
+      reject(new Error("用户取消了选择"));
+    });
+
+    input.click();
+  });
+}
+
+/**
+ * 扫描本地目录中的所有 .md 文件
+ * - 安全上下文（HTTPS/localhost）：使用 showDirectoryPicker
+ * - HTTP 环境：自动降级为 <input webkitdirectory>
+ */
+export async function scanDirectory(): Promise<FileEntry[]> {
+  // 优先使用 File System Access API（可递归子目录、更友好）
+  if ((window as any).showDirectoryPicker) {
+    return scanViaShowDirectoryPicker();
+  }
+  // 降级：<input webkitdirectory>（Chrome 全版本支持，无需 HTTPS）
+  return scanViaInput();
 }
 
 /**
