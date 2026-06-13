@@ -197,7 +197,6 @@ export default function DocumentPage() {
                 向量检查
               </button>
             </div>
-            </button>
             {tree.length === 0 ? (
               <div>
                 <p className="text-xs text-[var(--color-ink-faint)] px-2">暂无文档</p>
