@@ -7,8 +7,7 @@ import { useAgentStore } from "../lib/agentStore";
 type Mode = "FORCE" | "TOOL";
 
 export default function AgentPage() {
-  const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid } = useAgentStore();
-  const [mode, setMode] = useState<Mode>("FORCE");
+  const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid, mode, setMode } = useAgentStore();
   const [input, setInput] = useState("");
   const bottom = useRef<HTMLDivElement>(null);
 

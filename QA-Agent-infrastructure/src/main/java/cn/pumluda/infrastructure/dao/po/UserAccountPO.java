@@ -35,6 +35,12 @@ public class UserAccountPO {
     /** 状态：1=正常，0=禁用 */
     private Integer status;
 
+    /** 累计检索次数 */
+    private Integer searchCount;
+
+    /** 累计对话次数 */
+    private Integer chatCount;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;

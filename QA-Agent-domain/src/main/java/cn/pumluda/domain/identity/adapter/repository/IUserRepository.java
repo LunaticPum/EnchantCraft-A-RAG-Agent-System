@@ -12,4 +12,12 @@ public interface IUserRepository {
 
     boolean existsByUsername(String username);
 
+    void incrementSearchCount(String userId);
+
+    void incrementChatCount(String userId);
+
+    int getSearchCount(String userId);
+
+    int getChatCount(String userId);
+
 }

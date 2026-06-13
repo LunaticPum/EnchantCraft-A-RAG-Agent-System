@@ -37,6 +37,36 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
+    public void incrementSearchCount(String userId) {
+        UserAccountPO po = userAccountDao.selectById(userId);
+        if (po != null) {
+            po.setSearchCount((po.getSearchCount() == null ? 0 : po.getSearchCount()) + 1);
+            userAccountDao.updateById(po);
+        }
+    }
+
+    @Override
+    public void incrementChatCount(String userId) {
+        UserAccountPO po = userAccountDao.selectById(userId);
+        if (po != null) {
+            po.setChatCount((po.getChatCount() == null ? 0 : po.getChatCount()) + 1);
+            userAccountDao.updateById(po);
+        }
+    }
+
+    @Override
+    public int getSearchCount(String userId) {
+        UserAccountPO po = userAccountDao.selectById(userId);
+        return po != null && po.getSearchCount() != null ? po.getSearchCount() : 0;
+    }
+
+    @Override
+    public int getChatCount(String userId) {
+        UserAccountPO po = userAccountDao.selectById(userId);
+        return po != null && po.getChatCount() != null ? po.getChatCount() : 0;
+    }
+
+    @Override
     public boolean existsByUsername(String username) {
         return userAccountDao.selectCount(
                 new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<UserAccountPO>()

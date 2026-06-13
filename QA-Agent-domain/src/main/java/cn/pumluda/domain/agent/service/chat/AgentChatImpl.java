@@ -48,7 +48,7 @@ public class AgentChatImpl implements IAgentChat {
     private final IPromptLoader promptLoader;               // System Prompt 外置热加载
     private final IAgentMemory agentMemory;                 // 短期记忆（滑动窗口 20 条）
     private final IQueryRewriter queryRewriter;             // 查询改写（口语→检索关键词）
-    private final IRagToolCallingAgent ragToolCallingAgent; // AiServices 动态代理 Agent（TOOL Calling 模式）
+    private final KnowledgeSearchTool knowledgeSearchTool;
 
     public AgentChatImpl(StreamingChatModel streamingChatModel,
                          ChatModel chatModel,
@@ -64,14 +64,7 @@ public class AgentChatImpl implements IAgentChat {
         this.queryRewriter = queryRewriter;
         this.promptLoader = promptLoader;
         this.agentMemory = agentMemory;
-
-        // 构建 AiServices 代理：System Prompt 由 provider 动态加载（支持外部热更新）
-        this.ragToolCallingAgent = AiServices.builder(IRagToolCallingAgent.class)
-                                             .chatModel(chatModel)
-                                             .chatMemoryProvider(agentMemory.getProvider())
-                                             .systemMessageProvider(memoryId -> promptLoader.loadPrompt(RetrievalMode.TOOL))
-                                             .tools(knowledgeSearchTool)
-                                             .build();
+        this.knowledgeSearchTool = knowledgeSearchTool;
     }
 
     @Override
@@ -164,8 +157,15 @@ public class AgentChatImpl implements IAgentChat {
     private String chatWithToolCalling(String sessionId, String userMessage, Consumer<String> onToken) {
         log.info("[Agent-TOOL] AiServices 调用中...");
 
-        // ① AiServices 代理：LLM 自主决定是否调用 KnowledgeSearchTool.searchKnowledgeBase()
-        String fullAnswer = ragToolCallingAgent.chat(sessionId, userMessage);
+        // ① 每次重建 Agent——确保 System Prompt 从外部文件热加载
+        IRagToolCallingAgent agent = AiServices.builder(IRagToolCallingAgent.class)
+                .chatModel(chatModel)
+                .chatMemoryProvider(agentMemory.getProvider())
+                .systemMessageProvider(memoryId -> promptLoader.loadPrompt(RetrievalMode.TOOL))
+                .tools(knowledgeSearchTool)
+                .build();
+
+        String fullAnswer = agent.chat(sessionId, userMessage);
 
         // ② 伪流式：完整回答到手后逐字拆分 + 30ms 间隔模拟打字机
         log.info("[Agent-TOOL] 返回完成: answerLength={}", fullAnswer.length());
