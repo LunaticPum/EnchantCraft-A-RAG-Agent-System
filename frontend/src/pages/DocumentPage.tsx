@@ -187,7 +187,7 @@ export default function DocumentPage() {
                 className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
                 <RefreshCw size={14} />
               </button>
-              {{isAdmin && (
+              {isAdmin && (
                 <button onClick={async () => {
                   try {
                     const count = await api.vectorHealth();
@@ -199,7 +199,7 @@ export default function DocumentPage() {
                   className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
                   <Zap size={14} />
                 </button>
-              )}}
+              )}
             </div>
             {tree.length === 0 ? (
               <div>
