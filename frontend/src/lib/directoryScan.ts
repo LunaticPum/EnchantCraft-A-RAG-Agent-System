@@ -7,6 +7,9 @@ export interface FileEntry {
  * 使用 File System Access API 打开目录，递归扫描所有 .md 文件
  */
 export async function scanDirectory(): Promise<FileEntry[]> {
+  if (!(window as any).showDirectoryPicker) {
+    throw new Error("当前浏览器不支持目录选择，请使用 Chrome/Edge 浏览器");
+  }
   const dirHandle = await (window as any).showDirectoryPicker();
   // 以选中的根目录名作为顶层路径
   const rootName = dirHandle.name || "";
