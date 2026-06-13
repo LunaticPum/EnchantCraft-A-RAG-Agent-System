@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8091/api/v1";
+const BASE = "/api/v1";
 
 export interface DocumentItem {
   id: string;
