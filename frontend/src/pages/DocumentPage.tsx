@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
-import { Upload, FolderTree, FileText, Layers, Clock, ChevronRight, Folder, File, RefreshCw, Loader2 } from "lucide-react";
+import { Upload, FolderTree, FileText, Clock, ChevronRight, Folder, File, RefreshCw, Loader2 } from "lucide-react";
 import { api, type DocumentItem, type ChunkItem } from "../lib/api";
-import { scanDirectory, batchUploadFiles, type FileEntry } from "../lib/directoryScan";
+import { scanDirectory, batchUploadFiles } from "../lib/directoryScan";
 import { MdViewer } from "../lib/markdown";
 import { useAuth } from "../lib/mockAuth";
 
@@ -169,7 +169,7 @@ export default function DocumentPage() {
             { key: "repository", icon: FolderTree, label: "资料库" },
             ...(isAdmin ? [{ key: "upload" as const, icon: Upload, label: "上传管理" }] : []),
           ]).map(({ key, icon: Icon, label }) => (
-            <button key={key} onClick={() => setTab(key)}
+            <button key={key} onClick={() => setTab(key as Tab)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-all ${
                 tab === key ? "bg-[var(--color-pill-dark)] text-[var(--color-pill-text)] shadow-[var(--shadow-btn)]"
                 : "text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"}`}>
