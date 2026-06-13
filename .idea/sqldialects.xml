@@ -8,5 +8,6 @@
     <file url="file://$PROJECT_DIR$/docs/sql/V3.4__create_message_job.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/docs/sql/V5.2__add_directory_path.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/docs/sql/V6.1__create_user_account.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/docs/sql/V6.2__add_quota_columns.sql" dialect="MySQL" />
   </component>
 </project>

@@ -33,9 +33,16 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
   const headers: Record<string, string> = { ...(options?.headers as Record<string, string> || {}) };
   if (storedToken) headers["Authorization"] = "Bearer " + storedToken;
   const res = await fetch(BASE + url, { ...options, headers });
-  const json: ApiResponse<T> = await res.json();
-  if (json.code !== "0000") throw new Error(json.info);
-  return json.data;
+  if (!res.ok) throw new Error(`请求失败 (${res.status})`);
+  const text = await res.text();
+  try {
+    const json: ApiResponse<T> = JSON.parse(text);
+    if (json.code !== "0000") throw new Error(json.info);
+    return json.data;
+  } catch (e: any) {
+    if (e.message?.includes("JSON")) throw new Error("服务器返回异常，请稍后重试");
+    throw e;
+  }
 }
 
 /* Document APIs */
