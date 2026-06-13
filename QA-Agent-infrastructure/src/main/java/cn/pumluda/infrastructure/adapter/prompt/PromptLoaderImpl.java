@@ -19,7 +19,7 @@ public class PromptLoaderImpl implements IPromptLoader {
 
     private final Path basePath;
 
-    public PromptLoaderImpl(@Value("${prompt.base-path:./docs/prompts}") String basePath) {
+    public PromptLoaderImpl(@Value("${prompt.base-path:/app/docs/prompts}") String basePath) {
         this.basePath = Path.of(basePath).toAbsolutePath().normalize();
     }
 
@@ -32,11 +32,22 @@ public class PromptLoaderImpl implements IPromptLoader {
     public String loadPrompt(RetrievalMode mode) {
         String fileName = mode == RetrievalMode.TOOL
                 ? "tool/system-prompt.md" : "agent/system-prompt.md";
+
         Path external = basePath.resolve(fileName);
+        if (Files.exists(external)) {
+            try {
+                return Files.readString(external);
+            } catch (IOException e) {
+                log.warn("[Prompt] 外部读取失败: {}，回退classpath", e.getMessage());
+            }
+        }
+
         try {
-            return Files.readString(external);
+            return new ClassPathResource("prompts/" + fileName)
+                    .getContentAsString(StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new RuntimeException("无法加载外部Prompt: " + external, e);
+            log.warn("[Prompt] 全部加载失败，用兜底");
+            return "你是技术知识库助手。基于检索证据回答。\n\n检索证据：\n{evidence}";
         }
     }
 

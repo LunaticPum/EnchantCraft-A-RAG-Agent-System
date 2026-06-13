@@ -65,10 +65,11 @@ public class AgentChatImpl implements IAgentChat {
         this.promptLoader = promptLoader;
         this.agentMemory = agentMemory;
 
-        // 构建 AiServices 代理：注入 @Tool 检索工具，LLM 可自主决定是否调用
+        // 构建 AiServices 代理：System Prompt 由 provider 动态加载（支持外部热更新）
         this.ragToolCallingAgent = AiServices.builder(IRagToolCallingAgent.class)
                                              .chatModel(chatModel)
                                              .chatMemoryProvider(agentMemory.getProvider())
+                                             .systemMessageProvider(memoryId -> promptLoader.loadPrompt(RetrievalMode.TOOL))
                                              .tools(knowledgeSearchTool)
                                              .build();
     }
