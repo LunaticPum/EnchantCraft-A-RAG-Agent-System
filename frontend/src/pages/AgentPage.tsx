@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, Link2, Bot, User, ToggleLeft, ToggleRight, ChevronDown } from "lucide-react";
+import { Send, Sparkles, Bot, User, ToggleLeft, ToggleRight, ChevronDown } from "lucide-react";
 import { api } from "../lib/api";
 import { MdViewer } from "../lib/markdown";
 import { useAgentStore } from "../lib/agentStore";
