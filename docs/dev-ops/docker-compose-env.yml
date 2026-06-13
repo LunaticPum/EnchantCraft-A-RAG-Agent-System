@@ -24,43 +24,6 @@ services:
     networks:
       - my-network
 
-  # phpmyadmin https://hub.docker.com/_/phpmyadmin
-  phpmyadmin:
-    image: phpmyadmin:5.2.1
-    container_name: phpmyadmin
-    hostname: phpmyadmin
-    ports:
-      - 8899:80
-    environment:
-      - PMA_HOST=mysql
-      - PMA_PORT=3306
-      - MYSQL_ROOT_PASSWORD=123456
-    depends_on:
-      mysql:
-        condition: service_healthy
-    networks:
-      - my-network
-
-  # Redis
-  redis:
-    image: redis:6.2
-    container_name: redis
-    restart: always
-    hostname: redis
-    privileged: true
-    ports:
-      - 16379:6379
-    volumes:
-      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
-    command: redis-server /usr/local/etc/redis/redis.conf
-    networks:
-      - my-network
-    healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-
   # PostgreSQL + pgvector（RAG 检索引擎 —— 语义向量 + 中文分词全文检索）
   postgres:
     build: ./postgres
@@ -83,27 +46,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-
-  # RedisAdmin https://github.com/joeferner/redis-commander
-  redis-admin:
-    image: spryker/redis-commander:0.8.0
-    container_name: redis-admin
-    hostname: redis-commander
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      - REDIS_HOSTS=local:redis:6379
-      - HTTP_USER=admin
-      - HTTP_PASSWORD=admin
-      - LANG=C.UTF-8
-      - LANGUAGE=C.UTF-8
-      - LC_ALL=C.UTF-8
-    networks:
-      - my-network
-    depends_on:
-      redis:
-        condition: service_healthy
 
   # pgAdmin https://www.pgadmin.org/
   pgadmin:
@@ -149,7 +91,7 @@ services:
     networks:
       - my-network
     healthcheck:
-      test: ["CMD-SHELL", "bash -ec '</dev/tcp/127.0.0.1/9092'"]
+      test: [ "CMD-SHELL", "bash -ec '</dev/tcp/127.0.0.1/9092'" ]
       interval: 15s
       timeout: 5s
       retries: 10
