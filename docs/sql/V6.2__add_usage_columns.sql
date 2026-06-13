@@ -1,3 +1,0 @@
-ALTER TABLE user_account
-    ADD COLUMN IF NOT EXISTS search_count INT NOT NULL DEFAULT 0 COMMENT '累计检索次数',
-    ADD COLUMN IF NOT EXISTS chat_count   INT NOT NULL DEFAULT 0 COMMENT '累计对话次数';

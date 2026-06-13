@@ -4,8 +4,6 @@ import { api } from "../lib/api";
 import { MdViewer } from "../lib/markdown";
 import { useAgentStore } from "../lib/agentStore";
 
-type Mode = "FORCE" | "TOOL";
-
 export default function AgentPage() {
   const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid, mode, setMode } = useAgentStore();
   const [input, setInput] = useState("");
@@ -35,7 +33,7 @@ export default function AgentPage() {
           <span className="text-sm font-medium text-[var(--color-ink)]">AI 助手</span>
           {sending && <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-pass)] animate-pulse" />}
         </div>
-        <button onClick={() => setMode((m) => (m === "FORCE" ? "TOOL" : "FORCE"))}
+        <button onClick={() => setMode(mode === "FORCE" ? "TOOL" : "FORCE")}
           className="flex items-center gap-2 text-xs text-[var(--color-ink-soft)] hover:text-[var(--color-accent)] transition-colors">
           {mode === "FORCE" ? <><ToggleLeft size={18} className="text-[var(--color-accent)]" /> 强制检索</>
           : <><ToggleRight size={18} className="text-[var(--color-accent)]" /> Tool Calling</>}
