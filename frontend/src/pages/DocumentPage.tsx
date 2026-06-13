@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Upload, FolderTree, FileText, Clock, ChevronRight, Folder, File, RefreshCw, Loader2 } from "lucide-react";
+import { Upload, FolderTree, FileText, Clock, ChevronRight, Folder, File, RefreshCw, Loader2, Zap, Trash2, X } from "lucide-react";
 import { api, type DocumentItem, type ChunkItem } from "../lib/api";
 import { scanDirectory, batchUploadFiles } from "../lib/directoryScan";
 import { MdViewer } from "../lib/markdown";
@@ -182,9 +182,10 @@ export default function DocumentPage() {
 
         {tab === "repository" ? (
           <div className="flex-1 min-h-0 overflow-y-auto p-3 space-y-0">
-            <div className="flex items-center gap-2 mb-3 px-1">
-              <button onClick={loadDocs} className="pill pill--ghost text-[11px] px-3 py-1.5 flex items-center gap-1.5">
-                <RefreshCw size={12} /> 刷新列表
+            <div className="flex items-center gap-1.5 mb-3 px-1">
+              <button onClick={loadDocs} title="刷新列表"
+                className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
+                <RefreshCw size={14} />
               </button>
               <button onClick={async () => {
                 try {
@@ -193,8 +194,9 @@ export default function DocumentPage() {
                   else if (confirm("向量数据异常，是否重新执行 Embedding？"))
                     await api.reEmbedAll();
                 } catch { alert("检查失败"); }
-              }} className="pill pill--ghost text-[11px] px-3 py-1.5">
-                向量检查
+              }} title="向量检查"
+                className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
+                <Zap size={14} />
               </button>
             </div>
             {tree.length === 0 ? (
@@ -243,28 +245,31 @@ export default function DocumentPage() {
             <div className="flex-1 overflow-auto p-3 space-y-1">
               <div className="flex items-center justify-between px-1 mb-2">
                 <span className="text-[11px] text-[var(--color-ink-faint)] tracking-wider">已上传 ({docs.length})</span>
-                <div className="flex items-center gap-1.5">
-                  <button onClick={loadDocs} className="pill pill--ghost text-[11px] px-2.5 py-1 flex items-center gap-1">
-                    <RefreshCw size={11} />
+                <div className="flex items-center gap-1">
+                  <button onClick={loadDocs} title="刷新"
+                    className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
+                    <RefreshCw size={14} />
                   </button>
                   <button onClick={() => { setDeleteMode(!deleteMode); setSelectedIds(new Set()); }}
-                    className={`pill text-[11px] px-2.5 py-1 ${deleteMode ? "pill--dark" : "pill--ghost"}`}>
-                    {deleteMode ? "取消" : "批量删除"}
+                    title={deleteMode ? "取消" : "批量删除"}
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${deleteMode ? "text-[var(--color-accent)] bg-[var(--color-accent-soft)]" : "text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)]"}`}>
+                    <Trash2 size={14} />
                   </button>
                   {deleteMode && (
-                    <label className="pill pill--ghost text-[11px] px-2.5 py-1 cursor-pointer flex items-center gap-1">
+                    <label title="全选" className="w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
                       <input type="checkbox" className="w-3 h-3 accent-[var(--color-accent)]"
                         checked={selectedIds.size === docs.length && docs.length > 0}
                         onChange={() => {
                           if (selectedIds.size === docs.length) setSelectedIds(new Set());
                           else setSelectedIds(new Set(docs.map(d => d.id)));
                         }} />
-                      全选
                     </label>
                   )}
                   {selectedIds.size > 0 && (
-                    <button onClick={() => setDeleteConfirm(true)}
-                      className="pill pill--ghost text-[11px] px-2.5 py-1 text-[var(--color-danger)]">删除({selectedIds.size})</button>
+                    <button onClick={() => setDeleteConfirm(true)} title="确认删除"
+                      className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-danger)] hover:bg-[rgba(200,122,106,0.1)] transition-colors">
+                      <X size={14} />
+                    </button>
                   )}
                 </div>
               </div>

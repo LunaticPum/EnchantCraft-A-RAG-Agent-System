@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ArrowRight, LogIn, User, KeyRound } from "lucide-react";
 import { useAuth } from "../lib/mockAuth";
 import { api, setAuthToken } from "../lib/api";
@@ -60,6 +60,9 @@ export default function LoginPage() {
             className="pill pill--dark w-full justify-center py-3 text-sm shadow-lg mt-4">
             {loading ? "登录中..." : <span className="flex items-center gap-2">登录 <ArrowRight size={15} /></span>}
           </button>
+          <p className="text-center text-[11px] text-[var(--color-ink-faint)] pt-3">
+            没有账号？<Link to="/register" className="text-[var(--color-accent)] hover:underline">去注册</Link>
+          </p>
         </div>
       </div>
     </div>

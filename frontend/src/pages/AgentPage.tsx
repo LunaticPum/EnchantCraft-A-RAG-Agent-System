@@ -3,8 +3,10 @@ import { Send, Sparkles, Bot, User, ToggleLeft, ToggleRight, ChevronDown } from 
 import { api } from "../lib/api";
 import { MdViewer } from "../lib/markdown";
 import { useAgentStore } from "../lib/agentStore";
+import { useAuth } from "../lib/mockAuth";
 
 export default function AgentPage() {
+  const { user } = useAuth();
   const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid, mode, setMode } = useAgentStore();
   const [input, setInput] = useState("");
   const [quota, setQuota] = useState<{search:number;chat:number} | null>(null);
@@ -99,7 +101,9 @@ export default function AgentPage() {
 
       {/* Fixed input bar */}
       <div className="flex-shrink-0 px-4 pt-2 pb-4 border-t border-[var(--color-line)]">
-        {quota && (
+        {user?.role === "ADMIN" ? (
+          <p className="text-center text-[11px] text-[var(--color-cite)] mb-2">欢迎管理员</p>
+        ) : quota && (
           <p className="text-center text-[11px] text-[var(--color-pass)] mb-2">
             今日剩余：检索 {quota.search} 次 · 对话 {quota.chat} 次
           </p>

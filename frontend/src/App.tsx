@@ -5,6 +5,7 @@ import AgentPage from "./pages/AgentPage";
 import SearchPage from "./pages/SearchPage";
 import WelcomePage from "./pages/WelcomePage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import { AuthProvider, useAuth } from "./lib/mockAuth";
 import { AgentStateProvider } from "./lib/agentStore";
 
@@ -69,6 +70,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/documents" element={<DocumentPage />} />
             <Route path="/agent" element={<AgentPage />} />
