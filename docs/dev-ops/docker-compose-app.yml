@@ -20,7 +20,7 @@ services:
       - my-network
 
   frontend:
-    build: ./nginx
+    build: ../../frontend
     container_name: QA-Agent-frontend
     restart: always
     ports:
