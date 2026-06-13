@@ -1,9 +1,9 @@
 version: '3.8'
 # docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
 services:
-  QA-Agent:
-    image: docker.io/system/QA-Agent-app:1.0-SNAPSHOT
-    container_name: QA-Agent
+  doc-Agent:
+    image: docker.io/system/doc-Agent-app:1.0-SNAPSHOT
+    container_name: doc-Agent
     restart: on-failure
     environment:
       - TZ=PRC
