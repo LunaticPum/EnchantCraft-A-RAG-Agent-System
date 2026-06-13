@@ -56,7 +56,7 @@ dashScope:
 
 # Prompt 模板目录（部署时挂载宿主机目录到此处）
 prompt:
-  base-path: ./docs/prompts
+  base-path: /app/docs/prompts
 
 # JWT 认证配置
 jwt:
