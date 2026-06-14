@@ -29,6 +29,10 @@ export interface SearchResultItem {
 }
 export interface ApiResponse<T> { code: string; info: string; data: T; }
 
+let storedToken = "";
+export function setAuthToken(t: string) { storedToken = t; }
+export function getAuthToken() { return storedToken; }
+
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
   const headers: Record<string, string> = { ...(options?.headers as Record<string, string> || {}) };
   if (storedToken) headers["Authorization"] = "Bearer " + storedToken;
@@ -99,10 +103,10 @@ export const api = {
         if (done) break;
         buf += dec.decode(value, { stream: true });
         const lines = buf.split("\n");
-        buf = lines.pop() || "";  // keep incomplete line for next read
+        buf = lines.pop() || "";
         for (const line of lines) {
           const l = line.replace(/\r$/, "");
-          if (l === "") continue;  // skip blank lines between frames
+          if (l === "") continue;
           if (l.startsWith("event:")) { eType = l.slice(6).trim(); }
           else if (l.startsWith("data:") && eType) {
             const raw = l.slice(5);
@@ -113,7 +117,7 @@ export const api = {
               else if (eType === "done") onDone(d);
               else if (eType === "error") onError(d);
             } catch {}
-            eType = "";  // dispatched, clear for next
+            eType = "";
           }
         }
       }
@@ -125,7 +129,6 @@ export const api = {
       `/document/search?keyword=${encodeURIComponent(keyword)}&topK=${topK}&strategy=${strategy}&rerank=${rerank}`
     ),
 
-  /* Document delete */
   deleteDocument: (id: string) =>
     request<void>(`/document/${id}`, { method: "DELETE" }),
 
@@ -155,7 +158,3 @@ export interface AuthResponse {
   username: string;
   role: string;
 }
-
-let storedToken = "";
-export function setAuthToken(t: string) { storedToken = t; }
-export function getAuthToken() { return storedToken; }

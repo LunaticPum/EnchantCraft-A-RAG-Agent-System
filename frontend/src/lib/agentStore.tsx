@@ -33,9 +33,9 @@ export function AgentStateProvider({ children }: { children: ReactNode }) {
   );
 }
 
+export function useAgentStore() { return useContext(AgentContext); }
+
 export function useAgentReset() {
   const { setMessages, setSending, setSessionId } = useContext(AgentContext);
   return () => { setMessages([]); setSending(false); setSessionId(""); };
 }
-
-export function useAgentStore() { return useContext(AgentContext); }

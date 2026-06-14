@@ -4,7 +4,7 @@ import { setAuthToken } from "./api";
 export interface UserInfo {
   userId: string;
   username: string;
-  role: string;      // ADMIN / USER
+  role: string;
 }
 
 interface AuthCtx {
@@ -24,12 +24,12 @@ const AuthContext = createContext<AuthCtx>({
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [authed, setAuthed] = useState(false);
   const [user, setUser] = useState<UserInfo | null>(null);
+
+  const login = (u: UserInfo) => { setUser(u); setAuthed(true); };
+  const logout = () => { setUser(null); setAuthed(false); setAuthToken(""); };
+
   return (
-    <AuthContext.Provider value={{
-      authed, user,
-      login: (u) => { setAuthed(true); setUser(u); },
-      logout: () => { setAuthed(false); setUser(null); setAuthToken(""); },
-    }}>
+    <AuthContext.Provider value={{ authed, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

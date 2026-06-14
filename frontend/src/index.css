@@ -1,6 +1,22 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
+/* === Monocraft 像素字体 === */
+@font-face {
+  font-family: 'Monocraft';
+  src: url('/fonts/Monocraft.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monocraft';
+  src: url('/fonts/Monocraft-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-ink: #f0ede8;
   --color-ink-soft: #a8a39b;
@@ -20,29 +36,37 @@
   --color-danger: #c87a6a;
   --color-pass: #7ea88b;
   --color-cite: #a898c4;
+  --color-mc-brown: #3d2a10;
+  --color-mc-brown-light: #5a3d18;
+  --color-mc-gold: #f5e050;
+  --color-mc-border: #2a1a0a;
+  --color-mc-border-light: #6b5020;
+  --color-mc-text-dim: #8a7a5a;
   --font-serif: "Noto Serif SC", "Iowan Old Style", Georgia, serif;
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-mc: "Monocraft", "JetBrains Mono", monospace;
   --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(240, 237, 232, 0.04);
   --shadow-btn: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 * { box-sizing: border-box; }
 
-html {
-  background: radial-gradient(ellipse 80% 60% at 30% 20%, rgba(38,35,33,0.9) 0%, rgba(26,23,20,0.98) 50%, rgba(20,18,15,1) 100%);
-  min-height: 100%;
+html, body, #root {
+  margin: 0; padding: 0;
+  min-height: 100vh;
+  background: #0d0a08;
 }
 body {
-  margin: 0;
-  background: transparent;
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 ::selection { background: var(--color-accent-soft); color: var(--color-accent); }
 
-/* glass card */
+/* ============================================
+   Legacy 玻璃拟态类（Login/Register/Document/Agent/Search 仍在使用）
+   ============================================ */
 .glass { background: var(--color-bg-glass); backdrop-filter: blur(12px) saturate(110%); border: 1px solid var(--color-line); border-radius: 28px; }
 .glass-lg { border-radius: 24px; }
 .glass-sm { border-radius: 20px; }
@@ -70,7 +94,348 @@ body {
 @keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 .fade-in { animation: fade-in 220ms ease-out both; }
 
-/* Markdown rendered content */
+/* ============================================
+   MC 像素风组件类（V5.5 新增）
+   ============================================ */
+
+/* MC 场景容器：暗底 + 三层像素边框 + 内阴影 */
+.mc-scene {
+  position: relative;
+  background: #0d0a08;
+  border: 3px solid #4a2a14;
+  box-shadow:
+    inset 0 0 120px rgba(0,0,0,0.6),
+    0 0 0 1px #6a4020,
+    0 0 0 4px #0d0a08,
+    0 0 0 5px #5a3018;
+}
+
+/* MC 附魔符文漂浮背景 */
+.mc-runes {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  pointer-events: none; z-index: 1;
+}
+.mc-rune {
+  position: absolute;
+  font-family: var(--font-mc);
+  color: #6a4a80;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 6px rgba(140,100,200,0.4), 0 0 14px rgba(120,80,180,0.2);
+  animation: mcRuneFloat linear infinite;
+  opacity: 0;
+}
+@keyframes mcRuneFloat {
+  0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+  15%  { opacity: 0.6; }
+  70%  { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-100px) rotate(8deg); }
+}
+
+/* MC 像素粒子（荧光） */
+.mc-particle {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: #f5e080;
+  opacity: 0;
+  pointer-events: none; z-index: 1;
+  animation: mcParticleDrift linear infinite;
+  box-shadow: 0 0 4px 1px rgba(245,224,128,0.6), 0 0 8px 2px rgba(245,200,80,0.3);
+  border-radius: 50%;
+}
+@keyframes mcParticleDrift {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  15%  { opacity: 0.5; }
+  70%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translate(-20px, -100px); }
+}
+
+/* MC 标题文字 */
+.mc-title {
+  font-family: var(--font-mc);
+  font-size: clamp(48px, 8vw, 96px); color: #e8dcc8;
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 0 24px rgba(200,180,140,0.25),
+    3px 3px 0 rgba(0,0,0,0.8);
+}
+
+/* MC Splash 浮动提示文字 */
+/* MC Splash 浮动提示文字 */
+.mc-splash {
+  font-family: var(--font-mc);
+  font-size: clamp(15px, 2.2vw, 24px); color: var(--color-mc-gold);
+  white-space: nowrap;
+  text-shadow:
+    0 0 14px rgba(245,224,80,0.5),
+    0 0 4px rgba(245,224,80,0.3),
+    2px 2px 0 rgba(0,0,0,0.8);
+  pointer-events: none;
+  animation: mcSplashWobble 3.4s ease-in-out infinite;
+}
+@keyframes mcSplashWobble {
+  0%, 100% { transform: translate(-50%, -50%) rotate(-18deg) translateY(0); }
+  25% { transform: translate(-50%, -50%) rotate(-17.2deg) translateY(-2px); }
+  50% { transform: translate(-50%, -50%) rotate(-18.8deg) translateY(0); }
+  75% { transform: translate(-50%, -50%) rotate(-17.5deg) translateY(1px); }
+}
+
+/* MC 副标题 */
+.mc-sub {
+  font-family: var(--font-mc);
+  font-size: clamp(12px, 1.6vw, 20px); color: var(--color-ink-faint);
+  letter-spacing: 0.3em;
+}
+
+/* MC 主按钮（像素3D凸起） */
+.mc-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 16px 48px;
+  font-family: var(--font-mc);
+  font-size: clamp(13px, 1.8vw, 22px); letter-spacing: 0.1em;
+  color: #e8dcc8;
+  background: var(--color-mc-brown);
+  border: 2px solid var(--color-mc-border-light);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.08),
+    0 0 0 2px #1a0f04;
+  transition: all 0.2s;
+  cursor: pointer; position: relative;
+  text-transform: uppercase;
+}
+.mc-btn:hover {
+  background: var(--color-mc-brown-light);
+  border-color: #8a6a2a;
+  color: var(--color-mc-gold);
+  text-shadow: 0 0 8px rgba(245,224,80,0.4);
+}
+.mc-btn::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 4px; right: -4px;
+  height: 100%;
+  background: #1a0f04;
+  z-index: -1;
+}
+
+/* MC 竖排菜单项（MC 原版风格 — 单人生存/多人游戏/设置 那种） */
+.mc-menu-vert {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%;
+  font-family: var(--font-mc);
+  font-size: clamp(11px, 1.4vw, 16px); color: #e8dcc8;
+  letter-spacing: 0.1em;
+  padding: 14px 48px;
+  background: var(--color-mc-brown);
+  border: 2px solid var(--color-mc-border-light);
+  border-bottom: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  text-transform: uppercase;
+  position: relative;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.06),
+    0 0 0 2px #1a0f04;
+}
+.mc-menu-vert > span:last-child {
+  flex: 1; text-align: center;
+}
+.mc-menu-vert:last-child { border-bottom: 2px solid var(--color-mc-border-light); }
+.mc-menu-vert::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 3px; right: -3px;
+  height: 100%;
+  background: #1a0f04;
+  z-index: -1;
+}
+.mc-menu-vert:hover {
+  color: var(--color-mc-gold);
+  background: var(--color-mc-brown-light);
+  text-shadow: 0 0 6px rgba(245,224,80,0.3);
+  border-color: #8a6a2a;
+}
+.mc-menu-vert:hover .mc-icon svg {
+  fill: var(--color-mc-gold);
+  filter: drop-shadow(0 0 4px rgba(245,224,80,0.5));
+}
+.mc-menu-vert--primary {
+  color: #e8dcc8;
+  border-color: #8a6a2a;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.08),
+    0 0 0 2px #1a0f04;
+}
+.mc-menu-vert--primary:hover {
+  color: var(--color-mc-gold);
+  border-color: #a88030;
+}
+
+/* MC 菜单容器 */
+.mc-menu {
+  display: flex; gap: 0;
+  border: 2px solid var(--color-mc-brown);
+  box-shadow: 0 0 0 2px #0d0a08, 0 0 0 3px var(--color-mc-border);
+}
+.mc-menu-item {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-align: center;
+  font-family: var(--font-mc);
+  font-size: clamp(11px, 1.5vw, 18px); color: var(--color-mc-text-dim);
+  letter-spacing: 0.08em;
+  padding: 18px 32px;
+  min-width: 120px;
+  background: rgba(20,14,8,0.9);
+  border-right: 1px solid var(--color-mc-border);
+  transition: all 0.2s;
+  cursor: pointer; position: relative;
+}
+.mc-menu-item:last-child { border-right: none; }
+.mc-menu-item:hover {
+  color: var(--color-mc-gold);
+  background: rgba(60,40,18,0.9);
+  text-shadow: 0 0 6px rgba(245,224,80,0.3);
+}
+.mc-menu-item .mc-icon svg {
+  width: clamp(24px, 3.5vw, 38px); height: clamp(24px, 3.5vw, 38px);
+  fill: var(--color-mc-text-dim);
+  image-rendering: pixelated;
+  transition: fill 0.2s;
+}
+.mc-menu-vert .mc-icon svg {
+  width: clamp(18px, 2vw, 26px); height: clamp(18px, 2vw, 26px);
+  fill: #e8dcc8;
+  image-rendering: pixelated;
+  transition: fill 0.2s;
+}
+.mc-menu-item:hover .mc-icon svg {
+  fill: var(--color-mc-gold);
+  filter: drop-shadow(0 0 4px rgba(245,224,80,0.5));
+}
+
+/* MC 状态栏 */
+.mc-status {
+  font-family: var(--font-mc);
+  font-size: clamp(10px, 1.2vw, 15px); color: #8a7a5a;
+  letter-spacing: 0.1em;
+  display: flex; gap: 24px;
+}
+.mc-status span { position: relative; padding-left: 12px; }
+.mc-status span::before { content: '▸'; position: absolute; left: 0; color: var(--color-mc-border-light); }
+
+/* MC 描述文字 */
+.mc-desc {
+  font-family: var(--font-sans);
+  font-size: clamp(11px, 1.3vw, 16px); color: #5a5040;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* MC 导航栏 */
+.mc-nav {
+  display: flex; align-items: center; gap: 0;
+  border: 2px solid var(--color-mc-brown);
+  box-shadow: 0 0 0 2px #0d0a08, 0 0 0 3px var(--color-mc-border);
+  background: rgba(20,14,8,0.95);
+}
+.mc-nav-brand {
+  font-family: var(--font-mc);
+  font-size: 14px; color: #e8dcc8;
+  letter-spacing: 0.06em;
+  padding: 10px 20px;
+  border-right: 2px solid var(--color-mc-brown);
+  display: flex; align-items: center; gap: 8px;
+  flex-shrink: 0;
+}
+.mc-nav-links {
+  display: flex; align-items: center; flex: 1; justify-content: center;
+}
+.mc-nav-link {
+  font-family: var(--font-mc);
+  font-size: 11px; color: var(--color-mc-text-dim);
+  letter-spacing: 0.1em;
+  padding: 12px 28px;
+  transition: all 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  border-right: 1px solid rgba(42,26,10,0.5);
+  text-transform: uppercase;
+}
+.mc-nav-link:last-child { border-right: none; }
+.mc-nav-link:hover {
+  color: var(--color-mc-gold);
+  text-shadow: 0 0 6px rgba(245,224,80,0.3);
+  background: rgba(60,40,18,0.3);
+}
+.mc-nav-link.active {
+  color: var(--color-mc-gold);
+  background: rgba(60,40,18,0.4);
+  text-shadow: 0 0 6px rgba(245,224,80,0.3);
+}
+.mc-nav-right {
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 16px;
+  border-left: 2px solid var(--color-mc-brown);
+  flex-shrink: 0;
+}
+.mc-nav-right span {
+  font-family: var(--font-mc);
+  font-size: 10px; color: var(--color-mc-text-dim);
+  letter-spacing: 0.06em;
+}
+.mc-nav-right button {
+  font-family: var(--font-mc);
+  font-size: 10px; color: var(--color-mc-text-dim);
+  background: none; border: none; cursor: pointer;
+  letter-spacing: 0.06em; transition: color 0.2s;
+}
+.mc-nav-right button:hover { color: var(--color-danger); }
+
+/* MC 像素弹窗 */
+.mc-modal {
+  position: relative; width: 380px; background: #12100e;
+  border: 3px solid #5a3018;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.5), 0 0 0 1px #6a4020, 0 0 0 4px #0d0a08, 0 0 0 5px #5a3018, 0 8px 32px rgba(0,0,0,0.6);
+}
+.mc-modal-header {
+  display: flex; align-items: center; justify-content: space-between; padding: 10px 14px;
+  font-family: var(--font-mc); font-size: 13px; color: #e8dcc8; letter-spacing: 0.08em; text-transform: uppercase;
+  background: #3d2a10; border-bottom: 2px solid #5a3018; cursor: grab; user-select: none;
+}
+.mc-modal-header:active { cursor: grabbing; }
+.mc-modal-close { background: none; border: none; color: #8a7a5a; font-family: var(--font-mc); font-size: 16px; cursor: pointer; padding: 0 4px; transition: color 0.2s; }
+.mc-modal-close:hover { color: var(--color-mc-gold); }
+.mc-modal-body { padding: 20px 24px; }
+.mc-modal-body .mc-input { width: 100%; padding: 10px 14px; font-family: var(--font-mc); font-size: 13px; color: #e8dcc8; background: rgba(20,14,8,0.8); border: 2px solid #5a3018; outline: none; margin-bottom: 10px; }
+.mc-modal-body .mc-input:focus { border-color: #8a6a2a; }
+.mc-modal-body .mc-input::placeholder { color: #5a4020; }
+
+
+/* MC 输入框 */
+.mc-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-mc);
+  font-size: 13px; letter-spacing: 0.04em;
+  color: #e8dcc8;
+  background: rgba(20,14,8,0.8);
+  border: 2px solid var(--color-mc-border-light);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.mc-input:focus { border-color: #8a6a2a; }
+.mc-input::placeholder { color: #4a3a2a; }
+
+/* MC 描述文字 */
+.mc-desc {
+  font-family: var(--font-sans);
+  font-size: 11px; color: #5a5040;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* ============================================
+   Markdown 内容样式（保持兼容）
+   ============================================ */
 .md-content { font-family: var(--font-serif); font-size: 15px; line-height: 1.8; color: var(--color-ink-soft); }
 .md-content h1, .md-content h2, .md-content h3 { font-family: var(--font-serif); color: var(--color-ink); }
 .md-content h1 { font-size: 1.6em; margin: 1.2em 0 0.6em; font-weight: 600; }

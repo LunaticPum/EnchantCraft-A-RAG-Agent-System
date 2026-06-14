@@ -3,17 +3,16 @@ import { Send, Sparkles, Bot, User, ToggleLeft, ToggleRight, ChevronDown } from 
 import { api } from "../lib/api";
 import { MdViewer } from "../lib/markdown";
 import { useAgentStore } from "../lib/agentStore";
-import { useAuth } from "../lib/mockAuth";
+
+type Mode = "FORCE" | "TOOL";
 
 export default function AgentPage() {
-  const { user } = useAuth();
-  const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid, mode, setMode } = useAgentStore();
+  const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid } = useAgentStore();
+  const [mode, setMode] = useState<Mode>("FORCE");
   const [input, setInput] = useState("");
-  const [quota, setQuota] = useState<{search:number;chat:number} | null>(null);
   const bottom = useRef<HTMLDivElement>(null);
 
   useEffect(() => { if (sending) bottom.current?.scrollIntoView({ behavior: "smooth" }); }, [msgs.length]);
-  useEffect(() => { api.quota().then(setQuota).catch(()=>{}); }, [msgs.length]);
 
   const send = () => {
     if (!input.trim() || sending) return;
@@ -37,7 +36,7 @@ export default function AgentPage() {
           <span className="text-sm font-medium text-[var(--color-ink)]">AI 助手</span>
           {sending && <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-pass)] animate-pulse" />}
         </div>
-        <button onClick={() => setMode(mode === "FORCE" ? "TOOL" : "FORCE")}
+        <button onClick={() => setMode((m) => (m === "FORCE" ? "TOOL" : "FORCE"))}
           className="flex items-center gap-2 text-xs text-[var(--color-ink-soft)] hover:text-[var(--color-accent)] transition-colors">
           {mode === "FORCE" ? <><ToggleLeft size={18} className="text-[var(--color-accent)]" /> 强制检索</>
           : <><ToggleRight size={18} className="text-[var(--color-accent)]" /> Tool Calling</>}
@@ -100,14 +99,7 @@ export default function AgentPage() {
       </div>
 
       {/* Fixed input bar */}
-      <div className="flex-shrink-0 px-4 pt-2 pb-4 border-t border-[var(--color-line)]">
-        {user?.role === "ADMIN" ? (
-          <p className="text-center text-[11px] text-[var(--color-cite)] mb-2">欢迎管理员</p>
-        ) : quota && (
-          <p className="text-center text-[11px] text-[var(--color-pass)] mb-2">
-            今日剩余：检索 {quota.search} 次 · 对话 {quota.chat} 次
-          </p>
-        )}
+      <div className="flex-shrink-0 p-4 border-t border-[var(--color-line)]">
         <div className="flex items-center gap-3">
           <div className="flex-1 relative">
             <input value={input} onChange={(e) => setInput(e.target.value)}
