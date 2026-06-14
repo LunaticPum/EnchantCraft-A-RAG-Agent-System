@@ -100,8 +100,8 @@ EnchantCraft/
 ### 后端启动
 ```bash
 # 1. 克隆项目
-git clone git@github.com:LunaticPum/PuDocManageAgent.git
-cd PuDocManageAgent
+git clone git@github.com:LunaticPum/EnchantCraft-A-RAG-Agent-System.git
+cd EnchantCraft-A-RAG-Agent-System
 
 # 2. 编译
 mvn clean compile -DskipTests
@@ -158,7 +158,7 @@ docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
 
 ## Star 趋势
 
-[![Star History Chart](https://api.star-history.com/svg?repos=LunaticPum/PuDocManageAgent&type=date)](https://star-history.com/#LunaticPum/PuDocManageAgent&date)
+[![Star History Chart](https://api.star-history.com/svg?repos=LunaticPum/EnchantCraft-A-RAG-Agent-System&type=date)](https://star-history.com/#LunaticPum/EnchantCraft-A-RAG-Agent-System&date)
 
 ---
 
