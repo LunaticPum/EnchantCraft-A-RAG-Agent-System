@@ -37,6 +37,8 @@ export default function DocumentPage() {
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadMsg, setUploadMsg] = useState("");
+  const [generating, setGenerating] = useState(false);
+  const [genResult, setGenResult] = useState<import("../lib/api").BaguSetResponse | null>(null);
 
   const loadDocs = () => { api.listDocuments().then(setDocs).catch(() => {}); };
   const loadChunks = (id: string) => { api.getChunks(id).then(setChunks).catch(() => {}); };
@@ -103,6 +105,23 @@ export default function DocumentPage() {
       setChunks([]);
     }
     loadDocs();
+  };
+
+  /* 生成八股 */
+  const handleBaguGenerate = async () => {
+    if (!selectedShelf) return;
+    const ids = shelfDocs.map(d => d.id);
+    if (ids.length === 0) return;
+    setGenerating(true);
+    setGenResult(null);
+    try {
+      const result = await api.baguGenerate(selectedShelf, ids);
+      setGenResult(result);
+    } catch (e: any) {
+      alert("生成失败: " + (e.message || "未知错误"));
+    } finally {
+      setGenerating(false);
+    }
   };
 
   /* 上传 */
@@ -252,9 +271,38 @@ export default function DocumentPage() {
                 {!selectedShelf && (
                   <div className="doc-item" style={{ color: "#8b7355", cursor: "default" }}>点击左侧书架方块</div>
                 )}
+                {selectedShelf && shelfDocs.length > 0 && (
+                  <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid rgba(139,115,85,0.2)" }}>
+                    <button
+                      onClick={handleBaguGenerate}
+                      disabled={generating}
+                      className="mc-btn"
+                      style={{ width: "100%", padding: "8px 12px", fontSize: 11 }}
+                    >
+                      {generating ? "生成中..." : "⚒️ 生成八股"}
+                    </button>
+                  </div>
+                )}
               </div>
               <div className="grim-main">
-                {selectedDoc ? (
+                {genResult ? (
+                  <div>
+                    <h4 style={{ fontFamily: "var(--font-mc)", fontSize: 14, color: "#1a0804", margin: "0 0 4px" }}>{genResult.title}</h4>
+                    <p style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8b7355", margin: "0 0 12px" }}>{genResult.description} · {genResult.itemCount}题</p>
+                    {genResult.items.map((item, i) => (
+                      <div key={item.id || i} style={{ marginBottom: 16, padding: "10px 12px", background: "rgba(139,115,85,0.06)", border: "1px solid rgba(139,115,85,0.12)" }}>
+                        <p style={{ fontFamily: "var(--font-mc)", fontSize: 11, color: "#1a0804", fontWeight: "bold", margin: "0 0 6px" }}>
+                          Q{i + 1}. {item.question}
+                          <span style={{ fontSize: 8, color: "#8b7355", marginLeft: 8, background: "rgba(139,115,85,0.1)", padding: "1px 6px" }}>{item.difficulty}</span>
+                        </p>
+                        <div style={{ fontFamily: "Georgia, serif", fontSize: 11, color: "#2a1808", lineHeight: 1.7 }}>
+                          <MdViewer content={item.answer} />
+                        </div>
+                      </div>
+                    ))}
+                    <button onClick={() => setGenResult(null)} style={{ fontFamily: "var(--font-mc)", fontSize: 9, color: "#8b7355", background: "none", border: "1px solid rgba(139,115,85,0.2)", padding: "4px 10px", cursor: "pointer" }}>← 返回文档</button>
+                  </div>
+                ) : selectedDoc ? (
                   <>
                     <div>
                       <span className="drop-cap">{selectedDoc.fileName.charAt(0).toUpperCase()}</span>

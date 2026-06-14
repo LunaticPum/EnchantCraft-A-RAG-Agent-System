@@ -152,6 +152,22 @@ export const api = {
     }),
 };
 
+  /* Bagu Skill */
+  baguGenerate: (shelfName: string, documentIds: string[]) =>
+    request<BaguSetResponse>("/bagu/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ shelfName, documentIds }),
+    }),
+};
+
+export interface BaguItemResponse {
+  id: string; question: string; answer: string; difficulty: string; sortOrder: number;
+}
+export interface BaguSetResponse {
+  id: string; title: string; description: string; itemCount: number; items: BaguItemResponse[]; createdAt: string;
+}
+
 export interface AuthResponse {
   token: string;
   userId: string;
