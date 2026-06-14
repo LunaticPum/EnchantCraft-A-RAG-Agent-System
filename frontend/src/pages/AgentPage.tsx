@@ -1,14 +1,18 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, Bot, User, ToggleLeft, ToggleRight, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { api } from "../lib/api";
 import { MdViewer } from "../lib/markdown";
 import { useAgentStore } from "../lib/agentStore";
 
+/** Pixelarticons */
+const ICON_AI = "M2 15h2v2H2zm0 4h2v-2H2zm20-4h-2v2h2zm0 4h-2v-2h2zM4 13h4v2H4zm0 8h4v-2H4zm16-8h-4v2h4zm0 8h-4v-2h4zM8 11h8v2H8zm0 12h8v-2H8zm2-8h4v4h-4zm1-6V5h2v4zM3 7V5h2v2zm2 2V7h2v2zm14-2V5h2v2zm-2 2V7h2v2zM9 5V3h2v2zM1 5V3h2v2zm16 0V3h2v2zm-6-2V1h2v2zM3 3V1h2v2zm16 0V1h2v2zm-6 2V3h2v2zM5 5V3h2v2zm16 0V3h2v2z";
+const ICON_BOOK = "M2 3h9v2H2zM0 19h11v2H0zM13 3h9v2h-9zm0 16h11v2H13zM11 5h2v18h-2zM0 5h2v14H0zm22 0h2v14h-2zm-7 2h5v2h-5zm0 4h5v2h-5zm0 4h2v2h-2z";
+const ICON_SEND = "M2 2h20v2H2zm0 4h14v2H2zm0 4h10v2H2zm0 4h16v2H2zm0 4h12v2H2z";
+
 type Mode = "FORCE" | "TOOL";
 
 export default function AgentPage() {
-  const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid } = useAgentStore();
-  const [mode, setMode] = useState<Mode>("FORCE");
+  const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid, mode, setMode } = useAgentStore();
   const [input, setInput] = useState("");
   const bottom = useRef<HTMLDivElement>(null);
 
@@ -28,64 +32,65 @@ export default function AgentPage() {
   };
 
   return (
-    <div className="h-full flex flex-col">
-      {/* Fixed header */}
-      <div className="flex-shrink-0 flex items-center justify-between px-6 py-3 border-b border-[var(--color-line)]">
+    <div className="h-full flex flex-col" style={{ background: "rgba(0,0,0,0.2)" }}>
+      {/* Header */}
+      <div className="flex-shrink-0 flex items-center justify-between px-5 py-3" style={{ background: "rgba(20,14,8,0.8)", borderBottom: "2px solid #3a1a08" }}>
         <div className="flex items-center gap-2.5">
-          <Bot size={18} className="text-[var(--color-accent)]" />
-          <span className="text-sm font-medium text-[var(--color-ink)]">AI 助手</span>
+          <svg viewBox="0 0 24 24" style={{ width: 18, height: 18, fill: "#c9a050" }}><path d={ICON_AI} /></svg>
+          <span style={{ fontFamily: "var(--font-mc)", fontSize: 13, color: "#e8dcc8", letterSpacing: "0.06em" }}>精灵对话</span>
           {sending && <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-pass)] animate-pulse" />}
         </div>
-        <button onClick={() => setMode((m) => (m === "FORCE" ? "TOOL" : "FORCE"))}
-          className="flex items-center gap-2 text-xs text-[var(--color-ink-soft)] hover:text-[var(--color-accent)] transition-colors">
-          {mode === "FORCE" ? <><ToggleLeft size={18} className="text-[var(--color-accent)]" /> 强制检索</>
-          : <><ToggleRight size={18} className="text-[var(--color-accent)]" /> Tool Calling</>}
+        <button onClick={() => setMode(mode === "FORCE" ? "TOOL" : "FORCE")}
+          style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", letterSpacing: "0.06em", background: "none", border: "none", cursor: "pointer" }}>
+          {mode === "FORCE" ? "强制检索" : "Tool Calling"}
         </button>
       </div>
 
-      {/* Scrollable messages */}
-      <div className="flex-1 min-h-0 overflow-y-auto px-6 py-4 space-y-4">
+      {/* Messages */}
+      <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4 space-y-4" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(139,115,85,0.2) transparent" }}>
         {msgs.length === 0 && (
-          <div className="text-center text-[13px] text-[var(--color-ink-faint)] py-8">
-            <Sparkles size={16} className="inline mr-1.5 text-[var(--color-accent)]" />
-            提出问题，AI 将从知识库查找证据并回答
+          <div className="text-center py-8" style={{ fontFamily: "var(--font-mc)", fontSize: 12, color: "#8a7a5a" }}>
+            <svg viewBox="0 0 24 24" style={{ width: 14, height: 14, fill: "#c9a050", display: "inline", marginRight: 4, verticalAlign: "middle" }}><path d={ICON_AI} /></svg>
+            提出问题，精灵将从知识库查找证据并回答
           </div>
         )}
         {msgs.map((m, i) => (
           <div key={i} className={`flex gap-3 ${m.role === "USER" ? "flex-row-reverse" : ""}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-              m.role === "USER" ? "bg-[var(--color-bg-input)]" : "bg-[var(--color-accent-soft)]"}`}>
-              {m.role === "USER" ? <User size={14} className="text-[var(--color-ink-faint)]" />
-              : <Bot size={14} className="text-[var(--color-accent)]" />}
+            <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0`}
+              style={{ border: m.role === "USER" ? "2px solid #5a3018" : "2px solid #6b5020", background: m.role === "USER" ? "rgba(42,22,10,0.6)" : "rgba(60,40,20,0.6)" }}>
+              {m.role === "USER" ? (
+                <span style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a" }}>你</span>
+              ) : (
+                <svg viewBox="0 0 24 24" style={{ width: 14, height: 14, fill: "#c9a050" }}><path d={ICON_AI} /></svg>
+              )}
             </div>
             <div className={`max-w-[72%] ${m.role === "USER" ? "items-end" : ""}`}>
               {m.role === "USER" ? (
-                <div className="p-3.5 rounded-2xl rounded-br-md bg-[var(--color-bg-input)] text-sm text-[var(--color-ink)]">{m.content}</div>
+                <div className="p-3.5 text-sm" style={{ background: "rgba(42,22,10,0.5)", border: "2px solid #3a1a08", color: "#e8dcc8", fontFamily: "var(--font-mc)", fontSize: 12 }}>{m.content}</div>
               ) : m.done ? (
-                <div className="p-3.5 rounded-2xl rounded-bl-md bg-[var(--color-bg-card)] border border-[var(--color-line)]">
+                <div className="p-3.5" style={{ background: "rgba(20,14,8,0.6)", border: "2px solid #2a1a0a" }}>
                   <MdViewer content={m.content} maxLen={99999} />
                 </div>
               ) : (
-                <div className="p-3.5 rounded-2xl rounded-bl-md bg-[var(--color-bg-card)] border border-[var(--color-line)] text-sm text-[var(--color-ink-soft)] whitespace-pre-wrap">
-                  {m.content}<span className="animate-pulse text-[var(--color-accent)]">▌</span>
+                <div className="p-3.5 text-sm" style={{ background: "rgba(20,14,8,0.6)", border: "2px solid #2a1a0a", color: "#a8a39b", fontFamily: "var(--font-mc)", fontSize: 12, whiteSpace: "pre-wrap" }}>
+                  {m.content}<span className="animate-pulse" style={{ color: "#c9a050" }}>▌</span>
                 </div>
               )}
-              {/* Collapsible citations */}
               {m.done && m.citations && m.citations.length > 0 && (
                 <div className="mt-2">
                   <button
                     onClick={() => setMsgs((p) => p.map((x, j) => j === i ? { ...x, showCitations: !x.showCitations } : x))}
-                    className="flex items-center gap-1.5 text-[11px] text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] transition-colors"
+                    style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}
                   >
                     <ChevronDown size={11} className={`transition-transform ${m.showCitations ? "rotate-180" : ""}`} />
                     引用 ({m.citations.length})
                   </button>
                   {m.showCitations && (
-                    <div className="mt-1.5 space-y-1 border-l-2 border-[var(--color-line)] pl-3">
+                    <div className="mt-1.5 space-y-1 pl-3" style={{ borderLeft: "2px solid #3a1a08" }}>
                       {m.citations.map((c) => (
-                        <div key={c.chunkId} className="p-2 rounded-lg bg-[var(--color-bg-input)] text-xs">
-                          <p className="text-[var(--color-cite)] font-mono text-[10px] truncate">{c.titlePath}</p>
-                          <p className="text-[var(--color-ink-faint)] mt-0.5 line-clamp-1">{c.snippet}</p>
+                        <div key={c.chunkId} className="p-2 text-xs" style={{ background: "rgba(42,22,10,0.3)", border: "1px solid #2a1a0a" }}>
+                          <p style={{ color: "#a898c4", fontFamily: "var(--font-mc)", fontSize: 9, margin: 0 }}>{c.titlePath}</p>
+                          <p style={{ color: "#6b6560", fontSize: 10, margin: "2px 0 0" }}>{c.snippet}</p>
                         </div>
                       ))}
                     </div>
@@ -98,20 +103,21 @@ export default function AgentPage() {
         <div ref={bottom} />
       </div>
 
-      {/* Fixed input bar */}
-      <div className="flex-shrink-0 p-4 border-t border-[var(--color-line)]">
+      {/* MC 风格输入框 */}
+      <div className="flex-shrink-0 p-4" style={{ background: "rgba(20,14,8,0.8)", borderTop: "2px solid #3a1a08" }}>
         <div className="flex items-center gap-3">
           <div className="flex-1 relative">
             <input value={input} onChange={(e) => setInput(e.target.value)}
-              placeholder="输入问题..." className="input pr-36" disabled={sending}
+              placeholder="输入问题..." className="mc-input" disabled={sending}
+              style={{ paddingRight: 140 }}
               onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && send()} />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[11px] text-[var(--color-ink-faint)]">
-              {mode === "FORCE" ? "强制检索" : "Tool Calling"} · Enter
+            <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-mc)", fontSize: 10, color: "#5a4020", pointerEvents: "none" }}>
+              {mode === "FORCE" ? "强制检索" : "Tool"} · Enter
             </span>
           </div>
-          <button onClick={send} disabled={sending}
-            className="w-10 h-10 rounded-full bg-[var(--color-pill-dark)] text-[var(--color-pill-text)] flex items-center justify-center hover:brightness-110 flex-shrink-0 shadow-[var(--shadow-btn)] disabled:opacity-40">
-            <Send size={16} />
+          <button onClick={send} disabled={sending} className="mc-btn" style={{ padding: "10px 16px", fontSize: 12 }}>
+            <svg viewBox="0 0 24 24" style={{ width: 14, height: 14, fill: "currentColor" }}><path d={ICON_SEND} /></svg>
+            发送
           </button>
         </div>
       </div>

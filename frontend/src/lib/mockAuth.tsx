@@ -22,8 +22,8 @@ const AuthContext = createContext<AuthCtx>({
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [authed, setAuthed] = useState(false);
-  const [user, setUser] = useState<UserInfo | null>(null);
+  const [authed, setAuthed] = useState(true); // TODO: 临时关校验
+  const [user, setUser] = useState<UserInfo | null>({ userId: "dev", username: "dev", role: "ADMIN" });
 
   const login = (u: UserInfo) => { setUser(u); setAuthed(true); };
   const logout = () => { setUser(null); setAuthed(false); setAuthToken(""); };

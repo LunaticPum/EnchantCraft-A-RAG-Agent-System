@@ -145,7 +145,7 @@ export default function DocumentPage() {
   };
 
   return (
-    <div className="doc-scene h-full flex gap-6 p-6 items-stretch">
+    <div className="h-full flex gap-4 items-stretch" style={{ zIndex: 2, position: "relative", padding: "4px 0" }}>
       {/* 左侧书架面板 */}
       <div className="shelf-panel">
         {/* 分页标签 */}
@@ -164,7 +164,6 @@ export default function DocumentPage() {
             {isAdmin && (<>
               <span onClick={() => { setDeleteMode(!deleteMode); setSelectedShelves(new Set()); }}>{deleteMode ? "取消" : "🗑 删除"}</span>
               <span onClick={async () => { try { const c = await api.vectorHealth(); alert(`向量数据: ${c} 条`); } catch { alert("检查失败"); } }}>🔍 向量检查</span>
-              <span onClick={handleScanFolder} style={{ marginLeft: "auto", cursor: "pointer" }}>{uploading ? "上传中..." : "📥 上传"}</span>
             </>)}
           </div>
           <div className="shelf-cab-inner">
@@ -172,7 +171,12 @@ export default function DocumentPage() {
               <p style={{ fontFamily: "var(--font-mc)", fontSize: 9, color: "#c8a050", textAlign: "center", marginBottom: 8 }}>{uploadMsg}</p>
             )}
             <div className="shelf-grid">
-              {shelves.map(([name, shelfDocs]) => (
+              {tab !== "knowledge" ? (
+                <div style={{ gridColumn: "1 / -1", display: "flex", alignItems: "center", justifyContent: "center", height: 200, fontFamily: "var(--font-mc)", fontSize: 12, color: "#8a6a4a" }}>
+                  {tab === "qasets" ? "题目集功能开发中..." : "对话记录功能开发中..."}
+                </div>
+              ) : (
+                shelves.map(([name, shelfDocs]) => (
                 <div
                   key={name}
                   className={`cs-block ${selectedShelf === name ? "sel" : ""} ${deleteMode && selectedShelves.has(name) ? "sel" : ""}`}
@@ -183,11 +187,12 @@ export default function DocumentPage() {
                   <span className="cs-lbl">{name}</span>
                   <span className="cs-cnt">{shelfDocs.length}</span>
                 </div>
-              ))}
-              {isAdmin && (
-                <div className="cs-add" onClick={() => { const n = prompt("新资料库名称:"); if (n) { setUploading(true); setUploadMsg(`资料库"${n}"已创建，请上传文档`); setTimeout(() => { setUploadMsg(""); setUploading(false); }, 3000); } }}>
-                  <span className="cs-add-ic">+</span>
-                  <span className="cs-add-lbl">新建资料库</span>
+              ))
+              )}
+              {tab === "knowledge" && isAdmin && (
+                <div className="cs-add" onClick={handleScanFolder} title="选择上传的笔记目录或单个 md 文件">
+                  <span className="cs-add-ic">{uploading ? "⏳" : "+"}</span>
+                  <span className="cs-add-lbl">{uploading ? "上传中..." : "新建/上传"}</span>
                 </div>
               )}
             </div>
