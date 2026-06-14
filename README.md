@@ -166,8 +166,8 @@ docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
    <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=LunaticPum/EnchantCraft-A-RAG-Agent-System&type=date&legend=top-left" />
  </picture>
 </a>
----
 
+---
 ## 开发日志
 
 | 版本 | 内容 |
