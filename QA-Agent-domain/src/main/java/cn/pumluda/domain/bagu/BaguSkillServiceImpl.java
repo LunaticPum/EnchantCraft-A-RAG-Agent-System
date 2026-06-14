@@ -2,20 +2,16 @@ package cn.pumluda.domain.bagu;
 
 import cn.pumluda.api.dto.BaguItemResponse;
 import cn.pumluda.api.dto.BaguSetResponse;
+import cn.pumluda.domain.bagu.adapter.repository.IBaguSetRepository;
+import cn.pumluda.domain.bagu.model.entity.QaItemEntity;
+import cn.pumluda.domain.bagu.model.entity.QaSetEntity;
 import cn.pumluda.domain.document.adapter.repository.IDocumentRepository;
 import cn.pumluda.domain.document.model.entity.SourceDocumentEntity;
-import cn.pumluda.infrastructure.dao.QaItemDao;
-import cn.pumluda.infrastructure.dao.QaSetDao;
-import cn.pumluda.infrastructure.dao.QaSetDocumentRefDao;
-import cn.pumluda.infrastructure.dao.po.QaItemPO;
-import cn.pumluda.infrastructure.dao.po.QaSetDocumentRefPO;
-import cn.pumluda.infrastructure.dao.po.QaSetPO;
 import cn.pumluda.types.enums.ResponseCode;
 import cn.pumluda.types.exception.AppException;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +27,7 @@ import java.util.stream.Collectors;
 public class BaguSkillServiceImpl implements IBaguSkillService {
 
     private final IDocumentRepository documentRepository;
-    private final QaSetDao qaSetDao;
-    private final QaItemDao qaItemDao;
-    private final QaSetDocumentRefDao qaSetDocumentRefDao;
+    private final IBaguSetRepository baguSetRepository;
     private final OpenAiChatModel chatModel;
 
     @Override
@@ -57,7 +51,7 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
         // 4. 解析 JSON
         JSONObject result = parseResponse(response);
 
-        // 5. 落库
+        // 5. 落库（通过 domain repository 接口）
         BaguSetResponse setResponse = saveToDb(shelfName, documentIds, result);
 
         log.info("[BaguSkill] 生成完成, setId={}, items={}", setResponse.getId(), setResponse.getItemCount());
@@ -71,11 +65,9 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
         sb.append("## 学习笔记内容：\n\n");
 
         int totalLen = 0;
-        for (int i = 0; i < docs.size(); i++) {
-            SourceDocumentEntity doc = docs.get(i);
+        for (SourceDocumentEntity doc : docs) {
             String content = doc.getRawContent();
             if (content == null) continue;
-            // 限制总输入长度
             int remaining = 12000 - totalLen;
             if (remaining <= 0) break;
             String snippet = content.length() > remaining ? content.substring(0, remaining) + "..." : content;
@@ -88,33 +80,22 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
         sb.append("请以JSON格式输出，不要包含markdown代码块标记。格式如下：\n");
         sb.append("{\n");
         sb.append("  \"title\": \"问答集标题\",\n");
-        sb.append("  \"description\": \"问答集简介，一句话描述覆盖的知识点\",\n");
+        sb.append("  \"description\": \"问答集简介\",\n");
         sb.append("  \"items\": [\n");
-        sb.append("    {\n");
-        sb.append("      \"question\": \"面试题目\",\n");
-        sb.append("      \"answer\": \"参考答案（尽可能详细，引用笔记中的关键概念）\",\n");
-        sb.append("      \"difficulty\": \"EASY|MEDIUM|HARD\"\n");
-        sb.append("    }\n");
+        sb.append("    {\"question\": \"...\", \"answer\": \"...\", \"difficulty\": \"EASY|MEDIUM|HARD\"}\n");
         sb.append("  ]\n");
         sb.append("}\n\n");
-        sb.append("要求：\n");
-        sb.append("- 生成 5-8 道题目\n");
-        sb.append("- 难度分布：1-2道EASY，3-4道MEDIUM，1-2道HARD\n");
-        sb.append("- 答案要详细、准确，基于笔记内容\n");
-        sb.append("- 题目覆盖不同知识点，避免重复\n");
+        sb.append("要求：生成5-8题，难度分布1-2EASY/3-4MEDIUM/1-2HARD，答案详细准确\n");
 
         return sb.toString();
     }
 
     private JSONObject parseResponse(String response) {
-        // 尝试提取JSON（去除可能的markdown代码块）
         String json = response.trim();
         if (json.startsWith("```")) {
             int start = json.indexOf("\n");
             int end = json.lastIndexOf("```");
-            if (start > 0 && end > start) {
-                json = json.substring(start, end).trim();
-            }
+            if (start > 0 && end > start) json = json.substring(start, end).trim();
         }
         try {
             return JSON.parseObject(json);
@@ -126,12 +107,10 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
 
     private BaguSetResponse saveToDb(String shelfName, List<String> documentIds, JSONObject result) {
         // 保存 qa_set
-        QaSetPO setPO = QaSetPO.builder()
-                .title(result.getString("title"))
-                .description(result.getString("description"))
-                .itemCount(0)
-                .build();
-        qaSetDao.insert(setPO);
+        QaSetEntity setEntity = new QaSetEntity();
+        setEntity.setTitle(result.getString("title"));
+        setEntity.setDescription(result.getString("description"));
+        QaSetEntity saved = baguSetRepository.saveSet(setEntity);
 
         // 保存 qa_items
         JSONArray items = result.getJSONArray("items");
@@ -142,45 +121,39 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
         List<BaguItemResponse> itemResponses = new ArrayList<>();
         for (int i = 0; i < items.size(); i++) {
             JSONObject item = items.getJSONObject(i);
-            QaItemPO itemPO = QaItemPO.builder()
-                    .setId(setPO.getId())
-                    .question(item.getString("question"))
-                    .answer(item.getString("answer"))
-                    .difficulty(item.getString("difficulty") != null ? item.getString("difficulty") : "MEDIUM")
-                    .sortOrder(i + 1)
-                    .build();
-            qaItemDao.insert(itemPO);
+            QaItemEntity itemEntity = new QaItemEntity();
+            itemEntity.setSetId(saved.getId());
+            itemEntity.setQuestion(item.getString("question"));
+            itemEntity.setAnswer(item.getString("answer"));
+            itemEntity.setDifficulty(item.getString("difficulty") != null ? item.getString("difficulty") : "MEDIUM");
+            itemEntity.setSortOrder(i + 1);
+            QaItemEntity savedItem = baguSetRepository.saveItem(itemEntity);
 
             BaguItemResponse ir = new BaguItemResponse();
-            ir.setId(itemPO.getId());
-            ir.setQuestion(itemPO.getQuestion());
-            ir.setAnswer(itemPO.getAnswer());
-            ir.setDifficulty(itemPO.getDifficulty());
-            ir.setSortOrder(itemPO.getSortOrder());
+            ir.setId(savedItem.getId());
+            ir.setQuestion(savedItem.getQuestion());
+            ir.setAnswer(savedItem.getAnswer());
+            ir.setDifficulty(savedItem.getDifficulty());
+            ir.setSortOrder(savedItem.getSortOrder());
             itemResponses.add(ir);
         }
 
         // 更新 item_count
-        setPO.setItemCount(items.size());
-        qaSetDao.updateById(setPO);
+        baguSetRepository.updateItemCount(saved.getId(), items.size());
 
         // 保存文档关联
         for (String docId : documentIds) {
-            QaSetDocumentRefPO ref = QaSetDocumentRefPO.builder()
-                    .setId(setPO.getId())
-                    .documentId(docId)
-                    .build();
-            qaSetDocumentRefDao.insert(ref);
+            baguSetRepository.saveDocumentRef(saved.getId(), docId);
         }
 
         // 构建响应
         BaguSetResponse resp = new BaguSetResponse();
-        resp.setId(setPO.getId());
-        resp.setTitle(setPO.getTitle());
-        resp.setDescription(setPO.getDescription());
+        resp.setId(saved.getId());
+        resp.setTitle(saved.getTitle());
+        resp.setDescription(saved.getDescription());
         resp.setItemCount(items.size());
         resp.setItems(itemResponses);
-        resp.setCreatedAt(setPO.getCreatedAt());
+        resp.setCreatedAt(saved.getCreatedAt());
         return resp;
     }
 }

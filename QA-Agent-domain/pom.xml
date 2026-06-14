@@ -78,6 +78,10 @@
             <groupId>cn.pumluda</groupId>
             <artifactId>QA-Agent-types</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.pumluda</groupId>
+            <artifactId>QA-Agent-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
