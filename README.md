@@ -139,15 +139,15 @@ docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
 
 | 首页 | 知识库 |
 |------|--------|
-| ![](docs/images/Agent对话与检索.png) | ![](docs/images/知识库阅览.png) |
+| ![](docs/images/首页.png) | ![](docs/images/知识库阅览.png) |
 
 | 精灵对话 | 八股出题 |
 |----------|----------|
-| ![](docs/images/RAG检索校验.png) | ![](docs/images/八股skill功能测试.png) |
+| ![](docs/images/Agent对话与检索.png) | ![](docs/images/八股skill功能测试.png) |
 
-| 题目集 |
-|--------|
-| ![](docs/images/题目集阅览.png) |
+| RAG 检索 | 题目集 |
+|----------|--------|
+| ![](docs/images/RAG检索校验.png) | ![](docs/images/题目集阅览.png) |
 
 ---
 
