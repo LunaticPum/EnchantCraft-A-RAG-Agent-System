@@ -154,7 +154,7 @@ body {
 /* MC 标题文字 */
 .mc-title {
   font-family: var(--font-mc);
-  font-size: clamp(48px, 8vw, 96px); color: #e8dcc8;
+  font-size: 48px; color: #e8dcc8;
   letter-spacing: 0.04em;
   text-shadow:
     0 0 24px rgba(200,180,140,0.25),
@@ -165,7 +165,7 @@ body {
 /* MC Splash 浮动提示文字 */
 .mc-splash {
   font-family: var(--font-mc);
-  font-size: clamp(15px, 2.2vw, 24px); color: var(--color-mc-gold);
+  font-size: 15px; color: var(--color-mc-gold);
   white-space: nowrap;
   text-shadow:
     0 0 14px rgba(245,224,80,0.5),
@@ -184,7 +184,7 @@ body {
 /* MC 副标题 */
 .mc-sub {
   font-family: var(--font-mc);
-  font-size: clamp(12px, 1.6vw, 20px); color: var(--color-ink-faint);
+  font-size: 12px; color: var(--color-ink-faint);
   letter-spacing: 0.3em;
 }
 
@@ -193,7 +193,7 @@ body {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 16px 48px;
   font-family: var(--font-mc);
-  font-size: clamp(13px, 1.8vw, 22px); letter-spacing: 0.1em;
+  font-size: 13px; letter-spacing: 0.1em;
   color: #e8dcc8;
   background: var(--color-mc-brown);
   border: 2px solid var(--color-mc-border-light);
@@ -223,7 +223,7 @@ body {
   display: flex; align-items: center; gap: 12px;
   width: 100%;
   font-family: var(--font-mc);
-  font-size: clamp(11px, 1.4vw, 16px); color: #e8dcc8;
+  font-size: 11px; color: #e8dcc8;
   letter-spacing: 0.1em;
   padding: 14px 48px;
   background: var(--color-mc-brown);
@@ -280,7 +280,7 @@ body {
   display: flex; flex-direction: column; align-items: center; gap: 10px;
   text-align: center;
   font-family: var(--font-mc);
-  font-size: clamp(11px, 1.5vw, 18px); color: var(--color-mc-text-dim);
+  font-size: 11px; color: var(--color-mc-text-dim);
   letter-spacing: 0.08em;
   padding: 18px 32px;
   min-width: 120px;
@@ -296,13 +296,13 @@ body {
   text-shadow: 0 0 6px rgba(245,224,80,0.3);
 }
 .mc-menu-item .mc-icon svg {
-  width: clamp(24px, 3.5vw, 38px); height: clamp(24px, 3.5vw, 38px);
+  width: 24px; height: 24px;
   fill: var(--color-mc-text-dim);
   image-rendering: pixelated;
   transition: fill 0.2s;
 }
 .mc-menu-vert .mc-icon svg {
-  width: clamp(18px, 2vw, 26px); height: clamp(18px, 2vw, 26px);
+  width: 18px; height: 18px;
   fill: #e8dcc8;
   image-rendering: pixelated;
   transition: fill 0.2s;
@@ -315,7 +315,7 @@ body {
 /* MC 状态栏 */
 .mc-status {
   font-family: var(--font-mc);
-  font-size: clamp(10px, 1.2vw, 15px); color: #8a7a5a;
+  font-size: 10px; color: #8a7a5a;
   letter-spacing: 0.1em;
   display: flex; gap: 24px;
 }
@@ -325,7 +325,7 @@ body {
 /* MC 描述文字 */
 .mc-desc {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 1.3vw, 16px); color: #5a5040;
+  font-size: 11px; color: #5a5040;
   letter-spacing: 0.04em;
   text-align: center;
 }
@@ -587,7 +587,7 @@ body {
 .grim-body::-webkit-scrollbar { width: 4px; }
 .grim-body::-webkit-scrollbar-track { background: transparent; }
 .grim-body::-webkit-scrollbar-thumb { background: rgba(139,115,85,0.15); border-radius: 2px; }
-.grim-side { width: min(180px, 18vw); min-width: 130px; padding: 10px; border-right: 1px solid rgba(139,115,85,0.18); font-family: var(--font-mc); font-size: 10px; display: flex; flex-direction: column; flex-shrink: 0; }
+.grim-side { width: 180px; min-width: 180px; padding: 10px; border-right: 1px solid rgba(139,115,85,0.18); font-family: var(--font-mc); font-size: 10px; display: flex; flex-direction: column; flex-shrink: 0; }
 .grim-side .doc-item { padding: 5px 6px; color: #4a3010; cursor: pointer; display: flex; align-items: center; gap: 5px; }
 .grim-side .doc-item:hover { background: rgba(139,115,85,0.08); color: #1a0804; }
 .grim-side .doc-item.sel { background: rgba(139,115,85,0.13); color: #1a0804; border-left: 2px solid #8b2020; padding-left: 8px; }
