@@ -157,9 +157,15 @@ docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
 - 📧 邮箱：1637435385@qq.com
 - 🐙 GitHub：[LunaticPum](https://github.com/LunaticPum)
 
-## Star 趋势
+## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=LunaticPum/EnchantCraft-A-RAG-Agent-System&type=date)](https://star-history.com/#LunaticPum/EnchantCraft-A-RAG-Agent-System&date)
+<a href="https://www.star-history.com/?repos=LunaticPum%2FEnchantCraft-A-RAG-Agent-System&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=LunaticPum/EnchantCraft-A-RAG-Agent-System&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=LunaticPum/EnchantCraft-A-RAG-Agent-System&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=LunaticPum/EnchantCraft-A-RAG-Agent-System&type=date&legend=top-left" />
+ </picture>
+</a>
 
 ---
 ## 开发日志
