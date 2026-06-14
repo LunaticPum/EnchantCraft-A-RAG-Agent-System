@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8091/api/v1";
+const BASE = "/api/v1";
 
 export interface DocumentItem {
   id: string;
@@ -29,11 +29,24 @@ export interface SearchResultItem {
 }
 export interface ApiResponse<T> { code: string; info: string; data: T; }
 
+let storedToken = "";
+export function setAuthToken(t: string) { storedToken = t; }
+export function getAuthToken() { return storedToken; }
+
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(BASE + url, options);
-  const json: ApiResponse<T> = await res.json();
-  if (json.code !== "0000") throw new Error(json.info);
-  return json.data;
+  const headers: Record<string, string> = { ...(options?.headers as Record<string, string> || {}) };
+  if (storedToken) headers["Authorization"] = "Bearer " + storedToken;
+  const res = await fetch(BASE + url, { ...options, headers });
+  if (!res.ok) throw new Error(`请求失败 (${res.status})`);
+  const text = await res.text();
+  try {
+    const json: ApiResponse<T> = JSON.parse(text);
+    if (json.code !== "0000") throw new Error(json.info);
+    return json.data;
+  } catch (e: any) {
+    if (e.message?.includes("JSON")) throw new Error("服务器返回异常，请稍后重试");
+    throw e;
+  }
 }
 
 /* Document APIs */
@@ -61,6 +74,7 @@ export const api = {
       };
       xhr.onerror = () => reject(new Error("上传失败"));
       xhr.open("POST", BASE + "/document/upload");
+      if (storedToken) xhr.setRequestHeader("Authorization", "Bearer " + storedToken);
       xhr.send(form);
     });
   },
@@ -73,9 +87,11 @@ export const api = {
     onDone: (sid: string) => void,
     onError: (err: string) => void,
   ) => {
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (storedToken) headers["Authorization"] = "Bearer " + storedToken;
     fetch(BASE + "/agent/chat", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify(body),
     }).then(async (res) => {
       if (!res.ok || !res.body) { onError("请求失败"); return; }
@@ -87,10 +103,10 @@ export const api = {
         if (done) break;
         buf += dec.decode(value, { stream: true });
         const lines = buf.split("\n");
-        buf = lines.pop() || "";  // keep incomplete line for next read
+        buf = lines.pop() || "";
         for (const line of lines) {
           const l = line.replace(/\r$/, "");
-          if (l === "") continue;  // skip blank lines between frames
+          if (l === "") continue;
           if (l.startsWith("event:")) { eType = l.slice(6).trim(); }
           else if (l.startsWith("data:") && eType) {
             const raw = l.slice(5);
@@ -101,7 +117,7 @@ export const api = {
               else if (eType === "done") onDone(d);
               else if (eType === "error") onError(d);
             } catch {}
-            eType = "";  // dispatched, clear for next
+            eType = "";
           }
         }
       }
@@ -112,4 +128,33 @@ export const api = {
     request<SearchResultItem[]>(
       `/document/search?keyword=${encodeURIComponent(keyword)}&topK=${topK}&strategy=${strategy}&rerank=${rerank}`
     ),
+
+  deleteDocument: (id: string) =>
+    request<void>(`/document/${id}`, { method: "DELETE" }),
+
+  vectorHealth: () => request<number>("/document/vector-health"),
+  reEmbedAll: () => request<void>("/document/re-embed-all", { method: "POST" }),
+  quota: () => request<{search: number; chat: number}>("/document/quota"),
+
+  /* Auth */
+  login: (username: string, password: string) =>
+    request<AuthResponse>("/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    }),
+
+  register: (username: string, password: string, email: string) =>
+    request<void>("/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password, email }),
+    }),
 };
+
+export interface AuthResponse {
+  token: string;
+  userId: string;
+  username: string;
+  role: string;
+}

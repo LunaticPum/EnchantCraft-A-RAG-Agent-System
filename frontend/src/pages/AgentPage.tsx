@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, Link2, Bot, User, ToggleLeft, ToggleRight, ChevronDown } from "lucide-react";
-import { api, type CitationItem } from "../lib/api";
+import { Send, Sparkles, Bot, User, ToggleLeft, ToggleRight, ChevronDown } from "lucide-react";
+import { api } from "../lib/api";
 import { MdViewer } from "../lib/markdown";
-import { useAgentStore, type Msg } from "../lib/agentStore";
+import { useAgentStore } from "../lib/agentStore";
 
 type Mode = "FORCE" | "TOOL";
 

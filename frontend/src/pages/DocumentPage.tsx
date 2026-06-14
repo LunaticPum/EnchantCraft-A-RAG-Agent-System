@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
-import { Upload, FolderTree, FileText, Layers, Clock, ChevronRight, Folder, File, RefreshCw, Loader2 } from "lucide-react";
+import { Upload, FolderTree, FileText, Clock, ChevronRight, Folder, File, RefreshCw, Loader2 } from "lucide-react";
 import { api, type DocumentItem, type ChunkItem } from "../lib/api";
-import { scanDirectory, batchUploadFiles, type FileEntry } from "../lib/directoryScan";
+import { scanDirectory, batchUploadFiles } from "../lib/directoryScan";
 import { MdViewer } from "../lib/markdown";
 
 type Tab = "repository" | "upload";
