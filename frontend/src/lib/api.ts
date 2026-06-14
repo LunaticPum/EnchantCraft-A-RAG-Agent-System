@@ -166,6 +166,7 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question, standardAnswer, userAnswer }),
     }),
+  baguDeleteSet: (id: string) => request<void>(`/bagu/sets/${id}`, { method: "DELETE" }),
 };
 
 export interface BaguItemResponse {

@@ -317,7 +317,7 @@ export default function DocumentPage() {
                           <span style={{ fontSize: 8, color: "#8b7355", marginLeft: 8, background: "rgba(139,115,85,0.1)", padding: "1px 6px" }}>{item.difficulty}</span>
                         </p>
                         <div style={{ fontFamily: "Georgia, serif", fontSize: 11, color: "#2a1808", lineHeight: 1.7 }}>
-                          <MdViewer content={item.answer} />
+                          <MdViewer content={item.answer.replace(/\\n/g, "\n")} />
                         </div>
                       </div>
                     ))}

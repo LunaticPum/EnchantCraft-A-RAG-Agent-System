@@ -13,4 +13,5 @@ public interface IBaguSetRepository {
     List<QaSetEntity> findAllSets();
     QaSetEntity findSetById(String id);
     List<QaItemEntity> findItemsBySetId(String setId);
+    void deleteSet(String id);
 }

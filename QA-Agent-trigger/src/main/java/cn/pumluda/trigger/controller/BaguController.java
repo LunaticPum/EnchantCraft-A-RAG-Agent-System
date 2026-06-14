@@ -51,4 +51,10 @@ public class BaguController {
             body.get("question"), body.get("standardAnswer"), body.get("userAnswer"));
         return Response.<String>builder().code(ResponseCode.SUCCESS.getCode()).data(result).build();
     }
+
+    @DeleteMapping("/sets/{id}")
+    public Response<Void> deleteSet(@PathVariable("id") String id) {
+        baguSkillService.deleteSet(id);
+        return Response.<Void>builder().code(ResponseCode.SUCCESS.getCode()).info("删除成功").build();
+    }
 }

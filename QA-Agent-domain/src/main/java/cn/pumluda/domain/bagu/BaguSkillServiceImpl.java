@@ -206,4 +206,9 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
         );
         return chatModel.chat(prompt);
     }
+
+    @Override
+    public void deleteSet(String id) {
+        baguSetRepository.deleteSet(id);
+    }
 }

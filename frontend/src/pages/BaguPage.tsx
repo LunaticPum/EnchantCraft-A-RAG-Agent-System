@@ -12,7 +12,9 @@ export default function BaguPage() {
   const [activeItemIdx, setActiveItemIdx] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
   const [evaluating, setEvaluating] = useState(false);
-  const [statuses, setStatuses] = useState<StatusMap>({});
+  const [statuses, setStatuses] = useState<StatusMap>(() => {
+    try { return JSON.parse(localStorage.getItem("bagu_statuses") || "{}"); } catch { return {}; }
+  });
   const [showStandard, setShowStandard] = useState<Record<string, boolean>>({});
 
   useEffect(() => { api.baguListSets().then(setSets).catch(() => {}); }, []);
@@ -32,7 +34,12 @@ export default function BaguPage() {
     try {
       const raw = await api.baguEvaluate(item.question, item.answer, userAnswer);
       const parsed = JSON.parse(raw);
-      setStatuses(s => ({ ...s, [item.id]: { level: parsed.level || "OK", comment: parsed.comment || "" } }));
+      const newStatus = { level: parsed.level || "OK", comment: parsed.comment || "" };
+      setStatuses(s => {
+        const updated = { ...s, [item.id]: newStatus };
+        localStorage.setItem("bagu_statuses", JSON.stringify(updated));
+        return updated;
+      });
       setShowStandard(s => ({ ...s, [item.id]: true }));
     } catch {
       setStatuses(s => ({ ...s, [item.id]: { level: "OK", comment: "评价失败" } }));
@@ -75,7 +82,11 @@ export default function BaguPage() {
                       background: selectedSet?.id === set.id ? "rgba(200,160,80,0.1)" : "transparent",
                       border: selectedSet?.id === set.id ? "2px solid #6b5020" : "2px solid transparent",
                     }}>
-                    <div style={{ fontSize: 12 }}>{set.title}</div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontSize: 12 }}>{set.title}</span>
+                      <span onClick={(e) => { e.stopPropagation(); if (confirm("删除此题目集？")) { api.baguDeleteSet(set.id).then(() => { setSets(s => s.filter(x => x.id !== set.id)); if (selectedSet?.id === set.id) setSelectedSet(null); }).catch(() => {}); } }}
+                        style={{ fontSize: 12, color: "#6b4020", cursor: "pointer", padding: "0 4px" }}>✕</span>
+                    </div>
                     <div style={{ fontSize: 9, color: "#8a6a4a", marginTop: 2 }}>{set.description} · {set.itemCount}题</div>
                   </div>
                 ))
@@ -152,7 +163,7 @@ export default function BaguPage() {
                     {showStandard[activeItem.id] && (
                       <div style={{ marginTop: 12, padding: 10, background: "rgba(126,168,139,0.06)", border: "1px solid rgba(126,168,139,0.2)" }}>
                         <p style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#7ea88b", margin: "0 0 6px" }}>📖 标准答案</p>
-                        <MdViewer content={activeItem.answer} />
+                        <MdViewer content={activeItem.answer.replace(/\\n/g, "\n")} />
                       </div>
                     )}
 

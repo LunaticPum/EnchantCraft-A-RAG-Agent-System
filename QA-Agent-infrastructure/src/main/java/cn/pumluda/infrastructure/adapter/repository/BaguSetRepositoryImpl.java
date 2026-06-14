@@ -111,4 +111,16 @@ public class BaguSetRepositoryImpl implements IBaguSetRepository {
                 .orderByAsc(QaItemPO::getSortOrder))
                 .stream().map(this::fromPO).collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteSet(String id) {
+        // 删除关联
+        qaSetDocumentRefDao.delete(new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<QaSetDocumentRefPO>()
+                .eq(QaSetDocumentRefPO::getSetId, id));
+        // 删除题目
+        qaItemDao.delete(new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<QaItemPO>()
+                .eq(QaItemPO::getSetId, id));
+        // 删除题目集
+        qaSetDao.deleteById(id);
+    }
 }
