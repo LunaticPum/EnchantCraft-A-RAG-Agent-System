@@ -37,7 +37,7 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
         // 1. 加载文档
         List<SourceDocumentEntity> docs = documentIds.stream()
                 .map(id -> documentRepository.findById(id)
-                        .orElseThrow(() -> new AppException(ResponseCode.DOCUMENT_NOT_FOUND)))
+                        .orElseThrow(() -> new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "文档不存在")))
                 .collect(Collectors.toList());
 
         // 2. 构建 Prompt
@@ -101,7 +101,7 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
             return JSON.parseObject(json);
         } catch (Exception e) {
             log.error("[BaguSkill] JSON解析失败: {}", json.substring(0, Math.min(200, json.length())));
-            throw new AppException(ResponseCode.UN_ERROR, "LLM返回格式异常，请重试");
+            throw new AppException(ResponseCode.UN_ERROR.getCode(), "LLM返回格式异常，请重试");
         }
     }
 
@@ -115,7 +115,7 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
         // 保存 qa_items
         JSONArray items = result.getJSONArray("items");
         if (items == null || items.isEmpty()) {
-            throw new AppException(ResponseCode.UN_ERROR, "LLM未生成任何题目");
+            throw new AppException(ResponseCode.UN_ERROR.getCode(), "LLM未生成任何题目");
         }
 
         List<BaguItemResponse> itemResponses = new ArrayList<>();
