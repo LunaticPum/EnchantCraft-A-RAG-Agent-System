@@ -63,7 +63,7 @@ function AppShell() {
           <Outlet />
         </div>
 
-        <footer className="text-center" style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "var(--color-mc-text-dim)", opacity: 0.5, letterSpacing: "0.1em" }}>
+        <footer className="text-center" style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", opacity: 0.8, letterSpacing: "0.1em" }}>
           EnchantCraft · 附魔工坊 · v7.0
         </footer>
       </div>

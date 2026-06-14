@@ -17,9 +17,15 @@ const SPLASH_POOL = [
   "格利摩尔在召唤",
 ];
 
-/** 符文字符集 */
-const RUNES = "ᔑʖᓵ↸ᒷ⎓⊣⍑╎⋮ꖌꖎᒲリ𝙹!ᑑ∷ᓭℸ⚍⍊∴̇|⨅⊑";
-const RUNE_WORDS = ["⍑ᒷꖎꖎ𝙹", "⍊╎ʖ∷ᔑ", "ᒲᔑ⊣╎ᓵ", "ᓵ∷||!ℸ", "ᒷリᓵ⍑ᔑ", "!¡𝙹ℸ╎𝙹", "∴╎ᓭ↸𝙹", "⎓ꖎ𝙹∴ᒷ∷"];
+/** Monocraft SGA 符文 (U+EB40~EB59 = A~Z) */
+function randomRuneWord(): string {
+  const len = 3 + Math.floor(Math.random() * 5); // 3~7个符文
+  let s = "";
+  for (let i = 0; i < len; i++) {
+    s += String.fromCodePoint(0xEB40 + Math.floor(Math.random() * 26));
+  }
+  return s;
+}
 
 /** Pixelarticons 像素图标 SVG */
 const ICON_BOOK_OPEN = "M2 3h9v2H2zM0 19h11v2H0zM13 3h9v2h-9zm0 16h11v2H13zM11 5h2v18h-2zM0 5h2v14H0zm22 0h2v14h-2zm-7 2h5v2h-5zm0 4h5v2h-5zm0 4h2v2h-2z";
@@ -73,30 +79,28 @@ export default function WelcomePage() {
     if (!container) return;
 
     // 符文
-    for (let i = 0; i < 26; i++) {
+    for (let i = 0; i < 12; i++) {
       const span = document.createElement("span");
       span.className = "mc-rune";
-      span.textContent = Math.random() > 0.6
-        ? RUNE_WORDS[Math.floor(Math.random() * RUNE_WORDS.length)]
-        : RUNES[Math.floor(Math.random() * RUNES.length)];
+      span.textContent = randomRuneWord();
       span.style.left = Math.random() * 100 + "%";
-      span.style.bottom = Math.random() * 100 + "%";
-      span.style.fontSize = (12 + Math.random() * 16) + "px";
-      span.style.animationDuration = (4 + Math.random() * 8) + "s";
-      span.style.animationDelay = Math.random() * 6 + "s";
+      span.style.top = Math.random() * 100 + "%";
+      span.style.fontSize = (14 + Math.random() * 14) + "px";
+      span.style.animationDuration = (4 + Math.random() * 4) + "s";
+      span.style.animationDelay = Math.random() * 8 + "s";
       span.style.color = Math.random() > 0.5 ? "#6a4a80" : "#7a5a95";
       container.appendChild(span);
     }
-    // 金色粒子
-    for (let i = 0; i < 30; i++) {
+    // 荧光粒子
+    for (let i = 0; i < 40; i++) {
       const p = document.createElement("div");
       p.className = "mc-particle";
       p.style.left = Math.random() * 100 + "%";
       p.style.top = Math.random() * 100 + "%";
-      p.style.animationDuration = (3 + Math.random() * 6) + "s";
-      p.style.animationDelay = Math.random() * 4 + "s";
-      p.style.background = Math.random() > 0.5 ? "#f0d060" : "#f5e080";
-      const size = 1 + Math.random() * 2;
+      p.style.animationDuration = (6 + Math.random() * 10) + "s";
+      p.style.animationDelay = Math.random() * 8 + "s";
+      p.style.background = Math.random() > 0.5 ? "#f5e080" : "#ffe8a0";
+      const size = 1.5 + Math.random() * 2.5;
       p.style.width = p.style.height = size + "px";
       container.parentElement?.appendChild(p);
     }
@@ -158,7 +162,7 @@ export default function WelcomePage() {
       </div>
 
       {/* 页脚 */}
-      <footer className="text-center" style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#4a3a2a", letterSpacing: "0.08em", opacity: 0.6, padding: "4px 0 8px" }}>
+      <footer className="text-center" style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", letterSpacing: "0.08em", opacity: 0.8, padding: "4px 0 8px" }}>
         EnchantCraft · 开源协议 MIT · 联系邮箱 1637435385@qq.com
       </footer>
     </div>

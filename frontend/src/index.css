@@ -122,30 +122,32 @@ body {
   color: #6a4a80;
   font-size: 13px;
   letter-spacing: 0.1em;
-  text-shadow: 0 0 10px rgba(140,100,200,0.6), 0 0 20px rgba(120,80,180,0.3);
+  text-shadow: 0 0 6px rgba(140,100,200,0.4), 0 0 14px rgba(120,80,180,0.2);
   animation: mcRuneFloat linear infinite;
   opacity: 0;
 }
 @keyframes mcRuneFloat {
   0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
-  10%  { opacity: 0.9; }
-  80%  { opacity: 0.7; }
-  100% { opacity: 0; transform: translateY(-130px) rotate(12deg); }
+  15%  { opacity: 0.6; }
+  70%  { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-100px) rotate(8deg); }
 }
 
-/* MC 像素粒子 */
+/* MC 像素粒子（荧光） */
 .mc-particle {
   position: absolute;
   width: 2px; height: 2px;
-  background: #f0d060;
+  background: #f5e080;
   opacity: 0;
   pointer-events: none; z-index: 1;
   animation: mcParticleDrift linear infinite;
+  box-shadow: 0 0 4px 1px rgba(245,224,128,0.6), 0 0 8px 2px rgba(245,200,80,0.3);
+  border-radius: 50%;
 }
 @keyframes mcParticleDrift {
   0%   { opacity: 0; transform: translate(0, 0); }
-  15%  { opacity: 1; }
-  70%  { opacity: 0.6; }
+  15%  { opacity: 0.5; }
+  70%  { opacity: 0.3; }
   100% { opacity: 0; transform: translate(-20px, -100px); }
 }
 
@@ -313,7 +315,7 @@ body {
 /* MC 状态栏 */
 .mc-status {
   font-family: var(--font-mc);
-  font-size: clamp(10px, 1.2vw, 15px); color: #4a3a2a;
+  font-size: clamp(10px, 1.2vw, 15px); color: #8a7a5a;
   letter-spacing: 0.1em;
   display: flex; gap: 24px;
 }
