@@ -182,7 +182,7 @@ export default function DocumentPage() {
                   className={`cs-block ${selectedShelf === name ? "sel" : ""} ${deleteMode && selectedShelves.has(name) ? "sel" : ""}`}
                   onClick={() => handleShelfClick(name)}
                 >
-                  <span className="cs-tip">{name} · {shelfDocs.length}文档</span>
+                  <span className="cs-tip" style={{ zIndex: 20 }}>{name} · {shelfDocs.length}文档</span>
                   <div className="cs-slots">{renderShelfBooks(shelfDocs.length)}</div>
                   <span className="cs-lbl">{name}</span>
                   <span className="cs-cnt">{shelfDocs.length}</span>
@@ -222,7 +222,7 @@ export default function DocumentPage() {
                     draggable
                     onDragStart={(e) => e.dataTransfer.setData("text/plain", d.id)}
                   >
-                    ⋮⋮ 📄 {d.fileName}
+                    ⋮⋮ 📄 {d.fileName.replace(/\.md$/i, "")}
                   </div>
                 ))}
                 {shelfDocs.length === 0 && selectedShelf && (
