@@ -137,17 +137,18 @@ docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
 
 ## 截图
 
-| 首页                      | 知识库 |
-|-------------------------|--------|
-| ![](docs/images/首页.png) | ![](docs/images/知识库阅览.png) |
-
-| 精灵对话 | 八股出题 |
-|----------|----------|
-| ![](docs/images/Agent对话与检索.png) | ![](docs/images/八股skill功能测试.png) |
-
-| RAG 检索 | 题目集 |
-|----------|--------|
-| ![](docs/images/RAG检索校验.png) | ![](docs/images/题目集阅览.png) |
+<p align="center"><b>🏠 首页</b></p>
+<p align="center"><img src="docs/images/首页.png" /></p>
+<p align="center"><b>📚 知识库</b></p>
+<p align="center"><img src="docs/images/知识库阅览.png" /></p>
+<p align="center"><b>🔮 精灵对话</b></p>
+<p align="center"><img src="docs/images/Agent对话与检索.png" /></p>
+<p align="center"><b>⚒️ 八股出题</b></p>
+<p align="center"><img src="docs/images/八股skill功能测试.png" /></p>
+<p align="center"><b>🔍 RAG 检索</b></p>
+<p align="center"><img src="docs/images/RAG检索校验.png" /></p>
+<p align="center"><b>📋 题目集</b></p>
+<p align="center"><img src="docs/images/题目集阅览.png" /></p>
 
 ---
 
