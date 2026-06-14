@@ -508,7 +508,7 @@ body {
 }
 
 /* 书架面板 + 雕纹书架 */
-.shelf-panel { width: 380px; min-width: 380px; display: flex; flex-direction: column; position: relative; z-index: 2; }
+.shelf-panel { width: min(380px, 35vw); min-width: 260px; display: flex; flex-direction: column; position: relative; z-index: 2; }
 .shelf-tabs { display: flex; gap: 0; }
 .shelf-tab {
   flex: 1; font-family: var(--font-mc); font-size: 11px; letter-spacing: 0.06em;
@@ -587,7 +587,7 @@ body {
 .grim-body::-webkit-scrollbar { width: 4px; }
 .grim-body::-webkit-scrollbar-track { background: transparent; }
 .grim-body::-webkit-scrollbar-thumb { background: rgba(139,115,85,0.15); border-radius: 2px; }
-.grim-side { width: 180px; min-width: 180px; padding: 10px; border-right: 1px solid rgba(139,115,85,0.18); font-family: var(--font-mc); font-size: 10px; display: flex; flex-direction: column; flex-shrink: 0; }
+.grim-side { width: min(180px, 18vw); min-width: 130px; padding: 10px; border-right: 1px solid rgba(139,115,85,0.18); font-family: var(--font-mc); font-size: 10px; display: flex; flex-direction: column; flex-shrink: 0; }
 .grim-side .doc-item { padding: 5px 6px; color: #4a3010; cursor: pointer; display: flex; align-items: center; gap: 5px; }
 .grim-side .doc-item:hover { background: rgba(139,115,85,0.08); color: #1a0804; }
 .grim-side .doc-item.sel { background: rgba(139,115,85,0.13); color: #1a0804; border-left: 2px solid #8b2020; padding-left: 8px; }
