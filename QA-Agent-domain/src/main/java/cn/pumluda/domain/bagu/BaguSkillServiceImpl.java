@@ -156,4 +156,42 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
         resp.setCreatedAt(saved.getCreatedAt());
         return resp;
     }
+
+    @Override
+    public List<BaguSetResponse> listSets() {
+        return baguSetRepository.findAllSets().stream().map(set -> {
+            BaguSetResponse r = new BaguSetResponse();
+            r.setId(set.getId());
+            r.setTitle(set.getTitle());
+            r.setDescription(set.getDescription());
+            r.setItemCount(set.getItemCount());
+            r.setCreatedAt(set.getCreatedAt());
+            return r;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public BaguSetResponse getSet(String id) {
+        QaSetEntity set = baguSetRepository.findSetById(id);
+        if (set == null) throw new AppException(ResponseCode.DOCUMENT_NOT_FOUND.getCode(), "题目集不存在");
+        List<QaItemEntity> items = baguSetRepository.findItemsBySetId(id);
+        List<BaguItemResponse> itemResponses = items.stream().map(item -> {
+            BaguItemResponse ir = new BaguItemResponse();
+            ir.setId(item.getId());
+            ir.setQuestion(item.getQuestion());
+            ir.setAnswer(item.getAnswer());
+            ir.setDifficulty(item.getDifficulty());
+            ir.setSortOrder(item.getSortOrder());
+            return ir;
+        }).collect(Collectors.toList());
+
+        BaguSetResponse r = new BaguSetResponse();
+        r.setId(set.getId());
+        r.setTitle(set.getTitle());
+        r.setDescription(set.getDescription());
+        r.setItemCount(itemResponses.size());
+        r.setItems(itemResponses);
+        r.setCreatedAt(set.getCreatedAt());
+        return r;
+    }
 }

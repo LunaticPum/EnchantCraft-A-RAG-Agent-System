@@ -27,4 +27,20 @@ public class BaguController {
                 .data(result)
                 .build();
     }
+
+    @GetMapping("/sets")
+    public Response<List<BaguSetResponse>> listSets() {
+        return Response.<List<BaguSetResponse>>builder()
+                .code(ResponseCode.SUCCESS.getCode())
+                .data(baguSkillService.listSets())
+                .build();
+    }
+
+    @GetMapping("/sets/{id}")
+    public Response<BaguSetResponse> getSet(@PathVariable("id") String id) {
+        return Response.<BaguSetResponse>builder()
+                .code(ResponseCode.SUCCESS.getCode())
+                .data(baguSkillService.getSet(id))
+                .build();
+    }
 }

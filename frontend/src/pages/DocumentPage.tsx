@@ -39,11 +39,14 @@ export default function DocumentPage() {
   const [uploadMsg, setUploadMsg] = useState("");
   const [generating, setGenerating] = useState(false);
   const [genResult, setGenResult] = useState<import("../lib/api").BaguSetResponse | null>(null);
+  const [qaSets, setQaSets] = useState<import("../lib/api").BaguSetResponse[]>([]);
+  const [selectedSetId, setSelectedSetId] = useState<string | null>(null);
 
   const loadDocs = () => { api.listDocuments().then(setDocs).catch(() => {}); };
   const loadChunks = (id: string) => { api.getChunks(id).then(setChunks).catch(() => {}); };
 
   useEffect(() => { loadDocs(); }, []);
+  useEffect(() => { if (tab === "qasets") { api.baguListSets().then(setQaSets).catch(() => {}); } }, [tab]);
 
   /* 文档按根目录分组 */
   const shelves = useMemo(() => {
@@ -210,9 +213,27 @@ export default function DocumentPage() {
             )}
             <div className="shelf-cab-scroll">
             <div className="shelf-grid">
-              {tab !== "knowledge" ? (
+              {tab === "qasets" ? (
+                qaSets.length === 0 ? (
+                  <div style={{ gridColumn: "1 / -1", display: "flex", alignItems: "center", justifyContent: "center", height: 200, fontFamily: "var(--font-mc)", fontSize: 12, color: "#8a6a4a" }}>
+                    暂无题目集，在知识库中生成八股吧
+                  </div>
+                ) : (
+                  qaSets.map((set) => (
+                    <div key={set.id} className={`cs-block ${selectedSetId === set.id ? "sel" : ""}`}
+                      onClick={() => { setSelectedSetId(set.id); api.baguGetSet(set.id).then(setGenResult).catch(() => {}); }}>
+                      <span className="cs-tip" style={{ zIndex: 20 }}>{set.title} · {set.itemCount}题</span>
+                      <div style={{ fontFamily: "var(--font-mc)", fontSize: 9, color: "#c8b090", textAlign: "center", padding: 8 }}>
+                        📋<br/>{set.title.slice(0, 8)}
+                      </div>
+                      <span className="cs-lbl">{set.title}</span>
+                      <span className="cs-cnt">{set.itemCount}</span>
+                    </div>
+                  ))
+                )
+              ) : tab !== "knowledge" ? (
                 <div style={{ gridColumn: "1 / -1", display: "flex", alignItems: "center", justifyContent: "center", height: 200, fontFamily: "var(--font-mc)", fontSize: 12, color: "#8a6a4a" }}>
-                  {tab === "qasets" ? "题目集功能开发中..." : "对话记录功能开发中..."}
+                  {"对话记录功能开发中..."}
                 </div>
               ) : (
                 shelves.map(([name, shelfDocs]) => (

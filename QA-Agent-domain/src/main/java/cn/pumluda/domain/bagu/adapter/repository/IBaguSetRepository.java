@@ -10,4 +10,7 @@ public interface IBaguSetRepository {
     QaItemEntity saveItem(QaItemEntity item);
     void updateItemCount(String setId, int count);
     void saveDocumentRef(String setId, String documentId);
+    List<QaSetEntity> findAllSets();
+    QaSetEntity findSetById(String id);
+    List<QaItemEntity> findItemsBySetId(String setId);
 }

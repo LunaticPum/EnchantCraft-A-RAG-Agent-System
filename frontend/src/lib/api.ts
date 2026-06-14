@@ -158,6 +158,8 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ shelfName, documentIds }),
     }),
+  baguListSets: () => request<BaguSetResponse[]>("/bagu/sets"),
+  baguGetSet: (id: string) => request<BaguSetResponse>(`/bagu/sets/${id}`),
 };
 
 export interface BaguItemResponse {

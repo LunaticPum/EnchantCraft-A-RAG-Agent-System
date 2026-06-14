@@ -9,6 +9,8 @@ import cn.pumluda.infrastructure.dao.QaSetDocumentRefDao;
 import cn.pumluda.infrastructure.dao.po.QaItemPO;
 import cn.pumluda.infrastructure.dao.po.QaSetDocumentRefPO;
 import cn.pumluda.infrastructure.dao.po.QaSetPO;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -89,5 +91,24 @@ public class BaguSetRepositoryImpl implements IBaguSetRepository {
         e.setDifficulty(po.getDifficulty());
         e.setSortOrder(po.getSortOrder() != null ? po.getSortOrder() : 0);
         return e;
+    }
+
+    @Override
+    public List<QaSetEntity> findAllSets() {
+        return qaSetDao.selectList(null).stream().map(this::fromPO).collect(Collectors.toList());
+    }
+
+    @Override
+    public QaSetEntity findSetById(String id) {
+        QaSetPO po = qaSetDao.selectById(id);
+        return po != null ? fromPO(po) : null;
+    }
+
+    @Override
+    public List<QaItemEntity> findItemsBySetId(String setId) {
+        return qaItemDao.selectList(new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<QaItemPO>()
+                .eq(QaItemPO::getSetId, setId)
+                .orderByAsc(QaItemPO::getSortOrder))
+                .stream().map(this::fromPO).collect(Collectors.toList());
     }
 }
