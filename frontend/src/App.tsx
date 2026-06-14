@@ -3,8 +3,6 @@ import DocumentPage from "./pages/DocumentPage";
 import AgentPage from "./pages/AgentPage";
 import SearchPage from "./pages/SearchPage";
 import WelcomePage from "./pages/WelcomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 import { AuthProvider, useAuth } from "./lib/mockAuth";
 import { AgentStateProvider, useAgentReset } from "./lib/agentStore";
 
@@ -27,13 +25,11 @@ function AppShell() {
   return (
     <div className="h-screen flex flex-col p-6 overflow-hidden">
       <div className="flex-1 min-h-0 flex flex-col max-w-[1480px] mx-auto w-full gap-4">
-        {/* MC 像素风导航栏 */}
         <header className="mc-nav">
           <div className="mc-nav-brand">
             <span style={{ fontSize: 16 }}>◈</span>
             EnchantCraft
           </div>
-
           <nav className="mc-nav-links">
             {nav.map(({ to, icon, label }) => (
               <NavLink
@@ -50,7 +46,6 @@ function AppShell() {
               </NavLink>
             ))}
           </nav>
-
           <div className="mc-nav-right">
             <span>◈ pgvector</span>
             <span>◈ DeepSeek</span>
@@ -58,12 +53,11 @@ function AppShell() {
           </div>
         </header>
 
-        {/* 内容区：暂时保留圆角容器，后续页面逐步 MC 化 */}
         <div className="flex-1 min-h-0 flex flex-col glass-lg overflow-hidden">
           <Outlet />
         </div>
 
-        <footer className="text-center" style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", opacity: 0.8, letterSpacing: "0.1em" }}>
+        <footer style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", opacity: 0.8, letterSpacing: "0.1em", textAlign: "center" }}>
           EnchantCraft · 附魔工坊 · v7.0
         </footer>
       </div>
@@ -73,7 +67,7 @@ function AppShell() {
 
 function ProtectedRoute() {
   const { authed } = useAuth();
-  return authed ? <AppShell /> : <Navigate to="/login" replace />;
+  return authed ? <AppShell /> : <Navigate to="/" replace />;
 }
 
 export default function App() {
@@ -83,8 +77,6 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<WelcomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/documents" element={<DocumentPage />} />
             <Route path="/agent" element={<AgentPage />} />

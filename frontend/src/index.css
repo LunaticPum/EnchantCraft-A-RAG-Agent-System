@@ -390,6 +390,26 @@ body {
 }
 .mc-nav-right button:hover { color: var(--color-danger); }
 
+/* MC 像素弹窗 */
+.mc-modal {
+  position: relative; width: 380px; background: #12100e;
+  border: 3px solid #5a3018;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.5), 0 0 0 1px #6a4020, 0 0 0 4px #0d0a08, 0 0 0 5px #5a3018, 0 8px 32px rgba(0,0,0,0.6);
+}
+.mc-modal-header {
+  display: flex; align-items: center; justify-content: space-between; padding: 10px 14px;
+  font-family: var(--font-mc); font-size: 13px; color: #e8dcc8; letter-spacing: 0.08em; text-transform: uppercase;
+  background: #3d2a10; border-bottom: 2px solid #5a3018; cursor: grab; user-select: none;
+}
+.mc-modal-header:active { cursor: grabbing; }
+.mc-modal-close { background: none; border: none; color: #8a7a5a; font-family: var(--font-mc); font-size: 16px; cursor: pointer; padding: 0 4px; transition: color 0.2s; }
+.mc-modal-close:hover { color: var(--color-mc-gold); }
+.mc-modal-body { padding: 20px 24px; }
+.mc-modal-body .mc-input { width: 100%; padding: 10px 14px; font-family: var(--font-mc); font-size: 13px; color: #e8dcc8; background: rgba(20,14,8,0.8); border: 2px solid #5a3018; outline: none; margin-bottom: 10px; }
+.mc-modal-body .mc-input:focus { border-color: #8a6a2a; }
+.mc-modal-body .mc-input::placeholder { color: #5a4020; }
+
+
 /* MC 输入框 */
 .mc-input {
   width: 100%;

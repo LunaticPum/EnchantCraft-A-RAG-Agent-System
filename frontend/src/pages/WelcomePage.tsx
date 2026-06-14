@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../lib/mockAuth";
+import { api, setAuthToken } from "../lib/api";
+import McModal from "../lib/McModal";
 
 /** 随机 splash 词库 */
 const SPLASH_POOL = [
@@ -35,11 +38,11 @@ const ICON_LIST_BOX = "M4 2h16v2H4zm2 5h2v2H6zm4 0h8v2h-8zm-4 4h2v2H6zm4 0h8v2h-
 const ICON_COFFEE = "M4 4h16v2H4zm0 2h2v8H4zm2 8h10v2H6zm14-8h2v4h-2zm-2 4h2v2h-2zm-2-4h2v8h-2zM2 18h18v2H2z";
 
 const menuItems = [
-  { icon: ICON_COFFEE, label: "进入工坊", to: "/login", primary: true },
-  { icon: ICON_BOOK_OPEN, label: "资料库", to: "/login" },
-  { icon: ICON_AI_VIEW, label: "精灵对话", to: "/login" },
-  { icon: ICON_CALCULATOR, label: "八股出题", to: "/login" },
-  { icon: ICON_LIST_BOX, label: "我的题库", to: "/login" },
+  { icon: ICON_COFFEE, label: "进入工坊", action: () => {}, primary: true },
+  { icon: ICON_BOOK_OPEN, label: "资料库", action: () => {} },
+  { icon: ICON_AI_VIEW, label: "精灵对话", action: () => {} },
+  { icon: ICON_CALCULATOR, label: "八股出题", action: () => {} },
+  { icon: ICON_LIST_BOX, label: "我的题库", action: () => {} },
 ];
 
 const STATUS_TECHS = [
@@ -53,9 +56,49 @@ const STATUS_TECHS = [
 
 export default function WelcomePage() {
   const navigate = useNavigate();
+  const { login: authLogin } = useAuth();
   const [splashIdx, setSplashIdx] = useState(0);
   const [statusTech, setStatusTech] = useState(STATUS_TECHS[0]);
   const runeContainerRef = useRef<HTMLDivElement>(null);
+
+  /* 弹窗状态 */
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalTab, setModalTab] = useState<"login" | "register">("login");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [authError, setAuthError] = useState("");
+  const [authOk, setAuthOk] = useState("");
+  const [authLoading, setAuthLoading] = useState(false);
+
+  const openModal = (tab: "login" | "register") => {
+    setModalTab(tab);
+    setAuthError(""); setAuthOk("");
+    setUsername(""); setPassword(""); setEmail("");
+    setModalOpen(true);
+  };
+
+  const handleAuth = async () => {
+    setAuthError(""); setAuthOk("");
+    if (!username || username.length < 3) { setAuthError("用户名至少 3 位"); return; }
+    if (!password || password.length < 4) { setAuthError("密码至少 4 位"); return; }
+    setAuthLoading(true);
+    try {
+      if (modalTab === "login") {
+        const res = await api.login(username, password);
+        setAuthToken(res.token);
+        authLogin({ userId: res.userId, username: res.username, role: res.role });
+        setModalOpen(false);
+        navigate("/documents", { replace: true });
+      } else {
+        await api.register(username, password, email);
+        setAuthOk("注册成功，请登录");
+        setModalTab("login");
+        setPassword("");
+      }
+    } catch (e: any) { setAuthError(e.message || "操作失败"); }
+    finally { setAuthLoading(false); }
+  };
 
   /* Splash 轮播 — 用 state 驱动，不用 ref 操作 DOM */
   useEffect(() => {
@@ -134,10 +177,10 @@ export default function WelcomePage() {
 
         {/* MC 竖排菜单 */}
         <div className="flex flex-col items-center gap-0 relative z-[3] mt-16 mb-8" style={{ width: 380 }}>
-          {menuItems.map(({ icon, label, to, primary }) => (
+          {menuItems.map(({ icon, label, primary }, i) => (
             <button
               key={label}
-              onClick={() => navigate(to)}
+              onClick={() => i === 0 ? openModal("login") : openModal("login")}
               className={`mc-menu-vert ${primary ? "mc-menu-vert--primary" : ""}`}
             >
               <span className="mc-icon">
@@ -165,6 +208,44 @@ export default function WelcomePage() {
       <footer className="text-center" style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", letterSpacing: "0.08em", opacity: 0.8, padding: "4px 0 8px" }}>
         EnchantCraft · 开源协议 MIT · 联系邮箱 1637435385@qq.com
       </footer>
+
+      {/* MC 弹窗 */}
+      <McModal open={modalOpen} onClose={() => setModalOpen(false)} title={modalTab === "login" ? "登录" : "注册"}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <input
+            className="mc-input" type="text" value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="用户名"
+            onKeyDown={(e) => e.key === "Enter" && handleAuth()}
+          />
+          <input
+            className="mc-input" type="password" value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="密码"
+            onKeyDown={(e) => e.key === "Enter" && handleAuth()}
+          />
+          {modalTab === "register" && (
+            <input
+              className="mc-input" type="text" value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="邮箱（选填）"
+            />
+          )}
+          {authError && (
+            <p className="text-xs" style={{ color: "var(--color-danger)", background: "rgba(200,122,106,0.1)", padding: "6px 10px", borderRadius: 2 }}>{authError}</p>
+          )}
+          {authOk && (
+            <p className="text-xs" style={{ color: "var(--color-pass)", background: "rgba(126,168,139,0.1)", padding: "6px 10px", borderRadius: 2 }}>{authOk}</p>
+          )}
+          <button onClick={handleAuth} disabled={authLoading} className="mc-menu-vert mc-menu-vert--primary" style={{ width: "100%", justifyContent: "center", borderBottom: "2px solid #6b5020" }}>
+            {authLoading ? "处理中..." : modalTab === "login" ? "登录" : "注册"}
+          </button>
+          <p style={{ textAlign: "center", fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", cursor: "pointer", margin: 0 }}
+            onClick={() => { setModalTab(modalTab === "login" ? "register" : "login"); setAuthError(""); setAuthOk(""); }}>
+            {modalTab === "login" ? "没有账号？去注册" : "已有账号？去登录"}
+          </p>
+        </div>
+      </McModal>
     </div>
   );
 }
