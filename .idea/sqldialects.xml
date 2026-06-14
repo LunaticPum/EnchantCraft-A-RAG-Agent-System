@@ -9,5 +9,6 @@
     <file url="file://$PROJECT_DIR$/docs/sql/V5.2__add_directory_path.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/docs/sql/V6.1__create_user_account.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/docs/sql/V6.2__add_quota_columns.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/docs/sql/V7.1__create_qa_set.sql" dialect="MySQL" />
   </component>
 </project>

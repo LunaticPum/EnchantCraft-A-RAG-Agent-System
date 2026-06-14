@@ -10,5 +10,6 @@
     <file url="file://$PROJECT_DIR$/docs/sql/V5.2__add_directory_path.sql" value="430229b3-4655-4a23-a4b2-045825c5c2e9" />
     <file url="file://$PROJECT_DIR$/docs/sql/V6.1__create_user_account.sql" value="430229b3-4655-4a23-a4b2-045825c5c2e9" />
     <file url="file://$PROJECT_DIR$/docs/sql/V6.2__add_quota_columns.sql" value="430229b3-4655-4a23-a4b2-045825c5c2e9" />
+    <file url="file://$PROJECT_DIR$/docs/sql/V7.1__create_qa_set.sql" value="430229b3-4655-4a23-a4b2-045825c5c2e9" />
   </component>
 </project>

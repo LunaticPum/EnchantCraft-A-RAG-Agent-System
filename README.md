@@ -137,8 +137,8 @@ docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
 
 ## 截图
 
-| 首页 | 知识库 |
-|------|--------|
+| 首页                      | 知识库 |
+|-------------------------|--------|
 | ![](docs/images/首页.png) | ![](docs/images/知识库阅览.png) |
 
 | 精灵对话 | 八股出题 |
