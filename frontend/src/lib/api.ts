@@ -50,18 +50,15 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
 }
 
 /* Document APIs */
-/* 文档列表缓存 */
-let _docsCache: { data: DocumentItem[]; ts: number } | null = null;
-const CACHE_TTL = 30_000; // 30秒
-
+/* 文档列表缓存（会话级，关页即清） */
+let _docsCache: DocumentItem[] | null = null;
 function bustDocCache() { _docsCache = null; }
 
 export const api = {
   listDocuments: async () => {
-    if (_docsCache && Date.now() - _docsCache.ts < CACHE_TTL) return _docsCache.data;
-    const data = await request<DocumentItem[]>("/document/list");
-    _docsCache = { data, ts: Date.now() };
-    return data;
+    if (_docsCache) return _docsCache;
+    _docsCache = await request<DocumentItem[]>("/document/list");
+    return _docsCache;
   },
 
   getDocument: (id: string) => request<DocumentItem>(`/document/${id}`),
@@ -166,13 +163,13 @@ export const api = {
     }),
 
   /* Bagu Skill */
-  baguGenerate: (shelfName: string, documentIds: string[]) =>
-    request<BaguSetResponse>("/bagu/generate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ shelfName, documentIds }),
-    }),
-  baguListSets: () => request<BaguSetResponse[]>("/bagu/sets"),
+  /* 题目集列表也缓存 */
+  _qaSetsCache: null as BaguSetResponse[] | null,
+  baguListSets: async function () {
+    if (this._qaSetsCache) return this._qaSetsCache;
+    this._qaSetsCache = await request<BaguSetResponse[]>("/bagu/sets");
+    return this._qaSetsCache;
+  },
   baguGetSet: (id: string) => request<BaguSetResponse>(`/bagu/sets/${id}`),
   baguEvaluate: (question: string, standardAnswer: string, userAnswer: string) =>
     request<string>("/bagu/evaluate", {
@@ -180,7 +177,20 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question, standardAnswer, userAnswer }),
     }),
-  baguDeleteSet: (id: string) => request<void>(`/bagu/sets/${id}`, { method: "DELETE" }),
+  baguDeleteSet: async function (id: string) {
+    const result = await request<void>(`/bagu/sets/${id}`, { method: "DELETE" });
+    this._qaSetsCache = null;
+    return result;
+  },
+  baguGenerate: function (shelfName: string, documentIds: string[]) {
+    const result = request<BaguSetResponse>("/bagu/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ shelfName, documentIds }),
+    });
+    this._qaSetsCache = null;
+    return result;
+  },
 };
 
 export interface BaguItemResponse {
