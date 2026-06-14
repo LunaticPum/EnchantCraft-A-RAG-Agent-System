@@ -157,7 +157,7 @@ docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
 - 📧 邮箱：1637435385@qq.com
 - 🐙 GitHub：[LunaticPum](https://github.com/LunaticPum)
 
-## Star History
+## Star 趋势
 
 <a href="https://www.star-history.com/?repos=LunaticPum%2FEnchantCraft-A-RAG-Agent-System&type=date&legend=top-left">
  <picture>
