@@ -10,6 +10,7 @@ const ICON_BOOK = "M2 3h9v2H2zM0 19h11v2H0zM13 3h9v2h-9zm0 16h11v2H13zM11 5h2v18
 const ICON_SEND = "M2 2h20v2H2zm0 4h14v2H2zm0 4h10v2H2zm0 4h16v2H2zm0 4h12v2H2z";
 
 type Mode = "FORCE" | "TOOL";
+const MODE_LABEL: Record<Mode, string> = { FORCE: "强制检索", TOOL: "智能检索" };
 
 export default function AgentPage() {
   const { messages: msgs, setMessages: setMsgs, sending, setSending, sessionId: sid, setSessionId: setSid, mode, setMode } = useAgentStore();
@@ -34,24 +35,26 @@ export default function AgentPage() {
   return (
     <div className="h-full flex flex-col" style={{ background: "rgba(0,0,0,0.2)" }}>
       {/* Header */}
-      <div className="flex-shrink-0 flex items-center justify-between px-5 py-3" style={{ background: "rgba(20,14,8,0.8)", borderBottom: "2px solid #3a1a08" }}>
-        <div className="flex items-center gap-2.5">
-          <svg viewBox="0 0 24 24" style={{ width: 18, height: 18, fill: "#c9a050" }}><path d={ICON_AI} /></svg>
-          <span style={{ fontFamily: "var(--font-mc)", fontSize: 13, color: "#e8dcc8", letterSpacing: "0.06em" }}>精灵对话</span>
-          {sending && <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-pass)] animate-pulse" />}
-        </div>
-        <button onClick={() => setMode(mode === "FORCE" ? "TOOL" : "FORCE")}
-          style={{ fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", letterSpacing: "0.06em", background: "none", border: "none", cursor: "pointer" }}>
-          {mode === "FORCE" ? "强制检索" : "Tool Calling"}
-        </button>
+      <div className="flex-shrink-0 flex items-center px-5 py-3" style={{ background: "rgba(20,14,8,0.8)", borderBottom: "2px solid #3a1a08" }}>
+        <svg viewBox="0 0 24 24" style={{ width: 18, height: 18, fill: "#c9a050", marginRight: 8 }}><path d={ICON_AI} /></svg>
+        <span style={{ fontFamily: "var(--font-mc)", fontSize: 13, color: "#e8dcc8", letterSpacing: "0.06em" }}>精灵对话</span>
+        {sending && <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-pass)] animate-pulse ml-2" />}
       </div>
 
       {/* Messages */}
       <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4 space-y-4" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(139,115,85,0.2) transparent" }}>
         {msgs.length === 0 && (
-          <div className="text-center py-8" style={{ fontFamily: "var(--font-mc)", fontSize: 12, color: "#8a7a5a" }}>
-            <svg viewBox="0 0 24 24" style={{ width: 14, height: 14, fill: "#c9a050", display: "inline", marginRight: 4, verticalAlign: "middle" }}><path d={ICON_AI} /></svg>
-            提出问题，精灵将从知识库查找证据并回答
+          <div className="text-center py-8">
+            <p style={{ fontFamily: "var(--font-mc)", fontSize: 13, color: "#c0b090", margin: "0 0 12px" }}>
+              <svg viewBox="0 0 24 24" style={{ width: 16, height: 16, fill: "#c9a050", display: "inline", marginRight: 4, verticalAlign: "middle" }}><path d={ICON_AI} /></svg>
+              提出问题，精灵将从知识库查找证据并回答
+            </p>
+            <span
+              onClick={() => setMode(mode === "FORCE" ? "TOOL" : "FORCE")}
+              style={{ fontFamily: "var(--font-mc)", fontSize: 12, color: "#e8dcc8", cursor: "pointer", background: "rgba(60,40,18,0.5)", border: "2px solid #6b5020", padding: "6px 16px", display: "inline-block", letterSpacing: "0.04em" }}
+            >
+              当前模式：<strong style={{ color: "#f5e050" }}>{MODE_LABEL[mode]}</strong> · 点击切换
+            </span>
           </div>
         )}
         {msgs.map((m, i) => (
@@ -109,12 +112,18 @@ export default function AgentPage() {
           <div className="flex-1 relative">
             <input value={input} onChange={(e) => setInput(e.target.value)}
               placeholder="输入问题..." className="mc-input" disabled={sending}
-              style={{ paddingRight: 140 }}
+              style={{ paddingRight: 80 }}
               onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && send()} />
-            <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-mc)", fontSize: 10, color: "#5a4020", pointerEvents: "none" }}>
-              {mode === "FORCE" ? "强制检索" : "Tool"} · Enter
+            <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-mc)", fontSize: 10, color: "#8a7a5a", pointerEvents: "none" }}>
+              Enter 发送
             </span>
           </div>
+          <button
+            onClick={() => setMode(mode === "FORCE" ? "TOOL" : "FORCE")}
+            className="mc-btn" style={{ padding: "10px 16px", fontSize: 12, whiteSpace: "nowrap" }}
+          >
+            {MODE_LABEL[mode]}
+          </button>
           <button onClick={send} disabled={sending} className="mc-btn" style={{ padding: "10px 16px", fontSize: 12 }}>
             <svg viewBox="0 0 24 24" style={{ width: 14, height: 14, fill: "currentColor" }}><path d={ICON_SEND} /></svg>
             发送

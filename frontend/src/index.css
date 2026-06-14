@@ -332,7 +332,7 @@ body {
 
 /* MC 导航栏 */
 .mc-nav {
-  display: flex; align-items: center; gap: 0;
+  display: flex; align-items: center; gap: 0; position: relative;
   border: 2px solid var(--color-mc-brown);
   box-shadow: 0 0 0 2px #0d0a08, 0 0 0 3px var(--color-mc-border);
   background: rgba(20,14,8,0.95);
@@ -347,18 +347,21 @@ body {
   flex-shrink: 0;
 }
 .mc-nav-links {
-  display: flex; align-items: center; flex: 1; justify-content: center;
+  display: flex; align-items: center;
+  position: absolute; left: 50%; transform: translateX(-50%);
 }
 .mc-nav-link {
   font-family: var(--font-mc);
   font-size: 11px; color: var(--color-mc-text-dim);
   letter-spacing: 0.1em;
-  padding: 12px 28px;
+  padding: 12px 0;
+  width: 120px; text-align: center;
   transition: all 0.2s;
   cursor: pointer;
   text-decoration: none;
   border-right: 1px solid rgba(42,26,10,0.5);
   text-transform: uppercase;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
 }
 .mc-nav-link:last-child { border-right: none; }
 .mc-nav-link:hover {
@@ -423,7 +426,7 @@ body {
   transition: border-color 0.2s;
 }
 .mc-input:focus { border-color: #8a6a2a; }
-.mc-input::placeholder { color: #4a3a2a; }
+.mc-input::placeholder { color: #8a7a5a; }
 
 /* MC 描述文字 */
 .mc-desc {
