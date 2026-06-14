@@ -125,16 +125,23 @@ export default function DocumentPage() {
     }
   };
 
-  /* 书架方块内书本渲染 */
-  const renderShelfBooks = (count: number) => {
-    const filled = Math.min(6, Math.ceil(count / 2)); // 0→0, 1-2→1, 3-4→2, 5-6→3, 7-8→4, 9-10→5, 11+→6
+  /* 书架方块内书本渲染（确定性——基于书架名hash，不随render变化） */
+  const renderShelfBooks = (name: string, count: number) => {
+    const filled = Math.min(6, Math.ceil(count / 2));
     const slots = [];
+    // 用书架名的简单hash生成稳定伪随机数
+    const hash = (s: string, seed: number) => {
+      let h = seed;
+      for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+      return Math.abs(h);
+    };
     for (let i = 0; i < 6; i++) {
       if (i < filled) {
-        const h = 60 + Math.floor(Math.random() * 40);
+        const h = 60 + (hash(name, i * 7 + 3) % 40);
+        const ci = hash(name, i * 13 + 5) % BOOK_COLORS.length;
         slots.push(
           <div key={i} className="cs-slot">
-            <span className="cs-book" style={{ height: h + "%", background: BOOK_COLORS[i % BOOK_COLORS.length] }} />
+            <span className="cs-book" style={{ height: h + "%", background: BOOK_COLORS[ci] }} />
           </div>
         );
       } else {
@@ -170,6 +177,7 @@ export default function DocumentPage() {
             {uploadMsg && (
               <p style={{ fontFamily: "var(--font-mc)", fontSize: 9, color: "#c8a050", textAlign: "center", marginBottom: 8 }}>{uploadMsg}</p>
             )}
+            <div className="shelf-cab-scroll">
             <div className="shelf-grid">
               {tab !== "knowledge" ? (
                 <div style={{ gridColumn: "1 / -1", display: "flex", alignItems: "center", justifyContent: "center", height: 200, fontFamily: "var(--font-mc)", fontSize: 12, color: "#8a6a4a" }}>
@@ -183,7 +191,7 @@ export default function DocumentPage() {
                   onClick={() => handleShelfClick(name)}
                 >
                   <span className="cs-tip" style={{ zIndex: 20 }}>{name} · {shelfDocs.length}文档</span>
-                  <div className="cs-slots">{renderShelfBooks(shelfDocs.length)}</div>
+                  <div className="cs-slots">{renderShelfBooks(name, shelfDocs.length)}</div>
                   <span className="cs-lbl">{name}</span>
                   <span className="cs-cnt">{shelfDocs.length}</span>
                 </div>
@@ -195,6 +203,7 @@ export default function DocumentPage() {
                   <span className="cs-add-lbl">{uploading ? "上传中..." : "新建/上传"}</span>
                 </div>
               )}
+            </div>
             </div>
           </div>
         </div>
@@ -222,7 +231,7 @@ export default function DocumentPage() {
                     draggable
                     onDragStart={(e) => e.dataTransfer.setData("text/plain", d.id)}
                   >
-                    ⋮⋮ 📄 {d.fileName.replace(/\.md$/i, "")}
+                    ⋮⋮ 📄 {d.fileName.split("/").pop()?.replace(/\.md$/i, "") || d.fileName}
                   </div>
                 ))}
                 {shelfDocs.length === 0 && selectedShelf && (
