@@ -45,8 +45,7 @@ export default function DocumentPage() {
   const loadDocs = () => { api.listDocuments().then(setDocs).catch(() => {}); };
   const loadChunks = (id: string) => { api.getChunks(id).then(setChunks).catch(() => {}); };
 
-  useEffect(() => { loadDocs(); }, []);
-  useEffect(() => { if (tab === "qasets") { api.baguListSets().then(setQaSets).catch(() => {}); } }, [tab]);
+  useEffect(() => { loadDocs(); api.baguListSets().then(setQaSets).catch(() => {}); }, []);
 
   /* 文档按根目录分组 */
   const shelves = useMemo(() => {
