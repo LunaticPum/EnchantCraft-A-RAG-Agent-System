@@ -1,129 +1,111 @@
 import { useState, useEffect, useMemo } from "react";
-import { Upload, FolderTree, FileText, Clock, ChevronRight, Folder, File, RefreshCw, Loader2, Zap, Trash2, X } from "lucide-react";
 import { api, type DocumentItem, type ChunkItem } from "../lib/api";
 import { scanDirectory, batchUploadFiles } from "../lib/directoryScan";
 import { MdViewer } from "../lib/markdown";
 import { useAuth } from "../lib/mockAuth";
 
-type Tab = "repository" | "upload";
+/** Pixelarticons SVG paths */
+const ICON_BOOK_OPEN = "M2 3h9v2H2zM0 19h11v2H0zM13 3h9v2h-9zm0 16h11v2H13zM11 5h2v18h-2zM0 5h2v14H0zm22 0h2v14h-2zm-7 2h5v2h-5zm0 4h5v2h-5zm0 4h2v2h-2z";
+const ICON_LIST_BOX = "M4 2h16v2H4zm2 5h2v2H6zm4 0h8v2h-8zm-4 4h2v2H6zm4 0h8v2h-8zm-4 4h2v2H6zm4 0h8v2h-8zm-6 5h16v2H4zM2 4h2v16H2zm18 0h2v16h-2z";
+const ICON_MESSAGE = "M2 3h20v2H2zm0 4h14v2H2zm0 4h10v2H2zm0 4h16v2H2zm0 4h12v2H2z";
 
-interface TreeNode {
-  name: string;
-  children: TreeNode[];
-  docs: DocumentItem[];
-}
+const BOOK_COLORS = ["#c83838", "#3858b8", "#389050", "#784828", "#683878", "#c89838", "#388888", "#c87038"];
 
-/** Recursive tree node renderer */
-function RenderTreeNode({ node, depth, selectedDocId, onSelect, expanded, toggle }: {
-  node: TreeNode; depth: number; selectedDocId?: string;
-  onSelect: (d: DocumentItem) => void; expanded: Set<string>;
-  toggle: (name: string) => void;
-}) {
-  const isOpen = expanded.has(node.name) || node.name === "";
-  const indent = depth * 16;
-  return (
-    <div>
-      {node.name && (
-        <button onClick={() => toggle(node.name)}
-          className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] hover:bg-[var(--color-bg-input)] transition-colors"
-          style={{ paddingLeft: 8 + indent }}>
-          <ChevronRight size={12} className={`transition-transform flex-shrink-0 ${isOpen ? "rotate-90" : ""}`} />
-          <Folder size={13} className="text-[var(--color-accent)] flex-shrink-0" />
-          <span className="font-medium truncate">{node.name}</span>
-        </button>
-      )}
-      {isOpen && (
-        <div className={node.name ? "ml-3 border-l border-[var(--color-line)] pl-2 space-y-0.5 mt-0.5" : "space-y-0.5"}>
-          {node.docs.map((d) => (
-            <button key={d.id} onClick={() => onSelect(d)}
-              className={`w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs transition-colors ${
-                selectedDocId === d.id ? "bg-[var(--color-accent-soft)] text-[var(--color-accent)]"
-                : "text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] hover:bg-[var(--color-bg-input)]"}`}
-              style={{ paddingLeft: 8 + indent + (node.name ? 8 : 0) }}>
-              <File size={12} className="flex-shrink-0" /> <span className="truncate">{d.fileName}</span>
-            </button>
-          ))}
-          {node.children.map((child) => (
-            <RenderTreeNode key={child.name} node={child} depth={depth + 1}
-              selectedDocId={selectedDocId} onSelect={onSelect} expanded={expanded} toggle={toggle} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
+const TABS = [
+  { key: "knowledge", icon: ICON_BOOK_OPEN, label: "知识库" },
+  { key: "qasets", icon: ICON_LIST_BOX, label: "题目集" },
+  { key: "chat", icon: ICON_MESSAGE, label: "对话" },
+];
 
-function buildTree(docs: DocumentItem[]): TreeNode[] {
-  const root: TreeNode[] = [];
-  for (const doc of docs) {
-    const path = doc.directoryPath || "";
-    const parts = path ? path.split("/") : [];
-    let current = root;
-    for (let i = 0; i < parts.length; i++) {
-      let node = current.find((n) => n.name === parts[i]);
-      if (!node) {
-        node = { name: parts[i], children: [], docs: [] };
-        current.push(node);
-      }
-      if (i === parts.length - 1) {
-        node.docs.push(doc);
-      } else {
-        current = node.children;
-      }
-    }
-    if (parts.length === 0) {
-      root.push({ name: "", children: [], docs: [doc] });
-    }
-  }
-  return root;
+/** 从 directoryPath 提取根目录名 */
+function rootDir(doc: DocumentItem): string {
+  const p = doc.directoryPath || "";
+  const idx = p.indexOf("/");
+  return idx > 0 ? p.slice(0, idx) : (p || "其他");
 }
 
 export default function DocumentPage() {
   const { user } = useAuth();
   const isAdmin = user?.role === "ADMIN";
-  const [tab, setTab] = useState<Tab>("repository");
+  const [tab, setTab] = useState("knowledge");
   const [docs, setDocs] = useState<DocumentItem[]>([]);
-  const [selectedDoc, setSelectedDoc] = useState<DocumentItem | null>(null);
   const [chunks, setChunks] = useState<ChunkItem[]>([]);
-  const [expandedChunk, setExpandedChunk] = useState<number | null>(null);
-  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
+  const [selectedDoc, setSelectedDoc] = useState<DocumentItem | null>(null);
+  const [selectedShelf, setSelectedShelf] = useState<string | null>(null);
+  const [deleteMode, setDeleteMode] = useState(false);
+  const [selectedShelves, setSelectedShelves] = useState<Set<string>>(new Set());
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadMsg, setUploadMsg] = useState("");
-  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
-  const [deleteConfirm, setDeleteConfirm] = useState(false);
-  const [deleteMode, setDeleteMode] = useState(false);
 
-  const loadDocs = () => {
-    api.listDocuments().then(setDocs).catch(() => {});
-  };
-  const loadChunks = (id: string) => {
-    api.getChunks(id).then(setChunks).catch(() => {});
-  };
+  const loadDocs = () => { api.listDocuments().then(setDocs).catch(() => {}); };
+  const loadChunks = (id: string) => { api.getChunks(id).then(setChunks).catch(() => {}); };
 
   useEffect(() => { loadDocs(); }, []);
 
+  /* 文档按根目录分组 */
+  const shelves = useMemo(() => {
+    const map = new Map<string, DocumentItem[]>();
+    for (const d of docs) {
+      const key = rootDir(d);
+      if (!map.has(key)) map.set(key, []);
+      map.get(key)!.push(d);
+    }
+    return Array.from(map.entries()).sort(([a], [b]) => {
+      if (a === "其他") return 1;
+      if (b === "其他") return -1;
+      return a.localeCompare(b);
+    });
+  }, [docs]);
+
+  /* 选中书架下的文档 */
+  const shelfDocs = useMemo(() => {
+    if (!selectedShelf) return [];
+    return docs.filter((d) => rootDir(d) === selectedShelf);
+  }, [docs, selectedShelf]);
+
+  /* 处理书架点击 */
+  const handleShelfClick = (name: string) => {
+    if (deleteMode) {
+      setSelectedShelves((prev) => {
+        const next = new Set(prev);
+        next.has(name) ? next.delete(name) : next.add(name);
+        return next;
+      });
+    } else {
+      setSelectedShelf(name);
+      setSelectedDoc(null);
+      setChunks([]);
+    }
+  };
+
+  /* 处理文档点击 */
+  const handleDocClick = (d: DocumentItem) => {
+    setSelectedDoc(d);
+    loadChunks(d.id);
+  };
+
+  /* 删除选中书架 */
   const handleDelete = async () => {
-    for (const id of selectedIds) {
+    const idsToDelete: string[] = [];
+    for (const name of selectedShelves) {
+      docs.filter((d) => rootDir(d) === name).forEach((d) => idsToDelete.push(d.id));
+    }
+    for (const id of idsToDelete) {
       try { await api.deleteDocument(id); } catch {}
     }
-    setSelectedIds(new Set());
+    setSelectedShelves(new Set());
     setDeleteConfirm(false);
     setDeleteMode(false);
+    if (selectedShelf && selectedShelves.has(selectedShelf)) {
+      setSelectedShelf(null);
+      setSelectedDoc(null);
+      setChunks([]);
+    }
     loadDocs();
-    setSelectedDoc(null);
   };
 
-  const toggleSelect = (id: string) => {
-    setSelectedIds((prev) => {
-      const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
-      return next;
-    });
-  };
-
-  const tree = useMemo(() => buildTree(docs), [docs]);
-
-  /* ---- Directory scan ----- */
+  /* 上传 */
   const handleScanFolder = async () => {
     try {
       setUploading(true);
@@ -143,234 +125,150 @@ export default function DocumentPage() {
     }
   };
 
-  /* ---- Single file drop ----- */
-  const handleDrop = async (e: React.DragEvent) => {
-    e.preventDefault();
-    const f = e.dataTransfer.files[0];
-    if (!f || !f.name.endsWith(".md")) return;
-    try {
-      setUploading(true);
-      setUploadMsg(`上传中... ${f.name}`);
-      await api.upload(f, "");
-      setUploadMsg("上传完成");
-      loadDocs();
-    } catch (err: any) {
-      setUploadMsg(err.message);
-    } finally {
-      setTimeout(() => setUploadMsg(""), 3000);
-      setUploading(false);
+  /* 书架方块内书本渲染 */
+  const renderShelfBooks = (count: number) => {
+    const filled = Math.min(6, Math.ceil(count / 2)); // 0→0, 1-2→1, 3-4→2, 5-6→3, 7-8→4, 9-10→5, 11+→6
+    const slots = [];
+    for (let i = 0; i < 6; i++) {
+      if (i < filled) {
+        const h = 60 + Math.floor(Math.random() * 40);
+        slots.push(
+          <div key={i} className="cs-slot">
+            <span className="cs-book" style={{ height: h + "%", background: BOOK_COLORS[i % BOOK_COLORS.length] }} />
+          </div>
+        );
+      } else {
+        slots.push(<div key={i} className="cs-slot empty"><span className="cs-book" /></div>);
+      }
     }
+    return slots;
   };
 
   return (
-    <div className="h-full flex min-h-[600px]">
-      {/* Left sidebar */}
-      <div className="w-[340px] flex-shrink-0 border-r border-[var(--color-line)] flex flex-col max-h-[calc(100vh-160px)]">
-        <div className="flex gap-1 p-3 border-b border-[var(--color-line)]">
-          {([
-            { key: "repository", icon: FolderTree, label: "资料库" },
-            ...(isAdmin ? [{ key: "upload" as const, icon: Upload, label: "上传管理" }] : []),
-          ]).map(({ key, icon: Icon, label }) => (
-            <button key={key} onClick={() => setTab(key as Tab)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-all ${
-                tab === key ? "bg-[var(--color-pill-dark)] text-[var(--color-pill-text)] shadow-[var(--shadow-btn)]"
-                : "text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"}`}>
-              <Icon size={14} />{label}
-            </button>
+    <div className="doc-scene h-full flex gap-6 p-6 items-stretch">
+      {/* 左侧书架面板 */}
+      <div className="shelf-panel">
+        {/* 分页标签 */}
+        <div className="shelf-tabs">
+          {TABS.map(({ key, icon, label }) => (
+            <div key={key} className={`shelf-tab ${tab === key ? "active" : ""}`} onClick={() => setTab(key)}>
+              <svg viewBox="0 0 24 24"><path d={icon} /></svg>
+              {label}
+            </div>
           ))}
         </div>
-
-        {tab === "repository" ? (
-          <div className="flex-1 min-h-0 overflow-y-auto p-3 space-y-0">
-            <div className="flex items-center gap-1.5 mb-3 px-1">
-              <button onClick={loadDocs} title="刷新列表"
-                className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
-                <RefreshCw size={14} />
-              </button>
-              {isAdmin && (
-                <button onClick={async () => {
-                  try {
-                    const count = await api.vectorHealth();
-                    if (count > 0) alert(`向量数据正常，共 ${count} 条`);
-                    else if (confirm("向量数据异常，是否重新执行 Embedding？"))
-                      await api.reEmbedAll();
-                  } catch { alert("检查失败"); }
-                }} title="向量检查"
-                  className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
-                  <Zap size={14} />
-                </button>
-              )}
-            </div>
-            {tree.length === 0 ? (
-              <div>
-                <p className="text-xs text-[var(--color-ink-faint)] px-2">暂无文档</p>
-                {!isAdmin && (
-                  <p className="text-[11px] text-[var(--color-ink-faint)] px-2 mt-3 opacity-60">
-                    需要上传权限？联系管理员 admin@qa-agent.com
-                  </p>
-                )}
-              </div>
-            ) : (
-              tree.map((node) => (
-                <RenderTreeNode key={node.docs[0]?.id || node.name || `root-${Math.random()}`} node={node} depth={0}
-                  selectedDocId={selectedDoc?.id} onSelect={(d) => { setSelectedDoc(d); loadChunks(d.id); }}
-                  expanded={expandedFolders} toggle={(name) => setExpandedFolders(p => {
-                    const n = new Set(p); n.has(name) ? n.delete(name) : n.add(name); return n;
-                  })} />
-              ))
-            )}
-            {!isAdmin && tree.length > 0 && (
-              <p className="text-[11px] text-[var(--color-ink-faint)] px-2 mt-3 opacity-60">
-                需要上传权限？联系管理员 admin@qa-agent.com
-              </p>
-            )}
+        {/* 书架主体 */}
+        <div className="shelf-cab">
+          <div className="shelf-cab-top" />
+          <div className="shelf-toolbar">
+            {isAdmin && (<>
+              <span onClick={() => { setDeleteMode(!deleteMode); setSelectedShelves(new Set()); }}>{deleteMode ? "取消" : "🗑 删除"}</span>
+              <span onClick={async () => { try { const c = await api.vectorHealth(); alert(`向量数据: ${c} 条`); } catch { alert("检查失败"); } }}>🔍 向量检查</span>
+              <span onClick={handleScanFolder} style={{ marginLeft: "auto", cursor: "pointer" }}>{uploading ? "上传中..." : "📥 上传"}</span>
+            </>)}
           </div>
-        ) : (
-          <div className="flex-1 flex flex-col overflow-hidden">
-            <div className="p-3 border-b border-[var(--color-line)] space-y-2">
-              <button onClick={handleScanFolder} disabled={uploading}
-                className="w-full py-3 rounded-2xl border-2 border-dashed border-[var(--color-line-strong)] text-center cursor-pointer hover:border-[var(--color-accent-border)] hover:bg-[var(--color-accent-soft)] transition-all group">
-                {uploading ? <Loader2 size={20} className="mx-auto mb-1 animate-spin text-[var(--color-accent)]" />
-                : <Upload size={20} className="mx-auto mb-1 text-[var(--color-ink-faint)] group-hover:text-[var(--color-accent)] transition-colors" />}
-                <p className="text-[11px] text-[var(--color-ink-soft)]">选择本地文件夹</p>
-                <p className="text-[10px] text-[var(--color-ink-faint)] mt-0.5">递归扫描所有 .md 并上传</p>
-              </button>
-              <div
-                onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}
-                className="py-2 rounded-2xl border border-[var(--color-line)] text-center cursor-pointer hover:border-[var(--color-line-strong)] transition-colors">
-                <p className="text-[10px] text-[var(--color-ink-faint)]">或拖拽单个 .md 文件</p>
-              </div>
-              {uploadMsg && (
-                <p className="text-[11px] text-[var(--color-accent)] text-center">{uploadMsg}</p>
-              )}
-            </div>
-            <div className="flex-1 overflow-auto p-3 space-y-1">
-              <div className="flex items-center justify-between px-1 mb-2">
-                <span className="text-[11px] text-[var(--color-ink-faint)] tracking-wider">已上传 ({docs.length})</span>
-                <div className="flex items-center gap-1">
-                  <button onClick={loadDocs} title="刷新"
-                    className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
-                    <RefreshCw size={14} />
-                  </button>
-                  <button onClick={() => { setDeleteMode(!deleteMode); setSelectedIds(new Set()); }}
-                    title={deleteMode ? "取消" : "批量删除"}
-                    className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${deleteMode ? "text-[var(--color-accent)] bg-[var(--color-accent-soft)]" : "text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)]"}`}>
-                    <Trash2 size={14} />
-                  </button>
-                  {deleteMode && (
-                    <label title="全选" className="w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer text-[var(--color-ink-faint)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-input)] transition-colors">
-                      <input type="checkbox" className="w-3 h-3 accent-[var(--color-accent)]"
-                        checked={selectedIds.size === docs.length && docs.length > 0}
-                        onChange={() => {
-                          if (selectedIds.size === docs.length) setSelectedIds(new Set());
-                          else setSelectedIds(new Set(docs.map(d => d.id)));
-                        }} />
-                    </label>
-                  )}
-                  {selectedIds.size > 0 && (
-                    <button onClick={() => setDeleteConfirm(true)} title="确认删除"
-                      className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-danger)] hover:bg-[rgba(200,122,106,0.1)] transition-colors">
-                      <X size={14} />
-                    </button>
-                  )}
-                </div>
-              </div>
-              {docs.map((d) => (
-                <div key={d.id} className="flex items-center gap-1">
-                  {deleteMode && (
-                    <input type="checkbox" checked={selectedIds.has(d.id)}
-                      onChange={() => toggleSelect(d.id)}
-                      className="w-3.5 h-3.5 accent-[var(--color-accent)] flex-shrink-0" />
-                  )}
-                  <button onClick={() => { setSelectedDoc(d); loadChunks(d.id); }}
-                    className={`flex-1 text-left p-3 rounded-2xl transition-all border ${
-                      selectedDoc?.id === d.id ? "border-[var(--color-accent-border)] bg-[var(--color-accent-soft)]"
-                      : "border-transparent hover:border-[var(--color-line-strong)] hover:bg-[var(--color-bg-card)]"}`}>
-                    <div className="flex items-center gap-2">
-                      <FileText size={14} className={selectedDoc?.id === d.id ? "text-[var(--color-accent)]" : "text-[var(--color-ink-faint)]"} />
-                      <span className="text-xs font-medium truncate">{d.fileName}</span>
-                    </div>
-                    <div className="flex items-center gap-3 mt-1 text-[10px] text-[var(--color-ink-faint)]">
-                      <span className="flex items-center gap-1"><Clock size={9} /> {d.createdAt?.slice(0, 16)}</span>
-                      {d.directoryPath && <span className="flex items-center gap-1"><Folder size={9} /> {d.directoryPath}</span>}
-                    </div>
-                  </button>
+          <div className="shelf-cab-inner">
+            {uploadMsg && (
+              <p style={{ fontFamily: "var(--font-mc)", fontSize: 9, color: "#c8a050", textAlign: "center", marginBottom: 8 }}>{uploadMsg}</p>
+            )}
+            <div className="shelf-grid">
+              {shelves.map(([name, shelfDocs]) => (
+                <div
+                  key={name}
+                  className={`cs-block ${selectedShelf === name ? "sel" : ""} ${deleteMode && selectedShelves.has(name) ? "sel" : ""}`}
+                  onClick={() => handleShelfClick(name)}
+                >
+                  <span className="cs-tip">{name} · {shelfDocs.length}文档</span>
+                  <div className="cs-slots">{renderShelfBooks(shelfDocs.length)}</div>
+                  <span className="cs-lbl">{name}</span>
+                  <span className="cs-cnt">{shelfDocs.length}</span>
                 </div>
               ))}
-            </div>
-            {deleteConfirm && (
-              <div className="p-3 border-t border-[var(--color-line)]">
-                <p className="text-xs text-[var(--color-ink-soft)] mb-2">
-                  将删除选中的 {selectedIds.size} 个文档及其分块、向量数据，不可恢复。确认？
-                </p>
-                <div className="flex gap-2">
-                  <button onClick={handleDelete}
-                    className="pill text-[11px] px-3 py-1.5 bg-[var(--color-danger)] text-white">确认删除</button>
-                  <button onClick={() => { setDeleteConfirm(false); setSelectedIds(new Set()); }}
-                    className="pill pill--ghost text-[11px] px-3 py-1.5">取消</button>
+              {isAdmin && (
+                <div className="cs-add" onClick={() => { const n = prompt("新资料库名称:"); if (n) { setUploading(true); setUploadMsg(`资料库"${n}"已创建，请上传文档`); setTimeout(() => { setUploadMsg(""); setUploading(false); }, 3000); } }}>
+                  <span className="cs-add-ic">+</span>
+                  <span className="cs-add-lbl">新建资料库</span>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        )}
+        </div>
       </div>
 
-      {/* Right panel */}
-      <div className="flex-1 min-h-0 overflow-y-auto p-8 pr-4 max-h-[calc(100vh-160px)]">
-        {selectedDoc ? (
-          <div>
-            <h3 className="serif text-2xl font-semibold mb-1">{selectedDoc.fileName}</h3>
-            <div className="flex items-center gap-3 text-xs text-[var(--color-ink-faint)] mb-8">
-              <span>{selectedDoc.fileType}</span><span>·</span>
-              <span>ID: {selectedDoc.id?.slice(0, 8)}</span><span>·</span>
-              <span>{chunks.length} 个分块</span>
-              {selectedDoc.directoryPath && <><span>·</span><span>{selectedDoc.directoryPath}</span></>}
+      {/* 右侧附魔书 */}
+      <div className="grim">
+        <div className="grim-cover">
+          <div className="grim-metal grim-m1" />
+          <div className="grim-metal grim-m2" />
+          <div className="grim-metal grim-m3" />
+          <div className="grim-metal grim-m4" />
+          <div className="grim-parch">
+            <div className="grim-hdr">
+              {selectedShelf ? `📚 ${selectedShelf} 资料库` : "选择一个资料库"}
             </div>
-
-            {tab === "repository" ? (
-              <MdViewer content={selectedDoc.rawContent || ""} />
-            ) : (
-              <div>
-                <p className="text-[11px] text-[var(--color-ink-faint)] uppercase tracking-wider mb-4">分块列表 ({chunks.length})</p>
-                <div className="space-y-2">
-                  {chunks.map((c, i) => (
-                    <div key={c.id}>
-                      <button onClick={() => setExpandedChunk(expandedChunk === i ? null : i)}
-                        className={`w-full text-left p-4 rounded-2xl border transition-all ${
-                          expandedChunk === i ? "border-[var(--color-accent-border)] bg-[var(--color-bg-card)]"
-                          : "border-[var(--color-line)] bg-[var(--color-bg-card)] hover:border-[var(--color-line-strong)]"}`}>
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-[10px] text-[var(--color-ink-faint)] font-mono">#{c.chunkIndex}</span>
-                          <p className="text-xs text-[var(--color-accent)] font-mono truncate">{c.titlePath || "(无标题)"}</p>
-                          <span className="ml-auto text-[10px] text-[var(--color-ink-faint)]">{expandedChunk === i ? "收起 ▲" : "展开 ▼"}</span>
-                        </div>
-                        <p className={`serif text-sm leading-relaxed text-[var(--color-ink-soft)] ${expandedChunk === i ? "" : "line-clamp-2"}`}>
-                          {expandedChunk !== i ? c.content?.slice(0, 150) + "..." : ""}
-                        </p>
-                        <div className="flex items-center gap-1.5 mt-2">
-                          {(c.moduleTags || []).map((tag: string) => (
-                            <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--color-accent-soft)] text-[var(--color-accent)]">{tag}</span>
-                          ))}
-                        </div>
-                      </button>
-                      {expandedChunk === i && (
-                        <div className="mt-2 p-5 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface-1)] fade-in">
-                          <MdViewer content={c.content} />
-                        </div>
-                      )}
+            <div className="grim-body">
+              <div className="grim-side">
+                <div className="grim-drag-hint">⋮⋮ 拖拽文档到书架方块可迁移</div>
+                {shelfDocs.map((d) => (
+                  <div
+                    key={d.id}
+                    className={`doc-item ${selectedDoc?.id === d.id ? "sel" : ""}`}
+                    onClick={() => handleDocClick(d)}
+                    draggable
+                    onDragStart={(e) => e.dataTransfer.setData("text/plain", d.id)}
+                  >
+                    ⋮⋮ 📄 {d.fileName}
+                  </div>
+                ))}
+                {shelfDocs.length === 0 && selectedShelf && (
+                  <div className="doc-item" style={{ color: "#8b7355", cursor: "default" }}>暂无文档</div>
+                )}
+                {!selectedShelf && (
+                  <div className="doc-item" style={{ color: "#8b7355", cursor: "default" }}>点击左侧书架方块</div>
+                )}
+              </div>
+              <div className="grim-main">
+                {selectedDoc ? (
+                  <>
+                    <div>
+                      <span className="drop-cap">{selectedDoc.fileName.charAt(0).toUpperCase()}</span>
+                      <strong>{selectedDoc.fileName}</strong>
+                      <span className="source-tag">
+                        📍 {selectedDoc.directoryPath || "根目录"} · {chunks.length} 分块 · {selectedDoc.createdAt?.slice(0, 10)}
+                      </span>
                     </div>
-                  ))}
-                </div>
+                    <div style={{ marginTop: 12 }}>
+                      <MdViewer content={selectedDoc.rawContent?.slice(0, 2000) || ""} />
+                    </div>
+                  </>
+                ) : (
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "#8b7355", fontFamily: "var(--font-mc)", fontSize: 10 }}>
+                    {selectedShelf ? "从左侧选择一篇文档" : "← 选择资料库"}
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center h-full text-[var(--color-ink-faint)]">
-            <File size={36} className="mb-3 opacity-25" />
-            <p className="text-sm">{tab === "repository" ? "从左侧目录树选择一篇笔记" : "从左侧列表选择一个已上传文档"}</p>
-          </div>
-        )}
+        </div>
       </div>
+
+      {/* 删除确认弹窗 */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(0,0,0,0.5)" }} onClick={() => setDeleteConfirm(false)}>
+          <div className="mc-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="mc-modal-header"><span>确认删除</span><button onClick={() => setDeleteConfirm(false)} className="mc-modal-close">✕</button></div>
+            <div className="mc-modal-body">
+              <p style={{ fontFamily: "var(--font-mc)", fontSize: 11, color: "#e8dcc8", margin: "0 0 12px" }}>
+                将删除选中的 {selectedShelves.size} 个资料库及其所有文档、分块和向量数据，不可恢复。确认？
+              </p>
+              <div style={{ display: "flex", gap: 8 }}>
+                <button onClick={handleDelete} className="mc-btn" style={{ padding: "8px 20px", fontSize: 12 }}>确认删除</button>
+                <button onClick={() => setDeleteConfirm(false)} className="mc-menu-vert" style={{ width: "auto", justifyContent: "center", borderBottom: "2px solid #6b5020", fontSize: 12, padding: "8px 20px" }}>取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
