@@ -50,8 +50,19 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
 }
 
 /* Document APIs */
+/* 文档列表缓存 */
+let _docsCache: { data: DocumentItem[]; ts: number } | null = null;
+const CACHE_TTL = 30_000; // 30秒
+
+function bustDocCache() { _docsCache = null; }
+
 export const api = {
-  listDocuments: () => request<DocumentItem[]>("/document/list"),
+  listDocuments: async () => {
+    if (_docsCache && Date.now() - _docsCache.ts < CACHE_TTL) return _docsCache.data;
+    const data = await request<DocumentItem[]>("/document/list");
+    _docsCache = { data, ts: Date.now() };
+    return data;
+  },
 
   getDocument: (id: string) => request<DocumentItem>(`/document/${id}`),
 
@@ -69,7 +80,7 @@ export const api = {
       };
       xhr.onload = () => {
         const json: ApiResponse<DocumentItem> = JSON.parse(xhr.responseText);
-        if (json.code === "0000") resolve(json.data);
+        if (json.code === "0000") { bustDocCache(); resolve(json.data); }
         else reject(new Error(json.info));
       };
       xhr.onerror = () => reject(new Error("上传失败"));
@@ -129,8 +140,11 @@ export const api = {
       `/document/search?keyword=${encodeURIComponent(keyword)}&topK=${topK}&strategy=${strategy}&rerank=${rerank}`
     ),
 
-  deleteDocument: (id: string) =>
-    request<void>(`/document/${id}`, { method: "DELETE" }),
+  deleteDocument: async (id: string) => {
+    const result = await request<void>(`/document/${id}`, { method: "DELETE" });
+    bustDocCache();
+    return result;
+  },
 
   vectorHealth: () => request<number>("/document/vector-health"),
   reEmbedAll: () => request<void>("/document/re-embed-all", { method: "POST" }),
