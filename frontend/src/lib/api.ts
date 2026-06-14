@@ -160,6 +160,12 @@ export const api = {
     }),
   baguListSets: () => request<BaguSetResponse[]>("/bagu/sets"),
   baguGetSet: (id: string) => request<BaguSetResponse>(`/bagu/sets/${id}`),
+  baguEvaluate: (question: string, standardAnswer: string, userAnswer: string) =>
+    request<string>("/bagu/evaluate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question, standardAnswer, userAnswer }),
+    }),
 };
 
 export interface BaguItemResponse {

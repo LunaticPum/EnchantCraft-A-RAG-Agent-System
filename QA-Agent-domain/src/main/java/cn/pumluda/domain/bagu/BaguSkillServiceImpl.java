@@ -194,4 +194,16 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
         r.setCreatedAt(set.getCreatedAt());
         return r;
     }
+
+    @Override
+    public String evaluate(String question, String standardAnswer, String userAnswer) {
+        String prompt = String.format(
+            "你是一位面试官。请比较用户的回答与标准答案，给出评价等级和简短点评。\n\n" +
+            "题目：%s\n\n标准答案：%s\n\n用户回答：%s\n\n" +
+            "请只输出一个JSON：{\"level\":\"GOOD|OK|POOR\",\"comment\":\"简短点评(20字内)\"}\n" +
+            "评判标准：GOOD=回答准确覆盖要点，OK=大体正确但有遗漏，POOR=答非所问或严重错误",
+            question, standardAnswer, userAnswer
+        );
+        return chatModel.chat(prompt);
+    }
 }

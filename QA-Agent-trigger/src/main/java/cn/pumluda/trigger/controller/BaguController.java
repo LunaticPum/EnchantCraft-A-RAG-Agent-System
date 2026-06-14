@@ -43,4 +43,11 @@ public class BaguController {
                 .data(baguSkillService.getSet(id))
                 .build();
     }
+
+    @PostMapping("/evaluate")
+    public Response<String> evaluate(@RequestBody java.util.Map<String, String> body) {
+        String result = baguSkillService.evaluate(
+            body.get("question"), body.get("standardAnswer"), body.get("userAnswer"));
+        return Response.<String>builder().code(ResponseCode.SUCCESS.getCode()).data(result).build();
+    }
 }

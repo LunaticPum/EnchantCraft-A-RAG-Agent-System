@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, NavLink, Navigate, Outlet } from "react-r
 import DocumentPage from "./pages/DocumentPage";
 import AgentPage from "./pages/AgentPage";
 import SearchPage from "./pages/SearchPage";
+import BaguPage from "./pages/BaguPage";
 import WelcomePage from "./pages/WelcomePage";
 import { AuthProvider, useAuth } from "./lib/mockAuth";
 import { AgentStateProvider, useAgentReset } from "./lib/agentStore";
@@ -157,7 +158,7 @@ export default function App() {
             <Route path="/documents" element={<DocumentPage />} />
             <Route path="/agent" element={<AgentPage />} />
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/bagu" element={<DocumentPage />} />
+            <Route path="/bagu" element={<BaguPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
