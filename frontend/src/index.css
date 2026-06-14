@@ -508,7 +508,7 @@ body {
 }
 
 /* 书架面板 + 雕纹书架 */
-.shelf-panel { width: min(380px, 35vw); min-width: 260px; display: flex; flex-direction: column; position: relative; z-index: 2; }
+.shelf-panel { width: 380px; min-width: 380px; display: flex; flex-direction: column; position: relative; z-index: 2; }
 .shelf-tabs { display: flex; gap: 0; }
 .shelf-tab {
   flex: 1; font-family: var(--font-mc); font-size: 11px; letter-spacing: 0.06em;
@@ -564,7 +564,7 @@ body {
 .cs-add-lbl { font-family: var(--font-mc); font-size: 10px; color: #5a3820; }
 
 /* 附魔书 */
-.grim { flex: 1; position: relative; z-index: 2; min-width: 0; display: flex; flex-direction: column; padding: 4px; }
+.grim { flex: 1; position: relative; z-index: 2; min-width: 400px; display: flex; flex-direction: column; padding: 4px; }
 .grim-cover { position: relative; background: linear-gradient(180deg, #4a2a10 0%, #3a1a08 5%, #4a2a10 95%, #3a1a08 100%);
   padding: 6px; border: 3px solid #2a1008;
   box-shadow: 0 0 0 2px #6b4020, 0 0 0 4px #2a1008, 0 0 0 5px #5a3018, 4px 4px 0 rgba(0,0,0,0.4);

@@ -51,7 +51,7 @@ function AppShell() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col p-4 overflow-hidden doc-scene">
+    <div className="h-screen flex flex-col p-4 doc-scene" style={{ minWidth: 1020, overflow: "auto" }}>
       {/* 星空层 */}
       <div ref={starRef} style={{ position: "absolute", inset: 0, width: 1, height: 1, zIndex: 0, animation: "starsUp 120s linear infinite" }} />
       <div style={{ position: "absolute", inset: 0, width: 1, height: 1, zIndex: 0, animation: "starsUp 200s linear infinite" }} />
