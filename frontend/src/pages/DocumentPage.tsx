@@ -264,7 +264,7 @@ export default function DocumentPage() {
                       </span>
                     </div>
                     <div style={{ marginTop: 12 }}>
-                      <MdViewer content={selectedDoc.rawContent?.slice(0, 2000) || ""} />
+                      <MdViewer content={selectedDoc.rawContent || ""} />
                     </div>
                   </>
                 ) : (
