@@ -29,8 +29,8 @@ export interface SearchResultItem {
 }
 export interface ApiResponse<T> { code: string; info: string; data: T; }
 
-let storedToken = "";
-export function setAuthToken(t: string) { storedToken = t; }
+let storedToken = localStorage.getItem("auth_token") || "";
+export function setAuthToken(t: string) { storedToken = t; localStorage.setItem("auth_token", t); }
 export function getAuthToken() { return storedToken; }
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {

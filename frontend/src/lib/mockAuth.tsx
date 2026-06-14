@@ -22,11 +22,16 @@ const AuthContext = createContext<AuthCtx>({
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [authed, setAuthed] = useState(false);
-  const [user, setUser] = useState<UserInfo | null>(null);
+  const [authed, setAuthed] = useState(() => {
+    return !!localStorage.getItem("auth_user");
+  });
+  const [user, setUser] = useState<UserInfo | null>(() => {
+    const saved = localStorage.getItem("auth_user");
+    return saved ? JSON.parse(saved) : null;
+  });
 
-  const login = (u: UserInfo) => { setUser(u); setAuthed(true); };
-  const logout = () => { setUser(null); setAuthed(false); setAuthToken(""); };
+  const login = (u: UserInfo) => { setUser(u); setAuthed(true); localStorage.setItem("auth_user", JSON.stringify(u)); };
+  const logout = () => { setUser(null); setAuthed(false); setAuthToken(""); localStorage.removeItem("auth_user"); localStorage.removeItem("auth_token"); };
 
   return (
     <AuthContext.Provider value={{ authed, user, login, logout }}>

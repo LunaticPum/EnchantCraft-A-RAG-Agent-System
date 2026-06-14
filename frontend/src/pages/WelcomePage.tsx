@@ -37,12 +37,14 @@ const ICON_CALCULATOR = "M5 2h14v2H5zm0 18h14v2H5zM3 4h2v16H3zm16 0h2v16h-2zM7 6
 const ICON_LIST_BOX = "M4 2h16v2H4zm2 5h2v2H6zm4 0h8v2h-8zm-4 4h2v2H6zm4 0h8v2h-8zm-4 4h2v2H6zm4 0h8v2h-8zm-6 5h16v2H4zM2 4h2v16H2zm18 0h2v16h-2z";
 const ICON_COFFEE = "M4 4h16v2H4zm0 2h2v8H4zm2 8h10v2H6zm14-8h2v4h-2zm-2 4h2v2h-2zm-2-4h2v8h-2zM2 18h18v2H2z";
 
+const ICON_SEARCH = "M10 2a8 8 0 100 16 8 8 0 000-16zm0 2a6 6 0 110 12 6 6 0 010-12zm8 12l4 4-2 2-4-4v-2z";
+
 const menuItems = [
-  { icon: ICON_COFFEE, label: "进入工坊", action: () => {}, primary: true },
-  { icon: ICON_BOOK_OPEN, label: "资料库", action: () => {} },
-  { icon: ICON_AI_VIEW, label: "精灵对话", action: () => {} },
-  { icon: ICON_CALCULATOR, label: "八股出题", action: () => {} },
-  { icon: ICON_LIST_BOX, label: "我的题库", action: () => {} },
+  { icon: ICON_COFFEE, label: "进入工坊", to: "/documents", primary: true },
+  { icon: ICON_BOOK_OPEN, label: "资料库", to: "/documents" },
+  { icon: ICON_AI_VIEW, label: "精灵对话", to: "/agent" },
+  { icon: ICON_SEARCH, label: "知识检索", to: "/search" },
+  { icon: ICON_CALCULATOR, label: "八股出题", to: "/bagu" },
 ];
 
 const STATUS_TECHS = [
@@ -56,7 +58,7 @@ const STATUS_TECHS = [
 
 export default function WelcomePage() {
   const navigate = useNavigate();
-  const { login: authLogin } = useAuth();
+  const { login: authLogin, authed } = useAuth();
   const [splashIdx, setSplashIdx] = useState(0);
   const [statusTech, setStatusTech] = useState(STATUS_TECHS[0]);
   const runeContainerRef = useRef<HTMLDivElement>(null);
@@ -177,10 +179,13 @@ export default function WelcomePage() {
 
         {/* MC 竖排菜单 */}
         <div className="flex flex-col items-center gap-0 relative z-[3] mt-16 mb-8" style={{ width: 380 }}>
-          {menuItems.map(({ icon, label, primary }, i) => (
+          {menuItems.map(({ icon, label, to, primary }) => (
             <button
               key={label}
-              onClick={() => i === 0 ? openModal("login") : openModal("login")}
+              onClick={() => {
+                if (primary) { openModal("login"); return; }
+                if (authed) { navigate(to); } else { openModal("login"); }
+              }}
               className={`mc-menu-vert ${primary ? "mc-menu-vert--primary" : ""}`}
             >
               <span className="mc-icon">
