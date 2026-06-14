@@ -25,7 +25,7 @@ public class AdminInitializer {
         }
         userRepository.save(UserAccountEntity.builder()
                                              .username("Pumluda")
-                                             .password(passwordEncoder.encode("pjp020910"))
+                                             .password(passwordEncoder.encode("xxx"))
                                              .email("admin@qa-agent.com")
                                              .role("ADMIN")
                                              .status(1)

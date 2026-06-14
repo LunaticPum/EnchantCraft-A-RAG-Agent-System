@@ -137,7 +137,28 @@ docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
 
 ## 截图
 
-<!-- TODO: 截图占位 -->
+| 首页 | 知识库 |
+|------|--------|
+| ![](docs/images/Agent对话与检索.png) | ![](docs/images/知识库阅览.png) |
+
+| 精灵对话 | 八股出题 |
+|----------|----------|
+| ![](docs/images/RAG检索校验.png) | ![](docs/images/八股skill功能测试.png) |
+
+| 题目集 |
+|--------|
+| ![](docs/images/题目集阅览.png) |
+
+---
+
+## 作者
+
+- 📧 邮箱：1637435385@qq.com
+- 🐙 GitHub：[LunaticPum](https://github.com/LunaticPum)
+
+## Star 趋势
+
+[![Star History Chart](https://api.star-history.com/svg?repos=LunaticPum/PuDocManageAgent&type=date)](https://star-history.com/#LunaticPum/PuDocManageAgent&date)
 
 ---
 

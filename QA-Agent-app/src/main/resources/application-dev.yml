@@ -4,9 +4,9 @@ server:
 # MySQL 数据源配置（远程）
 spring:
   datasource:
-    url: jdbc:mysql://134.175.232.110:13306/qa_agent?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://xxx.xxx.xxx.xxx:13306/qa_agent?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
-    password: 123456
+    password: xxx
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       minimum-idle: 5
@@ -17,7 +17,7 @@ spring:
       connection-test-query: SELECT 1
   # Kafka 消息队列：异步索引
   kafka:
-    bootstrap-servers: 134.175.232.110:19092
+    bootstrap-servers: xxx.xxx.xxx.xxx:19092
     consumer:
       group-id: qa-agent-indexing
       auto-offset-reset: earliest
@@ -30,9 +30,9 @@ spring:
 # PostgreSQL + pgvector 数据源（RAG 检索引擎）
 pg:
   datasource:
-    url: jdbc:postgresql://134.175.232.110:15432/qa_agent
+    url: jdbc:postgresql://xxx.xxx.xxx.xxx:15432/qa_agent
     username: root
-    password: 123456
+    password: xxx
     driver-class-name: org.postgresql.Driver
     hikari:
       minimum-idle: 2
@@ -45,14 +45,14 @@ pg:
 deepSeek:
   model: "deepseek-v4-pro"
   base-url: "https://api.deepseek.com/v1"
-  api-key: "sk-fa0a3902d0b142dbbd56723537e6e7eb"
+  api-key: "xxx"
 
 # 阿里云百炼模型广场
 dashScope:
   embedding-model: "text-embedding-v3"
   rerank-model: "gte-rerank-v2"
   base-url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
-  api-key: "sk-b566df923861479284d8d726c681a2a8"
+  api-key: "xxx"
 
 # Prompt 模板目录（部署时挂载宿主机目录到此处）
 prompt:
@@ -60,7 +60,7 @@ prompt:
 
 # JWT 认证配置
 jwt:
-  secret: "qa-agent-pumluda-2026-super-secret-key-for-jwt-signing"
+  secret: "xxx"
   expiration: 7200000  # 2h = 7200000ms
 
 # 日志

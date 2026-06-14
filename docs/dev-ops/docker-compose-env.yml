@@ -9,7 +9,7 @@ services:
     restart: always
     environment:
       TZ: Asia/Shanghai
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: xxx
     ports:
       - "13306:3306"
     volumes:
@@ -33,7 +33,7 @@ services:
     environment:
       TZ: Asia/Shanghai
       POSTGRES_USER: root
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_PASSWORD: xxx
       POSTGRES_DB: qa_agent
     ports:
       - "15432:5432"
@@ -57,7 +57,7 @@ services:
       - "5050:80"
     environment:
       PGADMIN_DEFAULT_EMAIL: 1637435385@qq.com
-      PGADMIN_DEFAULT_PASSWORD: 123456
+      PGADMIN_DEFAULT_PASSWORD: xxx
       PGADMIN_CONFIG_WTF_CSRF_ENABLED: "False"
     networks:
       - my-network
@@ -78,7 +78,7 @@ services:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://134.175.232.110:19092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://xxx.xxx.xxx.xxx:19092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
