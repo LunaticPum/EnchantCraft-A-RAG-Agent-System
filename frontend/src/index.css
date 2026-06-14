@@ -348,7 +348,7 @@ body {
 }
 .mc-nav-links {
   display: flex; align-items: center;
-  position: absolute; left: 50%; transform: translateX(-50%);
+  flex: 1; justify-content: center;
 }
 .mc-nav-link {
   font-family: var(--font-mc);
