@@ -138,7 +138,7 @@ docker-compose -f docker-compose-env.yml -f docker-compose-app.yml up -d
 ## 截图
 
 <p align="center"><b>🏠 首页</b></p>
-<p align="center"><img src="docs/images/首页.png" /></p>
+<p align="center"><img src="docs/images/home.png" /></p>
 <p align="center"><b>📚 知识库</b></p>
 <p align="center"><img src="docs/images/知识库阅览.png" /></p>
 <p align="center"><b>🔮 精灵对话</b></p>
