@@ -1,0 +1,339 @@
+<style>
+  @font-face {
+    font-family: 'Monocraft';
+    src: url('file:///D:/JavaProject/QA-Agent-Pumluda/frontend/public/fonts/Monocraft.ttf') format('truetype');
+  }
+</style>
+
+<h2>V4 — 像素风图标 + Splash随机轮播</h2>
+<p class="subtitle">4个菜单按钮换成像素画图标 · Splash文字随机切换技术栈信息 · 底部状态栏也轮播</p>
+
+<style>
+  .mc-scene {
+    position: relative;
+    background: #0d0a08;
+    min-height: 440px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    overflow: hidden;
+    border: 3px solid #2a1a0a;
+    box-shadow: inset 0 0 120px rgba(0,0,0,0.6), 0 0 0 1px #3d2a10, 0 0 0 4px #0d0a08, 0 0 0 5px #2a1a0a;
+  }
+  /* 符文背景 */
+  .rune-layer { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+  .rune {
+    position: absolute; font-family: 'Monocraft', monospace;
+    font-size: 13px; letter-spacing: 0.1em;
+    text-shadow: 0 0 6px rgba(100,80,140,0.4);
+    animation: runeFloat linear infinite; opacity: 0;
+  }
+  @keyframes runeFloat {
+    0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+    10%  { opacity: 0.7; }
+    80%  { opacity: 0.6; }
+    100% { opacity: 0; transform: translateY(-130px) rotate(12deg); }
+  }
+  .pixel-particle {
+    position: absolute; width: 2px; height: 2px;
+    background: #c9a050; opacity: 0;
+    animation: particleDrift linear infinite; pointer-events: none; z-index: 1;
+  }
+  @keyframes particleDrift {
+    0%   { opacity: 0; transform: translate(0, 0); }
+    20%  { opacity: 0.8; }
+    80%  { opacity: 0.4; }
+    100% { opacity: 0; transform: translate(-20px, -100px); }
+  }
+
+  .mc-logo-wrap { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; }
+  .mc-title {
+    font-family: 'Monocraft', monospace; font-size: 48px; color: #e8dcc8;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 24px rgba(200,180,140,0.25), 3px 3px 0 rgba(0,0,0,0.8);
+  }
+
+  /* === Splash带淡入淡出切换 === */
+  .mc-splash {
+    position: absolute; left: -20px; top: -24px;
+    font-family: 'Monocraft', monospace;
+    font-size: 17px; color: #f5e050;
+    white-space: nowrap; z-index: 4;
+    transform: rotate(-18deg);
+    text-shadow: 0 0 14px rgba(245,224,80,0.5), 0 0 4px rgba(245,224,80,0.3), 2px 2px 0 rgba(0,0,0,0.8);
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .mc-splash.wobble {
+    animation: mcSplashWobble 3.4s ease-in-out infinite;
+  }
+  @keyframes mcSplashWobble {
+    0%, 100% { transform: rotate(-18deg) translateY(0); }
+    25% { transform: rotate(-17.2deg) translateY(-2px); }
+    50% { transform: rotate(-18.8deg) translateY(0); }
+    75% { transform: rotate(-17.5deg) translateY(1px); }
+  }
+
+  .mc-sub {
+    font-family: 'Monocraft', monospace; font-size: 12px; color: #6b6560;
+    letter-spacing: 0.3em; margin-top: 6px; z-index: 3;
+  }
+
+  .mc-btn {
+    margin-top: 22px; padding: 12px 36px;
+    font-family: 'Monocraft', monospace; font-size: 13px; letter-spacing: 0.1em;
+    color: #e8dcc8; background: #3d2a10; border: 2px solid #6b5020;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.08), 0 0 0 2px #1a0f04;
+    transition: all 0.15s; cursor: default; z-index: 3; position: relative;
+  }
+  .mc-btn:hover { background: #5a3d18; border-color: #8a6a2a; color: #f5e050; text-shadow: 0 0 8px rgba(245,224,80,0.4); }
+  .mc-btn::after { content: ''; position: absolute; bottom: -4px; left: 4px; right: -4px; height: 100%; background: #1a0f04; z-index: -1; }
+
+  /* === 像素风菜单 === */
+  .mc-menu {
+    display: flex; gap: 0; margin-top: 30px; z-index: 3;
+    border: 2px solid #3d2a10;
+    box-shadow: 0 0 0 2px #0d0a08, 0 0 0 3px #2a1a0a;
+  }
+  .mc-menu-item {
+    text-align: center;
+    font-family: 'Monocraft', monospace;
+    font-size: 11px; color: #8a7a5a;
+    letter-spacing: 0.08em;
+    padding: 14px 20px;
+    background: rgba(20,14,8,0.9);
+    border-right: 1px solid #2a1a0a;
+    transition: all 0.2s; cursor: default; position: relative;
+    min-width: 90px;
+  }
+  .mc-menu-item:last-child { border-right: none; }
+  .mc-menu-item:hover {
+    color: #f5e050;
+    background: rgba(60,40,18,0.9);
+    text-shadow: 0 0 6px rgba(245,224,80,0.3);
+  }
+
+  /* === 像素图标 (CSS box-shadow 像素画) === */
+  .pixel-icon {
+    display: block; width: 24px; height: 24px;
+    margin: 0 auto 8px;
+    position: relative;
+    image-rendering: pixelated;
+  }
+  /* 附魔书图标 */
+  .pixel-icon-book {
+    width: 20px; height: 24px; margin: 0 auto 8px;
+    background: #8b4513;
+    box-shadow:
+      0 0 0 4px #5a2d0c,    /* top cover */
+      0 6px 0 2px #a0522d,   /* pages */
+      0 0 0 6px #3d1a04,     /* dark border */
+      4px 0 0 -2px #ffe4b5,  /* bookmark */
+      4px -6px 0 -2px #ffe4b5;
+    position: relative;
+  }
+  /* 精灵/星星图标 */
+  .pixel-icon-sprite {
+    width: 22px; height: 22px; margin: 0 auto 8px;
+    background: #ffe87c;
+    box-shadow:
+      3px -5px 0 0px #ffe87c,
+      -3px -5px 0 0px #ffe87c,
+      6px 0 0 -2px #ffe87c,
+      -6px 0 0 -2px #ffe87c,
+      0 6px 0 -2px #ffe87c,
+      0 -6px 0 -2px #ffe87c;
+  }
+  /* 铁镐/工具图标 */
+  .pixel-icon-pick {
+    width: 20px; height: 24px; margin: 0 auto 8px;
+    background: #808080;
+    box-shadow:
+      -5px 4px 0 -2px #8b4513,
+      -10px 8px 0 -4px #8b4513,
+      5px 4px 0 -2px #8b4513,
+      10px 8px 0 -4px #8b4513;
+  }
+  /* 书与笔/题库图标 */
+  .pixel-icon-bookstack {
+    width: 24px; height: 20px; margin: 0 auto 8px;
+    background: #8b4513;
+    box-shadow:
+      0 -8px 0 0 #5a2d0c,
+      0 8px 0 -2px #a0522d,
+      6px 0 0 -2px #c9a050;
+  }
+
+  .mc-status {
+    margin-top: 18px; z-index: 3;
+    font-family: 'Monocraft', monospace;
+    font-size: 10px; color: #4a3a2a;
+    letter-spacing: 0.1em;
+    display: flex; gap: 24px;
+  }
+  .mc-status span { position: relative; padding-left: 12px; }
+  .mc-status span::before { content: '▸'; position: absolute; left: 0; color: #6b5020; }
+</style>
+
+<!-- 场景：像素图标 + 随机Splash -->
+<div class="mockup">
+  <div class="mockup-header">V4 附魔工坊 · 像素图标 + Splash轮播</div>
+  <div class="mockup-body">
+    <div class="mc-scene" id="scene4">
+      <div class="rune-layer" id="runes4"></div>
+      <div class="mc-logo-wrap">
+        <div class="mc-splash wobble" id="splash4">✦ 附魔吧！</div>
+        <div class="mc-title">EnchantCraft</div>
+      </div>
+      <div class="mc-sub">✦ 附 魔 工 坊 ✦</div>
+      <div class="mc-btn" id="mcBtn4">▣ 进入工坊</div>
+      <div class="mc-menu">
+        <div class="mc-menu-item" id="menu4-1">
+          <span class="pixel-icon pixel-icon-book"></span>资料库
+        </div>
+        <div class="mc-menu-item" id="menu4-2">
+          <span class="pixel-icon pixel-icon-sprite"></span>精灵对话
+        </div>
+        <div class="mc-menu-item" id="menu4-3">
+          <span class="pixel-icon pixel-icon-pick"></span>八股出题
+        </div>
+        <div class="mc-menu-item" id="menu4-4">
+          <span class="pixel-icon pixel-icon-bookstack"></span>我的题库
+        </div>
+      </div>
+      <div class="mc-status">
+        <span id="statusCount">12本附魔书已入库</span>
+        <span id="statusHealth">向量索引健康</span>
+        <span id="statusVer">v7.0 附魔台版本</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 图标设计说明 -->
+<div style="display:flex;gap:16px;margin-top:16px">
+  <div class="card" style="flex:1">
+    <div class="card-body">
+      <h3>🎨 像素图标</h3>
+      <p>4个图标用纯CSS box-shadow绘制，无外部依赖，天然像素锯齿感。从左上到右：</p>
+      <ul style="font-size:12px;color:#a8a39b;padding-left:18px">
+        <li><b>附魔书</b> — 棕色书本 + 书签</li>
+        <li><b>星星精灵</b> — 黄十字星形</li>
+        <li><b>十字镐</b> — 灰铁镐 + 棕手柄</li>
+        <li><b>层叠书</b> — 多层书本 + 金色标记</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="flex:1">
+    <div class="card-body">
+      <h3>🔄 Splash 轮播词库</h3>
+      <p>每6秒随机切换，淡入淡出。候选词包括：</p>
+      <ul style="font-size:12px;color:#a8a39b;padding-left:18px">
+        <li>DeepSeek-v4-pro 驱动</li>
+        <li>RAG混合检索 · 语义+关键词</li>
+        <li>阿里云百炼 Embedding</li>
+        <li>Bagu Skill · 生成你的八股</li>
+        <li>pgvector HNSW加速</li>
+        <li>gte-rerank-v2 重排序</li>
+        <li>2种Agent检索模式</li>
+        <li>zhparser中文分词</li>
+        <li>Kafka异步索引</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  // === 符文背景 ===
+  function spawnRunes(cntId, n) {
+    const c = document.getElementById(cntId); if (!c) return;
+    const runes = 'ᔑʖᓵ↸ᒷ⎓⊣⍑╎⋮ꖌꖎᒲリ𝙹!ᑑ∷ᓭℸ ⚍⍊∴̇|⨅⊑';
+    const words = ['⍑ᒷꖎꖎ𝙹','⍊╎ʖ∷ᔑ','ᒲᔑ⊣╎ᓵ','ᓵ∷||!ℸ','ᒷリᓵ⍑ᔑ','!¡𝙹ℸ╎𝙹','∴╎ᓭ↸𝙹','⎓ꖎ𝙹∴ᒷ∷'];
+    for (let i = 0; i < n; i++) {
+      const e = document.createElement('span'); e.className = 'rune';
+      e.textContent = Math.random() > 0.6 ? words[Math.floor(Math.random()*words.length)] : runes[Math.floor(Math.random()*runes.length)];
+      e.style.left = Math.random()*100+'%'; e.style.bottom = Math.random()*100+'%';
+      e.style.fontSize = (10+Math.random()*14)+'px';
+      e.style.animationDuration = (8+Math.random()*16)+'s';
+      e.style.animationDelay = Math.random()*14+'s';
+      e.style.color = Math.random() > 0.5 ? '#3a2a50' : '#4a3060';
+      c.appendChild(e);
+    }
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div'); p.className = 'pixel-particle';
+      p.style.left = Math.random()*100+'%'; p.style.top = Math.random()*100+'%';
+      p.style.animationDuration = (6+Math.random()*12)+'s';
+      p.style.animationDelay = Math.random()*8+'s';
+      p.style.width = p.style.height = (1+Math.random()*2)+'px';
+      c.parentElement.appendChild(p);
+    }
+  }
+  spawnRunes('runes4', 28);
+
+  // === Splash 随机轮播 ===
+  const splashEl = document.getElementById('splash4');
+  const splashPool = [
+    '✦ 附魔吧！',
+    '✦ RAG混合检索',
+    '✦ DeepSeek-v4-pro 驱动',
+    '✦ 阿里云百炼 Embedding',
+    '✦ Bagu Skill · 生成八股',
+    '✦ pgvector HNSW加速',
+    '✦ gte-rerank-v2 重排序',
+    '✦ 2种Agent检索模式',
+    '✦ zhparser中文分词',
+    '✦ Kafka异步索引',
+    '✦ 知识向量化存储',
+    '✦ 语义+关键词双路',
+    '✦ 附魔你的笔记吧',
+    '✦ 格利摩尔在召唤',
+  ];
+  let splashIdx = 0;
+  function cycleSplash() {
+    splashEl.style.opacity = '0';
+    setTimeout(() => {
+      splashIdx = (splashIdx + 1) % splashPool.length;
+      splashEl.textContent = splashPool[splashIdx];
+      splashEl.style.opacity = '1';
+    }, 500);
+  }
+  // 初始显示第一条，6秒后开始轮播
+  splashEl.textContent = splashPool[0];
+  setInterval(cycleSplash, 6000);
+
+  // === 状态栏轮播 ===
+  const statusCount = document.getElementById('statusCount');
+  const statusHealth = document.getElementById('statusHealth');
+  const statusVer = document.getElementById('statusVer');
+  let statusTick = 0;
+  function cycleStatus() {
+    statusTick++;
+    const techs = [
+      'DeepSeek-v4-pro 已连接',
+      'DashScope Embedding 就绪',
+      'pgvector HNSW 索引健康',
+      '阿里云百炼 Rerank 在线',
+      'Kafka 消息队列正常',
+      'zhparser 中文分词已加载',
+      '向量索引健康',
+    ];
+    const counts = [
+      '12本附魔书已入库',
+      '14本附魔书已入库',
+      '16本附魔书已入库',
+    ];
+    const vers = [
+      'v7.0 附魔台版本',
+      'v7.1 Bagu Skill 开发中',
+      'v7.0 EnchantCraft',
+    ];
+    if (statusTick % 3 === 0) {
+      statusCount.textContent = counts[Math.floor(Math.random()*counts.length)];
+      statusVer.textContent = vers[Math.floor(Math.random()*vers.length)];
+    }
+    statusHealth.textContent = techs[Math.floor(Math.random()*techs.length)];
+  }
+  setInterval(cycleStatus, 8000);
+</script>
+
+<p style="margin-top:16px;font-size:12px;color:#6b6560">
+  Splash每6秒淡入淡出切换 · 底部状态栏每8秒轮播技术栈信息 · 4个菜单图标是纯CSS box-shadow像素画
+</p>

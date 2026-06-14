@@ -1,0 +1,191 @@
+<style>
+  @font-face {
+    font-family: 'Monocraft';
+    src: url('file:///D:/JavaProject/QA-Agent-Pumluda/frontend/public/fonts/Monocraft.ttf') format('truetype');
+  }
+</style>
+
+<h2>Splash 动效 V2 — 修正版</h2>
+<p class="subtitle">参考 MC 原版：只做缓慢微小的旋转摆动 + 纵向浮动 + 文字发光。不做 scale，不弹跳。字体已加载 Monocraft</p>
+
+<style>
+  .mc-scene {
+    position: relative;
+    background: radial-gradient(ellipse 70% 50% at 50% 45%, rgba(50,40,30,0.5) 0%, #0d0d0d 100%);
+    border-radius: 20px; min-height: 360px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.04);
+    overflow: hidden;
+  }
+  /* 背景粒子（MC 标题画面的飘落粒子效果） */
+  .mc-scene::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.12) 50%, transparent 50%),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.08) 50%, transparent 50%),
+      radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.10) 50%, transparent 50%),
+      radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.06) 50%, transparent 50%),
+      radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,0.09) 50%, transparent 50%),
+      radial-gradient(1px 1px at 15% 65%, rgba(255,255,255,0.07) 50%, transparent 50%);
+    pointer-events: none;
+  }
+  .mc-logo-wrap {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .mc-title {
+    font-family: 'Monocraft', monospace;
+    font-size: 48px; color: #f0ede8;
+    letter-spacing: 0.04em;
+    text-shadow:
+      0 0 20px rgba(200,180,140,0.25),
+      2px 2px 0 rgba(0,0,0,0.5);
+    position: relative; z-index: 2;
+  }
+  .mc-splash {
+    position: absolute;
+    right: -136px; bottom: -2px;
+    font-family: 'Monocraft', monospace;
+    font-size: 17px; color: #f5e050;
+    white-space: nowrap; z-index: 3;
+    transform: rotate(-20deg);
+    /* 修正后的动效：只有微小的旋转摆动 + 纵向浮动，极慢速度 */
+    animation: mcSplashWobble 3.4s ease-in-out infinite;
+    text-shadow:
+      0 0 12px rgba(245,224,80,0.45),
+      0 0 4px rgba(245,224,80,0.3),
+      1px 1px 0 rgba(0,0,0,0.7);
+    pointer-events: none;
+  }
+  @keyframes mcSplashWobble {
+    0%, 100% {
+      transform: rotate(-20deg) translateY(0);
+    }
+    25% {
+      transform: rotate(-19.2deg) translateY(-2px);
+    }
+    50% {
+      transform: rotate(-20.8deg) translateY(0);
+    }
+    75% {
+      transform: rotate(-19.5deg) translateY(1px);
+    }
+  }
+  .mc-sub {
+    font-family: 'Monocraft', monospace;
+    font-size: 12px; color: #6b6560;
+    letter-spacing: 0.3em; margin-top: 8px; z-index: 2;
+  }
+  .mc-menu {
+    display: flex; gap: 36px; margin-top: 36px; z-index: 2;
+  }
+  .mc-menu-item {
+    text-align: center;
+    font-family: 'Monocraft', monospace;
+    font-size: 12px; color: #6b6560;
+    letter-spacing: 0.15em;
+    transition: color 0.3s, text-shadow 0.3s;
+    cursor: default;
+  }
+  .mc-menu-item:hover {
+    color: #f5e050;
+    text-shadow: 0 0 8px rgba(245,224,80,0.3);
+  }
+  .mc-menu-item .icon { font-size: 22px; display: block; margin-bottom: 4px; }
+  .mc-btn {
+    margin-top: 28px;
+    padding: 12px 42px;
+    font-family: 'Monocraft', monospace;
+    font-size: 13px; letter-spacing: 0.12em;
+    background: rgba(255,255,255,0.04);
+    border: 2px solid rgba(255,255,255,0.12);
+    color: #a8a39b;
+    transition: all 0.3s;
+    cursor: default; z-index: 2;
+  }
+  .mc-btn:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.25);
+    color: #f0ede8;
+  }
+
+  /* 对比：旧版（页游风） */
+  .old-splash {
+    position: absolute; right: -136px; bottom: -2px;
+    font-family: 'Monocraft', monospace;
+    font-size: 17px; color: #f5e050; white-space: nowrap; z-index: 3;
+    transform: rotate(-20deg);
+    animation: oldSplash 1.8s ease-in-out infinite;
+    text-shadow: 0 0 8px rgba(245,224,80,0.3);
+    pointer-events: none;
+  }
+  @keyframes oldSplash {
+    0%, 100% { transform: rotate(18deg) translateY(0) scale(1); }
+    15% { transform: rotate(16deg) translateY(-6px) scale(1.08); }
+    30% { transform: rotate(20deg) translateY(0) scale(0.96); }
+    45% { transform: rotate(17deg) translateY(-3px) scale(1.04); }
+    60% { transform: rotate(19deg) translateY(0) scale(0.98); }
+  }
+  .badge-fix { display:inline-block;padding:2px 10px;border-radius:10px;font-size:10px;font-weight:600;margin-left:6px; }
+  .badge-new { background:rgba(126,168,139,0.2); color:#7ea88b; }
+  .badge-old { background:rgba(200,122,106,0.2); color:#c87a6a; }
+</style>
+
+<div class="split">
+  <!-- 修正版 -->
+  <div class="mockup">
+    <div class="mockup-header"><span class="badge-new" style="margin-right:6px">V2 修正</span> MC 原版风格 — 仅微旋转 + 浮动 + 发光</div>
+    <div class="mockup-body">
+      <div class="mc-scene">
+        <div class="mc-logo-wrap">
+          <div class="mc-title">EnchantCraft</div>
+          <div class="mc-splash">附魔吧！</div>
+        </div>
+        <div class="mc-sub">✦ 附 魔 工 坊 ✦</div>
+        <div class="mc-btn">进入工坊</div>
+        <div class="mc-menu">
+          <div class="mc-menu-item"><span class="icon">📚</span>资料库</div>
+          <div class="mc-menu-item"><span class="icon">🔮</span>对话</div>
+          <div class="mc-menu-item"><span class="icon">⚒️</span>出题</div>
+          <div class="mc-menu-item"><span class="icon">📋</span>题库</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 旧版对比 -->
+  <div class="mockup">
+    <div class="mockup-header"><span class="badge-old" style="margin-right:6px">V1 废弃</span> 之前的版本 — scale + 弹跳过度</div>
+    <div class="mockup-body">
+      <div class="mc-scene">
+        <div class="mc-logo-wrap">
+          <div class="mc-title">EnchantCraft</div>
+          <div class="old-splash">附魔吧！</div>
+        </div>
+        <div class="mc-sub">✦ 附 魔 工 坊 ✦</div>
+        <div class="mc-btn">进入工坊</div>
+        <div class="mc-menu">
+          <div class="mc-menu-item"><span class="icon">📚</span>资料库</div>
+          <div class="mc-menu-item"><span class="icon">🔮</span>对话</div>
+          <div class="mc-menu-item"><span class="icon">⚒️</span>出题</div>
+          <div class="mc-menu-item"><span class="icon">📋</span>题库</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;padding:16px 20px;background:rgba(38,35,33,0.5);border-radius:14px;border:1px solid rgba(240,237,232,0.06)">
+  <h3 style="margin:0 0 8px;font-size:13px;color:#f0ede8">修正对比</h3>
+  <table style="width:100%;font-size:12px;border-collapse:collapse">
+    <tr style="color:#6b6560"><td style="padding:4px 8px">动画</td><td style="padding:4px 8px;color:#c87a6a">V1旧版</td><td style="padding:4px 8px;color:#7ea88b">V2修正</td></tr>
+    <tr><td style="padding:4px 8px">旋转</td><td style="padding:4px 8px">大幅摆动 16°~20°</td><td style="padding:4px 8px">微摆 ±0.8°</td></tr>
+    <tr><td style="padding:4px 8px">缩放</td><td style="padding:4px 8px">scale 0.96~1.08</td><td style="padding:4px 8px">无 scale</td></tr>
+    <tr><td style="padding:4px 8px">Y轴</td><td style="padding:4px 8px">弹跳 -6px~0</td><td style="padding:4px 8px">浮动 -2px~1px</td></tr>
+    <tr><td style="padding:4px 8px">周期</td><td style="padding:4px 8px">1.8s（急促）</td><td style="padding:4px 8px">3.4s（从容）</td></tr>
+    <tr><td style="padding:4px 8px">发光</td><td style="padding:4px 8px">单层弱光</td><td style="padding:4px 8px">三层 text-shadow 柔光</td></tr>
+  </table>
+</div>
+
+<p style="margin-top:16px;font-size:12px;color:#6b6560">注意：视觉预览中 Monocraft 字体通过绝对路径加载，实际项目中通过 <code>@font-face</code> 加载 <code>/fonts/Monocraft.ttf</code>。</p>
