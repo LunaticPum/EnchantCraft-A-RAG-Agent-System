@@ -169,8 +169,20 @@ export default function DocumentPage() {
           <div className="shelf-cab-top" />
           <div className="shelf-toolbar">
             {isAdmin && (<>
-              <span onClick={() => { setDeleteMode(!deleteMode); setSelectedShelves(new Set()); }}>{deleteMode ? "取消" : "🗑 删除"}</span>
-              <span onClick={async () => { try { const c = await api.vectorHealth(); alert(`向量数据: ${c} 条`); } catch { alert("检查失败"); } }}>🔍 向量检查</span>
+              {deleteMode ? (
+                <>
+                  <span style={{ color: "#c84040" }}>选择要删除的资料库</span>
+                  <span onClick={() => { setDeleteMode(false); setSelectedShelves(new Set()); }}>取消</span>
+                  {selectedShelves.size > 0 && (
+                    <span onClick={() => setDeleteConfirm(true)} style={{ color: "#f5e050", marginLeft: "auto" }}>确认删除 ({selectedShelves.size})</span>
+                  )}
+                </>
+              ) : (
+                <>
+                  <span onClick={() => { setDeleteMode(true); setSelectedShelves(new Set()); }}>🗑 删除</span>
+                  <span onClick={async () => { try { const c = await api.vectorHealth(); alert(`向量数据: ${c} 条`); } catch { alert("检查失败"); } }}>🔍 向量检查</span>
+                </>
+              )}
             </>)}
           </div>
           <div className="shelf-cab-inner">
@@ -187,7 +199,7 @@ export default function DocumentPage() {
                 shelves.map(([name, shelfDocs]) => (
                 <div
                   key={name}
-                  className={`cs-block ${selectedShelf === name ? "sel" : ""} ${deleteMode && selectedShelves.has(name) ? "sel" : ""}`}
+                  className={`cs-block ${!deleteMode && selectedShelf === name ? "sel" : ""} ${deleteMode && selectedShelves.has(name) ? "deleting" : ""}`}
                   onClick={() => handleShelfClick(name)}
                 >
                   <span className="cs-tip" style={{ zIndex: 20 }}>{name} · {shelfDocs.length}文档</span>
@@ -273,7 +285,7 @@ export default function DocumentPage() {
             <div className="mc-modal-header"><span>确认删除</span><button onClick={() => setDeleteConfirm(false)} className="mc-modal-close">✕</button></div>
             <div className="mc-modal-body">
               <p style={{ fontFamily: "var(--font-mc)", fontSize: 11, color: "#e8dcc8", margin: "0 0 12px" }}>
-                将删除选中的 {selectedShelves.size} 个资料库及其所有文档、分块和向量数据，不可恢复。确认？
+                将删除选中的 {selectedShelves.size} 个资料库及其所有文档、分块和向量数据，不可恢复。是否确认删除？
               </p>
               <div style={{ display: "flex", gap: 8 }}>
                 <button onClick={handleDelete} className="mc-btn" style={{ padding: "8px 20px", fontSize: 12 }}>确认删除</button>
