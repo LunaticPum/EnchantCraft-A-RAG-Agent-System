@@ -150,7 +150,6 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password, email }),
     }),
-};
 
   /* Bagu Skill */
   baguGenerate: (shelfName: string, documentIds: string[]) =>
