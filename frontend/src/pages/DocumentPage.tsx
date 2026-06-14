@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { api, type DocumentItem, type ChunkItem } from "../lib/api";
-import { scanDirectory, scanFiles, batchUploadFiles } from "../lib/directoryScan";
+import { scanFiles, batchUploadFiles } from "../lib/directoryScan";
 import { MdViewer } from "../lib/markdown";
 import { useAuth } from "../lib/mockAuth";
 
