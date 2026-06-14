@@ -92,6 +92,42 @@ export async function scanDirectory(): Promise<FileEntry[]> {
 }
 
 /**
+ * 选择单个或多个 .md 文件（非目录模式）
+ * 使用 <input type="file" accept=".md" multiple>
+ */
+export function scanFiles(): Promise<FileEntry[]> {
+  return new Promise((resolve, reject) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".md";
+    input.multiple = true;
+    input.style.display = "none";
+    document.body.appendChild(input);
+
+    input.onchange = () => {
+      const files = input.files;
+      const entries: FileEntry[] = [];
+      if (files) {
+        for (let i = 0; i < files.length; i++) {
+          const f = files[i];
+          if (!f.name.endsWith(".md")) continue;
+          entries.push({ file: f, relativePath: "" });
+        }
+      }
+      document.body.removeChild(input);
+      resolve(entries);
+    };
+
+    input.oncancel = () => {
+      document.body.removeChild(input);
+      reject(new Error("用户取消了选择"));
+    };
+
+    input.click();
+  });
+}
+
+/**
  * 批量上传文件（目录扫描模式）
  * @returns 成功上传的数量
  */

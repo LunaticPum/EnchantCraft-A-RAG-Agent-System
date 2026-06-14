@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { api, type DocumentItem, type ChunkItem } from "../lib/api";
-import { scanDirectory, batchUploadFiles } from "../lib/directoryScan";
+import { scanDirectory, scanFiles, batchUploadFiles } from "../lib/directoryScan";
 import { MdViewer } from "../lib/markdown";
 import { useAuth } from "../lib/mockAuth";
 
@@ -132,8 +132,9 @@ export default function DocumentPage() {
     try {
       setUploading(true);
       setUploadMsg("扫描目录中...");
-      const files = await scanDirectory();
-      setUploadMsg(`找到 ${files.length} 个 .md 文件，开始批量上传...`);
+      const files = await scanFiles();
+      if (files.length === 0) { setUploadMsg("未选择任何 .md 文件"); return; }
+      setUploadMsg(`已选择 ${files.length} 个 .md 文件，开始批量上传...`);
       const ok = await batchUploadFiles(files, (file, dirPath) => api.upload(file, dirPath),
         (cur, total, name) => setUploadMsg(`上传中 (${cur}/${total}) ${name}`));
       setUploadMsg(`完成！成功 ${ok}/${files.length} 个文件`);
