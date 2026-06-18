@@ -38,6 +38,8 @@ export default function DocumentPage() {
   const [uploading, setUploading] = useState(false);
   const [uploadMsg, setUploadMsg] = useState("");
   const [generating, setGenerating] = useState(false);
+  const [genDone, setGenDone] = useState(false);
+  const [genError, setGenError] = useState("");
   const [genResult, setGenResult] = useState<import("../lib/api").BaguSetResponse | null>(null);
   const [qaSets, setQaSets] = useState<import("../lib/api").BaguSetResponse[]>([]);
   const [selectedSetId, setSelectedSetId] = useState<string | null>(null);
@@ -114,13 +116,13 @@ export default function DocumentPage() {
     if (!selectedShelf) return;
     const ids = shelfDocs.map(d => d.id);
     if (ids.length === 0) return;
-    setGenerating(true);
-    setGenResult(null);
+    setGenerating(true); setGenDone(false); setGenError(""); setGenResult(null);
     try {
       const result = await api.baguGenerate(selectedShelf, ids);
-      setGenResult(result);
+      setGenResult(result); setGenDone(true);
+      api.baguListSets().then(setQaSets).catch(() => {});
     } catch (e: any) {
-      alert("生成失败: " + (e.message || "未知错误"));
+      setGenError(e.message || "未知错误");
     } finally {
       setGenerating(false);
     }
@@ -294,14 +296,44 @@ export default function DocumentPage() {
                 )}
                 {selectedShelf && shelfDocs.length > 0 && (
                   <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid rgba(139,115,85,0.2)" }}>
-                    <button
-                      onClick={handleBaguGenerate}
-                      disabled={generating}
-                      className="mc-btn"
-                      style={{ width: "100%", padding: "8px 12px", fontSize: 11 }}
-                    >
+                    <button onClick={handleBaguGenerate} disabled={generating}
+                      className="mc-btn" style={{ width: "100%", padding: "8px 12px", fontSize: 11 }}>
                       {generating ? "生成中..." : "⚒️ 生成八股"}
                     </button>
+                  </div>
+                )}
+
+                {/* 生成弹窗 */}
+                {(generating || genDone || genError) && (
+                  <div style={{position:"fixed",inset:0,zIndex:100,background:"rgba(0,0,0,0.6)",display:"flex",alignItems:"center",justifyContent:"center"}} onClick={() => { if (genDone || genError) { setGenDone(false); setGenError(""); } }}>
+                    <div onClick={e => e.stopPropagation()} style={{background:"#1a1410",border:"3px solid #5a3018",padding:"30px 36px",maxWidth:380,width:"90%",fontFamily:"var(--font-mc)"}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20}}>
+                        <span style={{fontSize:14,color:"#e8dcc8"}}>
+                          {generating ? "⚒️ 正在生成问答集" : genError ? "❌ 生成失败" : "✅ 生成完成"}
+                        </span>
+                        <span onClick={() => { setGenDone(false); setGenError(""); }} style={{cursor:"pointer",color:"#8a7a5a",fontSize:18}}>✕</span>
+                      </div>
+                      {generating && (
+                        <div style={{textAlign:"center",padding:"20px 0"}}>
+                          <div style={{fontSize:28,marginBottom:12,animation:"pulse 1.5s ease-in-out infinite"}}>⚒️</div>
+                          <p style={{fontSize:11,color:"#8a7a4a",margin:"0 0 4px"}}>正在根据学习资料生成面试题集...</p>
+                          <p style={{fontSize:9,color:"#5a4020",margin:0}}>DeepSeek 推理中，请耐心等待</p>
+                        </div>
+                      )}
+                      {genError && (
+                        <div style={{textAlign:"center",padding:"10px 0"}}>
+                          <p style={{fontSize:12,color:"#c87a6a",margin:"0 0 12px"}}>{genError}</p>
+                          <button onClick={() => setGenError("")} className="mc-btn" style={{padding:"6px 16px",fontSize:10}}>关闭</button>
+                        </div>
+                      )}
+                      {genDone && genResult && (
+                        <div style={{textAlign:"center"}}>
+                          <p style={{fontSize:12,color:"#c8b090",margin:"0 0 8px"}}>{genResult.title}</p>
+                          <p style={{fontSize:10,color:"#8a6a4a",margin:"0 0 16px"}}>{genResult.itemCount} 题 · {genResult.description}</p>
+                          <button onClick={() => { setTab("qasets"); setGenDone(false); }} className="mc-btn" style={{padding:"8px 20px",fontSize:11}}>前往题目集 →</button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
