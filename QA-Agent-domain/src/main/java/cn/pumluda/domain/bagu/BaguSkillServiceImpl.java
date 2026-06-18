@@ -12,23 +12,38 @@ import cn.pumluda.types.exception.AppException;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import dev.langchain4j.model.openai.OpenAiChatModel;
-import lombok.RequiredArgsConstructor;
+import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.chat.ChatModel;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class BaguSkillServiceImpl implements IBaguSkillService {
 
     private final IDocumentRepository documentRepository;
     private final IBaguSetRepository baguSetRepository;
-    private final OpenAiChatModel chatModel;
+    private final ChatModel chatModel;
+    private final String promptDir;
+
+    public BaguSkillServiceImpl(IDocumentRepository documentRepository,
+                                IBaguSetRepository baguSetRepository,
+                                ChatModel chatModel,
+                                @Value("${prompt.base-path:/app/docs/prompts}") String promptBasePath) {
+        this.documentRepository = documentRepository;
+        this.baguSetRepository = baguSetRepository;
+        this.chatModel = chatModel;
+        this.promptDir = promptBasePath + "/bagu";
+    }
 
     @Override
     public BaguSetResponse generate(String shelfName, List<String> documentIds) {
@@ -59,11 +74,13 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
     }
 
     private String buildPrompt(String shelfName, List<SourceDocumentEntity> docs) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("你是一位资深技术面试官。请基于以下学习笔记，生成一套结构化面试题。\n\n");
-        sb.append("## 资料库主题：").append(shelfName).append("\n\n");
-        sb.append("## 学习笔记内容：\n\n");
+        String template = loadPrompt("generate.md");
+        return template.replace("{shelfName}", shelfName)
+                       .replace("{content}", buildContent(docs));
+    }
 
+    private String buildContent(List<SourceDocumentEntity> docs) {
+        StringBuilder sb = new StringBuilder();
         int totalLen = 0;
         for (SourceDocumentEntity doc : docs) {
             String content = doc.getRawContent();
@@ -71,23 +88,19 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
             int remaining = 12000 - totalLen;
             if (remaining <= 0) break;
             String snippet = content.length() > remaining ? content.substring(0, remaining) + "..." : content;
-            sb.append("### ").append(doc.getFileName()).append("\n");
-            sb.append(snippet).append("\n\n");
+            sb.append("### ").append(doc.getFileName()).append("\n").append(snippet).append("\n\n");
             totalLen += snippet.length();
         }
-
-        sb.append("## 输出要求\n");
-        sb.append("请以JSON格式输出，不要包含markdown代码块标记。格式如下：\n");
-        sb.append("{\n");
-        sb.append("  \"title\": \"问答集标题\",\n");
-        sb.append("  \"description\": \"问答集简介\",\n");
-        sb.append("  \"items\": [\n");
-        sb.append("    {\"question\": \"...\", \"answer\": \"...\", \"difficulty\": \"EASY|MEDIUM|HARD\"}\n");
-        sb.append("  ]\n");
-        sb.append("}\n\n");
-        sb.append("要求：生成5-8题，难度分布1-2EASY/3-4MEDIUM/1-2HARD，答案详细准确\n");
-
         return sb.toString();
+    }
+
+    private String loadPrompt(String filename) {
+        Path path = Path.of(promptDir, filename).toAbsolutePath().normalize();
+        if (Files.exists(path)) {
+            try { return Files.readString(path, StandardCharsets.UTF_8); }
+            catch (IOException e) { log.warn("[BaguSkill] 读取Prompt失败: {}", path, e); }
+        }
+        return "";
     }
 
     private JSONObject parseResponse(String response) {
@@ -197,13 +210,10 @@ public class BaguSkillServiceImpl implements IBaguSkillService {
 
     @Override
     public String evaluate(String question, String standardAnswer, String userAnswer) {
-        String prompt = String.format(
-            "你是一位面试官。请比较用户的回答与标准答案，给出评价等级和简短点评。\n\n" +
-            "题目：%s\n\n标准答案：%s\n\n用户回答：%s\n\n" +
-            "请只输出一个JSON：{\"level\":\"GOOD|OK|POOR\",\"comment\":\"简短点评(20字内)\"}\n" +
-            "评判标准：GOOD=回答准确覆盖要点，OK=大体正确但有遗漏，POOR=答非所问或严重错误",
-            question, standardAnswer, userAnswer
-        );
+        String template = loadPrompt("evaluate.md");
+        String prompt = template.replace("{question}", question)
+                                .replace("{standardAnswer}", standardAnswer)
+                                .replace("{userAnswer}", userAnswer);
         return chatModel.chat(prompt);
     }
 
